@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Teste</title>
+  <!-- Puxa o Supabase direto da internet -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Um CSS bem básico só pro site não ficar feio -->
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
+    .vitrine { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
+    .card { background: white; padding: 15px; border-radius: 8px; width: 250px; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; background: #ddd; }
+    .preco { color: #16a34a; font-size: 20px; font-weight: bold; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Meu Catálogo Supabase</h1>
+  <div id="vitrine" class="vitrine">Buscando produtos no banco de dados...</div>
+
+  <script>
+    // 1. CONECTANDO AO SUPABASE
+    const SUPABASE_URL = 'https://ulijlbrbivyeoyxxitwa.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsaWpsYnJiaXZ5ZW95eHhpdHdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MjQ1MDQsImV4cCI6MjEwNDEwMDUwNH0.x34Z45RBby8YwG7wb9jhsHTmj-LM0C9JEuF2yMwKCwo';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // 2. BUSCANDO OS DADOS E MONTANDO A TELA
+    async function iniciarSite() {
+      const { data, error } = await supabase.from('CATÁLOGO 1').select('*');
+      const vitrine = document.getElementById('vitrine');
+
+      if (error) {
+        vitrine.innerHTML = `<b style="color:red">Erro: ${error.message}</b>`;
+        return;
+      }
+
+      if (data.length === 0) {
+        vitrine.innerHTML = '<b>Nenhum produto cadastrado lá no painel ainda!</b>';
+        return;
+      }
+
+      // 3. DESENHA UM CARD PARA CADA PRODUTO
+      vitrine.innerHTML = data.map(item => `
+        <div class="card">
+          <!-- Se não tiver foto no banco, coloca uma imagem cinza de teste -->
+          <img src="${item.imagem_url || 'https://via.placeholder.com/250?text=Sem+Foto'}" alt="${item.nome}">
+          <h3>${item.nome || 'Produto Sem Nome'}</h3>
+          <p>${item.descricao || ''}</p>
+          <div class="preco">R$ ${item.preco || '0.00'}</div>
+        </div>
+      `).join('');
+    }
+
+    iniciarSite();
+  </script>
+
+</body>
+</html>
