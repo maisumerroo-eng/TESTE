@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#1a1714">
+<title>Almoxarifado 3D</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: full-bleed WebGL stage; HUD chips pinned to corners; touch controls bottom-left / bottom-right */
+:root{
+  --bg:#1a1714; --ink:#f4efe8; --chip:rgba(20,18,16,.62); --line:rgba(255,255,255,.18); --accent:#ffb23e; --go:#2fb36a;
+  --display:"Archivo",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace; color-scheme:dark;
+}
+html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--display);
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.hud{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.tag{background:var(--chip);border:1px solid var(--line);border-radius:6px;padding:7px 10px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tag h1{margin:0;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.tag p{margin:2px 0 0;font:500 11px var(--mono);opacity:.8}
+#state{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+#goal{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font:500 11px var(--mono)}
+#goal b{color:var(--go)}
+#load{position:fixed;inset:0;display:grid;place-items:center;font:500 13px var(--mono);background:var(--bg)}
+.pad{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));width:132px;height:132px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);touch-action:none;display:none}
+#stick{left:max(22px,calc(env(safe-area-inset-left,0px) + 22px))}
+#knob{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(255,255,255,.28)}
+.btn{position:fixed;display:none;border-radius:50%;border:1px solid var(--line);background:var(--chip);color:var(--ink);
+  font:800 13px var(--display);touch-action:none;-webkit-user-select:none;user-select:none}
+#jump{right:max(26px,calc(env(safe-area-inset-right,0px) + 26px));bottom:calc(34px + env(safe-area-inset-bottom,0px));width:86px;height:86px;background:rgba(255,178,62,.85);color:#1a1714}
+#run{right:max(124px,calc(env(safe-area-inset-right,0px) + 124px));bottom:calc(30px + env(safe-area-inset-bottom,0px));width:60px;height:60px}
+#run[aria-pressed="true"]{background:var(--go);color:#0d1a12}
+body.touch .pad,body.touch .btn{display:block}
+body.touch .keys{display:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<canvas id="c" aria-label="Jogo 3D do almoxarifado"></canvas>
+<div class="hud">
+  <div class="tag"><h1>Almoxarifado 3D</h1><p class="keys">WASD / setas · Shift corre · Espaço pula · arraste gira a câmera</p><p id="state">carregando</p></div>
+</div>
+<div id="goal" class="tag">Meta: subir no mezanino <b id="goalst">—</b></div>
+<div id="stick" class="pad" aria-hidden="true"><div id="knob"></div></div>
+<button id="run" class="btn" aria-pressed="false">Correr</button>
+<button id="jump" class="btn">Pular</button>
+<div id="load">Carregando personagem…</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+(()=>{
+const canvas=document.getElementById('c');
+const isTouch=matchMedia('(pointer: coarse)').matches||'ontouchstart' in window;
+if(isTouch)document.body.classList.add('touch');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:!isTouch,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,isTouch?1.5:2));
+renderer.outputEncoding=THREE.sRGBEncoding;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xd9dcdf);scene.fog=new THREE.Fog(0xd9dcdf,26,60);
+const cam=new THREE.PerspectiveCamera(55,1,0.1,120);
+scene.add(new THREE.HemisphereLight(0xffffff,0x6b4a3a,0.85));
+const sun=new THREE.DirectionalLight(0xffffff,0.75);sun.position.set(8,16,6);sun.castShadow=true;
+sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-12,right:12,top:12,bottom:-12,near:1,far:40});scene.add(sun);scene.add(sun.target);
+
+// ---------- procedural textures ----------
+function canvasTex(w,h,draw,rep){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);
+  const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;if(rep){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep[0],rep[1])}t.anisotropy=4;return t}
+const floorTex=canvasTex(512,512,(g,w,h)=>{g.fillStyle='#8a4a42';g.fillRect(0,0,w,h);
+  for(let i=0;i<2600;i++){g.fillStyle=`rgba(${Math.random()<.5?255:0},${Math.random()<.5?220:0},${Math.random()<.5?200:0},${Math.random()*.05})`;g.fillRect(Math.random()*w,Math.random()*h,2+Math.random()*6,2+Math.random()*6)}
+  g.strokeStyle='rgba(40,20,18,.35)';g.lineWidth=3;g.strokeRect(0,0,w,h)},[12,12]);
+const boxTex=canvasTex(256,256,(g,w,h)=>{g.fillStyle='#c79a63';g.fillRect(0,0,w,h);
+  for(let i=0;i<500;i++){g.fillStyle=`rgba(90,60,30,${Math.random()*.06})`;g.fillRect(Math.random()*w,Math.random()*h,1,10)}
+  g.fillStyle='rgba(160,120,70,.9)';g.fillRect(0,h*.46,w,h*.08);
+  g.fillStyle='#2b4f9e';g.font='bold 54px Archivo, sans-serif';g.fillText('⇑⇑',w*.36,h*.36);
+  g.font='bold 15px IBM Plex Mono, monospace';g.fillText('CUIDADO FRÁGIL',w*.2,h*.82)});
+const woodTex=canvasTex(256,64,(g,w,h)=>{g.fillStyle='#d9c08e';g.fillRect(0,0,w,h);for(let i=0;i<40;i++){g.strokeStyle=`rgba(120,90,50,${Math.random()*.25})`;g.beginPath();g.moveTo(0,Math.random()*h);g.lineTo(w,Math.random()*h);g.stroke()}});
+const wrapTex=canvasTex(128,128,(g,w,h)=>{g.fillStyle='#2fa6e6';g.fillRect(0,0,w,h);for(let y=4;y<h;y+=10)for(let x=(y/10%2)*5;x<w;x+=10){g.fillStyle='rgba(255,255,255,.35)';g.beginPath();g.arc(x,y,3,0,7);g.fill()}},[3,3]);
+
+// ---------- map ----------
+const solids=[]; // AABBs {min:Vector3,max:Vector3}
+const matBox=new THREE.MeshStandardMaterial({map:boxTex,roughness:.9});
+const matWood=new THREE.MeshStandardMaterial({map:woodTex,roughness:.9});
+const matMetal=new THREE.MeshStandardMaterial({color:0x9aa3ad,roughness:.6,metalness:.3});
+const matRail=new THREE.MeshStandardMaterial({color:0xc8323a,roughness:.5});
+const matWall=new THREE.MeshStandardMaterial({color:0xeef0f2,roughness:1});
+function addBox(x,y,z,sx,sy,sz,mat,solid=true,cast=true){const m=new THREE.Mesh(new THREE.BoxGeometry(sx,sy,sz),mat);m.position.set(x,y+sy/2,z);
+  m.castShadow=cast;m.receiveShadow=true;scene.add(m);if(solid)solids.push({min:new THREE.Vector3(x-sx/2,y,z-sz/2),max:new THREE.Vector3(x+sx/2,y+sy,z+sz/2)});return m}
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(52,52),new THREE.MeshStandardMaterial({map:floorTex,roughness:.75}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+// safety lanes
+const laneMat=new THREE.MeshBasicMaterial({color:0xf2c230});
+[[0,-3,40,.12],[0,3,40,.12]].forEach(([x,z,l,w])=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(l,w),laneMat);m.rotation.x=-Math.PI/2;m.position.set(x,.005,z);scene.add(m)});
+// walls
+const WH=8;[[0,-25,52,.4],[0,25,52,.4],[-25,0,.4,52],[25,0,.4,52]].forEach(([x,z,sx,sz])=>addBox(x,0,z,sx,WH,sz,matWall,true,false));
+// exit sign
+const exitTex=canvasTex(256,128,(g,w,h)=>{g.fillStyle='#1f9d55';g.fillRect(0,0,w,h);g.fillStyle='#fff';g.font='bold 44px Archivo, sans-serif';g.fillText('SAÍDA',58,80)});
+const ex=new THREE.Mesh(new THREE.PlaneGeometry(1.6,.8),new THREE.MeshBasicMaterial({map:exitTex}));ex.position.set(0,5.4,-24.75);scene.add(ex);
+// pallet helper
+function pallet(x,z){addBox(x,0,z,1.2,.14,1.0,matWood);}
+// box stacks (jumping route)
+const route=[[-4,0,1.0],[-6,1.5,1.0],[-8,3.5,1.6],[-10,6,2.2],[-12,8.5,2.8],[-9,11,3.4]];
+route.forEach(([x,z,h])=>{pallet(x,z);addBox(x,.14,z,1.6,h-.14,1.6,matBox)});
+// scattered boxes & pallets
+[[4,-6,.6],[5.2,-6,.6],[4.6,-6,1.2],[8,4,.8],[9.4,4.2,.8],[8.7,4.1,1.6],[-14,-8,.9],[13,-12,1.1],[14.2,-12,.6]].forEach(([x,z,h],i)=>{
+  if(i===2||i===5)addBox(x,h-.6+.0,z,.9,.6,.9,matBox);else{pallet(x,z);addBox(x,.14,z,1.1,h-.14,1.1,matBox)}});
+// shelving along the back wall
+for(let i=0;i<6;i++){const x=-18+i*4.2,z=-22.6;
+  for(const [dx,dz] of [[-1.9,-.9],[1.9,-.9],[-1.9,.9],[1.9,.9]])addBox(x+dx,0,z+dz,.12,5,.12,matMetal,true);
+  for(const y of [1.6,3.2,4.8]){addBox(x,y,z,4,.08,2,matMetal,false);for(let k=0;k<3;k++)addBox(x-1.2+k*1.2,y+.08,z,1,.7,1.4,matBox,false)}
+  solids.push({min:new THREE.Vector3(x-2,0,z-1),max:new THREE.Vector3(x+2,4.9,z+1)})}
+// mezzanine (goal) with railing
+const MZ={x:-12,z:14,sx:10,sz:5,h:4};
+addBox(MZ.x,MZ.h-.2,MZ.z,MZ.sx,.2,MZ.sz,matMetal);
+for(const [dx,dz] of [[-4.8,-2.3],[4.8,-2.3],[-4.8,2.3],[4.8,2.3]])addBox(MZ.x+dx,0,MZ.z+dz,.2,MZ.h-.2,.2,matMetal);
+addBox(MZ.x,MZ.h,MZ.z+2.45,MZ.sx,1,.06,matRail,true);addBox(MZ.x-4.97,MZ.h,MZ.z,.06,1,MZ.sz,matRail,true);
+const goalPad=new THREE.Mesh(new THREE.CircleGeometry(.9,40),new THREE.MeshBasicMaterial({color:0x2fb36a,transparent:true,opacity:.75}));goalPad.rotation.x=-Math.PI/2;goalPad.position.set(MZ.x-3,MZ.h+.01,MZ.z+.5);scene.add(goalPad);
+// bubble-wrap piles (soft, walkable bumps)
+const wrapMat=new THREE.MeshStandardMaterial({map:wrapTex,roughness:.25,transparent:true,opacity:.92});
+[[10,-2],[11.5,-1],[6,12]].forEach(([x,z])=>{const m=new THREE.Mesh(new THREE.SphereGeometry(1.3,20,12,0,Math.PI*2,0,Math.PI/2),wrapMat);m.scale.y=.45;m.position.set(x,0,z);m.receiveShadow=true;scene.add(m);
+  solids.push({min:new THREE.Vector3(x-.9,0,z-.9),max:new THREE.Vector3(x+.9,.5,z+.9)})});
+
+// ---------- character ----------
+const player={pos:new THREE.Vector3(0,0,6),vel:new THREE.Vector3(),yaw:Math.PI,onGround:true,r:.34,h:1.75};
+let model,mixer,actions={},current=null;
+function play(name,fade=.2,once=false){const a=actions[name];if(!a||current===a)return;
+  a.reset();a.setLoop(once?THREE.LoopOnce:THREE.LoopRepeat);a.clampWhenFinished=once;
+  if(name==='Pulando')a.time=.3;
+  a.play();if(current)current.crossFadeTo(a,fade,false);current=a;document.getElementById('state').textContent=name}
+fetch('personagem.glb').then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(buf=>new Promise((res,rej)=>new THREE.GLTFLoader().parse(buf,'',res,rej))).then(g=>{
+  model=g.scene;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.frustumCulled=false}});scene.add(model);
+  mixer=new THREE.AnimationMixer(model);g.animations.forEach(c=>actions[c.name]=mixer.clipAction(c));
+  actions['Pulando']&&(actions['Pulando'].timeScale=1.15);
+  play('Parado',0);document.getElementById('load').remove();
+}).catch(e=>{document.getElementById('load').textContent='Não consegui carregar o personagem.';console.error(e)});
+
+// ---------- input ----------
+const keys=new Set();let jumpReq=false,runToggle=false;
+addEventListener('keydown',e=>{keys.add(e.code);if(e.code==='Space'){jumpReq=true;e.preventDefault()}});
+addEventListener('keyup',e=>keys.delete(e.code));
+let camYaw=Math.PI,camPitch=.32,camDist=5.2,drag=null;
+canvas.addEventListener('pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;camYaw-=(e.clientX-drag.x)*.006;camPitch=Math.min(1.1,Math.max(.08,camPitch+(e.clientY-drag.y)*.004));drag.x=e.clientX;drag.y=e.clientY});
+canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
+canvas.addEventListener('wheel',e=>{camDist=Math.min(9,Math.max(2.5,camDist+e.deltaY*.004))},{passive:true});
+// joystick
+const stick=document.getElementById('stick'),knob=document.getElementById('knob');let joy={x:0,y:0,id:null};
+function joyMove(e){const r=stick.getBoundingClientRect();let dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);const m=Math.hypot(dx,dy),R=r.width/2;
+  if(m>R){dx*=R/m;dy*=R/m}joy.x=dx/R;joy.y=dy/R;knob.style.transform=`translate(${dx}px,${dy}px)`}
+stick.addEventListener('pointerdown',e=>{joy.id=e.pointerId;stick.setPointerCapture(e.pointerId);joyMove(e)});
+stick.addEventListener('pointermove',e=>{if(e.pointerId===joy.id)joyMove(e)});
+const joyEnd=()=>{joy={x:0,y:0,id:null};knob.style.transform=''};stick.addEventListener('pointerup',joyEnd);stick.addEventListener('pointercancel',joyEnd);
+document.getElementById('jump').addEventListener('pointerdown',e=>{e.preventDefault();jumpReq=true});
+const runBtn=document.getElementById('run');runBtn.addEventListener('click',()=>{runToggle=!runToggle;runBtn.setAttribute('aria-pressed',runToggle)});
+
+// ---------- physics ----------
+const G=22,JUMP=7.4,WALK=2.7,RUN=5.6,STEP=.42;
+function overlapXZ(p,b,r){return p.x+r>b.min.x&&p.x-r<b.max.x&&p.z+r>b.min.z&&p.z-r<b.max.z}
+function blocked(p){for(const b of solids){if(!overlapXZ(p,b,player.r))continue;
+  if(p.y>=b.max.y-STEP&&b.max.y-p.y<=STEP)continue; if(p.y+player.h<=b.min.y)continue; return b}return null}
+function groundAt(p,prevY){let g=0;for(const b of solids){if(overlapXZ(p,b,player.r*.8)&&b.max.y<=prevY+STEP+.01)g=Math.max(g,b.max.y)}return g}
+const tmp=new THREE.Vector3();let reached=false;
+function step(dt){
+  // input direction
+  let ix=0,iz=0;if(keys.has('KeyW')||keys.has('ArrowUp'))iz+=1;if(keys.has('KeyS')||keys.has('ArrowDown'))iz-=1;
+  if(keys.has('KeyA')||keys.has('ArrowLeft'))ix+=1;if(keys.has('KeyD')||keys.has('ArrowRight'))ix-=1;
+  if(joy.id!==null){ix=-joy.x;iz=-joy.y}
+  const mag=Math.min(1,Math.hypot(ix,iz));
+  const running=keys.has('ShiftLeft')||keys.has('ShiftRight')||runToggle||(joy.id!==null&&Math.hypot(joy.x,joy.y)>.92);
+  let vx=0,vz=0;
+  if(mag>.08){const fx=Math.sin(camYaw),fz=Math.cos(camYaw);// camera forward on ground
+    const dx=(fx*iz+fz*ix)/Math.max(1,Math.hypot(ix,iz)),dz=(fz*iz-fx*ix)/Math.max(1,Math.hypot(ix,iz));
+    const sp=(running?RUN:WALK)*mag;vx=dx*sp;vz=dz*sp;
+    const target=Math.atan2(dx,dz);let d=target-player.yaw;d=Math.atan2(Math.sin(d),Math.cos(d));player.yaw+=d*Math.min(1,dt*12)}
+  const p=player.pos,prevY=p.y;
+  // horizontal with step-up
+  tmp.copy(p);tmp.x+=vx*dt;let b=blocked(tmp);if(!b)p.x=tmp.x;
+  tmp.copy(p);tmp.z+=vz*dt;b=blocked(tmp);if(!b)p.z=tmp.z;
+  // vertical
+  if(jumpReq&&player.onGround){player.vel.y=JUMP;player.onGround=false;play('Pulando',.08,true)}jumpReq=false;
+  player.vel.y-=G*dt;p.y+=player.vel.y*dt;
+  const gnd=groundAt(p,prevY);
+  if(p.y<=gnd){p.y=gnd;player.vel.y=0;if(!player.onGround){player.onGround=true}}
+  else if(p.y>gnd+.05&&player.onGround&&player.vel.y<=0){player.onGround=false;if(!actions['Pulando']||current!==actions['Pulando'])play('Pulando',.15,true)}
+  if(player.onGround&&(current===actions['Pulando']||!current||true)){
+    const want=mag<.08?'Parado':running?'Correndo':'Andando';if(current!==actions[want])play(want,.18)}
+  if(actions['Andando'])actions['Andando'].timeScale=Math.max(.6,mag);
+  // goal
+  const onGoal=Math.hypot(p.x-goalPad.position.x,p.z-goalPad.position.z)<1&&Math.abs(p.y-MZ.h)<.1;
+  if(onGoal&&!reached){reached=true;document.getElementById('goalst').textContent='concluída!'}
+  if(p.y<-5)p.set(0,0,6);
+}
+// ---------- loop ----------
+function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',resize);resize();
+const clock=new THREE.Clock();const camPos=new THREE.Vector3(0,3,12);
+renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),1/20);
+  if(model){step(dt);model.position.copy(player.pos);model.rotation.y=player.yaw;mixer.update(dt)}
+  goalPad.material.opacity=.55+.25*Math.sin(clock.elapsedTime*3);
+  const t=player.pos;const want=new THREE.Vector3(t.x-Math.sin(camYaw)*Math.cos(camPitch)*camDist,t.y+1.3+Math.sin(camPitch)*camDist,t.z-Math.cos(camYaw)*Math.cos(camPitch)*camDist);
+  camPos.lerp(want,1-Math.pow(.001,dt));cam.position.copy(camPos);cam.lookAt(t.x,t.y+1.25,t.z);
+  sun.position.set(t.x+8,16,t.z+6);sun.target.position.copy(t);
+  renderer.render(scene,cam)});
+document.getElementById('goalst').textContent='pendente';
+})();
+</script>
+
+</body>
+</html>
