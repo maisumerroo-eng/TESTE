@@ -1,0 +1,6 @@
+{
+  "appId": "com.almoxarifado.jogo3d",
+  "appName": "Almoxarifado 3D",
+  "webDir": "www",
+  "android": { "backgroundColor": "#1a1714" }
+}

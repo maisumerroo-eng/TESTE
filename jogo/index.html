@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#1a1714">
 <title>Almoxarifado 3D</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
 /* Layout: full-bleed WebGL stage; HUD chips pinned to corners; touch controls bottom-left / bottom-right */
 :root{
@@ -49,9 +48,9 @@ body.touch .keys{display:none}
 <button id="jump" class="btn">Pular</button>
 <div id="load">Carregando personagem…</div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/utils/BufferGeometryUtils.js"></script>
+<script src="lib/three.min.js"></script>
+<script src="lib/GLTFLoader.js"></script>
+<script src="lib/BufferGeometryUtils.js"></script>
 <script>
 (()=>{
 const canvas=document.getElementById('c');
