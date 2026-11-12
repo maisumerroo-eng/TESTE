@@ -19,6 +19,7 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--
 .tag h1{margin:0;font-size:15px;font-weight:800;letter-spacing:-.01em}
 .tag p{margin:2px 0 0;font:500 11px var(--mono);opacity:.8}
 #state{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+#state::before{content:attr(data-anim)}#state::after{content:" · " attr(data-fps) " fps"}
 #goal{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));font:500 11px var(--mono)}
 #goal b{color:var(--go)}
 #load{position:fixed;inset:0;display:grid;place-items:center;font:500 13px var(--mono);background:var(--bg)}
@@ -38,9 +39,9 @@ body.touch .keys{display:none}
 
 </head>
 <body>
-<canvas id="c" aria-label="Jogo 3D do almoxarifado"></canvas>
+<canvas id="c" tabindex="0" aria-label="Jogo 3D do almoxarifado"></canvas>
 <div class="hud">
-  <div class="tag"><h1>Almoxarifado 3D</h1><p class="keys">WASD / setas · Shift corre · Espaço pula · arraste gira a câmera</p><p id="state">carregando</p></div>
+  <div class="tag"><h1>Almoxarifado 3D</h1><p class="keys">Clique no jogo, depois: WASD / setas · Shift corre · Espaço pula · arraste gira a câmera</p><p id="state">carregando</p></div>
 </div>
 <div id="goal" class="tag">Meta: subir no mezanino <b id="goalst">—</b></div>
 <div id="stick" class="pad" aria-hidden="true"><div id="knob"></div></div>
@@ -56,7 +57,7 @@ body.touch .keys{display:none}
 const canvas=document.getElementById('c');
 const isTouch=matchMedia('(pointer: coarse)').matches||'ontouchstart' in window;
 if(isTouch)document.body.classList.add('touch');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:!isTouch,powerPreference:'high-performance'});
+const renderer=new THREE.WebGLRenderer({canvas,antialias:!isTouch&&devicePixelRatio<1.5,powerPreference:'high-performance'});
 let pr=Math.min(devicePixelRatio,1.5);renderer.setPixelRatio(pr);
 renderer.outputEncoding=THREE.sRGBEncoding;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;
 const scene=new THREE.Scene();scene.background=new THREE.Color(0xd9dcdf);scene.fog=new THREE.Fog(0xd9dcdf,26,60);
@@ -81,16 +82,16 @@ const wrapTex=canvasTex(128,128,(g,w,h)=>{g.fillStyle='#2fa6e6';g.fillRect(0,0,w
 
 // ---------- map ----------
 const solids=[]; // AABBs {min:Vector3,max:Vector3}
-const matBox=new THREE.MeshStandardMaterial({map:boxTex,roughness:.9});
-const matWood=new THREE.MeshStandardMaterial({map:woodTex,roughness:.9});
-const matMetal=new THREE.MeshStandardMaterial({color:0x9aa3ad,roughness:.6,metalness:.3});
-const matRail=new THREE.MeshStandardMaterial({color:0xc8323a,roughness:.5});
-const matWall=new THREE.MeshStandardMaterial({color:0xeef0f2,roughness:1});
+const matBox=new THREE.MeshLambertMaterial({map:boxTex});
+const matWood=new THREE.MeshLambertMaterial({map:woodTex});
+const matMetal=new THREE.MeshLambertMaterial({color:0x9aa3ad});
+const matRail=new THREE.MeshLambertMaterial({color:0xc8323a});
+const matWall=new THREE.MeshLambertMaterial({color:0xeef0f2});
 const buckets=new Map();
 function addBox(x,y,z,sx,sy,sz,mat,solid=true){const g=new THREE.BoxGeometry(sx,sy,sz);g.translate(x,y+sy/2,z);
   if(!buckets.has(mat))buckets.set(mat,[]);buckets.get(mat).push(g);
   if(solid)solids.push({min:new THREE.Vector3(x-sx/2,y,z-sz/2),max:new THREE.Vector3(x+sx/2,y+sy,z+sz/2)})}
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(52,52),new THREE.MeshStandardMaterial({map:floorTex,roughness:.75}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(52,52),new THREE.MeshLambertMaterial({map:floorTex}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
 // safety lanes
 const laneMat=new THREE.MeshBasicMaterial({color:0xf2c230});
 [[0,-3,40,.12],[0,3,40,.12]].forEach(([x,z,l,w])=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(l,w),laneMat);m.rotation.x=-Math.PI/2;m.position.set(x,.005,z);scene.add(m)});
@@ -119,7 +120,7 @@ for(const [dx,dz] of [[-4.8,-2.3],[4.8,-2.3],[-4.8,2.3],[4.8,2.3]])addBox(MZ.x+d
 addBox(MZ.x,MZ.h,MZ.z+2.45,MZ.sx,1,.06,matRail,true);addBox(MZ.x-4.97,MZ.h,MZ.z,.06,1,MZ.sz,matRail,true);
 const goalPad=new THREE.Mesh(new THREE.CircleGeometry(.9,40),new THREE.MeshBasicMaterial({color:0x2fb36a,transparent:true,opacity:.75}));goalPad.rotation.x=-Math.PI/2;goalPad.position.set(MZ.x-3,MZ.h+.01,MZ.z+.5);scene.add(goalPad);
 // bubble-wrap piles (soft, walkable bumps)
-const wrapMat=new THREE.MeshStandardMaterial({map:wrapTex,roughness:.25,transparent:true,opacity:.92});
+const wrapMat=new THREE.MeshLambertMaterial({map:wrapTex});
 [[10,-2],[11.5,-1],[6,12]].forEach(([x,z])=>{const m=new THREE.Mesh(new THREE.SphereGeometry(1.3,20,12,0,Math.PI*2,0,Math.PI/2),wrapMat);m.scale.y=.45;m.position.set(x,0,z);m.receiveShadow=true;scene.add(m);
   solids.push({min:new THREE.Vector3(x-.9,0,z-.9),max:new THREE.Vector3(x+.9,.5,z+.9)})});
 
@@ -130,7 +131,7 @@ let model,mixer,actions={},current=null;
 function play(name,fade=.2,once=false){const a=actions[name];if(!a||current===a)return;
   a.reset();a.setLoop(once?THREE.LoopOnce:THREE.LoopRepeat);a.clampWhenFinished=once;
   if(name==='Pulando')a.time=.3;
-  a.play();if(current)current.crossFadeTo(a,fade,false);current=a;document.getElementById('state').textContent=name}
+  a.play();if(current)current.crossFadeTo(a,fade,false);current=a;document.getElementById('state').dataset.anim=name}
 fetch('personagem.glb').then(r=>{if(!r.ok)throw new Error(r.status);return r.arrayBuffer()}).then(buf=>new Promise((res,rej)=>new THREE.GLTFLoader().parse(buf,'',res,rej))).then(g=>{
   model=g.scene;model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.frustumCulled=false}});scene.add(model);
   mixer=new THREE.AnimationMixer(model);g.animations.forEach(c=>actions[c.name]=mixer.clipAction(c));
@@ -144,7 +145,7 @@ addEventListener('keydown',e=>{keys.add(e.code);if(e.code==='Space'){jumpReq=tru
 addEventListener('keyup',e=>keys.delete(e.code));
 addEventListener('blur',()=>keys.clear());document.addEventListener('visibilitychange',()=>{if(document.hidden)keys.clear()});
 let camYaw=Math.PI,camPitch=.32,camDist=5.2,drag=null;
-canvas.addEventListener('pointerdown',e=>{drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointerdown',e=>{canvas.focus({preventScroll:true});drag={id:e.pointerId,x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId)});
 canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;camYaw-=(e.clientX-drag.x)*.006;camPitch=Math.min(1.1,Math.max(.08,camPitch+(e.clientY-drag.y)*.004));drag.x=e.clientX;drag.y=e.clientY});
 canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
 canvas.addEventListener('wheel',e=>{camDist=Math.min(9,Math.max(2.5,camDist+e.deltaY*.004))},{passive:true});
@@ -161,9 +162,9 @@ const runBtn=document.getElementById('run');runBtn.addEventListener('click',()=>
 // ---------- physics ----------
 const G=22,JUMP=7.4,WALK=2.7,RUN=5.6,STEP=.42;
 function overlapXZ(p,b,r){return p.x+r>b.min.x&&p.x-r<b.max.x&&p.z+r>b.min.z&&p.z-r<b.max.z}
-function blocked(p){for(const b of solids){if(!overlapXZ(p,b,player.r))continue;
-  if(p.y>=b.max.y-STEP&&b.max.y-p.y<=STEP)continue; if(p.y+player.h<=b.min.y)continue; return b}return null}
-function groundAt(p,prevY){let g=0;for(const b of solids){if(overlapXZ(p,b,player.r*.8)&&b.max.y<=prevY+STEP+.01)g=Math.max(g,b.max.y)}return g}
+function inside(p,b){return overlapXZ(p,b,player.r)&&p.y<b.max.y-STEP&&p.y+player.h>b.min.y}
+function blocked(p,from){for(const b of solids){if(!inside(p,b))continue;if(from&&inside(from,b))continue;return b}return null}
+function groundAt(p,prevY){let g=0;for(const b of solids){if(overlapXZ(p,b,player.r*.9)&&b.max.y<=prevY+STEP+.01)g=Math.max(g,b.max.y)}return g}
 const tmp=new THREE.Vector3();let reached=false;
 function step(dt){
   // input direction
@@ -179,8 +180,8 @@ function step(dt){
     const target=Math.atan2(dx,dz);let d=target-player.yaw;d=Math.atan2(Math.sin(d),Math.cos(d));player.yaw+=d*Math.min(1,dt*12)}
   const p=player.pos,prevY=p.y;
   // horizontal with step-up
-  tmp.copy(p);tmp.x+=vx*dt;let b=blocked(tmp);if(!b)p.x=tmp.x;
-  tmp.copy(p);tmp.z+=vz*dt;b=blocked(tmp);if(!b)p.z=tmp.z;
+  tmp.copy(p);tmp.x+=vx*dt;let b=blocked(tmp,p);if(!b)p.x=tmp.x;
+  tmp.copy(p);tmp.z+=vz*dt;b=blocked(tmp,p);if(!b)p.z=tmp.z;
   // vertical
   if(jumpReq&&player.onGround){player.vel.y=JUMP;player.onGround=false;play('Pulando',.08,true)}jumpReq=false;
   player.vel.y-=G*dt;p.y+=player.vel.y*dt;
@@ -199,11 +200,12 @@ function step(dt){
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
 addEventListener('resize',resize);resize();
 const clock=new THREE.Clock();const camPos=new THREE.Vector3(0,3,12);
-let perfT=0,perfN=0,perfLevel=0;
+let perfT=0,perfN=0,perfLevel=0,fpsT=0,fpsN=0;const stateEl=document.getElementById('state');
 function adapt(dt){perfT+=dt;perfN++;if(perfT<2)return;const avg=perfT/perfN;perfT=0;perfN=0;
   if(avg>1/40&&perfLevel===0){perfLevel=1;pr=1;renderer.setPixelRatio(1);resize()}
   else if(avg>1/40&&perfLevel===1){perfLevel=2;sun.castShadow=false;renderer.shadowMap.enabled=false;scene.traverse(o=>{if(o.material)o.material.needsUpdate=true})}}
-renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),1/20);if(model)adapt(clock.elapsedTime>3?dt:0);
+renderer.setAnimationLoop(()=>{const raw=clock.getDelta(),dt=Math.min(raw,1/20);if(model)adapt(clock.elapsedTime>3?dt:0);
+  fpsT+=raw;fpsN++;if(fpsT>1){stateEl.dataset.fps=Math.round(fpsN/fpsT);fpsT=0;fpsN=0}
   if(model){step(dt);model.position.copy(player.pos);model.rotation.y=player.yaw;mixer.update(dt)}
   goalPad.material.opacity=.55+.25*Math.sin(clock.elapsedTime*3);
   const t=player.pos;const want=new THREE.Vector3(t.x-Math.sin(camYaw)*Math.cos(camPitch)*camDist,t.y+1.3+Math.sin(camPitch)*camDist,t.z-Math.cos(camYaw)*Math.cos(camPitch)*camDist);
