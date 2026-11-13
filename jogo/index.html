@@ -234,7 +234,23 @@ document.getElementById('joinf').addEventListener('submit',e=>{e.preventDefault(
   ls('a3d_name',myName);document.getElementById('join').hidden=true;canvas.focus({preventScroll:true});startNet()});
 document.getElementById('jsolo').addEventListener('click',()=>{document.getElementById('join').hidden=true;setNet('sozinho');canvas.focus({preventScroll:true})});
 const BROKERS=[{url:'wss://public.cloud.shiftr.io',username:'public',password:'public'},{url:'wss://broker.emqx.io:8084/mqtt'},{url:'wss://broker.hivemq.com:8884/mqtt'}];
-function startNet(){if(typeof mqtt==='undefined'){setNet('multiplayer indisponível aqui');return}
+let roomCh=null,roomMode=false;
+async function startNet(){setNet('conectando…');let rm=null;
+  try{if(window.claude&&typeof window.claude.use==='function')rm=await window.claude.use('room')}catch(e){rm=null}
+  if(rm){roomMode=true;startRoom(rm);return}
+  startMqtt()}
+async function startRoom(rm){let ch=rm;
+  try{ch=await rm.join('sala-'+room)}catch(e){ch=rm}
+  roomCh=ch;
+  ch.onConnection(c=>{netOn=c;if(c){lastSent=0;lastSig='';updNet()}else setNet('reconectando…')},
+    e=>{netOn=false;setNet('multiplayer indisponível para esta conta (modo sozinho)')});
+  ch.onPeers(chg=>{
+    for(const p of chg.left)dropRemote(p.peer);
+    if(chg.joined.some(p=>!p.sameTab))lastSig='';
+    for(const p of chg.peers){if(p.sameTab)continue;const q=p.presence;if(!q||!Array.isArray(q.p)||q.p.length!==3)continue;
+      onRemote([p.peer,typeof q.n==='string'?q.n:'Jogador',+q.p[0],+q.p[1],+q.p[2],+q.r||0,typeof q.a==='string'?q.a:'Parado'])}
+    updNet()},()=>{})}
+function startMqtt(){if(typeof mqtt==='undefined'){setNet('multiplayer indisponível aqui');return}
   const base='almox3d/v1/'+room;let bi=0;
   const tryBroker=()=>{const b=BROKERS[bi];setNet('conectando…');
     const c=mqtt.connect(b.url,{clientId:'a3d_'+myId+'_'+bi,username:b.username,password:b.password,clean:true,protocolVersion:4,connectTimeout:7000,reconnectPeriod:4000,keepalive:20,
@@ -246,7 +262,7 @@ function startNet(){if(typeof mqtt==='undefined'){setNet('multiplayer indisponí
       const d=JSON.parse(m.toString());if(!Array.isArray(d)||d[0]===myId)return;onRemote(d)}catch(e){}})};
   tryBroker();
   addEventListener('pagehide',()=>{try{net&&net.publish(base+'/leave',myId)}catch(e){}})}
-function updNet(){if(netOn)setNet(`online · sala ${room} · ${remotes.size+1} jogador${remotes.size?'es':''}`,true)}
+function updNet(){if(netOn)setNet(`online${roomMode?' (Claude)':''} · sala ${room} · ${remotes.size+1} jogador${remotes.size?'es':''}`,true)}
 function nameTag(text,color){const c=document.createElement('canvas');c.width=256;c.height=64;const g=c.getContext('2d');
   g.fillStyle='rgba(20,18,16,.75)';g.beginPath();g.roundRect?g.roundRect(4,8,248,48,10):g.rect(4,8,248,48);g.fill();
   g.fillStyle='#'+color.toString(16).padStart(6,'0');g.fillRect(14,24,16,16);g.fillStyle='#f4efe8';g.font='700 28px Archivo, sans-serif';g.textBaseline='middle';g.fillText(text,40,33);
@@ -261,11 +277,12 @@ function onRemote(d){const [id,name,x,y,z,yaw,anim]=d;if(typeof id!=='string'||!
   const a=r.acts[anim];if(a&&r.cur!==a){a.reset();a.setLoop(anim==='Pulando'?THREE.LoopOnce:THREE.LoopRepeat);a.clampWhenFinished=anim==='Pulando';if(anim==='Pulando')a.time=.3;a.play();if(r.cur)r.cur.crossFadeTo(a,.15,false);r.cur=a}}
 function dropRemote(id){const r=remotes.get(id);if(!r)return;scene.remove(r.obj);r.mx.stopAllAction();remotes.delete(id);updNet()}
 let lastSent=0,lastSig='';
-function netTick(dt){if(!netOn||!net)return;const now=performance.now();const p=player.pos;const an=current?current.getClip().name:'Parado';
+function netTick(dt){if(!netOn||(!net&&!roomCh))return;const now=performance.now();const p=player.pos;const an=current?current.getClip().name:'Parado';
   const sig=[p.x.toFixed(2),p.y.toFixed(2),p.z.toFixed(2),player.yaw.toFixed(2),an].join();
-  if((sig!==lastSig&&now-lastSent>80)||now-lastSent>1000){lastSent=now;lastSig=sig;
-    net.publish('almox3d/v1/'+room+'/s',JSON.stringify([myId,myName,+p.x.toFixed(2),+p.y.toFixed(2),+p.z.toFixed(2),+player.yaw.toFixed(2),an]))}
-  for(const [id,r] of remotes){if(now-r.last>6000){dropRemote(id);continue}
+  if((sig!==lastSig&&now-lastSent>66)||(!roomMode&&now-lastSent>1000)){lastSent=now;lastSig=sig;
+    if(roomCh)roomCh.presence({n:myName,p:[+p.x.toFixed(2),+p.y.toFixed(2),+p.z.toFixed(2)],r:+player.yaw.toFixed(2),a:an}).catch(()=>{});
+    else net.publish('almox3d/v1/'+room+'/s',JSON.stringify([myId,myName,+p.x.toFixed(2),+p.y.toFixed(2),+p.z.toFixed(2),+player.yaw.toFixed(2),an]))}
+  for(const [id,r] of remotes){if(!roomMode&&now-r.last>6000){dropRemote(id);continue}
     r.obj.position.lerp(r.target,1-Math.exp(-12*dt));let d=r.yaw-r.obj.rotation.y;d=Math.atan2(Math.sin(d),Math.cos(d));r.obj.rotation.y+=d*Math.min(1,dt*10);r.mx.update(dt)}}
 // ---------- loop ----------
 function resize(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
