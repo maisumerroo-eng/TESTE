@@ -1,0 +1,76 @@
+slug: 01-gojo-o-mais-forte
+character: gojo
+hook: O Mais Forte
+track: '01'
+song_file: o_mais_forte.wav
+language: pt
+fps: 30
+seed: 7
+title_at: 1.6
+next_hint: ''
+whisper_model: large-v3-turbo
+subtitles:
+  uppercase: true
+thumbnail:
+  text: ''
+  image: ''
+  focus_y: 0.35
+feats: ''
+credits:
+  beat: Kagerima
+  mix: Kagerima
+  edit: Kagerima
+  thumb_art: Kagerima
+audio_trim:
+  start: 0.0
+  end: 175.865
+sections:
+- - 0
+  - intro
+- - 9.7
+  - verse
+- - 39.4
+  - pre-chorus
+- - 48.5
+  - chorus
+- - 71.1
+  - verse
+- - 97.0
+  - break
+- - 108.2
+  - verse
+- - 124.4
+  - pre-chorus
+- - 134.3
+  - break
+- - 140.5
+  - chorus
+- - 164.0
+  - outro
+drops:
+- 9.7
+- 48.5
+- 140.5
+cover: input/cover.png
+whisper_prompt: Satoru Gojo, Clã Gojo, Seis Olhos, Ilimitado, Infinito, Azul, Vermelho,
+  Roxo, Expansão de Domínio, Vazio Infinito, Toji, Geto, Shibuya, Sukuna, Mahoraga,
+  Kenjaku, Jogo, Mahito, Reino da Prisão, energia amaldiçoada, feiticeiro, maldição
+lyric_timing:
+  Você é forte:
+  - 137.2
+  - 138.4
+  Mas eu sou Satoru:
+  - 138.75
+  - 140.4
+  EU SOU O MAIS FORTE OH:
+  - 140.5
+  - 142.3
+  NÃO EXISTE QUEM:
+  - 142.4
+  - 144.6
+  INFINITO NÃO VAI:
+  - 144.8
+  - 147.0
+  AZUL VERMELHO:
+  - 147.2
+  - 150.6

@@ -1,0 +1,31 @@
+short: Goku
+name: Son Goku
+anime: Dragon Ball
+primary: '#FF8C00'
+secondary: '#1E5BFF'
+dark: '#06060A'
+accent: '#FFE14D'
+kanji: 超
+keywords:
+- kamehameha
+- saiyajin
+- instinto superior
+- genki dama
+- vegeta
+- freeza
+- ki
+slug: goku
+element: ki
+tag_map:
+  kamehameha:
+  - impact
+  - power
+  saiyajin:
+  - transformation
+  - power
+  instinto:
+  - transformation
+  - calm
+  genki:
+  - power
+  - sky

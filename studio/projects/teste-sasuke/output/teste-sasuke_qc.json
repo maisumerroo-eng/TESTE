@@ -1,0 +1,92 @@
+{
+  "video": "/home/user/TESTE/studio/projects/teste-sasuke/output/teste-sasuke.mp4",
+  "passed": true,
+  "checks": [
+    {
+      "check": "resolução 1920x1080",
+      "ok": true,
+      "detail": "1920x1080"
+    },
+    {
+      "check": "FPS",
+      "ok": true,
+      "detail": "30.00"
+    },
+    {
+      "check": "codec H.264 yuv420p",
+      "ok": true,
+      "detail": "h264 yuv420p"
+    },
+    {
+      "check": "áudio AAC 48 kHz",
+      "ok": true,
+      "detail": "aac 48000"
+    },
+    {
+      "check": "duração = música",
+      "ok": true,
+      "detail": "vídeo 102.40s / música 102.41s"
+    },
+    {
+      "check": "sem tela preta acidental",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "sem congelamento > 2,5 s",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "loudness -14 LUFS (±1,5)",
+      "ok": true,
+      "detail": "-14.1 LUFS"
+    },
+    {
+      "check": "true peak ≤ -0,5 dBTP",
+      "ok": true,
+      "detail": "-1.1 dBTP"
+    },
+    {
+      "check": "sem cena repetida em excesso",
+      "ok": true,
+      "detail": "mais usada: pagina_2_p03 x6 | 17 cenas distintas / 75 planos"
+    },
+    {
+      "check": "sem plano parado longo demais (>8 s)",
+      "ok": true,
+      "detail": "maior plano 5.5s"
+    },
+    {
+      "check": "sem mesma cena em planos seguidos",
+      "ok": true,
+      "detail": "0 ocorrências"
+    },
+    {
+      "check": "tem começo/desenvolvimento/fim",
+      "ok": true,
+      "detail": "intro, verse, pre-chorus, chorus, break, outro"
+    },
+    {
+      "check": "drops com impacto",
+      "ok": true,
+      "detail": "['invert_impact', 'glitch_burst']"
+    },
+    {
+      "check": "SRT válido e sem sobreposição",
+      "ok": true,
+      "detail": "14 linhas, 0 sobreposições"
+    },
+    {
+      "check": "alinhamento letra x voz ≥ 60%",
+      "ok": true,
+      "detail": "86%"
+    },
+    {
+      "check": "thumbnail 1280x720 < 2 MB",
+      "ok": true,
+      "detail": "(1280, 720) 78 KB"
+    }
+  ],
+  "blacks": []
+}

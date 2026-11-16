@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+# mídia e saídas pesadas ficam fora do git (container é efêmero: baixe os outputs)
+projects/*/work/
+projects/*/input/*.wav
+projects/*/input/*.mp3
+projects/*/assets/clips/
+projects/*/assets/images/
+projects/*/assets/manga/
+projects/*/assets/panels/
+projects/*/output/*.mp4
+projects/*/output/*.png
+brand/vinheta_kage.wav

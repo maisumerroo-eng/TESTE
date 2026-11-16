@@ -1,0 +1,278 @@
+assets:
+- id: cenas_teste#000
+  kind: clip
+  file: clips/cenas_teste.mp4
+  start: 0.0
+  end: 4.0
+  motion: 0.0171
+  brightness: 0.846
+  fps: 24.0
+  w: 1280
+  h: 720
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - power
+  - transformation
+  note: ''
+- id: cenas_teste#001
+  kind: clip
+  file: clips/cenas_teste.mp4
+  start: 4.0
+  end: 8.0
+  motion: 0.0251
+  brightness: 0.085
+  fps: 24.0
+  w: 1280
+  h: 720
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - dark
+  - tension
+  - blood
+  note: ''
+- id: cenas_teste#002
+  kind: clip
+  file: clips/cenas_teste.mp4
+  start: 8.0
+  end: 12.0
+  motion: 0.3283
+  brightness: 0.571
+  fps: 24.0
+  w: 1280
+  h: 720
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - rain
+  note: ''
+- id: cenas_teste#003
+  kind: clip
+  file: clips/cenas_teste.mp4
+  start: 12.0
+  end: 16.0
+  motion: 0.0129
+  brightness: 0.922
+  fps: 24.0
+  w: 1280
+  h: 720
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - calm
+  - sky
+  note: ''
+- id: cenas_teste#004
+  kind: clip
+  file: clips/cenas_teste.mp4
+  start: 16.0
+  end: 20.0
+  motion: 0.0199
+  brightness: 0.704
+  fps: 24.0
+  w: 1280
+  h: 720
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - power
+  - impact
+  - fire
+  note: ''
+- id: chuva_irmaos
+  kind: image
+  file: images/chuva_irmaos.png
+  w: 1600
+  h: 900
+  brightness: 0.269
+  saturation: 0.341
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - rain
+  - emotional
+  - itachi
+  - flashback
+  note: ''
+- id: lua_vermelha
+  kind: image
+  file: images/lua_vermelha.png
+  w: 1600
+  h: 900
+  brightness: 0.19
+  saturation: 0.731
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - dark
+  - flashback
+  - tension
+  note: ''
+- id: olho_close
+  kind: image
+  file: images/olho_close.png
+  w: 1600
+  h: 900
+  brightness: 0.214
+  saturation: 0.454
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - eyes
+  - closeup
+  - thumb
+  note: ''
+- id: tempestade_raio
+  kind: image
+  file: images/tempestade_raio.png
+  w: 1600
+  h: 900
+  brightness: 0.187
+  saturation: 0.61
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - lightning
+  - battle
+  - power
+  note: ''
+- id: pagina_1_p01
+  kind: panel
+  file: panels/pagina_1_p01.png
+  page: pagina_1.png
+  w: 1120
+  h: 580
+  brightness: 0.856
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_1_p02
+  kind: panel
+  file: panels/pagina_1_p02.png
+  page: pagina_1.png
+  w: 530
+  h: 560
+  brightness: 0.706
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_1_p03
+  kind: panel
+  file: panels/pagina_1_p03.png
+  page: pagina_1.png
+  w: 550
+  h: 560
+  brightness: 0.718
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_1_p04
+  kind: panel
+  file: panels/pagina_1_p04.png
+  page: pagina_1.png
+  w: 1120
+  h: 500
+  brightness: 0.866
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_2_p01
+  kind: panel
+  file: panels/pagina_2_p01.png
+  page: pagina_2.png
+  w: 1120
+  h: 580
+  brightness: 0.848
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_2_p02
+  kind: panel
+  file: panels/pagina_2_p02.png
+  page: pagina_2.png
+  w: 530
+  h: 560
+  brightness: 0.703
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_2_p03
+  kind: panel
+  file: panels/pagina_2_p03.png
+  page: pagina_2.png
+  w: 550
+  h: 560
+  brightness: 0.714
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''
+- id: pagina_2_p04
+  kind: panel
+  file: panels/pagina_2_p04.png
+  page: pagina_2.png
+  w: 1120
+  h: 500
+  brightness: 0.866
+  saturation: 0.0
+  source: fornecido pelo usuário
+  license: a confirmar
+  credit: ''
+  tags:
+  - battle
+  - impact
+  - power
+  note: ''

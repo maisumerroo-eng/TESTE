@@ -1,0 +1,68 @@
+short: Sasuke
+name: Sasuke Uchiha
+anime: Naruto
+primary: '#E01E37'
+secondary: '#5B1A8C'
+dark: '#0B0508'
+accent: '#FF5A36'
+kanji: 写輪眼
+keywords:
+- sharingan
+- itachi
+- clã
+- uchiha
+- vingança
+- ódio
+- chidori
+- amaterasu
+- susanoo
+- mangekyou
+- rinnegan
+- naruto
+- orochimaru
+- akatsuki
+- konoha
+- irmão
+- olhos
+slug: sasuke
+element: lightning
+tag_map:
+  sharingan:
+  - eyes
+  - closeup
+  chidori:
+  - lightning
+  - battle
+  amaterasu:
+  - fire
+  - dark
+  susanoo:
+  - power
+  - transformation
+  itachi:
+  - itachi
+  - emotional
+  irmão:
+  - itachi
+  - emotional
+  vingança:
+  - dark
+  - tension
+  ódio:
+  - dark
+  - scream
+  naruto:
+  - naruto
+  - duo
+  - battle
+  olhos:
+  - eyes
+  - closeup
+  clã:
+  - flashback
+  - dark
+  lágrima:
+  - emotional
+  chuva:
+  - rain
+  - emotional

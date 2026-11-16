@@ -1,0 +1,65 @@
+# KAGERIMA — identidade fixa do canal (vale para todo vídeo)
+# Kage (影, sombra) + rima. Artista sem rosto: canta a história de cada personagem
+# em primeira pessoa. Projeto artístico, não uma pessoa real.
+channel:
+  name: "KAGERIMA"
+  kanji: "影"
+  kanji_full: "影韻"     # sombra + rima
+  tagline: "rap de anime na voz de quem viveu a história"
+  handle: "@kagerima"      # livre no YouTube em 16/11/2026 — registrar logo
+  backup_names: ["KAGERIMAS", "KAGE RIMA"]
+
+palette:            # cores da marca (presentes em TODO vídeo, além da cor do personagem)
+  void:     "#07070A"   # fundo
+  graphite: "#15151C"
+  ash:      "#8A8A99"
+  bone:     "#EDEDF2"   # texto principal
+  signal:   "#C6FF3D"   # acento assinatura (verde ácido) — HUD, logo, marca
+  glitch:   "#FF2E63"   # só para glitch/erro
+
+fonts:
+  display: "Anton"                 # palavras de impacto, thumbnails
+  lyrics:  "Chakra Petch"          # legendas (Bold)
+  hud:     "Chakra Petch Medium"   # HUD, créditos
+  logo:    "Zen Dots"
+  jp:      "Noto Sans JP Black"    # kanji
+
+signature:          # elementos recorrentes que ligam todos os clipes
+  - "Selo no canto sup. esquerdo: [影] KAGERIMA · PERSONAGEM"
+  - "Kanji 影 com glitch na vinheta de abertura e no fim"
+  - "Scanlines + grão de filme sutil em todo o vídeo"
+  - "Impact frame em negativo (inversão) no 1º drop de toda música"
+  - "Barra 'signal' verde ácido piscando no downbeat dos refrões"
+  - "End card com o logo e o próximo personagem"
+
+titles:   # padrão da cena BR (AniRap / Henrique Mendonça): Personagem (Obra) - TÍTULO | Canal
+  pattern: "{CHAR} ({ANIME}) - {HOOK_UPPER} | Kagerima"
+  examples:
+    - "Sasuke Uchiha (Naruto) - ÓDIO E SHARINGAN | Kagerima"
+    - "Satoru Gojo (Jujutsu Kaisen) - O MAIS FORTE | Kagerima"
+
+overlays:          # elementos na tela durante o clipe (a cena usa tela limpa)
+  hud: false
+  title_card: false
+  signal_bar: false
+  end_card: true
+
+video:
+  width: 1920
+  height: 1080
+  fps: 30            # 60 quando o material de origem for 60 fps
+  vcodec: libx264
+  crf: 18
+  preset: medium
+  pix_fmt: yuv420p
+  acodec: aac
+  abitrate: 320k
+  sample_rate: 48000
+
+audio:
+  target_lufs: -14.0      # padrão YouTube
+  true_peak: -1.0
+  lra_max: 9
+  highpass_hz: 30
+  deesser: true
+  denoise: auto           # só aplica se ruído de fundo medido for alto
