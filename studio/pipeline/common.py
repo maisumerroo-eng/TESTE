@@ -1,4 +1,4 @@
-"""Utilidades compartilhadas da pipeline KAGE.EXE."""
+"""Utilidades compartilhadas da pipeline KAGERIMA."""
 from __future__ import annotations
 
 import json
@@ -18,7 +18,7 @@ PROJECTS = STUDIO / "projects"
 
 
 def log(msg: str) -> None:
-    print(f"[kage] {msg}", flush=True)
+    print(f"[kagerima] {msg}", flush=True)
 
 
 def load_yaml(p: Path) -> dict:

@@ -1,6 +1,6 @@
 """Legendas dinâmicas (ASS/libass) + SRT limpo.
 
-Estilo KAGE.EXE:
+Estilo KAGERIMA:
 - palavras aparecem quando são cantadas (pop de escala + fade);
 - palavras-chave na cor do personagem, maiores e com brilho;
 - linha "pulsa" nos kicks;

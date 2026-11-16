@@ -1,19 +1,21 @@
-# KAGE.EXE 影 — Guia de identidade
+# KAGERIMA 影 — Guia de identidade
 
-**Conceito:** KAGE.EXE é uma *sombra digital* (影 = sombra) que entra na cabeça de cada personagem e
-transmite a história dele em rap. Sem rosto, sem biografia inventada: é um projeto artístico, não uma
-pessoa. A voz das músicas (gerada no Google Flow) é a voz recorrente da persona e **não é alterada**
-entre faixas.
+**Nome:** Kage (影, sombra) + rima. Nome inventado, curto, fala "rap" em português e "anime" em japonês.
+Handle `@kagerima` livre no YouTube em 16/11/2026.
 
-**Tom:** sombrio, tecnológico, cinematográfico. Nada infantil, nada "meme".
+**Conceito:** artista sem rosto que canta a história de cada personagem em primeira pessoa.
+Projeto artístico, não uma pessoa real. A voz das músicas (Google Flow) é a voz fixa do canal e
+**não é alterada** entre faixas.
+
+**Tom:** sombrio e cinematográfico, mas falando como a cena fala (direto, sem frase de efeito).
 
 ## Constantes (em TODO vídeo)
 - Bloco **verde-ácido `#C6FF3D` (signal)** + kanji 影 → logo, HUD, barras no downbeat do refrão.
-- HUD sup. esquerdo: `▮ KAGE.EXE // PERSONAGEM // TRACK NN`, cursor piscando no tempo da música.
+- Selo sup. esquerdo: `▮ KAGERIMA // PERSONAGEM // TRACK NN`, cursor piscando no tempo da música.
 - Scanlines + grão de filme + vinheta sutil.
 - 1º drop de toda faixa abre com **impact frame** (P&B invertido na cor do personagem).
 - Legendas em Chakra Petch Bold CAIXA ALTA; palavras de impacto em Anton.
-- End card "PRÓXIMA TRANSMISSÃO" com kanji 影.
+- End card com logo, "PRÓXIMO: <personagem>" e @kagerima.
 
 ## Variáveis (por personagem)
 Cor primária/secundária/sombra, kanji do personagem, elemento visual no drop:
@@ -30,16 +32,17 @@ Cor primária/secundária/sombra, kanji do personagem, elemento visual no drop:
 ## Tipografia (todas SIL OFL, uso comercial livre)
 Anton (impacto/thumbnail) · Chakra Petch (legendas/HUD) · Zen Dots (logo) · Noto Sans JP Black (kanji).
 
-## Títulos
-`PERSONAGEM 「GANCHO」 | Anime | KAGE.EXE` — ex.: `SASUKE 「Ódio e Sharingan」 | Naruto | KAGE.EXE`
+## Títulos (padrão da cena)
+`Personagem (Obra) - TÍTULO EM CAIXA ALTA | Kagerima` — ex.: `Sasuke Uchiha (Naruto) - ÓDIO E SHARINGAN | Kagerima`
+Com participação: `... | Kagerima ft. Fulano`.
 
-## Thumbnail
-Personagem à direita recortado, contorno brilhante na cor dele, 1–3 palavras gigantes (Anton) atrás,
-selo ▮ KAGE.EXE no canto inferior esquerdo, kanji no canto superior direito. Fundo escuro com brilho radial.
+## Thumbnail (padrão da cena)
+Arte do personagem em tela cheia, cores saturadas, brilho forte na cor dele, vinheta,
+selo [影] KAGERIMA no canto inferior esquerdo. Sem texto por padrão (opcional em `thumbnail.text`).
+A arte é o que vende: ilustração encomendada/feita para o vídeo > frame do anime.
 
 ## Arquivos
 `brand/logo_kage_transparente.png`, `logo_kage_fundo_escuro.png`, `avatar_800.png`,
 `banner_2560x1440.png` (+ `banner_guia_area_segura.png`), `vinheta_kage.mp4`, `prancha_estilo.png`.
 
-> Antes de criar o canal, confirme se o nome/handle **KAGE.EXE** está livre no YouTube.
-> Reservas: KUROSIGNAL, ONI//LOOP.
+> Registre o handle @kagerima o quanto antes.

@@ -1,4 +1,4 @@
-"""Motor de render KAGE.EXE: timeline.json -> vídeo 1920x1080 H.264 + legendas ASS + áudio master.
+"""Motor de render KAGERIMA: timeline.json -> vídeo 1920x1080 H.264 + legendas ASS + áudio master.
 
 Render em paralelo (N processos, cada um um trecho), frames gerados em numpy/OpenCV e enviados
 por pipe ao FFmpeg. Passo final: concat + legendas (libass) + áudio AAC 48 kHz.

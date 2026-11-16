@@ -1,4 +1,4 @@
-# KAGE.EXE STUDIO 影
+# KAGERIMA STUDIO 影
 
 Produtora automatizada de videoclipes de **rap geek/anime**. Você entrega a música (gerada no Google Flow),
 o estúdio entrega o pacote para o YouTube: vídeo 1080p editado no ritmo, legendas dinâmicas + SRT,

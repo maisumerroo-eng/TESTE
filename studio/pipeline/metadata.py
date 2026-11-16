@@ -16,10 +16,10 @@ def build(proj: Project) -> dict:
     c = proj.char
     cfg = proj.cfg
     hook = cfg.get("hook") or c["short"]
-    first = c["short"].upper()
-    title = b["titles"]["pattern"].format(CHAR_UPPER=first, HOOK=hook, ANIME=c["anime"], CHAR=c["name"])
+    title = b["titles"]["pattern"].format(CHAR=c["name"], ANIME=c["anime"], HOOK_UPPER=hook.upper(),
+                                          HOOK=hook, CHAR_UPPER=c["short"].upper())
     if len(title) > 100:
-        title = f"{first} 「{hook}」 | {b['channel']['name']}"
+        title = f"{c['short']} ({c['anime']}) - {hook.upper()} | {b['channel']['name'].title()}"
 
     a = load_json(proj.work / "analysis.json")
     chapters, last, n = [], None, {}
@@ -46,12 +46,12 @@ def build(proj: Project) -> dict:
             if key in seen:
                 continue
             seen.add(key)
-            credits.append(f"• {x.get('credit') or key} — fonte: {x.get('source', '?')} — licença: {x.get('license', '?')}")
+            credits.append(f"- {x.get('credit') or key} ({x.get('source', '?')})")
 
     anime_tag = c["anime"].lower()
     first_l = c["short"].lower()
     tags = [f"rap do {first_l}", f"{first_l} rap", f"rap {anime_tag}", f"{anime_tag} rap", c["name"].lower(),
-            anime_tag, "rap geek", "rap de anime", "anime rap", "amv", "rap nerd", "kage.exe", hook.lower(),
+            anime_tag, "rap geek", "rap de anime", "anime rap", "amv", "rap nerd", "kagerima", hook.lower(),
             f"{first_l} edit", f"{anime_tag} amv", "rap anime brasileiro"]
     tags += [k for k in c.get("keywords", [])[:8]]
     seen, final_tags, total = set(), [], 0
@@ -62,24 +62,26 @@ def build(proj: Project) -> dict:
             total += len(tg) + 1
     hashtags = [f"#{first_l}", f"#{anime_tag.replace(' ', '')}", "#rapgeek"]
 
-    desc = f"""{c['name'].upper()} — 「{hook}」 | {b['channel']['name']}
-{b['channel']['tagline'].capitalize()}. Cada faixa é uma transmissão de dentro da cabeça de um personagem.
+    feats = cfg.get("feats", "")
+    prod = cfg.get("credits", {})
+    desc = f"""{c['name']} ({c['anime']}) - {hook.upper()} | Kagerima{(' ft. ' + feats) if feats else ''}
 
-▮ Ouça até o drop. Comente qual personagem vem na próxima transmissão.
-▮ Inscreva-se e ative o sino: {b['channel']['handle']}
+Se curtiu, deixa o like e comenta qual personagem você quer no próximo rap.
+Inscreva-se: {b['channel']['handle']}
 
-{"⏱ CAPÍTULOS" + chr(10) + chr(10).join(chapters) + chr(10) if chapters else ""}
-{"📝 LETRA" + chr(10) + lyrics + chr(10) if lyrics else ""}
-🎧 CRÉDITOS
-Música e conceito: {b['channel']['name']} (projeto artístico; voz e instrumental gerados com IA no Google Flow e tratados pelo canal).
-Edição, motion design e legendas: {b['channel']['name']}.
-{c['anime']} e seus personagens pertencem aos respectivos autores, estúdios e detentores de direitos.
-{chr(10).join(credits) if credits else "Imagens/cenas: ver lista de fontes do projeto."}
+{"CAPÍTULOS" + chr(10) + chr(10).join(chapters) + chr(10) if chapters else ""}
+FICHA
+Voz e letra: Kagerima
+Beat: {prod.get('beat', 'Kagerima')}
+Mix e master: {prod.get('mix', 'Kagerima')}
+Edição: {prod.get('edit', 'Kagerima')}
+Arte da thumb: {prod.get('thumb_art', 'Kagerima')}
+Voz e instrumental feitos com ferramentas de IA (Google Flow).
 
-⚠ AVISO
-Obra de fã, sem fins de afiliação oficial com {c['anime']}. Uso de trechos visuais com finalidade
-de comentário/homenagem artística. Se você é detentor de direitos e quer ajuste ou remoção, entre em
-contato pelo e-mail do canal que resolvemos rapidamente.
+{"LETRA" + chr(10) + lyrics + chr(10) if lyrics else ""}
+{c['anime']} e seus personagens pertencem aos autores e estúdios originais. Este é um trabalho de fã,
+sem vínculo oficial. Detentor de direitos: fale com a gente pelo e-mail do canal para ajuste ou remoção.
+{("Fontes das cenas:" + chr(10) + chr(10).join(credits)) if credits else ""}
 
 {' '.join(hashtags)}
 """

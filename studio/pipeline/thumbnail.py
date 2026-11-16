@@ -1,8 +1,8 @@
-"""Thumbnail 16:9 (1280x720) de alto impacto no padrão KAGE.EXE.
+"""Thumbnail 1280x720 no padrão da cena de rap geek BR (AniRap, M4rkim, 7 Minutoz, Henrique Mendonça):
+ARTE EM TELA CHEIA, cores saturadas, brilho forte (bloom) na cor do personagem, contraste alto,
+selo do canal no canto e quase nenhum texto (texto só se project.yaml -> thumbnail.text).
 
-- Personagem recortado por profundidade (Depth Anything) com contorno brilhante na cor dele;
-- Texto curto GIGANTE atrás/ao lado do personagem (Anton), alto contraste;
-- Kanji e selo KAGE.EXE (verde 'signal') — assinatura constante do canal.
+Melhor resultado: uma arte/ilustração do personagem em assets/images/ marcada com a tag `thumb`.
 """
 from __future__ import annotations
 
@@ -26,12 +26,12 @@ def _pick_image(proj: Project) -> Path | None:
     if not ay.exists():
         return None
     items = load_yaml(ay).get("assets", [])
-    pref = [a for a in items if a["kind"] != "clip" and {"closeup", "eyes", "thumb"} & set(a.get("tags", []))]
-    pref = pref or [a for a in items if a["kind"] != "clip"]
-    if pref:
+    pref = [a for a in items if "thumb" in a.get("tags", [])] or \
+           [a for a in items if a["kind"] == "image" and {"closeup", "eyes", "power"} & set(a.get("tags", []))] or \
+           [a for a in items if a["kind"] != "clip"]
+    if pref and pref[0]["kind"] != "clip":
         return proj.assets / pref[0]["file"]
-    clips = [a for a in items if a["kind"] == "clip" and "closeup" in a.get("tags", [])] or \
-            [a for a in items if a["kind"] == "clip"]
+    clips = pref or [a for a in items if a["kind"] == "clip"]
     if clips:
         a = clips[0]
         cap = cv2.VideoCapture(str(proj.assets / a["file"]))
@@ -44,90 +44,72 @@ def _pick_image(proj: Project) -> Path | None:
     return None
 
 
+def _bloom(arr: np.ndarray, tint, strength=0.55) -> np.ndarray:
+    """Brilho estilo pintura digital: realces vazam luz na cor do personagem."""
+    f = arr.astype(np.float32) / 255
+    lum = f.mean(2, keepdims=True)
+    hi = np.clip((lum - 0.55) / 0.45, 0, 1) * f
+    glow = cv2.GaussianBlur(hi, (0, 0), 18) + cv2.GaussianBlur(hi, (0, 0), 45) * 0.8
+    glow = glow * 0.6 + glow.mean(2, keepdims=True) * np.array(tint, np.float32) / 255 * 0.8
+    out = 1 - (1 - f) * (1 - np.clip(glow * strength * 1.6, 0, 1))  # screen
+    return np.clip(out * 255, 0, 255).astype(np.uint8)
+
+
+def _mark(canvas: Image.Image):
+    """Selo do canal no canto inferior esquerdo: bloco signal com 影 + KAGERIMA."""
+    b = brand()
+    sig = hex_to_rgb(b["palette"]["signal"])
+    void = hex_to_rgb(b["palette"]["void"])
+    d = ImageDraw.Draw(canvas)
+    x, y, s = 34, TH - 34 - 70, 70
+    d.rectangle([x, y, x + s, y + s], fill=sig + (255,))
+    d.text((x + s // 2, y + s // 2 + 3), b["channel"]["kanji"], font=overlays.font(b["fonts"]["jp"], 54),
+           fill=void + (255,), anchor="mm")
+    f = overlays.font(b["fonts"]["logo"], 32)
+    d.text((x + s + 14, y + s // 2), b["channel"]["name"], font=f, fill=(255, 255, 255), anchor="lm",
+           stroke_width=3, stroke_fill=(0, 0, 0))
+
+
 def build(proj: Project) -> Path:
     b = brand()
     c = proj.char
     prim, dark = hex_to_rgb(c["primary"]), hex_to_rgb(c["dark"])
-    sig, bone = hex_to_rgb(b["palette"]["signal"]), hex_to_rgb(b["palette"]["bone"])
     cfg = proj.cfg.get("thumbnail", {})
-    text = (cfg.get("text") or proj.cfg.get("hook") or c["short"]).upper()
-
-    # fundo: escuro + brilho radial na cor do personagem
-    y, x = np.mgrid[0:TH, 0:TW].astype(np.float32)
-    g = np.exp(-(((x - TW * 0.68) / (TW * 0.38)) ** 2 + ((y - TH * 0.5) / (TH * 0.6)) ** 2))
-    bg = np.array(dark, np.float32) * (1 - g[..., None]) + np.array(prim, np.float32) * g[..., None] * 0.75
-    canvas = Image.fromarray(np.clip(bg, 0, 255).astype(np.uint8)).convert("RGBA")
 
     src = _pick_image(proj)
-    subject = None
     if src and src.exists():
         img = Image.open(src).convert("RGB")
-        img = ImageEnhance.Contrast(img).enhance(1.15)
-        img = ImageEnhance.Color(img).enhance(1.15)
-        # encaixa o personagem no lado direito (cover em 820x720)
-        sw, sh = 820, TH
-        s = max(sw / img.width, sh / img.height)
-        img = img.resize((int(img.width * s), int(img.height * s)), Image.LANCZOS)
-        l, t = (img.width - sw) // 2, (img.height - sh) // 3
-        img = img.crop((l, t, l + sw, t + sh))
-        try:
-            from .depth import depth_map
-            dp = depth_map(src, proj.work / "depth" / "thumb_src.npy").astype(np.float32)
-            d = cv2.resize(dp, (int(dp.shape[1] * s), int(dp.shape[0] * s)))[t:t + sh, l:l + sw]
-            thr = np.quantile(d, 0.55)
-            mask = np.clip((d - thr) / 0.12, 0, 1)
-            mask = cv2.GaussianBlur(mask, (0, 0), 2)
-        except Exception:
-            mask = np.ones((sh, sw), np.float32)
-        # funde as bordas da imagem para não ficar "colada"
-        fade = np.ones((sh, sw), np.float32)
-        ramp = np.linspace(0, 1, 160)
-        fade[:, :160] *= ramp
-        full = np.clip(0.55 * fade + 0.45 * mask * fade, 0, 1)
-        img_rgba = img.convert("RGBA")
-        img_rgba.putalpha(Image.fromarray((full * 255).astype(np.uint8)))
-        subject = img.convert("RGBA")
-        subject.putalpha(Image.fromarray((mask * 255).astype(np.uint8)))
-        canvas.alpha_composite(img_rgba, (TW - sw, 0))
+        s = max(TW / img.width, TH / img.height)
+        img = img.resize((int(img.width * s + 0.5), int(img.height * s + 0.5)), Image.LANCZOS)
+        fy = float(cfg.get("focus_y", 0.35))  # rosto costuma ficar no terço de cima
+        l, t = (img.width - TW) // 2, int((img.height - TH) * fy)
+        img = img.crop((l, t, l + TW, t + TH))
+    else:
+        y, x = np.mgrid[0:TH, 0:TW].astype(np.float32)
+        g = np.exp(-(((x - TW / 2) / (TW * 0.4)) ** 2 + ((y - TH / 2) / (TH * 0.5)) ** 2))
+        bg = np.array(dark, np.float32) * (1 - g[..., None]) + np.array(prim, np.float32) * g[..., None]
+        img = Image.fromarray(bg.astype(np.uint8))
 
-    # texto atrás do personagem
-    d = ImageDraw.Draw(canvas)
-    size = 210 if len(text) <= 8 else (160 if len(text) <= 13 else 120)
-    f = overlays.font(b["fonts"]["display"], size)
-    words = text.split()
-    lines = [" ".join(words[: (len(words) + 1) // 2]), " ".join(words[(len(words) + 1) // 2:])] if len(text) > 10 and len(words) > 1 else [text]
-    y0 = 360 - (len(lines) * size * 0.95) / 2
-    for k, ln in enumerate(lines):
-        layer = overlays.glow_text((TW, TH), (58, int(y0 + k * size * 0.95) - int(size * 0.18)), ln, f,
-                                   bone + (255,), prim, 18, stroke=7, stroke_fill=dark)
-        canvas.alpha_composite(layer)
+    img = ImageEnhance.Contrast(img).enhance(1.22)
+    img = ImageEnhance.Color(img).enhance(1.35)
+    arr = _bloom(np.array(img), prim, 0.6)
+    # sombras puxadas para a cor escura do personagem + vinheta (foco no centro)
+    yy, xx = np.ogrid[:TH, :TW]
+    dist = np.sqrt(((xx - TW / 2) / (TW / 2)) ** 2 + ((yy - TH * 0.45) / (TH / 2)) ** 2)
+    v = (1 - 0.55 * np.clip(dist - 0.55, 0, 1))[..., None]
+    f = arr.astype(np.float32)
+    lum = f.mean(2, keepdims=True) / 255
+    f = f * (1 - 0.35 * (1 - lum)) + np.array(dark, np.float32) * 0.35 * (1 - lum)
+    canvas = Image.fromarray(np.clip(f * v, 0, 255).astype(np.uint8)).convert("RGBA")
 
-    # personagem por cima do texto + contorno brilhante (rim light)
-    if subject is not None:
-        a = np.array(subject.split()[-1]).astype(np.float32) / 255
-        edge = cv2.dilate((a > 0.5).astype(np.uint8), np.ones((7, 7), np.uint8)) - (a > 0.5).astype(np.uint8)
-        rim = np.zeros((TH, subject.width, 4), np.uint8)
-        rim[..., :3] = prim
-        rim[..., 3] = cv2.GaussianBlur(edge.astype(np.float32) * 255, (0, 0), 4).clip(0, 255).astype(np.uint8)
-        canvas.alpha_composite(Image.fromarray(rim), (TW - subject.width, 0))
-        sub_only = subject.copy()
-        sub_only.putalpha(Image.fromarray((np.clip(a * 1.3 - 0.2, 0, 1) * 255).astype(np.uint8)))
-        canvas.alpha_composite(sub_only, (TW - subject.width, 0))
-
-    # assinatura do canal
-    d = ImageDraw.Draw(canvas)
-    hud = overlays.font(b["fonts"]["hud"], 34)
-    d.rectangle([40, 640, 56, 672], fill=sig + (255,))
-    d.text((68, 634), b["channel"]["name"], font=hud, fill=sig + (255,))
-    kan = overlays.font(b["fonts"]["jp"], 64)
-    d.text((TW - 40, 30), c.get("kanji", "影")[:3], font=kan, fill=bone + (230,), anchor="ra")
-    # moldura fina + vinheta
-    vign = np.ones((TH, TW), np.float32)
-    vy, vx = np.ogrid[:TH, :TW]
-    dist = np.sqrt(((vx - TW / 2) / (TW / 2)) ** 2 + ((vy - TH / 2) / (TH / 2)) ** 2)
-    vign = 1 - 0.45 * np.clip(dist - 0.7, 0, 1)
-    arr = np.array(canvas.convert("RGB")).astype(np.float32) * vign[..., None]
-    out = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).filter(ImageFilter.UnsharpMask(2, 80, 2))
+    text = (cfg.get("text") or "").upper()
+    if text:  # opcional: a cena usa pouco ou nenhum texto
+        size = 150 if len(text) <= 10 else 110
+        fnt = overlays.font(b["fonts"]["display"], size)
+        canvas.alpha_composite(overlays.glow_text((TW, TH), (50, TH - 150 - size), text, fnt,
+                                                  (255, 255, 255, 255), prim, 16, stroke=6, stroke_fill=dark))
+    _mark(canvas)
+    out = canvas.convert("RGB").filter(ImageFilter.UnsharpMask(2, 90, 2))
     path = proj.out / f"{proj.cfg['slug']}_thumb.jpg"
     path.parent.mkdir(parents=True, exist_ok=True)
     out.save(path, quality=92, optimize=True)

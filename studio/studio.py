@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""KAGE.EXE STUDIO — CLI de produção.
+"""KAGERIMA STUDIO — CLI de produção.
 
   python3 studio.py new MUSICA.mp3 --char sasuke --hook "Ódio e Sharingan" [--lyrics letra.txt] [--track 01]
   python3 studio.py produce <projeto>            # pipeline completa
@@ -35,7 +35,8 @@ def cmd_new(a):
     cfg = dict(slug=slug, character=a.char, hook=a.hook or char["short"], track=a.track,
                song_file=src.name, language="pt", fps=a.fps, seed=7, title_at=1.0, next_hint="",
                whisper_model=a.whisper, subtitles=dict(uppercase=True),
-               thumbnail=dict(text="", image=""))
+               thumbnail=dict(text="", image="", focus_y=0.35), feats="",
+               credits=dict(beat="Kagerima", mix="Kagerima", edit="Kagerima", thumb_art="Kagerima"))
     save_yaml(root / "project.yaml", cfg)
     (root / "assets" / "sources.yaml").write_text(
         "# créditos/licença por arquivo de mídia (vai para a descrição do vídeo)\n"
@@ -88,7 +89,7 @@ FULL = ["master", "analyze", "lyrics", "subs", "ingest", "plan", "sfx", "render"
 
 
 def main():
-    ap = argparse.ArgumentParser(description="KAGE.EXE STUDIO")
+    ap = argparse.ArgumentParser(description="KAGERIMA STUDIO")
     sub = ap.add_subparsers(dest="cmd", required=True)
     n = sub.add_parser("new")
     n.add_argument("audio")

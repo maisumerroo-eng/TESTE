@@ -1,4 +1,4 @@
-"""Kit de identidade KAGE.EXE: logo, avatar, banner do YouTube, vinheta (vídeo+som), template de thumbnail
+"""Kit de identidade KAGERIMA: logo, avatar, banner do YouTube, vinheta (vídeo+som), template de thumbnail
 e prancha de estilo. Saída em brand/."""
 from __future__ import annotations
 
@@ -92,7 +92,7 @@ def banner() -> Image.Image:
     arr = np.array(im).astype(np.float32) + g[..., None] * np.array(P["graphite"]) * 2.2
     im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA")
     d = ImageDraw.Draw(im)
-    # kanjis dos personagens como "canais" de transmissão (cores próprias)
+    # kanjis dos personagens (cores próprias)
     chars = [load_yaml(p) for p in sorted((CONFIGS / "characters").glob("*.yaml"))]
     fk = overlays.font(F["jp"], 120)
     for i, c in enumerate(chars):
@@ -102,7 +102,7 @@ def banner() -> Image.Image:
     lg = logo(0.8)
     im.alpha_composite(lg, ((W - lg.width) // 2, H // 2 - lg.height // 2 - 40))
     f2 = overlays.font(F["hud"], 44)
-    tag = "RAP GEEK DIRETO DA SOMBRA  //  NOVA TRANSMISSÃO TODA SEMANA"
+    tag = "RAP DE ANIME  ·  NARUTO  ·  JUJUTSU KAISEN  ·  ONE PIECE  ·  BLEACH  ·  DRAGON BALL"
     d = ImageDraw.Draw(im)
     d.text((W // 2, H // 2 + 175), tag, font=f2, fill=P["ash"] + (255,), anchor="mm")
     # guia da área segura (1546x423) só no arquivo _guia

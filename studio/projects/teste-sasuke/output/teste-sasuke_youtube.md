@@ -1,14 +1,13 @@
 # TÍTULO
-SASUKE 「O Último Uchiha」 | Naruto | KAGE.EXE
+Sasuke Uchiha (Naruto) - O ÚLTIMO UCHIHA | Kagerima
 
 # DESCRIÇÃO
-SASUKE UCHIHA — 「O Último Uchiha」 | KAGE.EXE
-Rap geek direto da sombra. Cada faixa é uma transmissão de dentro da cabeça de um personagem.
+Sasuke Uchiha (Naruto) - O ÚLTIMO UCHIHA | Kagerima
 
-▮ Ouça até o drop. Comente qual personagem vem na próxima transmissão.
-▮ Inscreva-se e ative o sino: @kage.exe
+Se curtiu, deixa o like e comenta qual personagem você quer no próximo rap.
+Inscreva-se: @kagerima
 
-⏱ CAPÍTULOS
+CAPÍTULOS
 0:00 Intro
 0:10 Verso
 0:32 Pré-refrão
@@ -17,7 +16,15 @@ Rap geek direto da sombra. Cada faixa é uma transmissão de dentro da cabeça d
 1:09 Refrão 2
 1:30 Final
 
-📝 LETRA
+FICHA
+Voz e letra: Kagerima
+Beat: Kagerima
+Mix e master: Kagerima
+Edição: Kagerima
+Arte da thumb: Kagerima
+Voz e instrumental feitos com ferramentas de IA (Google Flow).
+
+LETRA
 [Verso]
 Eu perdi meu clã numa noite sem lua
 O Sharingan desperta e a raiva continua
@@ -38,33 +45,27 @@ Olhos de sangue na escuridão
 Eu sou o último Uchiha
 Raio na palma da minha mão
 
-🎧 CRÉDITOS
-Música e conceito: KAGE.EXE (projeto artístico; voz e instrumental gerados com IA no Google Flow e tratados pelo canal).
-Edição, motion design e legendas: KAGE.EXE.
-Naruto e seus personagens pertencem aos respectivos autores, estúdios e detentores de direitos.
-• clips/cenas_teste.mp4 — fonte: fornecido pelo usuário — licença: a confirmar
-• images/chuva_irmaos.png — fonte: fornecido pelo usuário — licença: a confirmar
-• images/lua_vermelha.png — fonte: fornecido pelo usuário — licença: a confirmar
-• images/olho_close.png — fonte: fornecido pelo usuário — licença: a confirmar
-• images/tempestade_raio.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_1_p01.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_1_p02.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_1_p03.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_1_p04.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_2_p01.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_2_p02.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_2_p03.png — fonte: fornecido pelo usuário — licença: a confirmar
-• panels/pagina_2_p04.png — fonte: fornecido pelo usuário — licença: a confirmar
-
-⚠ AVISO
-Obra de fã, sem fins de afiliação oficial com Naruto. Uso de trechos visuais com finalidade
-de comentário/homenagem artística. Se você é detentor de direitos e quer ajuste ou remoção, entre em
-contato pelo e-mail do canal que resolvemos rapidamente.
+Naruto e seus personagens pertencem aos autores e estúdios originais. Este é um trabalho de fã,
+sem vínculo oficial. Detentor de direitos: fale com a gente pelo e-mail do canal para ajuste ou remoção.
+Fontes das cenas:
+- clips/cenas_teste.mp4 (fornecido pelo usuário)
+- images/chuva_irmaos.png (fornecido pelo usuário)
+- images/lua_vermelha.png (fornecido pelo usuário)
+- images/olho_close.png (fornecido pelo usuário)
+- images/tempestade_raio.png (fornecido pelo usuário)
+- panels/pagina_1_p01.png (fornecido pelo usuário)
+- panels/pagina_1_p02.png (fornecido pelo usuário)
+- panels/pagina_1_p03.png (fornecido pelo usuário)
+- panels/pagina_1_p04.png (fornecido pelo usuário)
+- panels/pagina_2_p01.png (fornecido pelo usuário)
+- panels/pagina_2_p02.png (fornecido pelo usuário)
+- panels/pagina_2_p03.png (fornecido pelo usuário)
+- panels/pagina_2_p04.png (fornecido pelo usuário)
 
 #sasuke #naruto #rapgeek
 
 # TAGS
-rap do sasuke, sasuke rap, rap naruto, naruto rap, sasuke uchiha, naruto, rap geek, rap de anime, anime rap, amv, rap nerd, kage.exe, o último uchiha, sasuke edit, naruto amv, rap anime brasileiro, sharingan, itachi, clã, uchiha, vingança, ódio, chidori, amaterasu
+rap do sasuke, sasuke rap, rap naruto, naruto rap, sasuke uchiha, naruto, rap geek, rap de anime, anime rap, amv, rap nerd, kagerima, o último uchiha, sasuke edit, naruto amv, rap anime brasileiro, sharingan, itachi, clã, uchiha, vingança, ódio, chidori, amaterasu
 
 # HASHTAGS
 #sasuke #naruto #rapgeek
