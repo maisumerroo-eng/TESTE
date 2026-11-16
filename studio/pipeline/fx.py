@@ -350,3 +350,26 @@ def alpha_over(f: np.ndarray, rgba, x=0, y=0, opacity=1.0) -> np.ndarray:
     roi = f[y:y2, x:x2]
     f[y:y2, x:x2] = cv2.add(cv2.multiply(roi, 255 - al, scale=1 / 255), prem)
     return f
+
+
+# ---------- 3D ----------
+def perspective(img: np.ndarray, ry=0.0, rx=0.0, scale=1.0, bg: np.ndarray | None = None,
+                dx=0.0, dy=0.0, focal=1.4) -> np.ndarray:
+    """Gira a imagem como um cartão no espaço 3D (graus) e projeta com perspectiva sobre bg."""
+    h, w = img.shape[:2]
+    f = focal * W
+    ay, ax = math.radians(ry), math.radians(rx)
+    pts = []
+    for x, y in ((-w / 2, -h / 2), (w / 2, -h / 2), (w / 2, h / 2), (-w / 2, h / 2)):
+        x, y = x * scale, y * scale
+        X = x * math.cos(ay)
+        Z = x * math.sin(ay)
+        Y = y * math.cos(ax) - Z * math.sin(ax)
+        Z = y * math.sin(ax) + Z * math.cos(ax)
+        pts.append((W / 2 + dx + f * X / (f + Z), H / 2 + dy + f * Y / (f + Z)))
+    M = cv2.getPerspectiveTransform(np.float32([[0, 0], [w, 0], [w, h], [0, h]]), np.float32(pts))
+    out = bg.copy() if bg is not None else np.zeros((H, W, 3), np.uint8)
+    warped = cv2.warpPerspective(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
+    mask = cv2.warpPerspective(np.full((h, w), 255, np.uint8), M, (W, H))
+    m = cv2.merge([mask, mask, mask])
+    return cv2.add(cv2.multiply(out, 255 - m, scale=1 / 255), cv2.multiply(warped, m, scale=1 / 255))

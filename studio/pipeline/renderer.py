@@ -144,6 +144,72 @@ class ImageSource:
         return fx.camera(self.img, 1.05 + 0.08 * p)
 
 
+class CoverSource:
+    """Capa da música animada: selo em 3D que gira e assenta, rachaduras acendem no kick,
+    parallax 2.5D e, no fim do intro, mergulho na rachadura central (quebra para a 1ª cena)."""
+
+    def __init__(self, path: Path, shot: dict, char: dict, kicks: list, depth_path: Path | None):
+        self.shot = shot
+        self.kicks = kicks
+        img = cv2.cvtColor(cv2.imread(str(path)), cv2.COLOR_BGR2RGB)
+        dark = np.array(hex_to_rgb(char["dark"]), np.float32)
+        bg = cv2.GaussianBlur(fx.cover(img), (0, 0), 30).astype(np.float32) * 0.28 + dark * 0.72
+        self.bg = np.clip(bg, 0, 255).astype(np.uint8)
+        s = H * 1.0 / img.shape[0]
+        self.card = cv2.resize(img, (int(img.shape[1] * s), H), interpolation=cv2.INTER_CUBIC)
+        self.card = cv2.filter2D(self.card, -1, np.array([[0, -0.4, 0], [-0.4, 2.6, -0.4], [0, -0.4, 0]]))
+        ch, cw = self.card.shape[:2]
+        lum = cv2.cvtColor(self.card, cv2.COLOR_RGB2GRAY).astype(np.float32) / 255
+        crack = np.clip((lum - 0.62) / 0.3, 0, 1)
+        tint = (np.array(hex_to_rgb(char["primary"]), np.float32) * 0.7 +
+                np.array(hex_to_rgb(char["secondary"]), np.float32) * 0.3)
+        glow = cv2.GaussianBlur(crack, (0, 0), 9)[..., None] * tint
+        self.glow = np.clip(glow, 0, 255).astype(np.uint8)
+        self.depth = None
+        if depth_path is not None and depth_path.exists():
+            d = np.load(depth_path).astype(np.float32)
+            self.depth = cv2.resize(d, (cw, ch))
+        self.grid = np.meshgrid(np.arange(cw, dtype=np.float32), np.arange(ch, dtype=np.float32))
+
+    def _pulse(self, t):
+        e = 0.0
+        for k in self.kicks:
+            if 0 <= t - k < 0.5:
+                e = max(e, math.exp(-(t - k) * 7))
+        return e
+
+    def frame(self, rel, energy):
+        s = self.shot
+        dur = s["end"] - s["start"]
+        t = s["start"] + rel
+        card = self.card
+        if self.depth is not None:  # leve parallax interno (rachaduras "na frente")
+            gx, gy = self.grid
+            ch, cw = card.shape[:2]
+            off = math.sin(rel * 0.9) * 10
+            card = cv2.remap(card, gx - off * self.depth, gy - off * 0.4 * self.depth, cv2.INTER_LINEAR,
+                             borderMode=cv2.BORDER_REFLECT101)
+        g = 0.35 + 0.9 * self._pulse(t)
+        card = cv2.add(card, cv2.multiply(self.glow, np.full_like(self.glow, int(min(1, g) * 255)), scale=1 / 255))
+        if s["motion"] == "cover_outro":
+            p = fx.ease(min(1, rel / 1.6), "out")
+            ry = -35 * (1 - p) + 4 * math.sin(rel * 0.8)
+            return fx.perspective(card, ry, 6 * (1 - p), 0.82 + 0.1 * p, self.bg)
+        # cover_intro: entra girando em 3D, assenta, respira; último ~0,7 s mergulha na rachadura
+        p_in = fx.ease(min(1, rel / 1.8), "out")
+        ry = 38 * (1 - p_in) + 3.5 * math.sin(rel * 0.7)
+        rx = -12 * (1 - p_in) + 1.5 * math.sin(rel * 0.5)
+        sc = 0.78 + 0.16 * p_in + 0.03 * rel / dur + 0.025 * self._pulse(t)
+        out = fx.perspective(card, ry, rx, sc, self.bg)
+        dive = 0.7
+        if rel > dur - dive:
+            q = (rel - (dur - dive)) / dive
+            out = fx.camera(out, 1 + 2.8 * fx.ease(q, "in"))
+            out = fx.radial_zoom_blur(out, 0.15 * q, 6)
+            out = fx.flash(out, max(0, (q - 0.55) / 0.45))
+        return out
+
+
 class BrandBG:
     """Fundo procedural quando não há mídia: gradiente da cor do personagem + kanji gigante."""
 
@@ -208,6 +274,10 @@ class Renderer:
         elif s["kind"] in ("image", "panel"):
             dp = self.p.work / "depth" / f"{s['asset'].replace('#', '_')}.npy"
             src = ImageSource(self.p.assets / s["file"], dp, s, self.char)
+        elif s["kind"] == "cover":
+            kicks = [k[0] for k in load_json(self.p.work / "analysis.json")["kick"] if k[1] > 0.3]
+            src = CoverSource(self.p.root / self.p.cfg["cover"], s, self.char, kicks,
+                              self.p.work / "depth" / "cover.npy")
         else:
             src = BrandBG(s, self.char)
         self.cache[i] = src
@@ -230,6 +300,20 @@ class Renderer:
             punch += 0.10 * math.exp(-max(0, rel) * 6)
         if dx or dy or rot or punch:
             base = fx.camera(base, 1.0 + punch + (0.04 if dx or dy else 0), dx, dy, rot)
+        if s.get("fx3d"):  # momento 3D "do nada": o plano vira um cartão girando no espaço
+            p = rel / max(0.01, s["end"] - s["start"])
+            if not hasattr(self, "_bg3d"):
+                y = np.linspace(0, 1, H)[:, None, None]
+                self._bg3d = (np.array(hex_to_rgb(self.char["dark"]), np.float32) * (1 - y * 0.3) +
+                              np.array(self.prim, np.float32) * 0.25 * np.exp(-((y - 0.5) ** 2) * 8)).astype(np.uint8)
+                self._bg3d = np.repeat(self._bg3d, W, 1)
+            kind = s["fx3d"]
+            if kind == "spin":
+                ang = -70 + 140 * fx.ease(p, "inout")
+                base = fx.perspective(base, ang, 6 * math.sin(p * 3.14), 0.86, self._bg3d)
+            else:  # tilt: inclina e endireita no tempo
+                k = 1 - fx.ease(min(1, p * 1.6), "out")
+                base = fx.perspective(base, 28 * k, -10 * k, 0.9 + 0.1 * (1 - k), self._bg3d)
         return base
 
     @staticmethod
@@ -472,6 +556,8 @@ def prepare_depth(proj: Project, tl: dict):
            if s.get("kind") in ("image", "panel") and s.get("motion", "").startswith("parallax")}
     for aid, f in ids.items():
         depth_map(proj.assets / f, proj.work / "depth" / f"{aid.replace('#', '_')}.npy")
+    if proj.cfg.get("cover") and any(s.get("kind") == "cover" for s in tl["shots"]):
+        depth_map(proj.root / proj.cfg["cover"], proj.work / "depth" / "cover.npy")
     if ids:
         log(f"profundidade 2.5D pronta para {len(ids)} imagens")
 

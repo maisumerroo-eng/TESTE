@@ -1,0 +1,54 @@
+slug: 01-gojo-o-mais-forte
+character: gojo
+hook: O Mais Forte
+track: '01'
+song_file: o_mais_forte.wav
+language: pt
+fps: 30
+seed: 7
+title_at: 1.6
+next_hint: ''
+whisper_model: medium
+subtitles:
+  uppercase: true
+thumbnail:
+  text: ''
+  image: ''
+  focus_y: 0.35
+feats: ''
+credits:
+  beat: Kagerima
+  mix: Kagerima
+  edit: Kagerima
+  thumb_art: Kagerima
+audio_trim:
+  start: 0.0
+  end: 175.865
+sections:
+- - 0
+  - intro
+- - 9.7
+  - verse
+- - 38.8
+  - pre-chorus
+- - 45.5
+  - chorus
+- - 55.0
+  - chorus
+- - 76.0
+  - verse
+- - 107.9
+  - verse
+- - 124.4
+  - pre-chorus
+- - 134.3
+  - break
+- - 143.0
+  - chorus
+- - 163.2
+  - outro
+drops:
+- 9.7
+- 45.5
+- 143.0
+cover: input/cover.png

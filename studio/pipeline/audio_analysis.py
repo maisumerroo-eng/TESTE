@@ -156,6 +156,25 @@ def _drops(energy_t, energy, bars, kick, sections):
     return drops
 
 
+def _manual_sections(spec, duration, grid, energy, bars):
+    """spec: lista [[inicio_s, rotulo], ...] em project.yaml; inícios são encaixados no compasso mais próximo
+    só se estiverem a menos de 0,25 s dele (senão mantém o tempo da letra)."""
+    out = []
+    bars_a = np.array(bars) if bars else np.array([0.0])
+    pts = sorted((float(a), lab) for a, lab in spec)
+    for k, (a, lab) in enumerate(pts):
+        nb = bars_a[np.argmin(np.abs(bars_a - a))]
+        a = float(nb) if abs(nb - a) < 0.25 else a
+        b = pts[k + 1][0] if k + 1 < len(pts) else duration
+        m = (grid >= a) & (grid < b)
+        out.append(dict(start=round(0.0 if k == 0 else a, 3), end=round(b, 3), bars=0, label=lab,
+                        energy=round(float(energy[m].mean()) if m.any() else 0.0, 3), intensity=0.0))
+    for k in range(len(out) - 1):
+        out[k]["end"] = out[k + 1]["start"]
+    out[-1]["end"] = round(duration, 3)
+    return out
+
+
 def _silences(rms_db, t, thresh_db=-38.0, min_len=0.35):
     quiet = rms_db < thresh_db
     out, start = [], None
@@ -220,7 +239,16 @@ def analyze(proj: Project, audio_path=None) -> dict:
     energy = np.interp(grid, rms_t, env)
 
     sections = _sections(y, sr, bars, duration, grid, energy)
+    if proj.cfg.get("sections"):  # estrutura definida pelo diretor (pela letra) tem prioridade
+        sections = _manual_sections(proj.cfg["sections"], duration, grid, energy, bars)
     drops = _drops(grid, energy, bars, kick, sections)
+    if proj.cfg.get("drops") is not None:
+        kt = np.array([k[0] for k in kick]) if kick else np.array([])
+        drops = []
+        for t in proj.cfg["drops"]:
+            near = kt[np.abs(kt - t) < 0.15] if len(kt) else []
+            hit = float(near[np.argmin(np.abs(near - t))]) if len(near) else float(t)
+            drops.append(dict(time=round(hit, 3), strength=1.0, pre_gap=True, section="manual"))
     silences = _silences(rms_db, rms_t)
 
     # brilho espectral (bom p/ variar intensidade de efeitos)

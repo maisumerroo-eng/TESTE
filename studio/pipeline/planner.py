@@ -102,9 +102,10 @@ class Planner:
             if si > 0 and beats[i] - cuts[-1] > bp * 0.6:
                 cuts.append(float(beats[i]))
             pat = PATTERNS.get(sec["label"], PATTERNS["verse"])
+            mult = 2 if self.a["bpm"] >= 120 else 1  # trap a 140–160 BPM é sentido em meio-tempo
             k = 0
             while True:
-                step = pat[k % len(pat)]
+                step = pat[k % len(pat)] * mult
                 e = self._energy(beats[i])
                 if sec["label"] == "verse" and e > 0.75 and step >= 2:  # verso intenso acelera
                     step = max(1, step // 2)
@@ -226,6 +227,17 @@ class Planner:
     def build(self) -> dict:
         cuts = self.cut_points()
         a = self.a
+        cover = self.p.cfg.get("cover")
+        cover_out = None
+        if cover:
+            intro = next((sec for sec in a["sections"] if sec["label"] == "intro"), None)
+            if intro:
+                cuts = [c for c in cuts if not (0 < c < intro["end"] - 0.05)]
+                if all(abs(c - intro["end"]) > 0.05 for c in cuts):
+                    cuts = sorted(cuts + [intro["end"]])
+            cover_out = round(a["duration"] - 5.0, 3)
+            cuts = sorted([c for c in cuts if c < cover_out - 0.3] + [cover_out, a["duration"]])
+            cuts = sorted(set(cuts))
         bp = a["beat_period"]
         drops = a["drops"]
         drop_t = [d["time"] for d in drops]
@@ -247,10 +259,11 @@ class Planner:
             strength = sum(self._wanted_tags(s, e, role, mood=False).values())
             skel.append((i, s, e, label, role, energy, strength))
         # 1º passe: planos em que a letra cita algo concreto escolhem primeiro (sincronia narrativa)
+        is_cover = lambda k: cover and (k[3] == "intro" or (cover_out is not None and k[1] >= cover_out - 0.01))
         order = sorted([k for k in skel if k[6] >= 4], key=lambda k: -k[6]) + [k for k in skel if k[6] < 4]
         picked = {}
         for i, s, e, label, role, energy, _ in order:
-            picked[i] = self.pick(i, s, e, role, energy)
+            picked[i] = None if is_cover(skel[i]) else self.pick(i, s, e, role, energy)
 
         shots = []
         prev_label = None
@@ -259,7 +272,9 @@ class Planner:
             x = picked[i]
             shot = dict(i=i, start=round(s, 3), end=round(e, 3), section=label, role=role,
                         energy=round(energy, 3), lyric_match=round(strength, 1))
-            if x is None:
+            if is_cover(skel[i]):
+                shot.update(kind="cover", motion="cover_intro" if label == "intro" else "cover_outro")
+            elif x is None:
                 shot.update(kind="generated", motion="brand_bg")
             else:
                 shot.update(asset=x["id"], kind=x["kind"], file=x["file"])
@@ -288,6 +303,11 @@ class Planner:
             elif label == "verse" and self.rng.random() < 0.12:
                 tr = self.rng.choice(["whip", "zoom", "glitch"])
             shot["trans_in"] = tr
+            # momento 3D "do nada": raro (~1 a cada 25 s), num plano de 1–3 s fora de drop/suspensão
+            if (shot.get("kind") not in ("cover", None) and role not in ("drop", "suspend") and
+                    0.9 <= e - s <= 3.2 and s - getattr(self, "_last3d", -99) > 22 and self.rng.random() < 0.35):
+                shot["fx3d"] = "spin" if self.rng.random() < 0.5 else "tilt"
+                self._last3d = s
             prev_label = label
             shots.append(shot)
 
