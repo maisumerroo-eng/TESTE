@@ -54,8 +54,8 @@
     },
     {
       "check": "sem plano parado longo demais (>8 s)",
-      "ok": false,
-      "detail": "maior plano 9.8s"
+      "ok": true,
+      "detail": "maior plano 6.4s"
     },
     {
       "check": "sem mesma cena em planos seguidos",
@@ -74,8 +74,8 @@
     },
     {
       "check": "SRT válido e sem sobreposição",
-      "ok": false,
-      "detail": "75 linhas, 5 sobreposições"
+      "ok": true,
+      "detail": "75 linhas, 0 sobreposições"
     },
     {
       "check": "letra oficial fornecida (lyrics.txt)",
