@@ -191,6 +191,14 @@ class CoverSource:
                              borderMode=cv2.BORDER_REFLECT101)
         g = 0.35 + 0.9 * self._pulse(t)
         card = cv2.add(card, cv2.multiply(self.glow, np.full_like(self.glow, int(min(1, g) * 255)), scale=1 / 255))
+        if s["motion"] == "cover_card":  # capa como objeto 3D orbitando (variação por plano)
+            v = s.get("variant", 0)
+            p = fx.ease(rel / dur, "inout")
+            d = 1 if v % 2 == 0 else -1
+            ry = d * (-32 + 64 * p)
+            rx = (-10 + 20 * p) * (1 if v % 3 else -1)
+            sc = 0.8 + 0.25 * (v % 3) / 2 + 0.06 * p + 0.03 * self._pulse(t)
+            return fx.perspective(card, ry, rx, sc, self.bg, dy=60 * (v % 2) * (1 - p))
         if s["motion"] == "cover_outro":
             p = fx.ease(min(1, rel / 1.6), "out")
             ry = -35 * (1 - p) + 4 * math.sin(rel * 0.8)
@@ -208,6 +216,16 @@ class CoverSource:
             out = fx.radial_zoom_blur(out, 0.15 * q, 6)
             out = fx.flash(out, max(0, (q - 0.55) / 0.45))
         return out
+
+
+class VFXSource:
+    def __init__(self, vfx, shot, kicks):
+        self.v, self.shot, self.kicks = vfx, shot, kicks
+
+    def frame(self, rel, energy):
+        t = self.shot["start"] + rel
+        pulse = max([math.exp(-(t - k) * 7) for k in self.kicks if 0 <= t - k < 0.5] or [0])
+        return self.v.frame(rel, self.shot["end"] - self.shot["start"], pulse)
 
 
 class BrandBG:
@@ -245,6 +263,8 @@ class Renderer:
         self.char = proj.char
         self.prim = hex_to_rgb(self.char["primary"])
         self.accent = hex_to_rgb(self.char.get("accent", self.char["primary"]))
+        if min(self.accent) > 200:  # acento branco lava a imagem em cinza: usa a cor primária
+            self.accent = self.prim
         self.lut = fx.make_grade_lut(hex_to_rgb(self.char["dark"]), self.prim, 0.32)
         self.embers = fx.Embers(150, self.accent)
         b = brand()
@@ -278,6 +298,11 @@ class Renderer:
             kicks = [k[0] for k in load_json(self.p.work / "analysis.json")["kick"] if k[1] > 0.3]
             src = CoverSource(self.p.root / self.p.cfg["cover"], s, self.char, kicks,
                               self.p.work / "depth" / "cover.npy")
+        elif s["kind"] == "vfx":
+            from .vfx import VFX
+            src = VFXSource(VFX(s["motion"], s["i"], self.prim, hex_to_rgb(self.char["secondary"]),
+                                hex_to_rgb(self.char["dark"])), s,
+                            [k[0] for k in load_json(self.p.work / "analysis.json")["kick"] if k[1] > 0.3])
         else:
             src = BrandBG(s, self.char)
         self.cache[i] = src

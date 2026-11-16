@@ -275,7 +275,7 @@ class Planner:
             if is_cover(skel[i]):
                 shot.update(kind="cover", motion="cover_intro" if label == "intro" else "cover_outro")
             elif x is None:
-                shot.update(kind="generated", motion="brand_bg")
+                shot.update(self._generated(i, s, e, label, role))
             else:
                 shot.update(asset=x["id"], kind=x["kind"], file=x["file"])
                 if x["kind"] == "clip":
@@ -319,6 +319,28 @@ class Planner:
         log(f"timeline: {len(shots)} planos, {n_assets} cenas distintas, "
             f"média {a['duration'] / max(1, len(shots)):.2f}s/plano, drops: {list(recipes.values())}")
         return tl
+
+    def _generated(self, i, s, e, label, role):
+        """Sem mídia para o plano: efeito ligado à palavra cantada, ou a capa em 3D, ou efeito do clima."""
+        from .vfx import KEYWORDS
+        for w in self._words_in(s, e):
+            kind = KEYWORDS.get(_norm(w["w"]).replace(" ", ""))
+            if kind:
+                return dict(kind="vfx", motion=kind, lyric_vfx=w["w"])
+        if not hasattr(self, "_gen_k"):
+            self._gen_k = 0
+        self._gen_k += 1
+        if self.p.cfg.get("cover") and (role in ("verse", "break", "intro", "outro") and self._gen_k % 2 == 0):
+            return dict(kind="cover", motion="cover_card", variant=self._gen_k % 6)
+        mood = {"chorus": ["burst", "vortex", "merge", "void"], "drop": ["burst", "merge"],
+                "pre-chorus": ["barrier", "iris"], "suspend": ["iris"], "break": ["void", "iris"],
+                "verse": ["void", "iris", "vortex", "barrier", "merge"], "outro": ["void"]}
+        opts = mood.get(role, mood.get(label, ["void"]))
+        kind = opts[self._gen_k % len(opts)]
+        if kind == getattr(self, "_last_gen", None):
+            kind = opts[(self._gen_k + 1) % len(opts)]
+        self._last_gen = kind
+        return dict(kind="vfx", motion=kind)
 
     def _clip_timing(self, x, dur, role, energy):
         avail = x["end"] - x["start"]
