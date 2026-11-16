@@ -38,6 +38,12 @@ titles:   # padrão da cena BR (AniRap / Henrique Mendonça): Personagem (Obra) 
     - "Sasuke Uchiha (Naruto) - ÓDIO E SHARINGAN | Kagerima"
     - "Satoru Gojo (Jujutsu Kaisen) - O MAIS FORTE | Kagerima"
 
+overlays:          # elementos na tela durante o clipe (a cena usa tela limpa)
+  hud: false
+  title_card: false
+  signal_bar: false
+  end_card: true
+
 video:
   width: 1920
   height: 1080

@@ -28,7 +28,8 @@ def _srt_ts(t: float) -> str:
 
 
 def _esc(s: str) -> str:
-    return s.replace("{", "(").replace("}", ")").replace("\\", "/")
+    s = s.replace("{", "(").replace("}", ")").replace("\\", "/")
+    return s.replace("—", "").replace("–", "").strip("-").strip()
 
 
 def _section_at(sections, t):

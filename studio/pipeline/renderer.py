@@ -280,6 +280,7 @@ class Renderer:
         self.endc = fx.Overlay(overlays.end_card(proj.cfg.get("next_hint", "")))
         self.sigbar = fx.Overlay(overlays.signal_bar())
         self.title_at = float(proj.cfg.get("title_at", 1.0))
+        self.ovcfg = {**brand().get("overlays", {}), **proj.cfg.get("overlays", {})}
         self.beats = np.array(load_json(proj.work / "analysis.json")["beats"])
         self.starts = np.array([s["start"] for s in self.shots])
 
@@ -299,8 +300,9 @@ class Renderer:
             src = CoverSource(self.p.root / self.p.cfg["cover"], s, self.char, kicks,
                               self.p.work / "depth" / "cover.npy")
         elif s["kind"] == "vfx":
-            from .vfx import VFX
-            src = VFXSource(VFX(s["motion"], s["i"], self.prim, hex_to_rgb(self.char["secondary"]),
+            from .vfx import ABSTRACT_KINDS, VFX, Abstract
+            cls = Abstract if s["motion"] in ABSTRACT_KINDS else VFX
+            src = VFXSource(cls(s["motion"], s["i"], self.prim, hex_to_rgb(self.char["secondary"]),
                                 hex_to_rgb(self.char["dark"])), s,
                             [k[0] for k in load_json(self.p.work / "analysis.json")["kick"] if k[1] > 0.3])
         else:
@@ -500,8 +502,9 @@ class Renderer:
 
     def _overlays(self, f, t):
         dur = self.tl["duration"]
+        ov = self.ovcfg
         # HUD (depois de 1,2 s; pisca no tempo)
-        if 1.2 < t < dur - 5.2:
+        if ov.get("hud", True) and 1.2 < t < dur - 5.2:
             bi = int(np.searchsorted(self.beats, t))
             hud = self.hud_on if bi % 2 == 0 else self.hud_off
             op = min(1.0, (t - 1.2) / 0.3)
@@ -511,12 +514,12 @@ class Renderer:
                 f = fx.alpha_over(f, hud, 40, 34, op * 0.92)
         # cartela de título
         r = t - self.title_at
-        if 0 <= r < 3.4:
+        if ov.get("title_card", True) and 0 <= r < 3.4:
             op = min(1.0, r / 0.25) * min(1.0, (3.4 - r) / 0.4)
             slide = int((1 - fx.ease(min(1, r / 0.5), "out")) * -80)
             f = fx.alpha_over(f, self.title, slide, 0, op)
         # barra signal nos downbeats do refrão
-        if self._decay(self.ev["signal"], t, 1.0, 10) > 0.3:
+        if ov.get("signal_bar", True) and self._decay(self.ev["signal"], t, 1.0, 10) > 0.3:
             f = fx.alpha_over(f, self.sigbar, 40, 92, 0.95)
         # end card
         if t > dur - 5.0:

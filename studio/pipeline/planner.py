@@ -19,9 +19,9 @@ from .common import Project, load_json, load_yaml, log, save_json
 # ritmo de corte (em batidas) por seção — ciclos variados para não ficar mecânico
 PATTERNS = {
     "intro": [8, 4, 4],
-    "verse": [4, 2, 2, 4, 2, 2, 3, 1],
-    "pre-chorus": [2, 2, 1, 1, 1, 1],
-    "chorus": [2, 1, 1, 2, 1, 1, 1, 1, 2, 2],
+    "verse": [2, 2, 1, 2, 1, 1, 2, 2],
+    "pre-chorus": [2, 1, 1, 1, 1],
+    "chorus": [1, 1, 2, 1, 1, 1, 1, 2],
     "break": [8, 4],
     "outro": [4, 8, 8],
 }
@@ -323,18 +323,25 @@ class Planner:
     def _generated(self, i, s, e, label, role):
         """Sem mídia para o plano: efeito ligado à palavra cantada, ou a capa em 3D, ou efeito do clima."""
         from .vfx import KEYWORDS
-        for w in self._words_in(s, e):
+        # palavra cantada DENTRO do plano manda (a mais recente primeiro)
+        for w in sorted(self._words_in(s, e), key=lambda w: -w["start"]):
+            if not (s - 0.15 <= w["start"] < e):
+                continue
             kind = KEYWORDS.get(_norm(w["w"]).replace(" ", ""))
-            if kind:
+            if kind and kind != getattr(self, "_last_gen", None):
+                self._last_gen = kind
                 return dict(kind="vfx", motion=kind, lyric_vfx=w["w"])
         if not hasattr(self, "_gen_k"):
             self._gen_k = 0
         self._gen_k += 1
-        if self.p.cfg.get("cover") and (role in ("verse", "break", "intro", "outro") and self._gen_k % 2 == 0):
+        if self.p.cfg.get("cover") and role in ("verse", "break") and self._gen_k % 9 == 0:
             return dict(kind="cover", motion="cover_card", variant=self._gen_k % 6)
-        mood = {"chorus": ["burst", "vortex", "merge", "void"], "drop": ["burst", "merge"],
-                "pre-chorus": ["barrier", "iris"], "suspend": ["iris"], "break": ["void", "iris"],
-                "verse": ["void", "iris", "vortex", "barrier", "merge"], "outro": ["void"]}
+        mood = {"chorus": ["eye", "burst", "vortex", "six", "merge", "infinity", "void", "crack"],
+                "drop": ["burst", "merge", "eye_open"],
+                "pre-chorus": ["barrier", "eye", "infinity", "six"], "suspend": ["eye_open", "iris"],
+                "break": ["alone", "eye_close", "void", "sky"],
+                "verse": ["eye", "void", "infinity", "six", "barrier", "rewind", "crack", "iris", "vortex", "sky"],
+                "outro": ["void", "eye_close", "alone"]}
         opts = mood.get(role, mood.get(label, ["void"]))
         kind = opts[self._gen_k % len(opts)]
         if kind == getattr(self, "_last_gen", None):

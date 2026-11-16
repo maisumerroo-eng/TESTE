@@ -95,13 +95,14 @@ def end_card(next_hint: str = "") -> np.ndarray:
     w, h, bb = text_size(d, b["channel"]["name"], logo)
     im.alpha_composite(glow_text((W, H), ((W - w) // 2, 400 - bb[1]), b["channel"]["name"], logo, bone + (255,), sig, 18))
     d = ImageDraw.Draw(im)
-    f2 = font(b["fonts"]["hud"], 40)
-    msg = (f"PRÓXIMO: {next_hint.upper()}" if next_hint else "VALEU POR OUVIR")
-    w2, _, _ = text_size(d, msg, f2)
-    d.text(((W - w2) // 2, 590), msg, font=f2, fill=sig + (255,))
+    if next_hint:
+        f2 = font(b["fonts"]["hud"], 40)
+        msg = f"PRÓXIMO: {next_hint.upper()}"
+        w2, _, _ = text_size(d, msg, f2)
+        d.text(((W - w2) // 2, 590), msg, font=f2, fill=sig + (255,))
     d.rectangle([(W - w2) // 2 - 34, 598, (W - w2) // 2 - 16, 632], fill=sig + (255,))
     f3 = font(b["fonts"]["hud"], 30)
-    sub = "INSCREVA-SE  ·  " + b["channel"]["handle"]
+    sub = b["channel"]["handle"]
     w3, _, _ = text_size(d, sub, f3)
     d.text(((W - w3) // 2, 660), sub, font=f3, fill=bone + (190,))
     return _rgba(im)
