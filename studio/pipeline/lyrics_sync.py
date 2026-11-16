@@ -23,7 +23,9 @@ def transcribe(proj: Project, audio_path, model_size: str = "small") -> list[dic
     from faster_whisper import WhisperModel
 
     char = proj.char
-    prompt = f"Rap em português sobre {char['name']} de {char['anime']}. " + ", ".join(char.get("keywords", [])[:12])
+    extra = proj.cfg.get("whisper_prompt", "")
+    prompt = (f"Rap em português sobre {char['name']} de {char['anime']}. " +
+              ", ".join(char.get("keywords", [])[:12]) + (". " + extra if extra else ""))
     log(f"whisper '{model_size}' transcrevendo (CPU int8)...")
     model = WhisperModel(model_size, device="cpu", compute_type="int8")
     import librosa

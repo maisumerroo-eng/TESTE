@@ -569,12 +569,87 @@ class Abstract:
                 cv2.polylines(lay, [np.array(pts, np.int32)], False, (220, 240, 255), 2, cv2.LINE_AA)
             c = cv2.add(c, _glow(lay, 2, 9))
             c = cv2.warpAffine(c, np.float32([[1, 0, 6 * pulse * math.sin(rel * 50)], [0, 1, 0]]), (w, h))
+        elif k == "slashes":  # cortes vermelhos rasgando a tela, um por batida
+            lay = np.zeros_like(c)
+            rng = np.random.default_rng(self.seed)
+            n = 1 + int(rel / 0.18)
+            for i in range(min(n, 9)):
+                a = rng.uniform(-0.9, 0.9)
+                y0 = rng.uniform(0.1, 0.9) * h
+                L = w * 1.3
+                x0 = CX - L / 2 * math.cos(a)
+                pr = min(1, (rel - i * 0.18) / 0.08)
+                x1, y1 = x0 + L * pr * math.cos(a), y0 + L * pr * math.sin(a) - L / 2 * math.sin(a)
+                cv2.line(lay, (int(x0), int(y0 - L / 2 * math.sin(a))), (int(x1), int(y1)), (255, 40, 50), 7, cv2.LINE_AA)
+                cv2.line(lay, (int(x0), int(y0 - L / 2 * math.sin(a))), (int(x1), int(y1)), (255, 235, 235), 2, cv2.LINE_AA)
+            c = (c * 0.6).astype(np.uint8)
+            c[..., 0] = np.clip(c[..., 0].astype(int) + 25, 0, 255)
+            c = cv2.add(c, _glow(lay, 3, 12))
+        elif k == "red_eyes":  # olhos vermelhos abrindo no escuro, um a um
+            c[:] = (6, 3, 5)
+            rng = np.random.default_rng(self.seed)
+            for i in range(7):
+                x, y = rng.uniform(0.12, 0.88) * w, rng.uniform(0.15, 0.85) * h
+                t0 = i * 0.16
+                op = min(1, max(0, (rel - t0) / 0.15))
+                if op <= 0:
+                    continue
+                sz = rng.uniform(26, 60)
+                cv2.ellipse(c, (int(x), int(y)), (int(sz), max(1, int(sz * 0.32 * op))), rng.uniform(-15, 15), 0, 360,
+                            (220, 20, 30), -1, cv2.LINE_AA)
+                cv2.ellipse(c, (int(x), int(y)), (max(1, int(sz * 0.12)), max(1, int(sz * 0.3 * op))), 0, 0, 360,
+                            (10, 0, 0), -1, cv2.LINE_AA)
+            c = cv2.add(c, cv2.GaussianBlur(c, (0, 0), 10))
+        elif k == "veil":  # véu escuro descendo sobre uma cidade
+            c[:] = (10, 10, 22)
+            rng = np.random.default_rng(self.seed)
+            x = 0
+            while x < w:
+                bw = int(rng.uniform(30, 80))
+                bh = int(rng.uniform(80, 300))
+                cv2.rectangle(c, (x, h - bh), (x + bw - 3, h), (20, 22, 40), -1)
+                for _ in range(int(bh / 25)):
+                    if rng.random() < 0.5:
+                        wx, wy = x + int(rng.uniform(4, bw - 10)), h - int(rng.uniform(10, bh - 10))
+                        cv2.rectangle(c, (wx, wy), (wx + 4, wy + 6), (90, 160, 200), -1)
+                x += bw
+            q = fx_ease_out(p)
+            cy2 = int(-h * 0.4 + h * 1.1 * q)
+            dome = np.zeros((h, w), np.uint8)
+            cv2.ellipse(dome, (int(CX), cy2 - h), (int(w * 0.75), h + 20), 0, 0, 180, 255, -1)
+            c[dome > 0] = (c[dome > 0] * 0.25).astype(np.uint8)
+            edge = cv2.morphologyEx(dome, cv2.MORPH_GRADIENT, np.ones((5, 5), np.uint8))
+            c[edge > 0] = (150, 60, 230)
+        elif k == "swarm":  # enxame de maldições espiralando
+            lay = np.zeros_like(c)
+            for j, (x, y, z) in enumerate(self.parts[:260]):
+                a = math.atan2(y, x) + rel * (1.5 + z)
+                r = (0.2 + abs(z)) * 300 * (1 - 0.3 * math.sin(rel * 2 + j))
+                px, py = CX + r * math.cos(a), CY + r * 0.6 * math.sin(a)
+                cv2.circle(lay, (int(px), int(py)), int(3 + 4 * abs(z)), (60, 20, 90), -1, cv2.LINE_AA)
+                cv2.circle(lay, (int(px), int(py)), 1, (200, 120, 255), -1)
+            c = cv2.add(c, _glow(lay, 2, 8))
+        elif k == "blade":  # brilho de uma lâmina atravessando
+            lay = np.zeros_like(c)
+            q = fx_ease_out(min(1, rel / max(0.3, dur * 0.5)))
+            x = -200 + (w + 400) * q
+            cv2.line(lay, (int(x - 420), int(CY + 60)), (int(x), int(CY - 40)), (200, 210, 230), 5, cv2.LINE_AA)
+            cv2.line(lay, (int(x - 120), int(CY + 18)), (int(x), int(CY - 40)), (255, 255, 255), 2, cv2.LINE_AA)
+            c = cv2.add(c, _glow(lay, 2, 14))
+        # variação por plano: espelho, rotação e zoom diferentes (nunca repete igual)
+        vr = np.random.default_rng(self.seed * 7 + 1)
+        ang = vr.uniform(-5, 5) + rel * vr.uniform(-2, 2)
+        zm = vr.uniform(1.0, 1.12) + 0.04 * p
+        M = cv2.getRotationMatrix2D((CX, CY), ang, zm)
+        c = cv2.warpAffine(c, M, (w, h), borderMode=cv2.BORDER_REFLECT101)
+        if vr.random() < 0.5 and k not in ("slash",):
+            c = c[:, ::-1].copy()
         c = (c // 32) * 32 + 16  # tons chapados
         return cv2.resize(c, (W, H), interpolation=cv2.INTER_LINEAR)
 
 
 ABSTRACT_KINDS = {"eye", "eye_open", "eye_close", "six", "infinity", "sky", "blood", "rewind", "bond", "alone",
-                  "cube", "slash", "wheel", "crack"}
+                  "cube", "slash", "wheel", "crack", "slashes", "red_eyes", "veil", "swarm", "blade"}
 
 KEYWORDS.update({
     "ceu": "sky", "limite": "sky", "alem": "sky", "acima": "sky",
@@ -594,4 +669,10 @@ KEYWORDS.update({
     "fracasso": "eye_close", "fim": "eye_close", "desabe": "eye_close",
     "sorriso": "eye", "aula": "eye", "monstros": "eye", "forte": "eye_open",
     "controlo": "vortex", "poder": "vortex", "absurdo": "vortex",
+    "sukuna": "slashes", "colisao": "merge", "dimensao": "slashes", "maldicao": "red_eyes", "maldicoes": "red_eyes",
+    "infernal": "red_eyes", "shibuya": "veil", "fechando": "veil", "multidao": "veil", "milhares": "swarm",
+    "armadilha": "cube", "gatilho": "cube", "selado": "cube", "impasse": "cube", "jovem": "blade",
+    "inconsequente": "blade", "invencivel": "blade", "ataque": "blade", "apagar": "burst", "explodir": "burst",
+    "geracao": "swarm", "menino": "eye", "monstros": "red_eyes", "decisao": "slashes", "campo": "slashes",
+    "desabe": "sky", "expansion": "void", "domain": "void",
 })

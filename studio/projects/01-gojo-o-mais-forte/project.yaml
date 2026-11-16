@@ -8,7 +8,7 @@ fps: 30
 seed: 7
 title_at: 1.6
 next_hint: ''
-whisper_model: medium
+whisper_model: large-v3-turbo
 subtitles:
   uppercase: true
 thumbnail:
@@ -52,3 +52,6 @@ drops:
 - 45.5
 - 143.0
 cover: input/cover.png
+whisper_prompt: Satoru Gojo, Clã Gojo, Seis Olhos, Ilimitado, Infinito, Azul, Vermelho,
+  Roxo, Expansão de Domínio, Vazio Infinito, Toji, Geto, Shibuya, Sukuna, Mahoraga,
+  Kenjaku, Jogo, Mahito, Reino da Prisão, energia amaldiçoada, feiticeiro, maldição
