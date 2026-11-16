@@ -155,7 +155,9 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     ass_path.write_text(head + "\n".join(events) + "\n", encoding="utf-8")
 
     srt_lines = []
-    for i, (a, z, txt) in enumerate(sorted(srt), 1):
+    srt = sorted(srt)
+    srt = [(a, min(z, srt[k + 1][0] - 0.02) if k + 1 < len(srt) else z, txt) for k, (a, z, txt) in enumerate(srt)]
+    for i, (a, z, txt) in enumerate(srt, 1):
         srt_lines.append(f"{i}\n{_srt_ts(a)} --> {_srt_ts(z)}\n{txt}\n")
     srt_path = proj.path("output", f"{proj.cfg['slug']}.srt")
     srt_path.write_text("\n".join(srt_lines), encoding="utf-8")

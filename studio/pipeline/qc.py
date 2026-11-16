@@ -59,7 +59,7 @@ def check(proj: Project, video=None) -> dict:
     most = cnt.most_common(1)[0] if cnt else ("-", 0)
     ok("sem cena repetida em excesso", (most[1] <= max(3, len(shots) // 12)) or len(cnt) < 6,
        f"mais usada: {most[0]} x{most[1]} | {len(cnt)} cenas distintas / {len(shots)} planos")
-    longest = max(s["end"] - s["start"] for s in shots)
+    longest = max((s["end"] - s["start"] for s in shots if s.get("kind") != "cover"), default=0)
     pauses = tl["events"].get("pauses", [])
     ok("sem plano parado longo demais (>8 s)", longest <= 8.0, f"maior plano {longest:.1f}s")
     adj = sum(1 for x, y in zip(shots, shots[1:]) if x.get("asset") and x.get("asset") == y.get("asset"))

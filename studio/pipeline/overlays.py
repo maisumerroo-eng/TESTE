@@ -100,7 +100,6 @@ def end_card(next_hint: str = "") -> np.ndarray:
         msg = f"PRÓXIMO: {next_hint.upper()}"
         w2, _, _ = text_size(d, msg, f2)
         d.text(((W - w2) // 2, 590), msg, font=f2, fill=sig + (255,))
-    d.rectangle([(W - w2) // 2 - 34, 598, (W - w2) // 2 - 16, 632], fill=sig + (255,))
     f3 = font(b["fonts"]["hud"], 30)
     sub = b["channel"]["handle"]
     w3, _, _ = text_size(d, sub, f3)

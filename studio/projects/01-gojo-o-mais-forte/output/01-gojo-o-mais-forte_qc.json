@@ -1,0 +1,92 @@
+{
+  "video": "/home/user/TESTE/studio/projects/01-gojo-o-mais-forte/output/01-gojo-o-mais-forte.mp4",
+  "passed": false,
+  "checks": [
+    {
+      "check": "resolução 1920x1080",
+      "ok": true,
+      "detail": "1920x1080"
+    },
+    {
+      "check": "FPS",
+      "ok": true,
+      "detail": "30.00"
+    },
+    {
+      "check": "codec H.264 yuv420p",
+      "ok": true,
+      "detail": "h264 yuv420p"
+    },
+    {
+      "check": "áudio AAC 48 kHz",
+      "ok": true,
+      "detail": "aac 48000"
+    },
+    {
+      "check": "duração = música",
+      "ok": true,
+      "detail": "vídeo 175.83s / música 175.87s"
+    },
+    {
+      "check": "sem tela preta acidental",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "sem congelamento > 2,5 s",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "loudness -14 LUFS (±1,5)",
+      "ok": true,
+      "detail": "-14.0 LUFS"
+    },
+    {
+      "check": "true peak ≤ -0,5 dBTP",
+      "ok": true,
+      "detail": "-1.2 dBTP"
+    },
+    {
+      "check": "sem cena repetida em excesso",
+      "ok": true,
+      "detail": "mais usada: - x0 | 0 cenas distintas / 151 planos"
+    },
+    {
+      "check": "sem plano parado longo demais (>8 s)",
+      "ok": false,
+      "detail": "maior plano 9.8s"
+    },
+    {
+      "check": "sem mesma cena em planos seguidos",
+      "ok": true,
+      "detail": "0 ocorrências"
+    },
+    {
+      "check": "tem começo/desenvolvimento/fim",
+      "ok": true,
+      "detail": "intro, verse, pre-chorus, chorus, break, outro"
+    },
+    {
+      "check": "drops com impacto",
+      "ok": true,
+      "detail": "['invert_impact', 'glitch_burst', 'blackout_shockwave']"
+    },
+    {
+      "check": "SRT válido e sem sobreposição",
+      "ok": false,
+      "detail": "75 linhas, 5 sobreposições"
+    },
+    {
+      "check": "letra oficial fornecida (lyrics.txt)",
+      "ok": false,
+      "detail": "legendas vieram do Whisper: revisar português"
+    },
+    {
+      "check": "thumbnail 1280x720 < 2 MB",
+      "ok": true,
+      "detail": "(1280, 720) 51 KB"
+    }
+  ],
+  "blacks": []
+}
