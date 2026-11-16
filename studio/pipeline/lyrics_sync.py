@@ -143,6 +143,53 @@ def align(lyric_lines, words):
     return lyric_lines, matched / max(1, len(flat))
 
 
+def _repair(lines):
+    """Linhas 'espremidas' (voz baixa que o Whisper perdeu) são redistribuídas no vão entre as linhas boas,
+    e nenhuma linha começa antes da anterior terminar."""
+    def dur(l):
+        return l[-1]["end"] - l[0]["start"]
+    bad = [len(l) > 0 and dur(l) < 0.12 * len(l) for l in lines]
+    i = 0
+    while i < len(lines):
+        if not bad[i]:
+            i += 1
+            continue
+        j = i
+        while j < len(lines) and bad[j]:
+            j += 1
+        prev_end = lines[i - 1][-1]["end"] + 0.1 if i > 0 else max(0.0, lines[i][0]["start"] - 2)
+        next_start = lines[j][0]["start"] - 0.1 if j < len(lines) else prev_end + 2.0 * (j - i)
+        if next_start - prev_end < 0.4 * (j - i):  # sem vão: divide o espaço da próxima linha boa
+            next_start = prev_end + 0.9 * (j - i)
+        total = sum(len(lines[k]) for k in range(i, j))
+        t = prev_end
+        span = next_start - prev_end
+        for k in range(i, j):
+            seg = span * len(lines[k]) / total
+            n = len(lines[k])
+            for m, w in enumerate(lines[k]):
+                w["start"] = round(t + seg * m / n, 3)
+                w["end"] = round(t + seg * (m + 0.9) / n, 3)
+            t += seg
+        i = j
+    for k in range(1, len(lines)):
+        a, b = lines[k - 1], lines[k]
+        if b[0]["start"] < a[-1]["end"] - 0.02:
+            lim = b[0]["start"] - 0.02
+            s0 = a[0]["start"]
+            if lim - s0 > 0.2 * len(a):
+                f = (lim - s0) / max(0.01, a[-1]["end"] - s0)
+                for w in a:
+                    w["start"] = round(s0 + (w["start"] - s0) * f, 3)
+                    w["end"] = round(s0 + (w["end"] - s0) * f, 3)
+            else:
+                sh = a[-1]["end"] + 0.02 - b[0]["start"]
+                for w in b:
+                    w["start"] = round(w["start"] + sh, 3)
+                    w["end"] = round(w["end"] + sh, 3)
+    return lines
+
+
 def _tighten(lines, max_gap=1.0):
     """Palavras de uma mesma linha são cantadas em sequência: se a 1ª ficou isolada longe da 2ª,
     ela é puxada para perto da 2ª (erro típico de timestamp após pausa)."""
@@ -204,7 +251,17 @@ def build(proj: Project, model_size: str = "small", use_stems: bool = True) -> d
         source = "whisper"
         log("sem lyrics.txt: legendas a partir do Whisper — REVISE work/lyrics_draft.txt")
         (proj.work / "lyrics_draft.txt").write_text("\n".join(" ".join(t["w"] for t in l) for l in lines), encoding="utf-8")
-    lines = _tighten(lines)
+    lines = _repair(_tighten(lines))
+    # ajuste fino do diretor: project.yaml -> lyric_timing: {"começo da linha": [inicio, fim]}
+    for prefix, (a, z) in (proj.cfg.get("lyric_timing") or {}).items():
+        npre = _norm(prefix)
+        for line in sorted(lines, key=lambda l: abs(l[0]["start"] - a)):  # ocorrência mais perto do tempo dado
+            if "".join(_norm(t["w"]) for t in line).startswith(npre.replace(" ", "")):
+                n = len(line)
+                for m, t in enumerate(line):
+                    t["start"] = round(a + (z - a) * m / n, 3)
+                    t["end"] = round(a + (z - a) * (m + 0.9) / n, 3)
+                break
     lines = _auto_keys(lines, proj.char.get("keywords", []))
     out = dict(source=source, match_rate=rate,
                lines=[dict(start=l[0]["start"], end=l[-1]["end"], words=l) for l in lines if l])
