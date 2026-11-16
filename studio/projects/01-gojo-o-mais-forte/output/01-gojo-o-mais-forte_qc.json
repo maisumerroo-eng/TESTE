@@ -1,6 +1,6 @@
 {
   "video": "/home/user/TESTE/studio/projects/01-gojo-o-mais-forte/output/01-gojo-o-mais-forte.mp4",
-  "passed": false,
+  "passed": true,
   "checks": [
     {
       "check": "resolução 1920x1080",
@@ -50,7 +50,7 @@
     {
       "check": "sem cena repetida em excesso",
       "ok": true,
-      "detail": "mais usada: - x0 | 0 cenas distintas / 151 planos"
+      "detail": "mais usada: - x0 | 0 cenas distintas / 147 planos"
     },
     {
       "check": "sem plano parado longo demais (>8 s)",
@@ -75,12 +75,12 @@
     {
       "check": "SRT válido e sem sobreposição",
       "ok": true,
-      "detail": "75 linhas, 0 sobreposições"
+      "detail": "73 linhas, 0 sobreposições"
     },
     {
-      "check": "letra oficial fornecida (lyrics.txt)",
-      "ok": false,
-      "detail": "legendas vieram do Whisper: revisar português"
+      "check": "alinhamento letra x voz ≥ 60%",
+      "ok": true,
+      "detail": "78%"
     },
     {
       "check": "thumbnail 1280x720 < 2 MB",
