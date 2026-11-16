@@ -1,0 +1,36 @@
+short: Luffy
+name: Monkey D. Luffy
+anime: One Piece
+primary: '#E63946'
+secondary: '#F4C430'
+dark: '#0A0705'
+accent: '#FFFFFF'
+kanji: 海賊王
+keywords:
+- gear
+- nika
+- chapéu
+- rei dos piratas
+- liberdade
+- haki
+- sol
+- tambores
+- kaido
+slug: luffy
+element: ki
+tag_map:
+  gear:
+  - transformation
+  - power
+  nika:
+  - transformation
+  - smile
+  liberdade:
+  - sky
+  - smile
+  haki:
+  - power
+  - impact
+  chapéu:
+  - closeup
+  - emotional

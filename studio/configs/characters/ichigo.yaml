@@ -1,0 +1,32 @@
+short: Ichigo
+name: Ichigo Kurosaki
+anime: Bleach
+primary: '#FF6A13'
+secondary: '#111111'
+dark: '#040404'
+accent: '#E8E8E8'
+kanji: 卍解
+keywords:
+- bankai
+- zangetsu
+- hollow
+- getsuga
+- tensho
+- shinigami
+- máscara
+- aizen
+slug: ichigo
+element: slash
+tag_map:
+  bankai:
+  - transformation
+  - power
+  hollow:
+  - dark
+  - transformation
+  getsuga:
+  - impact
+  - battle
+  máscara:
+  - closeup
+  - dark

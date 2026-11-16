@@ -1,0 +1,61 @@
+# KAGE.EXE — identidade fixa do canal (vale para todo vídeo)
+channel:
+  name: "KAGE.EXE"
+  kanji: "影"            # kage = sombra
+  tagline: "rap geek direto da sombra"
+  persona: >
+    KAGE.EXE é um artista fictício: uma "sombra digital" que vive entre os mundos
+    dos animes e canta a história de cada personagem por dentro. Sem rosto, sem
+    biografia inventada — só a máscara, o glitch e a voz. Projeto artístico,
+    não uma pessoa real.
+  handle: "@kage.exe"      # conferir disponibilidade no YouTube antes de criar
+  backup_names: ["KUROSIGNAL", "ONI//LOOP"]
+
+palette:            # cores da marca (presentes em TODO vídeo, além da cor do personagem)
+  void:     "#07070A"   # fundo
+  graphite: "#15151C"
+  ash:      "#8A8A99"
+  bone:     "#EDEDF2"   # texto principal
+  signal:   "#C6FF3D"   # acento assinatura (verde ácido) — HUD, logo, marca
+  glitch:   "#FF2E63"   # só para glitch/erro
+
+fonts:
+  display: "Anton"                 # palavras de impacto, thumbnails
+  lyrics:  "Chakra Petch"          # legendas (Bold)
+  hud:     "Chakra Petch Medium"   # HUD, créditos
+  logo:    "Zen Dots"
+  jp:      "Noto Sans JP Black"    # kanji
+
+signature:          # elementos recorrentes que ligam todos os clipes
+  - "HUD no canto sup. esquerdo: ▮ KAGE.EXE // <PERSONAGEM> // <TRACK Nº>"
+  - "Kanji 影 com glitch na vinheta de abertura e no fim"
+  - "Scanlines + grão de filme sutil em todo o vídeo"
+  - "Impact frame em negativo (inversão) no 1º drop de toda música"
+  - "Barra 'signal' verde ácido piscando no downbeat dos refrões"
+  - "End card: 'próxima transmissão' com kanji do próximo personagem"
+
+titles:
+  pattern: "{CHAR_UPPER} 「{HOOK}」 | {ANIME} | KAGE.EXE"
+  examples:
+    - "SASUKE 「Ódio e Sharingan」 | Naruto | KAGE.EXE"
+    - "GOJO 「O Mais Forte」 | Jujutsu Kaisen | KAGE.EXE"
+
+video:
+  width: 1920
+  height: 1080
+  fps: 30            # 60 quando o material de origem for 60 fps
+  vcodec: libx264
+  crf: 18
+  preset: medium
+  pix_fmt: yuv420p
+  acodec: aac
+  abitrate: 320k
+  sample_rate: 48000
+
+audio:
+  target_lufs: -14.0      # padrão YouTube
+  true_peak: -1.0
+  lra_max: 9
+  highpass_hz: 30
+  deesser: true
+  denoise: auto           # só aplica se ruído de fundo medido for alto

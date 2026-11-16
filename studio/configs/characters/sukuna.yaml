@@ -1,0 +1,37 @@
+short: Sukuna
+name: Ryomen Sukuna
+anime: Jujutsu Kaisen
+primary: '#C1121F'
+secondary: '#2B0A0A'
+dark: '#050203'
+accent: '#FF8C42'
+kanji: 伏魔御廚子
+keywords:
+- rei
+- maldição
+- santuário
+- dedos
+- desmantelar
+- fuga
+- yuji
+- megumi
+- domínio
+- sangue
+slug: sukuna
+element: slash
+tag_map:
+  rei:
+  - villain
+  - power
+  santuário:
+  - domain
+  - dark
+  desmantelar:
+  - impact
+  - battle
+  sangue:
+  - blood
+  - dark
+  dedos:
+  - closeup
+  - dark

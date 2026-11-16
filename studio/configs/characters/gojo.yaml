@@ -1,0 +1,48 @@
+short: Gojo
+name: Satoru Gojo
+anime: Jujutsu Kaisen
+primary: '#3FA9FF'
+secondary: '#8E5BFF'
+dark: '#05070F'
+accent: '#FFFFFF'
+kanji: 無量空処
+keywords:
+- infinito
+- seis olhos
+- vazio
+- domínio
+- vermelho
+- azul
+- roxo
+- mais forte
+- sukuna
+- geto
+- venda
+- shibuya
+slug: gojo
+element: void
+tag_map:
+  infinito:
+  - power
+  - closeup
+  seis olhos:
+  - eyes
+  - closeup
+  vazio:
+  - domain
+  - power
+  domínio:
+  - domain
+  - transformation
+  venda:
+  - closeup
+  - calm
+  sukuna:
+  - villain
+  - battle
+  geto:
+  - emotional
+  - flashback
+  roxo:
+  - power
+  - impact

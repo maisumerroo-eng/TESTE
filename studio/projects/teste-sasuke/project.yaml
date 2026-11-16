@@ -1,0 +1,19 @@
+slug: teste-sasuke
+character: sasuke
+hook: O Último Uchiha
+track: '00'
+song_file: teste_sasuke.wav
+language: pt
+fps: 30
+seed: 7
+title_at: 1.0
+next_hint: ''
+whisper_model: small
+subtitles:
+  uppercase: true
+thumbnail:
+  text: ''
+  image: ''
+audio_trim:
+  start: 0.88
+  end: 103.287
