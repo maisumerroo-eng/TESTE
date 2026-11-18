@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Produto</title>
+<style>
+  :root { --bg: #0b0806; --fg: #f4ece2; --accent: #c8873a; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--fg); font: 400 18px/1.5 system-ui, sans-serif; }
+  .scrolly { height: 400svh; position: relative; }
+  .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+  canvas { width: 100%; height: 100%; display: block; }
+  .beat { position: absolute; left: 6vw; max-width: 34ch; opacity: 0; transform: translateY(24px); }
+  .beat h2 { font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1; letter-spacing: -0.02em; }
+  .beat p { margin-top: .75rem; opacity: .75; }
+  .b1 { top: 18svh } .b2 { bottom: 18svh; right: 6vw; left: auto; text-align: right } .b3 { top: 40svh }
+  .after { min-height: 100svh; padding: 15svh 6vw; }
+  @media (prefers-reduced-motion: reduce) { .beat { opacity: 1; transform: none; position: static; padding: 2rem 6vw; } }
+</style>
+</head>
+<body>
+<section class="scrolly" id="scrolly">
+  <div class="stage">
+    <canvas id="c" aria-label="Animação do produto"></canvas>
+    <div class="beat b1" data-at="0.08"><h2>Título forte.</h2><p>Frase curta sobre o produto.</p></div>
+    <div class="beat b2" data-at="0.45"><h2>Detalhe 1.</h2><p>Benefício concreto.</p></div>
+    <div class="beat b3" data-at="0.78"><h2>Detalhe 2.</h2><p>Chamada para ação.</p></div>
+  </div>
+</section>
+<section class="after"><h2>Resto da página</h2></section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(async () => {
+  const mobile = matchMedia('(max-width: 700px)').matches;
+  const dir = mobile ? 'frames-m' : 'frames';
+  let manifest = { count: 120 };
+  try { manifest = await (await fetch(`${dir}/manifest.json`)).json(); } catch {}
+  const N = manifest.count, src = i => `${dir}/${String(i + 1).padStart(4, '0')}.webp`;
+
+  const c = document.getElementById('c'), ctx = c.getContext('2d');
+  const imgs = new Array(N); let current = -1;
+  const fit = () => { const d = Math.min(devicePixelRatio, 2); c.width = innerWidth * d; c.height = innerHeight * d; draw(current < 0 ? 0 : current, true); };
+  function draw(i, force) {
+    const img = imgs[i]; if (!img?.complete || !img.naturalWidth || (i === current && !force)) return;
+    current = i;
+    const s = Math.max(c.width / img.naturalWidth, c.height / img.naturalHeight); // cover
+    const w = img.naturalWidth * s, h = img.naturalHeight * s;
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.drawImage(img, (c.width - w) / 2, (c.height - h) / 2, w, h);
+  }
+  const load = i => { if (imgs[i]) return imgs[i]; const im = new Image(); im.decoding = 'async'; im.src = src(i); imgs[i] = im; return im; };
+  load(0).onload = () => draw(0, true);
+  // preload: primeiro a cada 8, depois o resto
+  for (let i = 0; i < N; i += 8) load(i);
+  requestIdleCallback?.(() => { for (let i = 0; i < N; i++) load(i); }) ?? setTimeout(() => { for (let i = 0; i < N; i++) load(i); }, 500);
+  addEventListener('resize', fit); fit();
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const state = { f: 0 };
+  gsap.to(state, {
+    f: N - 1, ease: 'none',
+    scrollTrigger: { trigger: '#scrolly', start: 'top top', end: 'bottom bottom', scrub: 0.4 },
+    onUpdate: () => { let i = Math.round(state.f); while (i > 0 && !imgs[i]?.complete) i--; draw(i); }
+  });
+  document.querySelectorAll('.beat').forEach(el => {
+    const at = +el.dataset.at;
+    gsap.timeline({ scrollTrigger: { trigger: '#scrolly', start: `${at * 100}% top`, end: `${(at + 0.2) * 100}% top`, scrub: true } })
+      .to(el, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' })
+      .to(el, { opacity: 0, y: -24, duration: 0.3, ease: 'power2.in' }, 0.7);
+  });
+})();
+</script>
+</body>
+</html>
