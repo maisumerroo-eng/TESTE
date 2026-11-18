@@ -30,10 +30,10 @@ def text_img(txt, font, size, fill=(255, 255, 255, 255)):
     im = Image.new("RGBA", (r - l + 8, b - t + 8)); ImageDraw.Draw(im).text((4 - l, 4 - t), txt, font=f, fill=fill); return im
 
 def verdict(name, ok):
-    txt = text_img("COMPRO" if ok else "NÃO COMPRO", FI + "Inter-Bold.otf", 96)
-    em = emoji_img("✅" if ok else "❌", 88)
-    im = Image.new("RGBA", (txt.width + 20 + em.width, max(txt.height, em.height)))
-    im.alpha_composite(txt, (0, (im.height - txt.height) // 2)); im.alpha_composite(em, (txt.width + 20, (im.height - em.height) // 2))
+    txt = text_img("Compro" if ok else "Não compro", os.path.join(os.path.dirname(os.path.abspath(__file__)), "fontes", "Poppins-SemiBold.ttf") if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fontes")) else f"{D}/fonts2/Poppins-SemiBold.ttf", 66)
+    em = emoji_img("✅" if ok else "❌", 58)
+    im = Image.new("RGBA", (txt.width + 14 + em.width, max(txt.height, em.height)))
+    im.alpha_composite(txt, (0, (im.height - txt.height) // 2)); im.alpha_composite(em, (txt.width + 14, (im.height - em.height) // 2))
     p = f"{OUT}/v_{name}.png"; shadowed(im, blur=8, off=(0, 4), alpha=160).save(p); return p
 
 def product(name, src, box=(470, 430)):
@@ -89,11 +89,11 @@ for k, (a, b, p) in enumerate(PIECES):
     s, e = starts[k], starts[k] + b - a
     win[p] = (min(win.get(p, (s, e))[0], s), max(win.get(p, (s, e))[1], e))
 
-OV = [(mark(), 0, TOTAL, "34", "H*0.43")]            # marca d'agua como o @ do TikTok
+OV = []
 for p, (img, ok, tv) in enumerate(PRODUCTS):
     s, e = win[p]
     OV.append((product(f"p{p}", img), s, e, "(W-w)/2", "560-h/2"))
-    OV.append((verdict(f"p{p}", ok), max(s, tl(tv)), e, "(W-w)/2", "1330"))
+    OV.append((verdict(f"p{p}", ok), max(s, tl(tv)), e, "(W-w)/2", "1345"))
 ins = " ".join(f"-loop 1 -t {TOTAL:.3f} -framerate {FPS} -i {o[0]}" for o in OV)
 chain, last = [], "[0:v]"
 for k, (png, t0, t1, x, y) in enumerate(OV):
