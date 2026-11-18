@@ -54,11 +54,11 @@ PIECES = [  # (ini, fim, produto)
     (159.81, 165.90, 4),
 ]
 PRODUCTS = [  # imagem recortada, compra?, momento da palavra do veredito no bruto
-    ("cut_aurora.png", True, 5.52),
-    ("cut_jade.png", False, 56.43),
-    ("cut_fin.png", True, 79.74),
-    ("cut_pote.png", False, 124.95),
-    ("cut_soft.png", True, 159.96),
+    ("cut2_aurora.png", True, 5.52),
+    ("cut2_jade.png", False, 56.43),
+    ("cut2_fin.png", True, 79.74),
+    ("cut2_pote.png", False, 124.95),
+    ("cut2_soft.png", True, 159.96),
 ]
 ZOOM, FOCUS = 1.30, (372, 657)     # enquadramento fixo (sem movimento)
 cw, ch = round(SW / ZOOM / 2) * 2, round(SH / ZOOM / 2) * 2
