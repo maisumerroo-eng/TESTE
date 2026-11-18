@@ -53,6 +53,14 @@ Aplicar por padrão em qualquer conteúdo, sem esperar ela pedir de novo.
 - Duração: seguir o que ela pedir. Se uma mudança impedir a duração combinada, avisar e propor como chegar nela.
 - O script base da última versão está em `ferramentas/reel_antes_depois.py` para reaproveitar.
 
+# Quando ela manda um vídeo de referência
+- "Faça igual" = copiar a linguagem da referência à risca. Isso vale MAIS que as preferências acima (dissolve, aproximação etc.).
+- Ex. "Compro x Não Compro": enquadramento parado (sem zoom andando, sem card flutuando/balançando), cortes secos, foto do produto parada acima da cabeça, veredito "COMPRO ✅ / NÃO COMPRO ❌" no peito na hora da fala.
+- Produtos: pesquisar a foto REAL (WebSearch + lojas Shopify via `/products/<handle>.json` ou `search/suggest.json`; og:image em outras lojas) e recortar o fundo com `rembg` (modelo isnet-general-use). Nunca ícone/emoji no lugar da foto.
+- Fala: corte seco no silêncio, 0,15s antes da 1ª palavra e 0,2s depois da última (medir energia; o timestamp do Whisper atrasa). Sem crossfade de áudio entre falas: ele engole o começo do "compraria".
+- Sempre transcrever o vídeo final (faster-whisper medium) e conferir que nenhuma palavra foi cortada antes de entregar.
+- Script: `ferramentas/compro_nao_compro.py`.
+
 # Lições do trailer de terror
 - Título não pode estourar a largura: limitar a 1000px e quebrar em duas linhas.
 - Footage noturna escura: levantar as sombras (gamma) antes do grade escuro, senão o rosto some.
