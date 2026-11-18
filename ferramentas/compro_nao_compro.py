@@ -38,7 +38,9 @@ def verdict(name, ok):
 
 def product(name, src, box=(470, 430)):
     im = Image.open(f"{WEB}/{src}").convert("RGBA"); im = im.crop(im.getbbox())
+    a = im.split()[3].filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.2)); im.putalpha(a)
     k = min(box[0] / im.width, box[1] / im.height); im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+    im = im.filter(ImageFilter.UnsharpMask(radius=1.2, percent=60, threshold=2))
     p = f"{OUT}/prod_{name}.png"; shadowed(im, blur=18, off=(0, 16), alpha=110).save(p); return p
 
 def mark():
@@ -52,7 +54,9 @@ PIECES = [  # (ini, fim, produto)
     (79.58, 85.45, 2),
     (124.80, 128.95, 3),
     (159.81, 165.90, 4),
+    (10.75, 16.40, None),   # final: ela falando e saindo (v325)
 ]
+SRCS = {None: f"{D}/v325.mp4"}
 PRODUCTS = [  # imagem recortada, compra?, momento da palavra do veredito no bruto
     ("cut2_aurora.png", True, 5.52),
     ("cut2_jade.png", False, 56.43),
@@ -65,10 +69,12 @@ cw, ch = round(SW / ZOOM / 2) * 2, round(SH / ZOOM / 2) * 2
 cx = max(0, min(SW - cw, FOCUS[0] - cw // 2)); cy = max(0, min(SH - ch, FOCUS[1] - ch // 2))
 
 parts, starts, t = [], [], 0.0
-for k, (a, b, _) in enumerate(PIECES):
+for k, (a, b, pr) in enumerate(PIECES):
     d = b - a; f = f"{OUT}/p{k}.mkv"
-    sh(f'ffmpeg -y -v error -ss {a} -t {d + 0.2} -i {SRC} -filter_complex '
-       f'"[0:v]fps={FPS},crop={cw}:{ch}:{cx}:{cy},scale={W}:{H}:flags=lanczos,eq=contrast=1.04:brightness=0.015,'
+    src = SRCS.get(pr, SRC) if pr is None else SRC
+    pre = f"scale={SW}:{SH}:flags=lanczos," if pr is None else ""
+    sh(f'ffmpeg -y -v error -ss {a} -t {d + 0.2} -i {src} -filter_complex '
+       f'"[0:v]fps={FPS},{pre}crop={cw}:{ch}:{cx}:{cy},scale={W}:{H}:flags=lanczos,eq=contrast=1.04:brightness=0.015,'
        f'unsharp=5:5:0.5,trim=duration={d:.3f},setsar=1,format=yuv420p[v];'
        f'[0:a]aresample=48000,atrim=0:{d:.3f},asetpts=PTS-STARTPTS,afade=in:d=0.008,afade=out:st={d - 0.01:.3f}:d=0.01[a]" '
        f'-map "[v]" -map "[a]" -r {FPS} -c:v libx264 -crf 14 -preset fast -c:a pcm_s16le {f}')
@@ -86,6 +92,7 @@ def tl(ts):
     raise ValueError(ts)
 win = {}
 for k, (a, b, p) in enumerate(PIECES):
+    if p is None: continue
     s, e = starts[k], starts[k] + b - a
     win[p] = (min(win.get(p, (s, e))[0], s), max(win.get(p, (s, e))[1], e))
 
@@ -100,5 +107,5 @@ for k, (png, t0, t1, x, y) in enumerate(OV):
     chain.append(f"{last}[{k + 1}:v]overlay=x='{x}':y='{y}':enable='between(t,{t0:.3f},{t1:.3f})'[m{k}]"); last = f"[m{k}]"
 FINAL = f"{D}/anajcilios_compro_nao_compro_v2.mp4"
 sh(f'ffmpeg -y -v error -i {OUT}/base.mkv {ins} -filter_complex "{";".join(chain)};{last}format=yuv420p[v]" '
-   f'-map "[v]" -map 0:a -t {TOTAL:.3f} -r {FPS} -c:v libx264 -crf 18 -preset slow -c:a aac -b:a 192k -movflags +faststart {FINAL}')
+   f'-map "[v]" -map 0:a -t {TOTAL:.3f} -r {FPS} -c:v libx264 -crf 16 -preset slow -c:a aac -b:a 192k -movflags +faststart {FINAL}')
 print("TOTAL", round(TOTAL, 2), "windows", {k: (round(a, 2), round(b, 2)) for k, (a, b) in win.items()})
