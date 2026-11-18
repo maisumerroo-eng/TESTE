@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root { --noite:#0a0908; --ouro:#d4b06a; --ouro-claro:#f1d9a0; --osso:#ece4d6; --cinza:#8f877b; --linha:#2b2620; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; background: var(--noite); overflow: hidden; }
+body { font-family: "Montserrat", sans-serif; color: var(--osso); }
+.cena { position: absolute; inset: 0; }
+.luz { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 38% at 50% 40%, rgba(212,176,106,.22), transparent 70%); opacity: 0; }
+.grao { position: absolute; inset: 0; opacity: .07; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.guia { position: absolute; background: var(--linha); }
+#gv { left: 540px; top: 0; width: 2px; height: 1920px; transform-origin: top; }
+#gh { top: 760px; left: 0; height: 2px; width: 1080px; transform-origin: left; }
+#circ { position: absolute; left: 540px; top: 760px; }
+#logo { position: absolute; left: 90px; top: 340px; width: 900px; height: 937.5px; transform-origin: 50% 40%; }
+#logo svg { width: 100%; height: 100%; overflow: visible; }
+.pontos circle { fill: var(--noite); stroke: var(--ouro); stroke-width: 1.2; }
+.palavra { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-weight: 500; font-size: 128px; letter-spacing: .08em; text-transform: uppercase; color: var(--osso); opacity: 0; }
+.palavra b { color: var(--ouro-claro); font-weight: 500; }
+.flash { position: absolute; inset: 0; background: var(--ouro-claro); opacity: 0; mix-blend-mode: overlay; }
+.agenda { position: absolute; left: 120px; right: 120px; top: 660px; opacity: 0; }
+.agenda .rot { font: 500 30px/1 "DM Mono", monospace; letter-spacing: .3em; color: var(--ouro); text-transform: uppercase; }
+.linha-ag { display: flex; justify-content: space-between; align-items: baseline; padding: 44px 0; border-bottom: 2px solid var(--linha); }
+.linha-ag:first-of-type { border-top: 2px solid var(--linha); margin-top: 48px; }
+.linha-ag .d { font: 500 34px/1 "DM Mono", monospace; letter-spacing: .14em; color: var(--ouro); }
+.linha-ag .n { font: 400 64px/1 "Montserrat"; letter-spacing: .06em; text-transform: uppercase; }
+.cta { position: absolute; left: 0; right: 0; top: 760px; text-align: center; opacity: 0; display: grid; gap: 56px; justify-items: center; }
+.cta h2 { font: 400 112px/1.05 "Montserrat"; letter-spacing: .08em; text-transform: uppercase; }
+.cta .btn { padding: 34px 64px; border: 3px solid var(--ouro); color: var(--ouro-claro); font: 500 36px/1 "Montserrat"; letter-spacing: .28em; text-transform: uppercase; }
+.cta small { font: 400 30px/1 "DM Mono", monospace; letter-spacing: .24em; color: var(--cinza); text-transform: uppercase; }
+.rodape { position: absolute; left: 0; right: 0; bottom: 150px; text-align: center; font: 400 26px/1 "DM Mono", monospace; letter-spacing: .3em; color: var(--cinza); text-transform: uppercase; opacity: 0; }
+</style></head>
+<body>
+<div class="cena">
+  <div class="luz" id="luz"></div>
+  <div class="guia" id="gv"></div><div class="guia" id="gh"></div>
+  <svg id="circ" width="1" height="1" style="overflow:visible"><circle id="cguia" cx="0" cy="-60" r="330" fill="none" stroke="#3a332a" stroke-width="2"/></svg>
+  <div id="logo"><!--LOGO--></div>
+  <div class="palavra" id="p1">Luz <b>baixa.</b></div>
+  <div class="palavra" id="p2">Som <b>alto.</b></div>
+  <div class="palavra" id="p3">Ouro no <b>detalhe.</b></div>
+  <div class="agenda" id="agenda">
+    <div class="rot">Toda semana</div>
+    <div class="linha-ag"><span class="d">QUI</span><span class="n">Gold Session</span></div>
+    <div class="linha-ag"><span class="d">SEX</span><span class="n">Bones &amp; Bass</span></div>
+    <div class="linha-ag"><span class="d">SÁB</span><span class="n">Midnight Ritual</span></div>
+  </div>
+  <div class="cta" id="cta">
+    <h2>Reserve<br>sua mesa</h2>
+    <div class="btn">Link na bio</div>
+    <small>A partir das 23h · +18</small>
+  </div>
+  <div class="rodape" id="rodape">Skull Lounge &amp; Nightclub</div>
+  <div class="flash" id="flash"></div>
+  <div class="grao"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+const tracos = [...document.querySelectorAll('#simbolo path')];
+tracos.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+const cg = document.getElementById('cguia'); const CL = 2 * Math.PI * 330; cg.style.strokeDasharray = CL; cg.style.strokeDashoffset = CL;
+const pontos = document.querySelectorAll('.pontos circle');
+const svg = document.querySelector('#logo svg');
+const glow = { g: 0 };
+const setGlow = () => svg.style.filter = `drop-shadow(0 0 ${glow.g * 28}px rgba(241,217,160,${.15 + glow.g * .4}))`;
+gsap.set(['#nome', '#subtitulo'], { opacity: 0, y: 30 });
+gsap.set(pontos, { scale: 0, transformOrigin: '50% 50%' });
+gsap.set(['#gv'], { scaleY: 0 }); gsap.set(['#gh'], { scaleX: 0 });
+gsap.set('.palavra', { y: 40 });
+
+const tl = gsap.timeline({ paused: true });
+// 0–3 s: construção
+tl.to('#gv', { scaleY: 1, duration: 1.2, ease: 'power3.inOut' }, 0.2)
+  .to('#gh', { scaleX: 1, duration: 1.2, ease: 'power3.inOut' }, 0.4)
+  .to(cg, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' }, 0.6)
+  .to(pontos, { scale: 1, duration: .35, stagger: .018, ease: 'back.out(2)' }, 1.0)
+// 2–6 s: traço do crânio
+  .to(tracos, { strokeDashoffset: 0, duration: 2.4, stagger: .07, ease: 'power2.inOut' }, 2.0)
+  .to(pontos, { opacity: 0, duration: .5 }, 5.2)
+  .to(['#gv', '#gh', '#circ'], { opacity: 0, duration: .6 }, 5.4)
+// 6 s: acende (drop)
+  .to('#flash', { opacity: .55, duration: .08 }, 6.0).to('#flash', { opacity: 0, duration: .5 }, 6.08)
+  .to(glow, { g: 1, duration: .4, onUpdate: setGlow }, 6.0)
+  .to('#luz', { opacity: 1, duration: .6 }, 6.0)
+  .to('#nome', { opacity: 1, y: 0, duration: .8, ease: 'power3.out' }, 6.4)
+  .to('#subtitulo', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' }, 6.8)
+// 9.2 s: logo sai, palavras
+  .to('#logo', { scale: 1.08, duration: 2.4, ease: 'none' }, 6.8)
+  .to('#logo', { opacity: 0, scale: 1.25, duration: .5, ease: 'power2.in' }, 9.2);
+[['#p1', 9.7], ['#p2', 10.9], ['#p3', 12.1]].forEach(([s, t]) => {
+  tl.to(s, { opacity: 1, y: 0, duration: .35, ease: 'power3.out' }, t)
+    .to(s, { opacity: 0, y: -30, duration: .25, ease: 'power2.in' }, t + .95)
+    .to('#flash', { opacity: .25, duration: .05 }, t).to('#flash', { opacity: 0, duration: .3 }, t + .05);
+});
+// 13.6–17 s: agenda
+tl.to('#agenda', { opacity: 1, duration: .4 }, 13.6)
+  .from('.linha-ag', { opacity: 0, x: -60, duration: .5, stagger: .2, ease: 'power3.out' }, 13.7)
+  .to('#agenda', { opacity: 0, duration: .4 }, 16.6)
+// 17–20 s: CTA
+  .to('#cta', { opacity: 1, duration: .5 }, 17.1)
+  .from('.cta h2', { y: 50, duration: .7, ease: 'power3.out' }, 17.1)
+  .from('.cta .btn', { scale: .9, opacity: 0, duration: .5, ease: 'power3.out' }, 17.6)
+  .to('#cta', { opacity: 0, duration: .4 }, 19.6)
+// 20–22 s: assinatura
+  .set(['#gv', '#gh', '#circ'], { opacity: 0 }, 20)
+  .fromTo('#logo', { opacity: 0, scale: .9 }, { opacity: 1, scale: .82, duration: .8, ease: 'power3.out', immediateRender: false }, 20.0)
+  .to('#rodape', { opacity: 1, duration: .6 }, 20.5)
+  .to({}, { duration: 1.3 }, 20.8);
+// pulso do glow no ritmo (120 bpm) a partir do drop
+for (let t = 6.5; t < 22; t += .5) tl.to('#luz', { opacity: .7, duration: .08, yoyo: true, repeat: 1 }, t);
+window.__tl = tl; window.__dur = tl.duration();
+</script>
+</body></html>

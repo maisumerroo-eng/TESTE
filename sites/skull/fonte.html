@@ -1,0 +1,261 @@
+<title>Skull Lounge</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: palco fixo onde o crânio é desenhado pelo scroll; depois, faixas escuras com tipografia larga em caixa alta e uma agenda tabular. */
+:root {
+  --noite: #0c0b0a;      /* fundo quase preto, puxado pro marrom */
+  --carvao: #171512;     /* faixas e campos */
+  --linha: #2b2620;      /* divisórias */
+  --ouro: #d4b06a;       /* acento principal */
+  --ouro-claro: #f1d9a0;
+  --osso: #ece4d6;       /* texto principal */
+  --cinza: #9c9386;      /* texto secundário */
+  --f-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--noite); }
+body { margin: 0; background: var(--noite); color: var(--osso); font: 300 17px/1.6 var(--f-display); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1120px; margin: 0 auto; }
+a { color: var(--ouro-claro); }
+:focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
+.rotulo { font: 500 12px/1 var(--f-mono); letter-spacing: .22em; text-transform: uppercase; color: var(--ouro); }
+h2 { font: 400 clamp(30px, 5.4vw, 64px)/1.05 var(--f-display); letter-spacing: .08em; text-transform: uppercase; margin: 0; text-wrap: balance; }
+
+/* topo */
+.topo { position: fixed; inset: 0 0 auto; z-index: 20; padding-top: calc(14px + env(safe-area-inset-top, 0px)); padding-bottom: 14px; mix-blend-mode: normal; }
+.topo .inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.marca { font: 500 13px/1 var(--f-display); letter-spacing: .4em; color: var(--osso); text-decoration: none; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border: 1px solid var(--ouro); color: var(--ouro-claro); background: transparent; font: 500 12px/1 var(--f-display); letter-spacing: .24em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.btn:hover { background: var(--ouro); color: var(--noite); }
+.btn:active { transform: scale(.97); }
+.btn.cheio { background: var(--ouro); color: var(--noite); }
+.btn.cheio:hover { background: var(--ouro-claro); }
+
+/* palco do scroll */
+.scrolly { position: relative; height: 380svh; }
+.palco { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.luz { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 45% at 50% 42%, rgba(212,176,106,.16), transparent 70%); opacity: var(--glow, .25); pointer-events: none; }
+.grade { position: absolute; inset: 0; pointer-events: none; opacity: var(--grade, .5); }
+.grade::before, .grade::after { content: ""; position: absolute; background: var(--linha); }
+.grade::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.grade::after { top: 42%; left: 0; right: 0; height: 1px; }
+.logo { position: relative; width: min(78vw, 46svh, 520px); aspect-ratio: 480/500; max-width: 100%; transform-origin: 50% 36%; }
+.logo svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 calc(var(--glow, 0) * 18px) rgba(241,217,160,.45)); }
+.fantasma { opacity: .14; }
+.pontos circle { fill: var(--noite); stroke: var(--ouro); stroke-width: 1.2; }
+.abertura { position: absolute; left: 0; right: 0; bottom: max(7svh, 40px); text-align: center; display: grid; gap: 14px; justify-items: center; }
+.abertura p { margin: 0; font: 400 clamp(15px, 2vw, 19px)/1.4 var(--f-display); letter-spacing: .3em; text-transform: uppercase; color: var(--osso); }
+.desce { font: 400 11px/1 var(--f-mono); letter-spacing: .3em; color: var(--cinza); text-transform: uppercase; }
+.legenda { position: absolute; left: 0; right: 0; top: calc(64px + env(safe-area-inset-top, 0px)); text-align: center; opacity: 0; }
+.legenda span { font: 400 12px/1 var(--f-mono); letter-spacing: .3em; color: var(--cinza); text-transform: uppercase; }
+
+/* seções */
+section.faixa { padding-block: clamp(80px, 14vw, 160px); border-top: 1px solid var(--linha); }
+.manifesto p { font: 300 clamp(26px, 4.2vw, 50px)/1.22 var(--f-display); margin: 28px 0 0; max-width: 22ch; text-wrap: balance; }
+.manifesto em { font-style: normal; color: var(--ouro-claro); }
+.ambientes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1px; background: var(--linha); margin-top: 48px; border: 1px solid var(--linha); }
+.amb { background: var(--noite); padding: 32px 28px 36px; display: grid; gap: 14px; align-content: start; min-width: 0; transition: background .3s ease; }
+.amb:hover { background: var(--carvao); }
+.amb svg { width: 44px; height: 44px; stroke: var(--ouro); fill: none; stroke-width: 1.5; }
+.amb h3 { margin: 0; font: 500 18px/1.2 var(--f-display); letter-spacing: .22em; text-transform: uppercase; }
+.amb p { margin: 0; color: var(--cinza); max-width: 36ch; }
+.amb .dado { font: 400 13px/1 var(--f-mono); color: var(--ouro); letter-spacing: .08em; }
+
+.agenda { margin-top: 40px; border-top: 1px solid var(--linha); }
+.noite { display: grid; grid-template-columns: 7.5rem 1fr auto; gap: 8px 28px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid var(--linha); }
+.noite .dia { font: 500 13px/1.3 var(--f-mono); letter-spacing: .14em; color: var(--ouro); text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.noite h3 { margin: 0; font: 400 clamp(22px, 3.4vw, 36px)/1.1 var(--f-display); letter-spacing: .06em; text-transform: uppercase; }
+.noite p { margin: 6px 0 0; color: var(--cinza); }
+.noite .hora { font: 400 14px/1 var(--f-mono); color: var(--osso); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.aviso { margin-top: 16px; font: 400 12px/1.5 var(--f-mono); color: var(--cinza); letter-spacing: .04em; }
+
+.reserva .inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.reserva .inner > * { min-width: 0; }
+.reserva p.sub { color: var(--cinza); max-width: 40ch; margin: 20px 0 0; }
+form { display: grid; gap: 18px; }
+.campo { display: grid; gap: 8px; }
+.campo label { font: 500 11px/1 var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); }
+.campo input, .campo select { width: 100%; padding: 14px 14px; background: var(--carvao); border: 1px solid var(--linha); color: var(--osso); font: 400 16px/1.2 var(--f-display); border-radius: 0; }
+.campo input:focus, .campo select:focus { border-color: var(--ouro); outline: none; }
+.dupla { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; }
+.resultado { border: 1px solid var(--ouro); padding: 18px; display: grid; gap: 12px; }
+.resultado pre { margin: 0; white-space: pre-wrap; font: 400 13px/1.6 var(--f-mono); color: var(--osso); }
+
+footer { padding-block: 72px calc(48px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--linha); }
+footer .inner { display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: end; }
+footer svg { width: 120px; height: auto; }
+footer small { font: 400 12px/1.7 var(--f-mono); color: var(--cinza); letter-spacing: .06em; }
+
+@media (max-width: 720px) {
+  .reserva .inner { grid-template-columns: 1fr; gap: 36px; }
+  .noite { grid-template-columns: 1fr auto; }
+  .noite .dia { grid-column: 1 / -1; }
+  .topo .btn { padding: 10px 14px; letter-spacing: .18em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrolly { height: auto; }
+  .palco { position: relative; height: auto; min-height: 90svh; padding-block: 100px 60px; }
+  .abertura { position: relative; bottom: auto; margin-top: 32px; }
+}
+</style>
+
+<header class="topo wrap">
+  <div class="inner">
+    <a class="marca" href="#topo">SKULL</a>
+    <a class="btn" href="#reserva">Reservar mesa</a>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="scrolly" id="scrolly" aria-label="Abertura">
+    <div class="palco wrap">
+      <div class="grade" aria-hidden="true"></div>
+      <div class="luz" aria-hidden="true"></div>
+      <div class="legenda" aria-hidden="true"><span>Lounge &amp; Nightclub</span></div>
+      <div class="logo" id="logo" role="img" aria-label="Logo Skull Lounge &amp; Nightclub">
+        <!--LOGO-->
+      </div>
+      <div class="abertura" id="abertura">
+        <p>A noite tem outro dono</p>
+        <span class="desce">Role para acender ↓</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa manifesto wrap">
+    <div class="inner">
+      <span class="rotulo">A casa</span>
+      <p>Luz baixa, som alto e ouro no detalhe. O <em>Skull</em> é um lounge que vira pista quando o relógio passa da meia-noite.</p>
+    </div>
+  </section>
+
+  <section class="faixa wrap" aria-labelledby="t-amb">
+    <div class="inner">
+      <span class="rotulo">Três ambientes</span>
+      <h2 id="t-amb" style="margin-top:20px">Um endereço, três noites</h2>
+      <div class="ambientes">
+        <article class="amb">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M8 30h28M12 30V18h20v12M16 18v-6h12v6"/></svg>
+          <h3>Lounge</h3>
+          <p>Sofás de veludo, coquetelaria autoral e DJ em volume de conversa até a meia-noite.</p>
+          <span class="dado">21h – 00h</span>
+        </article>
+        <article class="amb">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="14"/><circle cx="22" cy="22" r="5"/><path d="M22 2v6M22 36v6M2 22h6M36 22h6"/></svg>
+          <h3>Pista</h3>
+          <p>Sistema de som calibrado para graves, iluminação em âmbar e line-up de house e techno.</p>
+          <span class="dado">00h – 05h</span>
+        </article>
+        <article class="amb">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M12 8h20l-8 14v12h6M24 34h-6M24 22l-8-14"/></svg>
+          <h3>Bar dourado</h3>
+          <p>Balcão de 14 metros, destilados envelhecidos e serviço de garrafa nas mesas.</p>
+          <span class="dado">Serviço até o fechamento</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="faixa wrap" aria-labelledby="t-agenda">
+    <div class="inner">
+      <span class="rotulo">Agenda</span>
+      <h2 id="t-agenda" style="margin-top:20px">Próximas noites</h2>
+      <div class="agenda">
+        <div class="noite"><span class="dia">Qui · 21 nov</span><div><h3>Gold Session</h3><p>Lounge com jazz eletrônico e drinks da casa.</p></div><span class="hora">21h</span></div>
+        <div class="noite"><span class="dia">Sex · 22 nov</span><div><h3>Bones &amp; Bass</h3><p>Pista aberta com house, tech house e convidados.</p></div><span class="hora">23h</span></div>
+        <div class="noite"><span class="dia">Sáb · 23 nov</span><div><h3>Midnight Ritual</h3><p>Techno até o amanhecer. Lista com desconto até 00h30.</p></div><span class="hora">23h</span></div>
+      </div>
+      <p class="aviso">Programação de exemplo. Troque pelos eventos reais da casa.</p>
+    </div>
+  </section>
+
+  <section class="faixa reserva wrap" id="reserva" aria-labelledby="t-res">
+    <div class="inner">
+      <div>
+        <span class="rotulo">Reserva</span>
+        <h2 id="t-res" style="margin-top:20px">Garanta sua mesa</h2>
+        <p class="sub">Monte o pedido aqui e envie pelo WhatsApp da casa. Mesas com consumação mínima confirmada no atendimento.</p>
+      </div>
+      <form id="form" novalidate>
+        <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required placeholder="Seu nome"></div>
+        <div class="dupla">
+          <div class="campo"><label for="noite">Noite</label>
+            <select id="noite" name="noite"><option>Qui · Gold Session</option><option selected>Sex · Bones &amp; Bass</option><option>Sáb · Midnight Ritual</option></select></div>
+          <div class="campo"><label for="pessoas">Pessoas</label><input id="pessoas" name="pessoas" type="number" min="1" max="30" value="4" inputmode="numeric"></div>
+        </div>
+        <div class="campo"><label for="amb">Ambiente</label>
+          <select id="amb" name="amb"><option>Lounge</option><option selected>Mesa na pista</option><option>Camarote</option></select></div>
+        <button class="btn cheio" type="submit">Montar pedido</button>
+        <div class="resultado" id="resultado" hidden>
+          <span class="rotulo">Mensagem pronta</span>
+          <pre id="msg"></pre>
+          <button class="btn" type="button" id="copiar">Copiar mensagem</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="inner">
+    <svg viewBox="80 70 480 500" aria-hidden="true"><use href="#simbolo"/><use href="#nome"/><use href="#subtitulo"/></svg>
+    <small>Skull Lounge &amp; Nightclub<br>Qui a sáb · 21h às 5h · Proibido para menores de 18 anos<br>Endereço e contato da casa aqui</small>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  // formulário de reserva
+  const f = document.getElementById('form');
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const nome = f.nome.value.trim();
+    if (!nome) { f.nome.focus(); f.nome.setAttribute('aria-invalid', 'true'); f.nome.placeholder = 'Escreva seu nome para montar o pedido'; return; }
+    f.nome.removeAttribute('aria-invalid');
+    document.getElementById('msg').textContent = `Olá, Skull! Quero reservar.\nNome: ${nome}\nNoite: ${f.noite.value}\nPessoas: ${f.pessoas.value}\nAmbiente: ${f.amb.value}`;
+    document.getElementById('resultado').hidden = false;
+  });
+  document.getElementById('copiar').addEventListener('click', ev => {
+    const b = ev.currentTarget, pre = document.getElementById('msg');
+    navigator.clipboard.writeText(pre.textContent).then(() => { b.textContent = 'Copiada'; }, () => {
+      const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Texto selecionado';
+    });
+  });
+
+  // animação do logo
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+  const root = document.documentElement.style;
+  const traços = [...document.querySelectorAll('#simbolo path')];
+  traços.forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+  const nome = document.getElementById('nome'), sub = document.getElementById('subtitulo');
+  const pontos = document.querySelectorAll('.pontos circle');
+  gsap.set([nome, sub], { opacity: 0, y: 14 });
+  gsap.set(pontos, { scale: 0, transformOrigin: '50% 50%' });
+
+  const tl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: { trigger: '#scrolly', start: 'top top', end: 'bottom bottom', scrub: 0.6 }
+  });
+  tl.to('#abertura', { opacity: 0, y: -20, duration: .06 }, 0)
+    .to('.legenda', { opacity: 1, duration: .06 }, .04)
+    .to(pontos, { scale: 1, duration: .05, stagger: .004 }, .02)
+    .to(traços, { strokeDashoffset: 0, duration: .32, stagger: .012, ease: 'power1.inOut' }, .04)
+    .to(pontos, { opacity: 0, duration: .06 }, .4)
+    .to({ g: .25 }, { g: 1, duration: .12, onUpdate() { root.setProperty('--glow', this.targets()[0].g); } }, .42)
+    .to('.grade', { opacity: 0, duration: .1 }, .44)
+    .to(nome, { opacity: 1, y: 0, duration: .1, ease: 'power2.out' }, .5)
+    .to(sub, { opacity: 1, y: 0, duration: .08, ease: 'power2.out' }, .58)
+    .to({}, { duration: .14 })
+    .to('.legenda', { opacity: 0, duration: .05 }, .8)
+    .to('#logo', { scale: 5.5, yPercent: -8, duration: .2, ease: 'power2.in' }, .8)
+    .to('#logo', { opacity: 0, duration: .08 }, .92);
+})();
+</script>
