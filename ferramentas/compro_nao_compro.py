@@ -63,13 +63,13 @@ def serif(name, txt, size):
     p = f"{OUT}/s_{name}.png"; shadowed(text_img(txt, SERIF_I, size), blur=10, off=(0, 5), alpha=170).save(p); return p
 
 # ---------------- pecas (melhores takes, sem pausas)  (ini, fim, produto)
-PIECES = [(5.40, 11.86, 0), (55.92, 60.70, 1), (61.00, 64.10, 1), (79.88, 85.95, 2), (124.50, 128.95, 3), (160.24, 166.10, 4)]
+PIECES = [(5.40, 11.86, 0), (55.70, 60.70, 1), (61.00, 64.10, 1), (79.45, 85.95, 2), (124.50, 128.95, 3), (159.65, 166.10, 4)]
 PRODUCTS = [  # titulo, marca, icone, compra?, momento do veredito (s do bruto)
     ("Cola Aurora", "Cherry", "💧", True, 6.28),
     ("Pedra de Jade", "", "💚", False, 56.02),
-    ("Finalizador", "", "✨", True, 79.98),
+    ("Finalizador", "", "✨", True, 79.74),
     ("Pote Térmico", "", "🫙", False, 124.60),
-    ("Shampoo Soft Snow", "Cherry", "🧴", True, 160.90),
+    ("Shampoo Soft Snow", "Cherry", "🧴", True, 159.75),
 ]
 XF_PROD, XF_IN = 0.25, 0.12      # dissolve entre produtos / dentro do mesmo produto
 FOCUS = (372, 657)               # Ana no quadro (fonte 576x1024)
