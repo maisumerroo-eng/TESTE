@@ -13,6 +13,7 @@ import { initCart, addToCart } from './cart.js';
 import { initWishlist, toggleWishlist } from './wishlist.js';
 import { initSearch } from './search.js';
 import { initFilters } from './filters.js';
+import { initCheckout } from './checkout.js';
 
 const $ = (sel, raiz = document) => raiz.querySelector(sel);
 const $$ = (sel, raiz = document) => [...raiz.querySelectorAll(sel)];
@@ -39,7 +40,10 @@ function initHeader() {
     // Header acompanha a barra de anúncio subindo, sem deixar vão nem sobrepor
     const altura = anuncio ? anuncio.offsetHeight : 0;
     header.style.top = Math.max(0, altura - scrollY) + 'px';
-    header.classList.toggle('solido', scrollY > altura);
+    // Vidro só depois que a hero saiu da tela
+    const hero = document.querySelector('[data-hero]');
+    const limite = hero ? hero.offsetTop + hero.offsetHeight - header.offsetHeight : altura;
+    header.classList.toggle('solido', scrollY > limite);
   };
   addEventListener('scroll', atualizar, { passive: true });
   atualizar();
@@ -227,6 +231,14 @@ function paginaProduto() {
   const botaoAdd = $('[data-add-to-cart]', raiz);
   const wa = $('[data-whatsapp-produto]', raiz);
   raiz.addEventListener('click', (e) => {
+    // Troca de ângulo na galeria (Frente / Costas / Peça)
+    const ang = e.target.closest('[data-angulo]');
+    if (ang) {
+      const i = Number(ang.dataset.angulo);
+      $$('[data-angulo]', raiz).forEach((b) => b.setAttribute('aria-pressed', String(b === ang)));
+      $$('.pdp-visor img', raiz).forEach((img, n) => img.classList.toggle('ativa', n === i));
+      return;
+    }
     const tam = e.target.closest('.tamanho');
     if (!tam) return;
     $$('.tamanho', raiz).forEach((b) => b.setAttribute('aria-pressed', String(b === tam)));
@@ -271,4 +283,5 @@ paginaProduto();
 initCarrosseis();
 initCart();
 initWishlist();
+initCheckout();
 initSearch(PRODUCTS);

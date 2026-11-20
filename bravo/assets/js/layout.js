@@ -183,6 +183,7 @@ const globaisHTML = () => `
   <div class="drawer-rodape">
     <div class="linha-total eyebrow"><span>Subtotal</span><span class="preco" data-cart-subtotal>R$ 0,00</span></div>
     <button class="btn btn-escuro btn-bloco" data-checkout>Finalizar compra</button>
+    <p class="card-parcela" style="text-align:center">Pedido confirmado pelo WhatsApp.</p>
   </div>
 </aside>
 

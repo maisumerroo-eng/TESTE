@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Finalizar compra · BRAVO Menswear</title>
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="icon" href="assets/img/placeholder.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-page="checkout">
+
+  <div data-include="anuncio"></div>
+  <div data-include="header"></div>
+
+  <main id="conteudo" class="container" data-checkout-page>
+    <nav class="breadcrumb" aria-label="Você está em">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span><span>Finalizar compra</span>
+    </nav>
+    <h1 class="titulo-lg" style="padding-top:32px">Finalizar compra</h1>
+
+    <!-- ===== CHECKOUT =====
+         O pedido é montado aqui e enviado pelo WhatsApp da loja (checkout.js).
+         Pagamento é combinado na conversa: nada de cartão digitado neste site. -->
+    <div class="checkout" data-checkout-conteudo>
+      <form data-form="checkout" novalidate>
+
+        <fieldset class="checkout-bloco">
+          <legend>1. Seus dados</legend>
+          <label class="ck-campo">Nome completo
+            <input id="ck-nome" name="nome" autocomplete="name" required>
+          </label>
+          <div class="ck-linha">
+            <label class="ck-campo">WhatsApp
+              <input id="ck-telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(62) 99999-9999" required>
+            </label>
+            <label class="ck-campo">E-mail (opcional)
+              <input id="ck-email" name="email" type="email" autocomplete="email">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="checkout-bloco">
+          <legend>2. Entrega</legend>
+          <div class="ck-opcoes">
+            <label class="ck-opcao"><input type="radio" name="entrega" value="Enviar para meu endereço" checked data-entrega="envio">
+              <span>Enviar para meu endereço<small>Frete calculado e confirmado no WhatsApp.</small></span></label>
+            <label class="ck-opcao"><input type="radio" name="entrega" value="Retirar com a loja" data-entrega="retirada">
+              <span>Retirar com a loja<small>Combinamos local e horário na conversa.</small></span></label>
+          </div>
+          <div class="ck-endereco" data-endereco>
+            <div class="ck-linha">
+              <label class="ck-campo">CEP
+                <input id="ck-cep" name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" data-cep>
+              </label>
+              <label class="ck-campo">Número
+                <input id="ck-numero" name="numero" autocomplete="address-line2">
+              </label>
+            </div>
+            <label class="ck-campo">Endereço
+              <input id="ck-rua" name="rua" autocomplete="address-line1" data-rua>
+            </label>
+            <div class="ck-linha">
+              <label class="ck-campo">Bairro <input id="ck-bairro" name="bairro" data-bairro></label>
+              <label class="ck-campo">Cidade / UF <input id="ck-cidade" name="cidade" autocomplete="address-level2" data-cidade></label>
+            </div>
+            <label class="ck-campo">Complemento (opcional) <input id="ck-complemento" name="complemento"></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="checkout-bloco">
+          <legend>3. Pagamento</legend>
+          <div class="ck-opcoes">
+            <label class="ck-opcao"><input type="radio" name="pagamento" value="Pix" checked>
+              <span>Pix<small>A chave é enviada no WhatsApp.</small></span></label>
+            <label class="ck-opcao"><input type="radio" name="pagamento" value="Cartão (link de pagamento)">
+              <span>Cartão de crédito<small>Link de pagamento seguro enviado no WhatsApp.</small></span></label>
+            <label class="ck-opcao"><input type="radio" name="pagamento" value="Dinheiro na retirada">
+              <span>Dinheiro<small>Só para retirada.</small></span></label>
+          </div>
+          <label class="ck-campo">Observação (opcional)
+            <textarea id="ck-obs" name="obs" rows="3" placeholder="Ex.: é presente, prefiro entrega à tarde"></textarea>
+          </label>
+        </fieldset>
+
+        <p class="ck-erro" data-ck-erro hidden></p>
+      </form>
+
+      <!-- ===== RESUMO ===== -->
+      <aside class="ck-resumo" aria-label="Resumo do pedido">
+        <h2 class="eyebrow">Resumo do pedido</h2>
+        <div data-ck-itens><!-- checkout.js --></div>
+        <div class="linha-total"><span>Subtotal</span><span class="preco" data-cart-subtotal>R$ 0,00</span></div>
+        <div class="linha-total"><span>Frete</span><span>Combinado no WhatsApp</span></div>
+        <div class="ck-total"><span>Total</span><span class="preco" data-cart-subtotal>R$ 0,00</span></div>
+        <button class="btn btn-escuro btn-bloco btn-whats" data-ck-enviar>Enviar pedido pelo WhatsApp</button>
+        <p class="card-parcela">Você confirma estoque, frete e pagamento direto com a BRAVO.</p>
+      </aside>
+    </div>
+
+    <!-- ===== SUCESSO ===== -->
+    <section class="ck-sucesso" data-ck-sucesso hidden>
+      <h2 class="titulo-lg">Pedido pronto</h2>
+      <p>Abrimos o WhatsApp com o seu pedido escrito. É só enviar a mensagem.</p>
+      <a href="#" class="btn btn-escuro btn-whats" data-ck-reabrir target="_blank" rel="noopener">Abrir o WhatsApp de novo</a>
+      <a href="index.html" class="link-sub">Voltar para a loja</a>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <div data-include="globais"></div>
+</body>
+</html>

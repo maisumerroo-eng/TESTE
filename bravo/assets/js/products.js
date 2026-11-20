@@ -1,7 +1,7 @@
 /* =========================================================
    products.js · catálogo REAL da BRAVO (3 modelos de conjunto).
    Cada cor é um produto (como na Zara/John John).
-   Imagens: assets/img/produto-<slug>-1.jpg (still) e -2.jpg (no modelo).
+   Imagens: produto-<slug>-1.jpg (modelo frente), -2.jpg (só a peça), -3.jpg (modelo costas).
    preco: null → card mostra "Consulte o preço" e o botão vai pro WhatsApp.
    PENDENTE: preços reais e composição dos modelos Jacquard e Canelado.
    ========================================================= */
@@ -75,7 +75,8 @@ export const PRODUCTS = Object.entries(MODELOS).flatMap(([modelo, m], iModelo) =
       descricao: m.descricao,
       composicao: m.composicao,
       ordem: iModelo * 10 + iCor,
-      imagens: [`assets/img/produto-${slug}-1.jpg`, `assets/img/produto-${slug}-2.jpg`],
+      // -1 modelo de frente · -2 só a peça (hover) · -3 modelo de costas
+      imagens: [`assets/img/produto-${slug}-1.jpg`, `assets/img/produto-${slug}-2.jpg`, `assets/img/produto-${slug}-3.jpg`],
     };
   })
 );

@@ -54,15 +54,17 @@ export function cardHTML(p) {
   const seloClasse = p.selo === 'BLACK SALE' ? 'sale' : '';
   return `
   <article class="card" data-product-id="${p.id}">
+    <div class="card-foto">
     <a href="produto.html?id=${p.id}" class="card-midia" aria-label="${p.nome}">
       ${p.selo ? `<span class="card-selo eyebrow ${seloClasse}">${p.selo}</span>` : ''}
-      <img src="${img1}" data-alt="${img2}" alt="${p.nome}, foto principal" loading="lazy">
+      <img src="${img1}" data-alt="${img2}" alt="${p.nome}, modelo vestindo" class="img-1" loading="lazy">
       <img src="${img2}" data-alt="${img1}" alt="" class="img-2" loading="lazy">
     </a>
     <button class="icone-btn card-fav" aria-label="Favoritar ${p.nome}" aria-pressed="false" data-wishlist-toggle="${p.id}">${ICONES.coracao}</button>
     <div class="card-tamanhos" aria-label="Compra rápida">
       <p class="eyebrow">Adicionar tamanho</p>
       ${p.tamanhos.map((t) => `<button data-add-to-cart="${p.id}" data-size="${t}">${t}</button>`).join('')}
+    </div>
     </div>
     <a href="produto.html?id=${p.id}" class="card-nome">${p.nome}</a>
     <div class="card-precos preco">${precoHTML(p)}</div>
@@ -92,11 +94,23 @@ export function renderPDP(p) {
   raiz.querySelector('[data-pdp-composicao]').textContent =
     p.composicao || 'Pergunte a composição pelo WhatsApp.';
 
-  // Galeria: as 2 imagens + 2 repetidas como "detalhe" (troque por fotos reais)
-  const [a, b] = p.imagens;
-  raiz.querySelector('[data-pdp-galeria]').innerHTML = [a, b, b, a]
-    .map((src, i) => `<img src="${src}" data-alt="${src === a ? b : a}" alt="${p.nome}, foto ${i + 1}" ${i > 1 ? 'loading="lazy"' : ''}>`)
-    .join('');
+  // Galeria por ângulo: frente (modelo), costas (modelo), peça sozinha
+  const [frente, peca, costas] = p.imagens;
+  const angulos = [
+    { nome: 'Frente', src: frente, alt: `${p.nome}, modelo de frente` },
+    { nome: 'Costas', src: costas || frente, alt: `${p.nome}, modelo de costas` },
+    { nome: 'Peça', src: peca, alt: `${p.nome}, só a peça` },
+  ];
+  raiz.querySelector('[data-pdp-galeria]').innerHTML = `
+    <div class="pdp-angulos" role="group" aria-label="Ângulos">
+      ${angulos.map((a, i) => `
+        <button class="pdp-angulo" aria-pressed="${i === 0}" data-angulo="${i}">
+          <img src="${a.src}" data-alt="${frente}" alt="">${a.nome}
+        </button>`).join('')}
+    </div>
+    <div class="pdp-visor">
+      ${angulos.map((a, i) => `<img src="${a.src}" data-alt="${frente}" alt="${a.alt}" class="${i === 0 ? 'ativa' : ''}" ${i ? 'loading="lazy"' : ''}>`).join('')}
+    </div>`;
 
   // Cada cor é um produto: o seletor navega para a outra cor
   raiz.querySelector('[data-pdp-cores]').innerHTML = p.cores
