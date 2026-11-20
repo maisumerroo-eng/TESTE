@@ -81,7 +81,7 @@ svg { display: block; }
 .secao-topo { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 32px; }
 .link-sub {
   font-family: var(--fonte-titulo); font-size: 11px; letter-spacing: var(--tracking);
-  text-transform: uppercase; position: relative; padding-bottom: 4px;
+  text-transform: uppercase; position: relative; padding-bottom: 4px; white-space: nowrap;
 }
 .link-sub::after {
   content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
@@ -116,6 +116,7 @@ svg { display: block; }
   background: currentColor;
 }
 .contador span { color: var(--branco); }
+.contador[hidden] { display: none; }
 .header.transparente:not(.solido):not(:hover):not(.menu-aberto) .contador span { color: var(--preto); }
 
 /* ===== LOGO ===== */

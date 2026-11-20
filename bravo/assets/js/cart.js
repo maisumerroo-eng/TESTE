@@ -68,7 +68,10 @@ export function limparSacola() {
 /* ---------- Desenho ---------- */
 export function renderCart() {
   const total = totalPecas();
-  document.querySelectorAll('[data-cart-count]').forEach((el) => (el.textContent = total));
+  document.querySelectorAll('[data-cart-count]').forEach((el) => {
+    el.textContent = total;
+    el.closest('.contador')?.toggleAttribute('hidden', total === 0); // some quando a sacola está vazia
+  });
 
   const caixa = document.querySelector('[data-cart-items]');
   if (!caixa) return;
