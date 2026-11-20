@@ -23,8 +23,8 @@
   <main id="conteudo">
 
     <!-- ===== HERO SLIDER (slide 1 = campanha, como no topo da John John) ===== -->
-    <section class="hero" data-hero aria-roledescription="carrossel" aria-label="Campanhas">
-      <div class="slide ativo" aria-roledescription="slide" aria-label="1 de 3">
+    <section class="hero" data-hero aria-label="Campanhas">
+      <div class="slide ativo">
         <img src="assets/img/hero-1.jpg" style="--foco: 72% 20%" alt="Modelo vestindo o Conjunto Jacquard preto encostado em parede de concreto" fetchpriority="high">
         <div class="slide-texto">
           <p class="eyebrow">Conjunto Jacquard · 4 cores</p>
@@ -32,7 +32,7 @@
           <a href="categoria.html?modelo=jacquard" class="btn btn-claro">Ver o Jacquard</a>
         </div>
       </div>
-      <div class="slide" aria-roledescription="slide" aria-label="2 de 3">
+      <div class="slide">
         <img src="assets/img/hero-2.jpg" style="--foco: 74% 20%" alt="Modelo vestindo o Conjunto Ondas khaki em área externa" loading="lazy">
         <div class="slide-texto">
           <p class="eyebrow">Conjunto Ondas · 6 cores</p>
@@ -40,50 +40,12 @@
           <a href="categoria.html?modelo=ondas" class="btn btn-claro">Ver o Ondas</a>
         </div>
       </div>
-      <div class="slide" aria-roledescription="slide" aria-label="3 de 3">
+      <div class="slide">
         <img src="assets/img/hero-3.jpg" style="--foco: 66% 20%" alt="Homem caminhando com o Conjunto Canelado verde petróleo" loading="lazy">
         <div class="slide-texto">
           <p class="eyebrow">Conjunto Canelado</p>
           <h2 class="titulo-xl">Camiseta e bermuda</h2>
           <a href="categoria.html?modelo=canelado" class="btn btn-claro">Ver o Canelado</a>
-        </div>
-      </div>
-
-      <div class="hero-controles">
-        <div class="hero-bullets">
-          <button class="hero-bullet ativo" aria-label="Ir para slide 1" aria-current="true"></button>
-          <button class="hero-bullet" aria-label="Ir para slide 2"></button>
-          <button class="hero-bullet" aria-label="Ir para slide 3"></button>
-        </div>
-        <button class="hero-seta" aria-label="Slide anterior" data-hero-prev>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
-        </button>
-        <button class="hero-seta" aria-label="Próximo slide" data-hero-next>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- ===== COMPRE POR MODELO ===== -->
-    <section class="secao" aria-labelledby="t-categorias">
-      <div class="container">
-        <div class="secao-topo">
-          <h2 class="titulo-lg" id="t-categorias">Compre por modelo</h2>
-          <a href="categoria.html" class="link-sub">Ver todos</a>
-        </div>
-        <div class="tiles tiles-3">
-          <a href="categoria.html?modelo=ondas" class="tile">
-            <img src="assets/img/tile-ondas.jpg" alt="Modelo com o Conjunto Ondas" loading="lazy">
-            <span class="tile-rotulo titulo">Ondas</span>
-          </a>
-          <a href="categoria.html?modelo=jacquard" class="tile">
-            <img src="assets/img/tile-jacquard.jpg" alt="Modelo com o Conjunto Jacquard" loading="lazy">
-            <span class="tile-rotulo titulo">Jacquard</span>
-          </a>
-          <a href="categoria.html?modelo=canelado" class="tile">
-            <img src="assets/img/tile-canelado.jpg" alt="Modelo com o Conjunto Canelado" loading="lazy">
-            <span class="tile-rotulo titulo">Canelado</span>
-          </a>
         </div>
       </div>
     </section>
@@ -93,10 +55,6 @@
       <div class="container carrossel" data-carrossel>
         <div class="secao-topo">
           <h2 class="titulo-lg" id="t-lancamentos">Todos os conjuntos</h2>
-          <div class="carrossel-setas">
-            <button aria-label="Anterior" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button aria-label="Próximo" data-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
         </div>
         <!-- main.js preenche com todos os produtos -->
         <div class="carrossel-trilho" data-shelf="lancamentos"></div>
@@ -121,10 +79,6 @@
       <div class="container carrossel" data-carrossel>
         <div class="secao-topo">
           <h2 class="titulo-lg" id="t-vendidos">Conjunto Ondas em 6 cores</h2>
-          <div class="carrossel-setas">
-            <button aria-label="Anterior" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button aria-label="Próximo" data-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-          </div>
         </div>
         <div class="carrossel-trilho" data-shelf="mais-vendidos"></div>
       </div>

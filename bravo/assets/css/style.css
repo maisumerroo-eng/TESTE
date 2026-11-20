@@ -233,7 +233,7 @@ html { scroll-padding-top: calc(var(--header-h) + 8px); }
 
 /* ===== HERO SLIDER ===== */
 .hero { position: relative; height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: var(--preto); color: var(--branco); }
-.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 700ms var(--ease); }
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1200ms var(--ease); }
 .slide.ativo { opacity: 1; z-index: 1; }
 /* --foco: ponto da foto que nunca pode ser cortado (onde está a pessoa). Defina por slide no HTML. */
 .slide img { width: 100%; height: 100%; object-fit: cover; object-position: var(--foco, 50% 30%); transform: scale(1.04); transform-origin: var(--foco, 50% 30%); transition: transform 6s linear; filter: saturate(.9) contrast(1.05); }
@@ -249,23 +249,13 @@ html { scroll-padding-top: calc(var(--header-h) + 8px); }
 @media (max-width: 760px) {
   .hero { height: 88svh; min-height: 520px; }
   .slide::after { background: linear-gradient(0deg, rgba(11,11,11,.78) 0%, rgba(11,11,11,.35) 38%, rgba(11,11,11,0) 62%); }
-  .slide-texto { bottom: 96px; gap: 16px; }
+  .slide-texto { bottom: 56px; gap: 16px; }
   .slide-texto .titulo-xl { font-size: clamp(30px, 9vw, 44px); letter-spacing: .14em; }
-  .hero-controles { bottom: 28px; left: var(--gutter); right: var(--gutter); justify-content: space-between; }
-  .hero-seta { width: 40px; height: 40px; }
 }
 .slide-texto {
   position: absolute; z-index: 2; left: var(--gutter); right: var(--gutter); bottom: clamp(80px, 14vh, 160px);
   display: grid; gap: 22px; justify-items: start; max-width: 900px;
 }
-.hero-controles { position: absolute; z-index: 3; right: var(--gutter); bottom: 40px; display: flex; align-items: center; gap: 20px; }
-.hero-bullets { display: flex; gap: 10px; }
-.hero-bullet { width: 28px; height: 20px; position: relative; }
-.hero-bullet::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(250,250,248,.45); }
-.hero-bullet.ativo::before { background: var(--branco); height: 2px; }
-.hero-seta { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(250,250,248,.5); color: var(--branco); }
-.hero-seta:hover { background: var(--branco); color: var(--preto); }
-.hero-seta svg { width: 18px; height: 18px; }
 
 /* ===== TILES DE CATEGORIA ===== */
 .tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }

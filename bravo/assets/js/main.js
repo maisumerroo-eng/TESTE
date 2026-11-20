@@ -99,45 +99,39 @@ function initDrawers() {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharDrawers(); });
 }
 
-/* ---------- 5. HERO SLIDER ---------- */
+/* ---------- 5. HERO (troca sozinha, sem setas nem bolinhas) ---------- */
 function initHero() {
   const hero = $('[data-hero]');
   if (!hero) return;
   const slides = $$('.slide', hero);
-  const bullets = $$('.hero-bullet', hero);
+  if (slides.length < 2) return;
   let atual = 0;
-  let timer;
-
-  const ir = (n) => {
+  setInterval(() => {
+    // Aba escondida: não troca (economiza bateria e evita "pulo" ao voltar)
+    if (document.hidden) return;
     slides[atual].classList.remove('ativo');
-    bullets[atual]?.classList.remove('ativo');
-    bullets[atual]?.setAttribute('aria-current', 'false');
-    atual = (n + slides.length) % slides.length;
+    atual = (atual + 1) % slides.length;
     slides[atual].classList.add('ativo');
-    bullets[atual]?.classList.add('ativo');
-    bullets[atual]?.setAttribute('aria-current', 'true');
-  };
-  const auto = () => {
-    if (reduzMovimento) return;
-    clearInterval(timer);
-    timer = setInterval(() => ir(atual + 1), 6000);
-  };
-
-  $('[data-hero-prev]', hero)?.addEventListener('click', () => { ir(atual - 1); auto(); });
-  $('[data-hero-next]', hero)?.addEventListener('click', () => { ir(atual + 1); auto(); });
-  bullets.forEach((b, i) => b.addEventListener('click', () => { ir(i); auto(); }));
-  hero.addEventListener('mouseenter', () => clearInterval(timer));
-  hero.addEventListener('mouseleave', auto);
-  auto();
+  }, 5500);
 }
 
-/* ---------- 6. CARROSSÉIS (setas) ---------- */
+/* ---------- 6. VITRINES (andam sozinhas, sem setas) ----------
+   Avança 1 card a cada 3,5s e volta ao início no fim.
+   Pausa enquanto a pessoa está com o mouse/dedo na vitrine. */
 function initCarrosseis() {
   $$('[data-carrossel]').forEach((wrap) => {
     const trilho = $('.carrossel-trilho', wrap);
-    const passo = () => trilho.clientWidth * 0.8;
-    $('[data-prev]', wrap)?.addEventListener('click', () => trilho.scrollBy({ left: -passo(), behavior: 'smooth' }));
-    $('[data-next]', wrap)?.addEventListener('click', () => trilho.scrollBy({ left: passo(), behavior: 'smooth' }));
+    if (!trilho) return;
+    let pausado = false;
+    ['mouseenter', 'touchstart', 'focusin'].forEach((ev) => wrap.addEventListener(ev, () => (pausado = true), { passive: true }));
+    ['mouseleave', 'touchend', 'focusout'].forEach((ev) => wrap.addEventListener(ev, () => (pausado = false), { passive: true }));
+    setInterval(() => {
+      if (pausado || document.hidden || trilho.scrollWidth <= trilho.clientWidth) return;
+      const card = trilho.firstElementChild;
+      const passo = card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(trilho).columnGap || 0) : trilho.clientWidth;
+      const fim = trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 4;
+      trilho.scrollTo({ left: fim ? 0 : trilho.scrollLeft + passo, behavior: reduzMovimento ? 'auto' : 'smooth' });
+    }, 3500);
   });
 }
 
