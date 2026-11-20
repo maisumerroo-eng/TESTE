@@ -95,7 +95,7 @@ export function renderPDP(p) {
   // Galeria: as 2 imagens + 2 repetidas como "detalhe" (troque por fotos reais)
   const [a, b] = p.imagens;
   raiz.querySelector('[data-pdp-galeria]').innerHTML = [a, b, b, a]
-    .map((src, i) => `<img src="${src}" data-alt="${i % 2 ? a : b}" alt="${p.nome}, foto ${i + 1}" ${i > 1 ? 'loading="lazy"' : ''}>`)
+    .map((src, i) => `<img src="${src}" data-alt="${src === a ? b : a}" alt="${p.nome}, foto ${i + 1}" ${i > 1 ? 'loading="lazy"' : ''}>`)
     .join('');
 
   // Cada cor é um produto: o seletor navega para a outra cor

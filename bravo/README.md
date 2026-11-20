@@ -14,6 +14,16 @@ python3 -m http.server 8000   # ou: npx serve .   ou Live Server no VS Code
 ```
 Abra http://localhost:8000
 
+## Painel admin (`admin.html`)
+Só estrutura HTML + CSS. Telas: login, visão geral, produtos (lista + formulário com estoque por tamanho e fotos), pedidos, banners da home (com ponto de foco), configurações (WhatsApp, anúncio, empresa).
+`assets/js/admin.js` é esqueleto com `// TODO:`. Falta escolher o backend (Supabase, Firebase ou API própria).
+Enquanto não houver login, o admin abre direto no painel para testar o layout.
+
+## Imagens
+Hoje: geradas no Figma AI no estilo Hugo Boss (hero, tiles, editorial, shop the look, Instagram e a foto principal dos 12 produtos).
+A 2ª foto de cada produto (`-2.jpg`, hover) ainda falta; enquanto isso o card repete a principal.
+Quando o Lovable terminar as edições fiéis às fotos reais, elas substituem as `-1.jpg`.
+
 ## Imagens (geradas pelo Lovable a partir das fotos reais)
 Projeto Lovable "BRAVO Menswear Produtos Reais" gera as fotos em `public/assets/img/`.
 Imagem que faltar cai em `placeholder.svg` sozinha.
