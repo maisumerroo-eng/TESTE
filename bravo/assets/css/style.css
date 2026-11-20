@@ -439,6 +439,16 @@ label.chip { cursor: pointer; }
 .pdp-rotulo a { text-decoration: underline; color: var(--pedra-escura); }
 .cor-opcao { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--linha); outline-offset: 3px; }
 .cor-opcao[aria-pressed="true"] { outline: 1px solid var(--preto); }
+.cor-opcao { display: inline-block; }
+.cor-opcao[aria-current="true"] { outline: 1px solid var(--preto); }
+.cores a.cor-bolinha { display: inline-block; }
+.cores a.cor-bolinha:hover { outline: 1px solid var(--preto); outline-offset: 2px; }
+.tiles-3 { grid-template-columns: 1fr; }
+@media (min-width: 700px) { .tiles-3 { grid-template-columns: repeat(3, 1fr); } }
+.whats-cta { text-align: center; background: var(--grafite); color: var(--branco); }
+.whats-cta p { color: var(--pedra); margin: 14px auto 28px; max-width: 460px; }
+.btn-whats { gap: 12px; }
+.btn-whats svg { width: 18px; height: 18px; }
 .tamanhos { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 6px; }
 .tamanho { height: 46px; border: 1px solid var(--linha); font-size: 13px; transition: border-color var(--dur); }
 .tamanho:hover, .tamanho[aria-pressed="true"] { border-color: var(--preto); }

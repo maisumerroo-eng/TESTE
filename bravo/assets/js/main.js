@@ -6,7 +6,8 @@
    fica nos arquivos de esqueleto com // TODO: para você codar.
    ========================================================= */
 import { montarLayout } from './layout.js';
-import { PRODUCTS, getProduct } from './products.js';
+import { PRODUCTS, getProduct, porModelo } from './products.js';
+import { waLink } from './config.js';
 import { renderLista, renderPDP, ativarFallbackImagens } from './render.js';
 import { initCart, addToCart } from './cart.js';
 import { initWishlist, toggleWishlist } from './wishlist.js';
@@ -157,8 +158,17 @@ function initAcoes() {
 
 /* ---------- 8. PÁGINAS ---------- */
 function paginaHome() {
-  renderLista($('[data-shelf="lancamentos"]'), PRODUCTS.filter((p) => p.selo === 'NEW'));
-  renderLista($('[data-shelf="mais-vendidos"]'), PRODUCTS.filter((p) => p.bestSeller));
+  renderLista($('[data-shelf="lancamentos"]'), PRODUCTS);
+  renderLista($('[data-shelf="mais-vendidos"]'), porModelo('ondas'));
+
+  // Shop the look: lista as cores do modelo
+  $$('[data-look-lista]').forEach((lista) => {
+    lista.innerHTML = porModelo(lista.dataset.lookLista).map((p) => `
+      <a href="produto.html?id=${p.id}" class="look-item" data-look-item="${p.id}">
+        <img src="${p.imagens[0]}" data-alt="${p.imagens[1]}" alt="" loading="lazy">
+        <div><p class="card-nome">${p.nome}</p><p class="card-parcela">Tamanhos ${p.tamanhos.join(' · ')}</p></div>
+      </a>`).join('');
+  });
 
   // Shop the look: destaca o item ao passar no hotspot
   $$('[data-hotspot]').forEach((h) => {
@@ -172,16 +182,25 @@ function paginaCategoria() {
   const grid = $('[data-grid]');
   if (!grid) return;
 
-  // Título a partir de ?c= na URL
-  const c = new URLSearchParams(location.search).get('c');
-  if (c) $('[data-cat-titulo]').textContent = c === 'sale' ? 'Black Sale' : c.replace(/-/g, ' ');
+  // Filtro inicial vindo do menu (?modelo= / ?cor= / ?tamanho=).
+  // Os checkboxes da sidebar são TODO seu em filters.js.
+  const url = new URLSearchParams(location.search);
+  const modelo = url.get('modelo');
+  const cor = url.get('cor');
+  const tamanho = url.get('tamanho');
+  let inicial = PRODUCTS;
+  if (modelo) inicial = inicial.filter((p) => p.modelo === modelo);
+  if (cor) inicial = inicial.filter((p) => p.cor.nome === cor);
+  if (tamanho) inicial = inicial.filter((p) => p.tamanhos.includes(tamanho));
+  if (modelo) $('[data-cat-titulo]').textContent = `Conjunto ${modelo}`;
+  else if (cor) $('[data-cat-titulo]').textContent = `Conjuntos ${cor}`;
 
   // Render inicial (filters.js deve chamar este callback com a lista filtrada)
   const pintar = (lista) => {
     renderLista(grid, lista);
     $$('[data-total]').forEach((el) => (el.textContent = lista.length));
   };
-  pintar(PRODUCTS);
+  pintar(inicial);
   initFilters(PRODUCTS, pintar);
 
   // Toggle 2 / 3 / 4 colunas
@@ -197,20 +216,17 @@ function paginaProduto() {
   const p = getProduct(id) || PRODUCTS[0];
   renderPDP(p);
 
-  // Seleção de cor e tamanho (só visual; o valor fica em data-*)
+  // Seleção de tamanho: atualiza botão da sacola e mensagem do WhatsApp
   const raiz = $('[data-pdp]');
   const botaoAdd = $('[data-add-to-cart]', raiz);
+  const wa = $('[data-whatsapp-produto]', raiz);
   raiz.addEventListener('click', (e) => {
-    const cor = e.target.closest('.cor-opcao');
-    if (cor) {
-      $$('.cor-opcao', raiz).forEach((b) => b.setAttribute('aria-pressed', String(b === cor)));
-      $('[data-pdp-cor-nome]', raiz).textContent = cor.dataset.color;
-    }
     const tam = e.target.closest('.tamanho');
-    if (tam) {
-      $$('.tamanho', raiz).forEach((b) => b.setAttribute('aria-pressed', String(b === tam)));
-      botaoAdd.dataset.size = tam.dataset.size;
-    }
+    if (!tam) return;
+    $$('.tamanho', raiz).forEach((b) => b.setAttribute('aria-pressed', String(b === tam)));
+    botaoAdd.dataset.size = tam.dataset.size;
+    wa.href = waLink(`Olá! Quero o ${p.nome}, tamanho ${tam.dataset.size}.`);
+    $('[data-pdp-aviso]', raiz).hidden = true;
   });
   // Botão principal sem tamanho escolhido → avisa
   botaoAdd.addEventListener('click', () => {
@@ -224,9 +240,13 @@ function paginaProduto() {
     $('[data-frete-resultado]', raiz).textContent = 'TODO: resultado do frete aparece aqui.';
   });
 
-  const relacionados = PRODUCTS.filter((x) => x.id !== p.id);
-  renderLista($('[data-shelf="complete-look"]'), relacionados.filter((x) => x.categoria !== p.categoria).slice(0, 4));
-  renderLista($('[data-shelf="relacionados"]'), relacionados.filter((x) => x.subcategoria === p.subcategoria).concat(relacionados).slice(0, 8));
+  renderLista($('[data-shelf="complete-look"]'), porModelo(p.modelo).filter((x) => x.id !== p.id).slice(0, 4));
+  renderLista($('[data-shelf="relacionados"]'), PRODUCTS.filter((x) => x.modelo !== p.modelo));
+}
+
+/* Links genéricos de WhatsApp na página */
+function initWhatsapp() {
+  $$('[data-whatsapp]').forEach((a) => (a.href = waLink()));
 }
 
 /* ---------- START ---------- */
@@ -238,6 +258,7 @@ initMegaMenu();
 initDrawers();
 initHero();
 initAcoes();
+initWhatsapp();
 paginaHome();
 paginaCategoria();
 paginaProduto();

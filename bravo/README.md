@@ -1,6 +1,10 @@
 # BRAVO MENSWEAR — frontend (HTML + CSS + JS puro)
 
-Estrutura de e-commerce no estilo John John, identidade minimalista preta, catálogo de 16 peças masculinas.
+Estrutura de e-commerce no estilo John John, identidade minimalista preta.
+Catálogo REAL: 3 modelos de conjunto (Ondas, Jacquard, Canelado) em 12 cores, do P ao GG.
+Venda pelo WhatsApp (número em `assets/js/config.js`).
+
+PENDENTE: preços, composição do Jacquard e do Canelado, e-mail, CNPJ, endereço.
 
 ## Rodar
 ES modules não abrem via `file://`. Sirva a pasta:
@@ -10,12 +14,12 @@ python3 -m http.server 8000   # ou: npx serve .   ou Live Server no VS Code
 ```
 Abra http://localhost:8000
 
-## Imagens (geradas pelo Lovable)
-O projeto Lovable "BRAVO Menswear Storefront" gerou as fotos em `public/assets/img/`.
-Baixe pelo editor do Lovable (Code → Download, ou conectar GitHub) e copie para `bravo/assets/img/`.
-Os nomes já batem com o código. Imagem que faltar cai em `placeholder.svg` sozinha.
+## Imagens (geradas pelo Lovable a partir das fotos reais)
+Projeto Lovable "BRAVO Menswear Produtos Reais" gera as fotos em `public/assets/img/`.
+Imagem que faltar cai em `placeholder.svg` sozinha.
 
-Padrão de nomes de produto: `produto-<slug>-1.jpg` (frente) e `produto-<slug>-2.jpg` (hover).
+Padrão: `produto-<modelo>-<cor>-1.jpg` (still) e `-2.jpg` (no modelo), ex.: `produto-jacquard-preto-1.jpg`.
+Fotos originais ficam em `referencias/` (fora do git, têm etiqueta de terceiros).
 
 ## Arquivos
 | Arquivo | O que faz | Status |

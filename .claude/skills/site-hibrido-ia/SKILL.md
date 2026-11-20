@@ -107,4 +107,9 @@ Mesmo assim, chame `list_workspaces` de novo a cada vez, porque essa lista muda.
   - os créditos do Lovable acabaram no meio do 1º build, que entregou só CSS e 20 imagens, sem HTML;
   - o Claude montou HTML e JS em cima disso, o que confirmou o valor do fluxo híbrido;
   - o remix para o próximo workspace continuou a geração das imagens que faltavam.
+- **Produtos reais do cliente** (fotos de celular): copie para `<projeto>/referencias/` (no `.gitignore`), suba ao Lovable e peça **edição fiel**: mesma peça, textura, cor, botões e cordão, **sem etiqueta ou logo de terceiros** (as fotos vinham com etiqueta ZARA), fundo da direção de arte. Depois gere fotos com modelo vestindo só essas peças. Apague do catálogo e da pasta tudo que não for do cliente.
+- Com catálogo real: **cada cor = 1 produto**, gerado de `MODELOS` em `products.js`. Sem preço informado, use `preco: null`; o card mostra "Consulte o preço no WhatsApp". Nunca invente preço, composição, política de troca ou cuidados.
+- Número de 12 dígitos começando em 55 é WhatsApp (`config.js`, `waLink(texto)`). Ele vira a ação principal: barra de anúncio, PDP (mensagem com produto e tamanho), CTA final e rodapé.
+- O conector do Lovable não tem cancelar: mensagem na fila roda e gasta crédito. Antes de enfileirar, confira se o pedido ainda vale. Pedido novo vai para outro workspace via remix.
+- O check de segurança do Bash bloqueia heredoc grande e comandos encadeados longos: grave scripts em arquivo no scratchpad, use Edit para textos e mande comandos git simples.
 - O Higgsfield, quando autorizado, é a alternativa ao Lovable para imagens e vídeo (ver site-de-10k).

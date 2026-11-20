@@ -9,6 +9,8 @@
    header/footer num lugar só.
    ========================================================= */
 
+import { waLink } from './config.js';
+
 /* ---------- ÍCONES SVG (traço fino 1.5px) ---------- */
 const svg = (d, extra = '') =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true" ${extra}>${d}</svg>`;
@@ -28,6 +30,7 @@ export const ICONES = {
   grid4: svg('<rect x="3" y="4" width="3.5" height="16"/><rect x="8" y="4" width="3.5" height="16"/><rect x="13" y="4" width="3.5" height="16"/><rect x="18" y="4" width="3" height="16"/>'),
   instagram: svg('<rect x="3.5" y="3.5" width="17" height="17"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>'),
   tiktok: svg('<path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.5 2.5 2.3 4 5 4"/>'),
+  whatsapp: svg('<path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20Z"/><path d="M9 9.5c.5 2 2.5 4 4.5 4.5l1.2-1.2 1.8.9c-.3 1.2-1.3 1.8-2.5 1.6-3-.6-5.5-3.1-6.1-6.1-.2-1.2.4-2.2 1.6-2.5l.9 1.8L9 9.5Z"/>'),
   youtube: svg('<rect x="3" y="6" width="18" height="12"/><path d="M10 9.5v5l4.5-2.5L10 9.5Z" fill="currentColor"/>'),
 };
 
@@ -45,83 +48,43 @@ export const logo = (classe = '') => `
 
 /* ---------- DADOS DO MENU (edite aqui) ---------- */
 const MENU = [
-  { rotulo: 'New', href: 'categoria.html?c=new' },
-  { rotulo: 'Coleções', href: 'categoria.html?c=colecoes', mega: 'colecoes' },
-  { rotulo: 'Roupas', href: 'categoria.html', mega: 'roupas' },
-  { rotulo: 'Alfaiataria', href: 'categoria.html?c=alfaiataria', mega: 'roupas' },
-  { rotulo: 'Jeans', href: 'categoria.html?c=jeans' },
-  { rotulo: 'Best Sellers', href: 'categoria.html?c=best' },
-  { rotulo: 'Guia de Estilo', href: '#' },
-  { rotulo: 'Black Sale', href: 'categoria.html?c=sale', mega: 'sale', classe: 'destaque-sale' },
+  { rotulo: 'Novidades', href: 'categoria.html' },
+  { rotulo: 'Conjuntos', href: 'categoria.html', mega: 'conjuntos' },
+  { rotulo: 'Ondas', href: 'categoria.html?modelo=ondas' },
+  { rotulo: 'Jacquard', href: 'categoria.html?modelo=jacquard' },
+  { rotulo: 'Canelado', href: 'categoria.html?modelo=canelado' },
+  { rotulo: 'Guia de medidas', href: '#' },
 ];
 
+const CORES_MENU = ['Branco', 'Off-white', 'Bege', 'Khaki', 'Cinza', 'Preto', 'Verde militar', 'Verde petróleo'];
+
 const MEGAS = {
-  roupas: `
-    <div><h3>Roupas</h3><ul>
-      <li><a href="categoria.html?c=blazers">Blazers</a></li>
-      <li><a href="categoria.html?c=camisas">Camisas</a></li>
-      <li><a href="categoria.html?c=polos">Polos</a></li>
-      <li><a href="categoria.html?c=camisetas">Camisetas</a></li>
-      <li><a href="categoria.html?c=trico">Tricô</a></li>
-      <li><a href="categoria.html?c=jaquetas">Jaquetas e Casacos</a></li>
-      <li><a href="categoria.html?c=calcas">Calças</a></li>
-      <li><a href="categoria.html?c=jeans">Jeans</a></li>
+  conjuntos: `
+    <div><h3>Por modelo</h3><ul>
+      <li><a href="categoria.html?modelo=ondas">Conjunto Ondas</a></li>
+      <li><a href="categoria.html?modelo=jacquard">Conjunto Jacquard</a></li>
+      <li><a href="categoria.html?modelo=canelado">Conjunto Canelado</a></li>
+      <li><a href="categoria.html">Ver todos</a></li>
     </ul></div>
-    <div><h3>Calçados</h3><ul>
-      <li><a href="categoria.html?c=tenis">Tênis</a></li>
-      <li><a href="categoria.html?c=mocassins">Mocassins</a></li>
-    </ul>
-    <h3 style="margin-top:28px">Acessórios</h3><ul>
-      <li><a href="categoria.html?c=cintos">Cintos</a></li>
-      <li><a href="categoria.html?c=bolsas">Bolsas</a></li>
+    <div><h3>Por cor</h3><ul>
+      ${CORES_MENU.map((c) => `<li><a href="categoria.html?cor=${encodeURIComponent(c)}">${c}</a></li>`).join('')}
     </ul></div>
     <div><h3>Compre por tamanho</h3><ul class="mega-chips">
-      ${['PP', 'P', 'M', 'G', 'GG', 'XGG'].map((t) => `<li><a href="categoria.html?tamanho=${t}">${t}</a></li>`).join('')}
+      ${['P', 'M', 'G', 'GG'].map((t) => `<li><a href="categoria.html?tamanho=${t}">${t}</a></li>`).join('')}
     </ul></div>
-    <a href="categoria.html?c=alfaiataria" class="mega-imagem">
-      <img src="assets/img/editorial-alfaiataria.jpg" alt="Homem de terno escuro em ambiente de concreto" loading="lazy">
-      <span class="eyebrow">A nova alfaiataria</span>
-    </a>`,
-  colecoes: `
-    <div><h3>Coleções</h3><ul>
-      <li><a href="#">Inverno 26 · Concreto</a></li>
-      <li><a href="#">Essenciais Pretos</a></li>
-      <li><a href="#">Couro & Lã</a></li>
-      <li><a href="#">Linha Noite</a></li>
-    </ul></div>
-    <div></div><div></div>
-    <a href="#" class="mega-imagem">
-      <img src="assets/img/hero-1-campanha-sobretudo.jpg" alt="Campanha de inverno com sobretudo de lã" loading="lazy">
-      <span class="eyebrow">Inverno 26</span>
-    </a>`,
-  sale: `
-    <div><h3>Compre por preço</h3><ul>
-      <li><a href="categoria.html?c=sale&max=199">Até R$ 199</a></li>
-      <li><a href="categoria.html?c=sale&max=299">Até R$ 299</a></li>
-      <li><a href="categoria.html?c=sale&max=399">Até R$ 399</a></li>
-      <li><a href="categoria.html?c=sale&max=499">Até R$ 499</a></li>
-    </ul></div>
-    <div><h3>Descontos</h3><ul>
-      <li><a href="categoria.html?c=sale&off=40">40% OFF</a></li>
-      <li><a href="categoria.html?c=sale&off=50">50% OFF</a></li>
-      <li><a href="categoria.html?c=sale&off=60">60% OFF</a></li>
-    </ul></div>
-    <div><h3>Compre por tamanho</h3><ul class="mega-chips">
-      ${['PP', 'P', 'M', 'G', 'GG', 'XGG'].map((t) => `<li><a href="categoria.html?c=sale&tamanho=${t}">${t}</a></li>`).join('')}
-    </ul></div>
-    <a href="categoria.html?c=sale" class="mega-imagem">
-      <img src="assets/img/hero-3-campanha-couro.jpg" alt="Jaqueta de couro preta em campanha" loading="lazy">
-      <span class="eyebrow">Black Sale · até 60% off</span>
+    <a href="categoria.html?modelo=jacquard" class="mega-imagem">
+      <img src="assets/img/tile-jacquard.jpg" alt="Modelo vestindo o Conjunto Jacquard" loading="lazy">
+      <span class="eyebrow">Conjunto Jacquard</span>
     </a>`,
 };
 
 /* ---------- TEMPLATES ---------- */
 const anuncioHTML = () => `
 <div class="anuncio" role="region" aria-label="Avisos" data-anuncio>
-  <p class="anuncio-item ativo">EM ATÉ 6X SEM JUROS</p>
-  <p class="anuncio-item">FRETE GRÁTIS ACIMA DE R$ 499</p>
-  <p class="anuncio-item">PRIMEIRA COMPRA: 10% OFF COM BRAVO10</p>
-  <a href="#" class="anuncio-atendimento">ATENDIMENTO</a>
+  <p class="anuncio-item ativo">ATENDIMENTO E VENDAS PELO WHATSAPP</p>
+  <p class="anuncio-item">TAMANHOS DO P AO GG</p>
+  <p class="anuncio-item">CONJUNTOS EM ATÉ 8 CORES</p>
+  <a href="${waLink()}" class="anuncio-atendimento" target="_blank" rel="noopener">WHATSAPP</a>
 </div>`;
 
 const headerHTML = (transparente) => `
@@ -158,8 +121,9 @@ const footerHTML = () => `
     <div class="footer-topo">
       <div class="footer-marca">
         ${logo('logo-grande')}
-        <p>Moda masculina com corte preciso, matéria-prima nobre e nenhuma concessão.</p>
+        <p>Conjuntos masculinos com textura de verdade. Camisa e bermuda que já saem combinando.</p>
         <div class="footer-linha social">
+          <a href="${waLink()}" aria-label="WhatsApp" target="_blank" rel="noopener">${ICONES.whatsapp}</a>
           <a href="#" aria-label="Instagram">${ICONES.instagram}</a>
           <a href="#" aria-label="TikTok">${ICONES.tiktok}</a>
           <a href="#" aria-label="YouTube">${ICONES.youtube}</a>
@@ -174,10 +138,11 @@ const footerHTML = () => `
       <div><h4>Minha conta</h4><ul>
         <li><a href="#">Entrar / Cadastrar</a></li><li><a href="#">Meus pedidos</a></li>
         <li><a href="#">Favoritos</a></li><li><a href="#">Endereços</a></li></ul></div>
-      <!-- PENDENTE: WhatsApp, e-mail e horário reais da marca -->
       <div><h4>Atendimento</h4><ul>
-        <li><a href="#" data-pendente="whatsapp">WhatsApp</a></li><li><a href="#" data-pendente="email">E-mail</a></li>
-        <li><a href="#">Central de ajuda</a></li></ul></div>
+        <li><a href="${waLink()}" target="_blank" rel="noopener">WhatsApp (62) 9154-5748</a></li>
+        <li><a href="${waLink('Olá! Quero tirar uma dúvida sobre tamanho.')}" target="_blank" rel="noopener">Dúvida de tamanho</a></li>
+        <!-- PENDENTE: e-mail e horário de atendimento -->
+      </ul></div>
     </div>
 
     <div class="footer-meio">
@@ -189,9 +154,6 @@ const footerHTML = () => `
         <div class="footer-linha">
           <span class="pagamento">SITE SEGURO SSL</span><span class="pagamento">COMPRA PROTEGIDA</span>
         </div></div>
-      <div class="footer-embalagens">
-        <img src="assets/img/embalagem-etiqueta.jpg" alt="Sacola e etiqueta pretas com logo BRAVO prata" loading="lazy">
-      </div>
     </div>
 
     <div class="footer-base">

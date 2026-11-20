@@ -22,7 +22,7 @@
 
     <nav class="breadcrumb" aria-label="Você está em">
       <a href="index.html">Home</a><span aria-hidden="true">/</span>
-      <a href="categoria.html">Masculino</a><span aria-hidden="true">/</span>
+      <a href="categoria.html">Conjuntos</a><span aria-hidden="true">/</span>
       <span data-pdp-breadcrumb>Produto</span>
     </nav>
 
@@ -36,8 +36,7 @@
           <p class="eyebrow" style="color:var(--pedra-escura)" data-pdp-ref>REF.</p>
           <h1 class="titulo-md" style="margin:10px 0 14px" data-pdp-nome>Produto</h1>
           <p class="pdp-preco preco" data-pdp-preco></p>
-          <p class="card-parcela" data-pdp-parcela></p>
-        </div>
+                  </div>
 
         <div>
           <p class="pdp-rotulo"><span>Cor: <strong data-pdp-cor-nome></strong></span></p>
@@ -51,12 +50,14 @@
         </div>
 
         <div class="pdp-acoes">
-          <!-- data-size é preenchido ao escolher tamanho (main.js) -->
-          <button class="btn btn-escuro" data-add-to-cart>Adicionar à sacola</button>
+          <!-- Ação principal: WhatsApp com produto + tamanho na mensagem (main.js) -->
+          <a href="#" class="btn btn-escuro btn-whats" data-whatsapp-produto target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
           <button class="icone-btn" aria-label="Favoritar" aria-pressed="false" data-wishlist-toggle>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20s-7.5-4.6-9-9.3C2 7.4 4.2 4.5 7.4 4.5c2 0 3.6 1.1 4.6 2.7 1-1.6 2.6-2.7 4.6-2.7 3.2 0 5.4 2.9 4.4 6.2C19.5 15.4 12 20 12 20Z"/></svg>
           </button>
         </div>
+        <!-- Sacola (cart.js é TODO seu): data-size é preenchido ao escolher tamanho -->
+        <button class="btn btn-contorno btn-bloco" data-add-to-cart>Adicionar à sacola</button>
 
         <!-- ===== FRETE ===== -->
         <form class="frete" data-frete>
@@ -70,15 +71,14 @@
         <div class="acordeao">
           <details open><summary>Descrição</summary><div class="conteudo" data-pdp-descricao></div></details>
           <details><summary>Composição</summary><div class="conteudo" data-pdp-composicao></div></details>
-          <details><summary>Cuidados</summary><div class="conteudo">Lavar a seco ou à mão em água fria. Não usar alvejante. Secar à sombra. Passar em temperatura baixa.</div></details>
-          <details><summary>Trocas e devoluções</summary><div class="conteudo">Primeira troca grátis em até 30 dias. Devolução em até 7 dias após o recebimento.</div></details>
+          <details><summary>Trocas e dúvidas</summary><div class="conteudo">Fale com a BRAVO no WhatsApp para trocas, medidas e prazos de entrega.</div></details>
         </div>
       </div>
     </div>
 
     <!-- ===== COMPLETE O LOOK ===== -->
     <section class="secao" style="padding-top:0" aria-labelledby="t-complete">
-      <div class="secao-topo"><h2 class="titulo-lg" id="t-complete">Complete o look</h2></div>
+      <div class="secao-topo"><h2 class="titulo-lg" id="t-complete">Outras cores</h2></div>
       <div class="grid-produtos" data-colunas="4" data-shelf="complete-look"></div>
     </section>
 
@@ -86,7 +86,7 @@
     <section class="secao" style="padding-top:0" aria-labelledby="t-relacionados">
       <div class="carrossel" data-carrossel>
         <div class="secao-topo">
-          <h2 class="titulo-lg" id="t-relacionados">Você também pode gostar</h2>
+          <h2 class="titulo-lg" id="t-relacionados">Outros conjuntos</h2>
           <div class="carrossel-setas">
             <button aria-label="Anterior" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
             <button aria-label="Próximo" data-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
