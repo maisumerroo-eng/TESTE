@@ -95,11 +95,12 @@ export function renderPDP(p) {
     p.composicao || 'Pergunte a composição pelo WhatsApp.';
 
   // Galeria por ângulo: frente (modelo), costas (modelo), peça sozinha
-  const [frente, peca, costas] = p.imagens;
+  const [frente, peca, costas, dobrado] = p.imagens;
   const angulos = [
     { nome: 'Frente', src: frente, alt: `${p.nome}, modelo de frente` },
     { nome: 'Costas', src: costas || frente, alt: `${p.nome}, modelo de costas` },
     { nome: 'Peça', src: peca, alt: `${p.nome}, só a peça` },
+    ...(dobrado ? [{ nome: 'Dobrado', src: dobrado, alt: `${p.nome}, peça dobrada` }] : []),
   ];
   raiz.querySelector('[data-pdp-galeria]').innerHTML = `
     <div class="pdp-angulos" role="group" aria-label="Ângulos">

@@ -75,8 +75,8 @@ export const PRODUCTS = Object.entries(MODELOS).flatMap(([modelo, m], iModelo) =
       descricao: m.descricao,
       composicao: m.composicao,
       ordem: iModelo * 10 + iCor,
-      // -1 modelo de frente · -2 só a peça (hover) · -3 modelo de costas
-      imagens: [`assets/img/produto-${slug}-1.jpg`, `assets/img/produto-${slug}-2.jpg`, `assets/img/produto-${slug}-3.jpg`],
+      // -1 modelo de frente · -2 só a peça (hover) · -3 modelo de costas · -4 peça real dobrada (Lovable)
+      imagens: [`assets/img/produto-${slug}-1.jpg`, `assets/img/produto-${slug}-2.jpg`, `assets/img/produto-${slug}-3.jpg`, `assets/img/produto-${slug}-4.jpg`],
     };
   })
 );
