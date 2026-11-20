@@ -32,16 +32,22 @@ function initAnuncio() {
 
 /* ---------- 2. HEADER (sólido ao rolar) ---------- */
 function initHeader() {
-  const header = $('[data-header]');
+  const header = $('#header');
   if (!header?.classList.contains('transparente')) return;
-  const atualizar = () => header.classList.toggle('solido', scrollY > 40);
+  const anuncio = document.querySelector('[data-anuncio]');
+  const atualizar = () => {
+    // Header acompanha a barra de anúncio subindo, sem deixar vão nem sobrepor
+    const altura = anuncio ? anuncio.offsetHeight : 0;
+    header.style.top = Math.max(0, altura - scrollY) + 'px';
+    header.classList.toggle('solido', scrollY > altura);
+  };
   addEventListener('scroll', atualizar, { passive: true });
   atualizar();
 }
 
 /* ---------- 3. MEGA-MENU (hover + teclado) ---------- */
 function initMegaMenu() {
-  const header = $('[data-header]');
+  const header = $('#header');
   $$('[data-nav-item]').forEach((item) => {
     const link = $('.nav-link', item);
     if (!$('.mega', item)) return;
