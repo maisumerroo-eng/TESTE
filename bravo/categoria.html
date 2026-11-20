@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masculino — BRAVO Menswear</title>
+  <meta name="description" content="Roupas masculinas BRAVO: alfaiataria, camisas, tricô, jaquetas, jeans e calçados.">
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="icon" href="assets/img/placeholder.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-page="categoria">
+
+  <div data-include="anuncio"></div>
+  <div data-include="header"></div>
+
+  <main id="conteudo" class="container">
+
+    <!-- ===== BREADCRUMB + TÍTULO ===== -->
+    <nav class="breadcrumb" aria-label="Você está em">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span><span>Masculino</span>
+    </nav>
+    <div class="cat-topo">
+      <h1 class="titulo-lg" data-cat-titulo>Masculino</h1>
+    </div>
+
+    <div class="cat-layout">
+
+      <!-- ===== SIDEBAR DE FILTROS (desktop) =====
+           Mesmo conteúdo do drawer mobile abaixo. filters.js lê [data-filter]. -->
+      <aside class="cat-sidebar" aria-label="Filtros">
+        <template id="tpl-filtros">
+          <details class="filtro-grupo" open>
+            <summary>Subcategoria</summary>
+            <div class="filtro-lista">
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Alfaiataria"> Alfaiataria</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Camisas"> Camisas</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Polos"> Polos</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Camisetas"> Camisetas</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Tricô"> Tricô</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Jaquetas"> Jaquetas</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Casacos"> Casacos</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Calças"> Calças</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Jeans"> Jeans</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Calçados"> Calçados</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="subcategoria" value="Acessórios"> Acessórios</label>
+            </div>
+          </details>
+          <details class="filtro-grupo">
+            <summary>Cor</summary>
+            <div class="filtro-lista">
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Preto"> Preto</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Grafite"> Grafite</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Off-white"> Off-white</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Areia"> Areia</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Marinho"> Marinho</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Caramelo"> Caramelo</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Oliva"> Oliva</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="cor" value="Índigo"> Índigo</label>
+            </div>
+          </details>
+          <details class="filtro-grupo">
+            <summary>Material</summary>
+            <div class="filtro-lista">
+              <label class="filtro-check"><input type="checkbox" data-filter="material" value="Lã"> Lã</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="material" value="Algodão"> Algodão</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="material" value="Linho"> Linho</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="material" value="Couro"> Couro</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="material" value="Denim"> Denim</label>
+            </div>
+          </details>
+          <details class="filtro-grupo">
+            <summary>Modelagem</summary>
+            <div class="filtro-lista">
+              <label class="filtro-check"><input type="checkbox" data-filter="modelagem" value="Slim"> Slim</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="modelagem" value="Regular"> Regular</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="modelagem" value="Reta"> Reta</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="modelagem" value="Oversized"> Oversized</label>
+            </div>
+          </details>
+          <details class="filtro-grupo">
+            <summary>Tamanho</summary>
+            <div class="filtro-opcoes">
+              <!-- chips: o input fica escondido dentro do label -->
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="PP">PP</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="P">P</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="M">M</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="G">G</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="GG">GG</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="XGG">XGG</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="40">40</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="42">42</label>
+              <label class="chip"><input type="checkbox" class="sr-only" data-filter="tamanho" value="44">44</label>
+            </div>
+          </details>
+          <details class="filtro-grupo">
+            <summary>Faixa de preço</summary>
+            <div class="filtro-lista">
+              <label class="filtro-check"><input type="checkbox" data-filter="preco" value="0-299"> Até R$ 299</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="preco" value="300-599"> R$ 300 a R$ 599</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="preco" value="600-999"> R$ 600 a R$ 999</label>
+              <label class="filtro-check"><input type="checkbox" data-filter="preco" value="1000-9999"> Acima de R$ 1.000</label>
+            </div>
+          </details>
+          <button class="link-sub" style="margin-top:24px" data-limpar-filtros>Limpar filtros</button>
+        </template>
+        <!-- (o script inline abaixo copia o template aqui e no drawer) -->
+        <div data-filtros-alvo></div>
+      </aside>
+
+      <!-- ===== LISTAGEM ===== -->
+      <section aria-label="Produtos">
+        <div class="cat-barra">
+          <button class="btn-filtrar" data-abrir="filtros" aria-expanded="false" aria-controls="drawer-filtros">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            Filtrar
+          </button>
+          <p class="contagem"><span data-total>0</span> de <span data-total>0</span> resultados</p>
+          <div class="cat-barra-dir">
+            <label for="ordenar" class="sr-only">Ordenar por</label>
+            <select id="ordenar" class="ordenar" data-sort>
+              <option value="relevancia">Relevância</option>
+              <option value="vendidos">Mais vendidos</option>
+              <option value="recentes">Mais recentes</option>
+              <option value="desconto">Desconto</option>
+              <option value="maior-preco">Maior preço</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="az">Nome, A-Z</option>
+              <option value="za">Nome, Z-A</option>
+            </select>
+            <div class="grid-toggle" role="group" aria-label="Colunas da grade">
+              <button aria-label="2 colunas" aria-pressed="false" data-colunas-btn="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="7" height="16"/><rect x="13" y="4" width="7" height="16"/></svg></button>
+              <button aria-label="3 colunas" aria-pressed="true" data-colunas-btn="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="4.5" height="16"/><rect x="9.75" y="4" width="4.5" height="16"/><rect x="16.5" y="4" width="4.5" height="16"/></svg></button>
+              <button aria-label="4 colunas" aria-pressed="false" data-colunas-btn="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="3.5" height="16"/><rect x="8" y="4" width="3.5" height="16"/><rect x="13" y="4" width="3.5" height="16"/><rect x="18" y="4" width="3" height="16"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- render.js / filters.js preenchem a grade -->
+        <div class="grid-produtos" data-colunas="3" data-grid></div>
+
+        <div class="carregar-mais">
+          <p>Você viu <span data-total>0</span> produtos</p>
+          <button class="btn btn-contorno" data-ver-mais>Ver mais</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== TEXTO SEO (rodapé da categoria, como na John John) ===== -->
+    <section class="seo-texto">
+      <div>
+        <h2>Moda masculina BRAVO</h2>
+        <p>Peças pensadas para o guarda-roupa masculino contemporâneo: tecidos nobres, cortes limpos e uma paleta escura que combina entre si. Do jeans reto ao sobretudo de lã, cada item foi feito para durar.</p>
+      </div>
+      <div>
+        <h2>Alfaiataria masculina</h2>
+        <p>Blazers estruturados, calças com pregas e camisas de algodão egípcio. A alfaiataria BRAVO une acabamento de ateliê com caimento moderno para o trabalho, o jantar e o fim de semana.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== DRAWER DE FILTROS (mobile) ===== -->
+  <aside class="drawer drawer-esquerda" id="drawer-filtros" aria-label="Filtros" data-drawer="filtros">
+    <div class="drawer-topo">
+      <h2 class="eyebrow">Filtrar</h2>
+      <button class="icone-btn" aria-label="Fechar filtros" data-fechar>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+    <div class="drawer-corpo" data-filtros-alvo></div>
+    <div class="drawer-rodape">
+      <button class="btn btn-escuro btn-bloco" data-fechar>Ver resultados</button>
+    </div>
+  </aside>
+
+  <!-- Copia o <template> de filtros para sidebar e drawer (um HTML só para manter) -->
+  <script>
+    const tpl = document.getElementById('tpl-filtros');
+    document.querySelectorAll('[data-filtros-alvo]').forEach((alvo) => alvo.append(tpl.content.cloneNode(true)));
+  </script>
+
+  <div data-include="footer"></div>
+  <div data-include="globais"></div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BRAVO Menswear — Moda masculina premium</title>
+  <meta name="description" content="BRAVO Menswear: alfaiataria, tricô, couro e essenciais masculinos com corte preciso. Em até 6x sem juros.">
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="icon" href="assets/img/placeholder.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<!-- data-header="transparente": header começa transparente sobre o hero -->
+<body data-page="home" data-header="transparente">
+
+  <!-- ===== ANÚNCIO + HEADER (injetados por layout.js) ===== -->
+  <div data-include="anuncio"></div>
+  <div data-include="header"></div>
+
+  <main id="conteudo">
+
+    <!-- ===== HERO SLIDER (slide 1 = campanha, como no topo da John John) ===== -->
+    <section class="hero" data-hero aria-roledescription="carrossel" aria-label="Campanhas">
+      <div class="slide ativo" aria-roledescription="slide" aria-label="1 de 3">
+        <img src="assets/img/hero-3-campanha-couro.jpg" alt="Homem com jaqueta de couro preta sob luz lateral baixa" fetchpriority="high">
+        <div class="slide-texto">
+          <p class="eyebrow">Black Sale · até 60% off</p>
+          <h1 class="titulo-xl">Black Sale</h1>
+          <a href="categoria.html?c=sale" class="btn btn-claro">Comprar agora</a>
+        </div>
+      </div>
+      <div class="slide" aria-roledescription="slide" aria-label="2 de 3">
+        <img src="assets/img/hero-1-campanha-sobretudo.jpg" alt="Modelo com sobretudo longo de lã em fundo de concreto" loading="lazy">
+        <div class="slide-texto">
+          <p class="eyebrow">Inverno 26 — Concreto</p>
+          <h2 class="titulo-xl">Peso certo</h2>
+          <a href="categoria.html?c=jaquetas" class="btn btn-claro">Comprar agora</a>
+        </div>
+      </div>
+      <div class="slide" aria-roledescription="slide" aria-label="3 de 3">
+        <img src="assets/img/hero-2-campanha-alfaiataria.jpg" alt="Homem de terno escuro em corredor minimalista" loading="lazy">
+        <div class="slide-texto">
+          <p class="eyebrow">Nova alfaiataria</p>
+          <h2 class="titulo-xl">Corte preciso</h2>
+          <a href="categoria.html?c=alfaiataria" class="btn btn-claro">Comprar agora</a>
+        </div>
+      </div>
+
+      <div class="hero-controles">
+        <div class="hero-bullets">
+          <button class="hero-bullet ativo" aria-label="Ir para slide 1" aria-current="true"></button>
+          <button class="hero-bullet" aria-label="Ir para slide 2"></button>
+          <button class="hero-bullet" aria-label="Ir para slide 3"></button>
+        </div>
+        <button class="hero-seta" aria-label="Slide anterior" data-hero-prev>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="hero-seta" aria-label="Próximo slide" data-hero-next>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== COMPRE POR CATEGORIA ===== -->
+    <section class="secao" aria-labelledby="t-categorias">
+      <div class="container">
+        <div class="secao-topo">
+          <h2 class="titulo-lg" id="t-categorias">Compre por categoria</h2>
+          <a href="categoria.html" class="link-sub">Ver tudo</a>
+        </div>
+        <div class="tiles">
+          <a href="categoria.html?c=alfaiataria" class="tile">
+            <img src="assets/img/tile-alfaiataria.jpg" alt="Blazer escuro em detalhe" loading="lazy">
+            <span class="tile-rotulo titulo">Alfaiataria</span>
+          </a>
+          <a href="categoria.html?c=camisas" class="tile">
+            <img src="assets/img/tile-camisas.jpg" alt="Camisa clara dobrada sobre concreto" loading="lazy">
+            <span class="tile-rotulo titulo">Camisas</span>
+          </a>
+          <a href="categoria.html?c=trico" class="tile">
+            <img src="assets/img/tile-trico.jpg" alt="Tricô de gola alta em close" loading="lazy">
+            <span class="tile-rotulo titulo">Tricô</span>
+          </a>
+          <a href="categoria.html?c=jaquetas" class="tile">
+            <img src="assets/img/tile-jaquetas.jpg" alt="Jaqueta escura em modelo" loading="lazy">
+            <span class="tile-rotulo titulo">Jaquetas</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VITRINE: LANÇAMENTOS ===== -->
+    <section class="secao" style="padding-top:0" aria-labelledby="t-lancamentos">
+      <div class="container carrossel" data-carrossel>
+        <div class="secao-topo">
+          <h2 class="titulo-lg" id="t-lancamentos">Lançamentos</h2>
+          <div class="carrossel-setas">
+            <button aria-label="Anterior" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button aria-label="Próximo" data-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+        <!-- render.js preenche com produtos selo NEW -->
+        <div class="carrossel-trilho" data-shelf="lancamentos"></div>
+      </div>
+    </section>
+
+    <!-- ===== EDITORIAL DIVIDIDO ===== -->
+    <section class="dividido" aria-labelledby="t-alfaiataria">
+      <div class="dividido-img">
+        <img src="assets/img/editorial-alfaiataria.jpg" alt="Homem ajustando o punho do blazer" loading="lazy">
+      </div>
+      <div class="dividido-texto">
+        <p class="eyebrow">Editorial</p>
+        <h2 class="titulo-lg" id="t-alfaiataria">A nova alfaiataria</h2>
+        <p>Ombros estruturados, lã fria e pregas que caem retas. Feita para atravessar o dia sem perder a linha.</p>
+        <a href="categoria.html?c=alfaiataria" class="btn btn-contorno">Descobrir</a>
+      </div>
+    </section>
+
+    <!-- ===== VITRINE: MAIS VENDIDOS ===== -->
+    <section class="secao" aria-labelledby="t-vendidos">
+      <div class="container carrossel" data-carrossel>
+        <div class="secao-topo">
+          <h2 class="titulo-lg" id="t-vendidos">Best sellers</h2>
+          <div class="carrossel-setas">
+            <button aria-label="Anterior" data-prev><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button aria-label="Próximo" data-next><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+        <div class="carrossel-trilho" data-shelf="mais-vendidos"></div>
+      </div>
+    </section>
+
+    <!-- ===== MANIFESTO (campanha full-bleed) ===== -->
+    <section class="manifesto" aria-labelledby="t-manifesto">
+      <img src="assets/img/editorial-manifesto.jpg" alt="" loading="lazy">
+      <div class="manifesto-texto">
+        <p class="eyebrow">Manifesto BRAVO</p>
+        <h2 class="titulo-xl" id="t-manifesto">Feito para quem não pede licença</h2>
+        <a href="categoria.html" class="btn btn-contorno-claro">Ver coleção</a>
+      </div>
+    </section>
+
+    <!-- ===== SHOP THE LOOK ===== -->
+    <section class="secao" aria-labelledby="t-look">
+      <div class="container look">
+        <div class="look-foto">
+          <img src="assets/img/shop-the-look.jpg" alt="Look completo: sobretudo, tricô, calça de alfaiataria e mocassim" loading="lazy">
+          <!-- Hotspots: top/left em % sobre a foto. data-hotspot liga ao item da lista -->
+          <a href="produto.html?id=bv-002" class="hotspot" style="top:30%;left:38%" data-hotspot="bv-002" aria-label="Ver Sobretudo Longo de Lã">+</a>
+          <a href="produto.html?id=bv-007" class="hotspot" style="top:22%;left:52%" data-hotspot="bv-007" aria-label="Ver Tricô Gola Alta Merino">+</a>
+          <a href="produto.html?id=bv-009" class="hotspot" style="top:64%;left:46%" data-hotspot="bv-009" aria-label="Ver Calça de Alfaiataria">+</a>
+          <a href="produto.html?id=bv-015" class="hotspot" style="top:92%;left:50%" data-hotspot="bv-015" aria-label="Ver Mocassim de Couro">+</a>
+        </div>
+        <div>
+          <p class="eyebrow">Shop the look</p>
+          <h2 class="titulo-lg" id="t-look" style="margin:12px 0 32px">Inverno em camadas</h2>
+          <div class="look-lista">
+            <a href="produto.html?id=bv-002" class="look-item" data-look-item="bv-002">
+              <img src="assets/img/produto-sobretudo-la-1.jpg" data-alt="assets/img/produto-sobretudo-la-2.jpg" alt="" loading="lazy">
+              <div><p class="card-nome">Sobretudo Longo de Lã</p><p class="preco">R$ 1.499,00</p></div>
+            </a>
+            <a href="produto.html?id=bv-007" class="look-item" data-look-item="bv-007">
+              <img src="assets/img/produto-trico-gola-alta-1.jpg" data-alt="assets/img/produto-trico-gola-alta-2.jpg" alt="" loading="lazy">
+              <div><p class="card-nome">Tricô Gola Alta Merino</p><p class="preco">R$ 599,00</p></div>
+            </a>
+            <a href="produto.html?id=bv-009" class="look-item" data-look-item="bv-009">
+              <img src="assets/img/produto-calca-alfaiataria-1.jpg" data-alt="assets/img/produto-calca-alfaiataria-2.jpg" alt="" loading="lazy">
+              <div><p class="card-nome">Calça de Alfaiataria com Pregas</p><p class="preco">R$ 549,00</p></div>
+            </a>
+            <a href="produto.html?id=bv-015" class="look-item" data-look-item="bv-015">
+              <img src="assets/img/produto-mocassim-couro-1.jpg" data-alt="assets/img/produto-mocassim-couro-2.jpg" alt="" loading="lazy">
+              <div><p class="card-nome">Mocassim de Couro</p><p class="preco">R$ 649,00</p></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INSTAGRAM ===== -->
+    <section class="secao" style="padding-top:0" aria-labelledby="t-insta">
+      <div class="container">
+        <div class="secao-topo">
+          <h2 class="titulo-md" id="t-insta">@bravomenswear</h2>
+          <a href="#" class="link-sub">Seguir</a>
+        </div>
+      </div>
+      <!-- insta-1..6.jpg: os que faltarem caem no data-alt -->
+      <div class="insta">
+        <a href="#" aria-label="Post 1"><img src="assets/img/insta-1.jpg" data-alt="assets/img/tile-alfaiataria.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Post 2"><img src="assets/img/insta-2.jpg" data-alt="assets/img/tile-camisas.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Post 3"><img src="assets/img/insta-3.jpg" data-alt="assets/img/tile-trico.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Post 4"><img src="assets/img/insta-4.jpg" data-alt="assets/img/tile-jaquetas.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Post 5"><img src="assets/img/insta-5.jpg" data-alt="assets/img/editorial-manifesto.jpg" alt="" loading="lazy"></a>
+        <a href="#" aria-label="Post 6"><img src="assets/img/insta-6.jpg" data-alt="assets/img/embalagem-etiqueta.jpg" alt="" loading="lazy"></a>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="secao newsletter" aria-labelledby="t-news">
+      <div class="container">
+        <h2 class="titulo-lg" id="t-news">Receba em primeira mão</h2>
+        <form class="newsletter-form" data-newsletter>
+          <label for="news-email" class="sr-only">Seu e-mail</label>
+          <input id="news-email" type="email" placeholder="Seu e-mail" required autocomplete="email">
+          <button type="submit" class="eyebrow">Assinar</button>
+        </form>
+        <p>Lançamentos, Black Sale e 10% off na primeira compra.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER + DRAWERS (injetados por layout.js) ===== -->
+  <div data-include="footer"></div>
+  <div data-include="globais"></div>
+</body>
+</html>
