@@ -1,5 +1,5 @@
 /* =========================================================
-   wishlist.js — FAVORITOS (esqueleto para você implementar)
+   wishlist.js · FAVORITOS (esqueleto para você implementar)
    Ganchos prontos no HTML:
      [data-wishlist-toggle="ID"] → corações (cards e PDP);
         main.js já alterna aria-pressed e chama toggleWishlist(id)

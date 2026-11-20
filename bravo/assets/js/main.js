@@ -1,5 +1,5 @@
 /* =========================================================
-   main.js — ponto de entrada de TODAS as páginas.
+   main.js · ponto de entrada de TODAS as páginas.
    Interface pronta: anúncio, header, mega-menu, drawers,
    slider, carrosséis, galeria e seletores da PDP.
    Lógica de negócio (sacola, favoritos, busca, filtros)
@@ -147,7 +147,7 @@ function initAcoes() {
     }
   });
 
-  // Newsletter (só evita reload — envio real é TODO)
+  // Newsletter (só evita reload · envio real é TODO)
   $$('[data-newsletter]').forEach((form) => form.addEventListener('submit', (e) => {
     e.preventDefault();
     // TODO: enviar e-mail para sua API / serviço de newsletter.

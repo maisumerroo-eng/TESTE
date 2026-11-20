@@ -1,5 +1,5 @@
 /* =========================================================
-   layout.js — partes que se repetem em todas as páginas.
+   layout.js · partes que se repetem em todas as páginas.
    Cada página tem marcadores vazios:
      <div data-include="anuncio"></div>
      <div data-include="header"></div>
@@ -38,7 +38,7 @@ export const LOGO_MONOGRAMA = `
 </svg>`;
 
 export const logo = (classe = '') => `
-<a href="index.html" class="logo ${classe}" aria-label="BRAVO Menswear — página inicial">
+<a href="index.html" class="logo ${classe}" aria-label="BRAVO Menswear, página inicial">
   ${LOGO_MONOGRAMA}
   <span class="logo-texto">BRAVO</span>
 </a>`;
@@ -84,7 +84,7 @@ const MEGAS = {
     </a>`,
   colecoes: `
     <div><h3>Coleções</h3><ul>
-      <li><a href="#">Inverno 26 — Concreto</a></li>
+      <li><a href="#">Inverno 26 · Concreto</a></li>
       <li><a href="#">Essenciais Pretos</a></li>
       <li><a href="#">Couro & Lã</a></li>
       <li><a href="#">Linha Noite</a></li>
@@ -111,7 +111,7 @@ const MEGAS = {
     </ul></div>
     <a href="categoria.html?c=sale" class="mega-imagem">
       <img src="assets/img/hero-3-campanha-couro.jpg" alt="Jaqueta de couro preta em campanha" loading="lazy">
-      <span class="eyebrow">Black Sale — até 60% off</span>
+      <span class="eyebrow">Black Sale · até 60% off</span>
     </a>`,
 };
 
@@ -174,9 +174,10 @@ const footerHTML = () => `
       <div><h4>Minha conta</h4><ul>
         <li><a href="#">Entrar / Cadastrar</a></li><li><a href="#">Meus pedidos</a></li>
         <li><a href="#">Favoritos</a></li><li><a href="#">Endereços</a></li></ul></div>
+      <!-- PENDENTE: WhatsApp, e-mail e horário reais da marca -->
       <div><h4>Atendimento</h4><ul>
-        <li><a href="#">WhatsApp (11) 90000-0000</a></li><li><a href="#">sac@bravomenswear.com.br</a></li>
-        <li><a href="#">Seg a sex, 9h às 18h</a></li></ul></div>
+        <li><a href="#" data-pendente="whatsapp">WhatsApp</a></li><li><a href="#" data-pendente="email">E-mail</a></li>
+        <li><a href="#">Central de ajuda</a></li></ul></div>
     </div>
 
     <div class="footer-meio">
@@ -194,8 +195,9 @@ const footerHTML = () => `
     </div>
 
     <div class="footer-base">
-      <span>© ${new Date().getFullYear()} BRAVO MENSWEAR LTDA · CNPJ 00.000.000/0001-00 (fictício)</span>
-      <span>Rua Exemplo, 100 — São Paulo/SP</span>
+      <!-- PENDENTE: razão social, CNPJ e endereço reais -->
+      <span>© ${new Date().getFullYear()} BRAVO Menswear</span>
+      <span>Marca em desenvolvimento. Imagens geradas por IA.</span>
     </div>
   </div>
 </footer>`;

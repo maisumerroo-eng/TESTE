@@ -1,5 +1,5 @@
 /* =========================================================
-   cart.js — SACOLA (esqueleto para você implementar)
+   cart.js · SACOLA (esqueleto para você implementar)
    Ganchos prontos no HTML:
      [data-add-to-cart="ID"] + [data-size="M"]  → botões de compra
      [data-cart-count]      → contadores (header e drawer)

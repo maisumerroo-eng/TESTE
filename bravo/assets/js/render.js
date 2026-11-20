@@ -1,5 +1,5 @@
 /* =========================================================
-   render.js — transforma os dados de products.js em HTML.
+   render.js · transforma os dados de products.js em HTML.
    ========================================================= */
 import { ICONES } from './layout.js';
 
@@ -44,7 +44,7 @@ export function cardHTML(p) {
   <article class="card" data-product-id="${p.id}">
     <a href="produto.html?id=${p.id}" class="card-midia" aria-label="${p.nome}">
       ${p.selo ? `<span class="card-selo eyebrow ${seloClasse}">${p.selo}</span>` : ''}
-      <img src="${img1}" data-alt="${img2}" alt="${p.nome} — foto principal" loading="lazy">
+      <img src="${img1}" data-alt="${img2}" alt="${p.nome}, foto principal" loading="lazy">
       <img src="${img2}" data-alt="${img1}" alt="" class="img-2" loading="lazy">
     </a>
     <button class="icone-btn card-fav" aria-label="Favoritar ${p.nome}" aria-pressed="false" data-wishlist-toggle="${p.id}">${ICONES.coracao}</button>
@@ -76,7 +76,7 @@ export function renderLista(container, lista) {
 export function renderPDP(p) {
   const raiz = document.querySelector('[data-pdp]');
   if (!raiz || !p) return;
-  document.title = `${p.nome} — BRAVO Menswear`;
+  document.title = `${p.nome} · BRAVO Menswear`;
   const parc = parcelas(p.preco);
 
   raiz.querySelector('[data-pdp-breadcrumb]').textContent = p.nome;
@@ -91,7 +91,7 @@ export function renderPDP(p) {
   // Galeria: as 2 imagens + 2 repetidas como "detalhe" (troque por fotos reais)
   const [a, b] = p.imagens;
   raiz.querySelector('[data-pdp-galeria]').innerHTML = [a, b, b, a]
-    .map((src, i) => `<img src="${src}" data-alt="${i % 2 ? a : b}" alt="${p.nome} — foto ${i + 1}" ${i > 1 ? 'loading="lazy"' : ''}>`)
+    .map((src, i) => `<img src="${src}" data-alt="${i % 2 ? a : b}" alt="${p.nome}, foto ${i + 1}" ${i > 1 ? 'loading="lazy"' : ''}>`)
     .join('');
 
   raiz.querySelector('[data-pdp-cores]').innerHTML = p.cores

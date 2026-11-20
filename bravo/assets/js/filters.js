@@ -1,5 +1,5 @@
 /* =========================================================
-   filters.js — FILTROS + ORDENAÇÃO da categoria (esqueleto)
+   filters.js · FILTROS + ORDENAÇÃO da categoria (esqueleto)
    Ganchos prontos em categoria.html:
      input[data-filter="subcategoria|cor|material|modelagem|tamanho|preco"]
         (checkboxes na sidebar e no drawer mobile, value = opção)
@@ -7,7 +7,7 @@
                            maior-preco | menor-preco | az | za
      [data-ver-mais]     → botão "VER MAIS"
      [data-limpar-filtros]
-   main.js chama initFilters(PRODUCTS, pintar) — chame pintar(lista)
+   main.js chama initFilters(PRODUCTS, pintar) · chame pintar(lista)
    sempre que o resultado mudar (ele renderiza e atualiza a contagem).
    ========================================================= */
 

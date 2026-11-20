@@ -1,5 +1,5 @@
 /* =========================================================
-   search.js — BUSCA (esqueleto para você implementar)
+   search.js · BUSCA (esqueleto para você implementar)
    Ganchos prontos no HTML (overlay de busca):
      [data-search-form]    → formulário
      [data-search-input]   → campo de texto
