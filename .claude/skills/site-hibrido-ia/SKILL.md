@@ -40,7 +40,7 @@ Quando o próprio Claude precisar criar CSS, layout ou texto (porque o Lovable f
 
 ### 3. Rodízio de créditos entre workspaces (autorizado pelo usuário)
 Quando aparecer `out_of_credits` (no erro ou em `get_project.project.attentionReason`):
-1. `remix_project` do projeto atual para o próximo workspace (Pro primeiro, depois Free). O remix não gasta crédito.
+1. **NÃO faça remix de projeto cujo agente parou no meio** (out_of_credits): o remix **retoma o prompt original inteiro** antes do seu pedido e queima o crédito do workspace novo. Prefira `create_project` novo no próximo workspace com **só** a tarefa que falta (anexe o CSS e as referências). Remix só serve para projeto com `agentFinished: true` e sem tarefa pendente.
 2. `send_message` no remix pedindo **só o que falta**, com a lista de arquivos por prioridade e "não mexa em código".
 3. Repita até acabar a lista ou os workspaces. Anote qual workspace gastou o quê e avise o usuário no final.
 
