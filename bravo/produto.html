@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Produto · BRAVO Menswear</title>
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="icon" href="assets/img/placeholder.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body data-page="produto">
+
+  <div data-include="anuncio"></div>
+  <div data-include="header"></div>
+
+  <!-- data-pdp: render.js preenche os [data-pdp-*] a partir de ?id= na URL -->
+  <main id="conteudo" class="container" data-pdp>
+
+    <nav class="breadcrumb" aria-label="Você está em">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="categoria.html">Conjuntos</a><span aria-hidden="true">/</span>
+      <span data-pdp-breadcrumb>Produto</span>
+    </nav>
+
+    <div class="pdp">
+      <!-- ===== GALERIA ===== -->
+      <div class="pdp-galeria" data-pdp-galeria></div>
+
+      <!-- ===== INFO ===== -->
+      <div class="pdp-info">
+        <div>
+          <p class="eyebrow" style="color:var(--pedra-escura)" data-pdp-ref>REF.</p>
+          <h1 class="titulo-md" style="margin:10px 0 14px" data-pdp-nome>Produto</h1>
+          <p class="pdp-preco preco" data-pdp-preco></p>
+                  </div>
+
+        <div>
+          <p class="pdp-rotulo"><span>Cor: <strong data-pdp-cor-nome></strong></span></p>
+          <div class="cores" style="gap:10px" data-pdp-cores></div>
+        </div>
+
+        <div>
+          <p class="pdp-rotulo"><span>Tamanho</span><a href="#">Guia de medidas</a></p>
+          <div class="tamanhos" data-pdp-tamanhos></div>
+          <p class="card-parcela" style="margin-top:10px" data-pdp-aviso hidden>Selecione um tamanho.</p>
+        </div>
+
+        <div class="pdp-acoes">
+          <!-- Ação principal: WhatsApp com produto + tamanho na mensagem (main.js) -->
+          <a href="#" class="btn btn-escuro btn-whats" data-whatsapp-produto target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
+          <button class="icone-btn" aria-label="Favoritar" aria-pressed="false" data-wishlist-toggle>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20s-7.5-4.6-9-9.3C2 7.4 4.2 4.5 7.4 4.5c2 0 3.6 1.1 4.6 2.7 1-1.6 2.6-2.7 4.6-2.7 3.2 0 5.4 2.9 4.4 6.2C19.5 15.4 12 20 12 20Z"/></svg>
+          </button>
+        </div>
+        <!-- Sacola (cart.js é TODO seu): data-size é preenchido ao escolher tamanho -->
+        <button class="btn btn-contorno btn-bloco" data-add-to-cart>Adicionar à sacola</button>
+
+        <!-- ===== FRETE ===== -->
+        <form class="frete" data-frete>
+          <label for="cep" class="sr-only">CEP</label>
+          <input id="cep" inputmode="numeric" maxlength="9" placeholder="Calcular frete: digite seu CEP" autocomplete="postal-code">
+          <button type="submit">Calcular</button>
+        </form>
+        <p class="card-parcela" data-frete-resultado></p>
+
+        <!-- ===== ACORDEÕES ===== -->
+        <div class="acordeao">
+          <details open><summary>Descrição</summary><div class="conteudo" data-pdp-descricao></div></details>
+          <details><summary>Composição</summary><div class="conteudo" data-pdp-composicao></div></details>
+          <details><summary>Trocas e dúvidas</summary><div class="conteudo">Fale com a BRAVO no WhatsApp para trocas, medidas e prazos de entrega.</div></details>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COMPLETE O LOOK ===== -->
+    <section class="secao" style="padding-top:0" aria-labelledby="t-complete">
+      <div class="secao-topo"><h2 class="titulo-lg" id="t-complete">Outras cores</h2></div>
+      <div class="grid-produtos" data-colunas="4" data-shelf="complete-look"></div>
+    </section>
+
+    <!-- ===== VOCÊ TAMBÉM PODE GOSTAR ===== -->
+    <section class="secao" style="padding-top:0" aria-labelledby="t-relacionados">
+      <div class="carrossel" data-carrossel>
+        <div class="secao-topo">
+          <h2 class="titulo-lg" id="t-relacionados">Outros conjuntos</h2>
+        </div>
+        <div class="carrossel-trilho" data-shelf="relacionados"></div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <div data-include="globais"></div>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Painel BRAVO</title>
+  <link rel="icon" href="assets/img/placeholder.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <!-- admin.js é ESQUELETO: toda a lógica é TODO para codar depois -->
+  <script type="module" src="assets/js/admin.js"></script>
+</head>
+<body class="adm" data-page="admin">
+
+<!-- =====================================================================
+     PAINEL ADMIN BRAVO (só estrutura)
+     Telas: [data-tela="login|dashboard|produtos|produto-form|pedidos|banners|config"]
+     Só uma fica visível por vez (classe .ativa). Trocar de tela = TODO admin.js.
+     ===================================================================== -->
+
+  <!-- ===== LOGIN ===== -->
+  <section class="adm-login" data-tela="login" aria-labelledby="t-login">
+    <form class="adm-login-card" data-form="login" novalidate>
+      <a href="index.html" class="logo" aria-label="Voltar para a loja">
+        <svg viewBox="0 0 100 76" fill="currentColor" aria-hidden="true"><path d="M0 0H82L96 14V27L88 35L98 45V61L83 76H0V40H15V62H76L83 55V49L77 44H30V32H74L81 25V19L75 14H0Z"/></svg>
+        <span class="logo-texto">BRAVO</span>
+      </a>
+      <h1 class="titulo-md" id="t-login">Painel da loja</h1>
+      <label class="adm-campo">E-mail
+        <input id="login-email" type="email" name="email" autocomplete="username" required>
+      </label>
+      <label class="adm-campo">Senha
+        <input id="login-senha" type="password" name="senha" autocomplete="current-password" required>
+      </label>
+      <p class="adm-erro" data-erro="login" hidden>E-mail ou senha incorretos.</p>
+      <button type="submit" class="btn btn-escuro btn-bloco">Entrar</button>
+    </form>
+  </section>
+
+  <!-- ===== APP (depois do login) ===== -->
+  <div class="adm-app" data-app hidden>
+
+    <!-- Menu lateral -->
+    <aside class="adm-menu" aria-label="Menu do painel" data-adm-menu>
+      <div class="adm-menu-topo">
+        <span class="logo-texto">BRAVO</span>
+        <span class="eyebrow adm-tag">Admin</span>
+      </div>
+      <nav>
+        <a href="#dashboard" class="adm-link ativo" data-ir="dashboard">Visão geral</a>
+        <a href="#produtos" class="adm-link" data-ir="produtos">Produtos</a>
+        <a href="#pedidos" class="adm-link" data-ir="pedidos">Pedidos</a>
+        <a href="#banners" class="adm-link" data-ir="banners">Banners da home</a>
+        <a href="#config" class="adm-link" data-ir="config">Configurações</a>
+      </nav>
+      <div class="adm-menu-rodape">
+        <a href="index.html" target="_blank" rel="noopener" class="adm-link">Ver loja</a>
+        <button class="adm-link" data-sair>Sair</button>
+      </div>
+    </aside>
+
+    <div class="adm-principal">
+      <!-- Barra superior -->
+      <header class="adm-topo">
+        <button class="icone-btn adm-btn-menu" aria-label="Abrir menu" aria-expanded="false" data-adm-toggle>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+        <h2 class="titulo-md" data-titulo-tela>Visão geral</h2>
+        <span class="adm-usuario" data-usuario-nome></span>
+      </header>
+
+      <!-- ===== DASHBOARD ===== -->
+      <section class="adm-tela ativa" data-tela="dashboard" aria-label="Visão geral">
+        <!-- Números vêm do backend (TODO). Sem dado → mostra "—". -->
+        <div class="adm-kpis">
+          <article class="adm-kpi"><p class="eyebrow">Pedidos hoje</p><p class="adm-kpi-valor" data-kpi="pedidos-hoje">—</p></article>
+          <article class="adm-kpi"><p class="eyebrow">Faturamento no mês</p><p class="adm-kpi-valor" data-kpi="faturamento-mes">—</p></article>
+          <article class="adm-kpi"><p class="eyebrow">Cliques no WhatsApp</p><p class="adm-kpi-valor" data-kpi="cliques-whats">—</p></article>
+          <article class="adm-kpi"><p class="eyebrow">Produtos sem estoque</p><p class="adm-kpi-valor" data-kpi="sem-estoque">—</p></article>
+        </div>
+        <div class="adm-grid-2">
+          <section class="adm-card">
+            <div class="adm-card-topo"><h3 class="eyebrow">Últimos pedidos</h3><a href="#pedidos" class="link-sub" data-ir="pedidos">Ver todos</a></div>
+            <ul class="adm-lista" data-lista="ultimos-pedidos"><li class="adm-vazio">Nenhum pedido ainda.</li></ul>
+          </section>
+          <section class="adm-card">
+            <div class="adm-card-topo"><h3 class="eyebrow">Estoque baixo</h3><a href="#produtos" class="link-sub" data-ir="produtos">Ver produtos</a></div>
+            <ul class="adm-lista" data-lista="estoque-baixo"><li class="adm-vazio">Tudo em dia.</li></ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- ===== PRODUTOS (lista) ===== -->
+      <section class="adm-tela" data-tela="produtos" aria-label="Produtos">
+        <div class="adm-acoes">
+          <label class="adm-busca">
+            <span class="sr-only">Buscar produto</span>
+            <input id="busca-produto" type="search" placeholder="Buscar por nome, modelo ou cor" data-busca-produto>
+          </label>
+          <select id="filtro-modelo" class="ordenar" data-filtro-modelo aria-label="Filtrar por modelo">
+            <option value="">Todos os modelos</option>
+            <option value="ondas">Ondas</option>
+            <option value="jacquard">Jacquard</option>
+            <option value="canelado">Canelado</option>
+          </select>
+          <button class="btn btn-escuro" data-ir="produto-form" data-novo-produto>Novo produto</button>
+        </div>
+
+        <div class="adm-tabela-wrap">
+          <table class="adm-tabela">
+            <thead>
+              <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Cor</th>
+                <th scope="col" class="num">Preço</th>
+                <th scope="col" class="num">Estoque</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="sr-only">Ações</span></th>
+              </tr>
+            </thead>
+            <!-- admin.js preenche com <template id="tpl-linha-produto"> para cada produto -->
+            <tbody data-tabela="produtos"></tbody>
+          </table>
+        </div>
+
+        <template id="tpl-linha-produto">
+          <tr data-produto-id="">
+            <td><div class="adm-produto"><img src="" alt="" data-campo="imagem"><span data-campo="nome"></span></div></td>
+            <td data-campo="modelo"></td>
+            <td><span class="cor-bolinha" data-campo="cor-hex"></span> <span data-campo="cor"></span></td>
+            <td class="num preco" data-campo="preco"></td>
+            <td class="num" data-campo="estoque"></td>
+            <td><span class="adm-status" data-campo="status"></span></td>
+            <td class="adm-linha-acoes">
+              <button class="link-sub" data-editar>Editar</button>
+              <button class="link-sub" data-duplicar>Duplicar</button>
+            </td>
+          </tr>
+        </template>
+      </section>
+
+      <!-- ===== PRODUTO (formulário criar/editar) ===== -->
+      <section class="adm-tela" data-tela="produto-form" aria-label="Editar produto">
+        <form class="adm-form" data-form="produto" novalidate>
+          <input type="hidden" name="id" id="prod-id">
+
+          <div class="adm-form-col">
+            <fieldset class="adm-card">
+              <legend class="eyebrow">Informações</legend>
+              <label class="adm-campo">Nome
+                <input id="prod-nome" name="nome" required placeholder="Conjunto Jacquard Preto">
+              </label>
+              <div class="adm-linha">
+                <label class="adm-campo">Modelo
+                  <select id="prod-modelo" name="modelo" required>
+                    <option value="ondas">Ondas</option>
+                    <option value="jacquard">Jacquard</option>
+                    <option value="canelado">Canelado</option>
+                  </select>
+                </label>
+                <label class="adm-campo">Peças
+                  <select id="prod-subcategoria" name="subcategoria">
+                    <option>Camisa + Bermuda</option>
+                    <option>Camiseta + Bermuda</option>
+                  </select>
+                </label>
+              </div>
+              <div class="adm-linha">
+                <label class="adm-campo">Cor
+                  <input id="prod-cor" name="cor" required placeholder="Preto">
+                </label>
+                <label class="adm-campo adm-campo-cor">Tom
+                  <input id="prod-cor-hex" name="corHex" type="color" value="#151515">
+                </label>
+                <label class="adm-campo">Código (REF)
+                  <input id="prod-codigo" name="codigo" placeholder="KA-711">
+                </label>
+              </div>
+              <label class="adm-campo">Descrição
+                <textarea id="prod-descricao" name="descricao" rows="4"></textarea>
+              </label>
+              <label class="adm-campo">Composição
+                <input id="prod-composicao" name="composicao" placeholder="100% poliéster">
+              </label>
+            </fieldset>
+
+            <fieldset class="adm-card">
+              <legend class="eyebrow">Preço</legend>
+              <div class="adm-linha">
+                <label class="adm-campo">Preço (R$)
+                  <input id="prod-preco" name="preco" inputmode="decimal" placeholder="Deixe vazio para 'consulte no WhatsApp'">
+                </label>
+                <label class="adm-campo">Preço antigo (R$)
+                  <input id="prod-preco-original" name="precoOriginal" inputmode="decimal" placeholder="Opcional, aparece riscado">
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="adm-card">
+              <legend class="eyebrow">Estoque por tamanho</legend>
+              <div class="adm-estoque">
+                <label class="adm-campo">P <input id="estoque-p" name="estoque.P" type="number" min="0" inputmode="numeric" value="0"></label>
+                <label class="adm-campo">M <input id="estoque-m" name="estoque.M" type="number" min="0" inputmode="numeric" value="0"></label>
+                <label class="adm-campo">G <input id="estoque-g" name="estoque.G" type="number" min="0" inputmode="numeric" value="0"></label>
+                <label class="adm-campo">GG <input id="estoque-gg" name="estoque.GG" type="number" min="0" inputmode="numeric" value="0"></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="adm-form-col">
+            <fieldset class="adm-card">
+              <legend class="eyebrow">Fotos</legend>
+              <p class="adm-ajuda">1ª foto = principal do card. 2ª = aparece ao passar o mouse.</p>
+              <label class="adm-upload" for="prod-fotos">
+                <input id="prod-fotos" name="fotos" type="file" accept="image/*" multiple class="sr-only" data-upload-fotos>
+                <span>Arraste as fotos ou clique para escolher</span>
+              </label>
+              <ul class="adm-fotos" data-lista="fotos"><!-- TODO: miniaturas com botão remover e arrastar para ordenar --></ul>
+            </fieldset>
+
+            <fieldset class="adm-card">
+              <legend class="eyebrow">Vitrine</legend>
+              <label class="filtro-check"><input id="prod-ativo" type="checkbox" name="ativo" checked> Visível na loja</label>
+              <label class="filtro-check"><input id="prod-destaque" type="checkbox" name="destaque"> Destaque na home</label>
+              <label class="adm-campo">Selo
+                <select id="prod-selo" name="selo">
+                  <option value="">Sem selo</option>
+                  <option>NOVO</option>
+                  <option>MAIS VENDIDO</option>
+                  <option>PROMOÇÃO</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <div class="adm-form-acoes">
+              <button type="button" class="btn btn-contorno" data-ir="produtos">Cancelar</button>
+              <button type="submit" class="btn btn-escuro">Salvar produto</button>
+            </div>
+            <button type="button" class="link-sub adm-perigo" data-excluir-produto>Excluir produto</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== PEDIDOS ===== -->
+      <section class="adm-tela" data-tela="pedidos" aria-label="Pedidos">
+        <div class="adm-acoes">
+          <div class="adm-chips" role="group" aria-label="Filtrar pedidos">
+            <button class="chip" aria-pressed="true" data-filtro-pedido="">Todos</button>
+            <button class="chip" aria-pressed="false" data-filtro-pedido="novo">Novos</button>
+            <button class="chip" aria-pressed="false" data-filtro-pedido="pago">Pagos</button>
+            <button class="chip" aria-pressed="false" data-filtro-pedido="enviado">Enviados</button>
+            <button class="chip" aria-pressed="false" data-filtro-pedido="cancelado">Cancelados</button>
+          </div>
+          <button class="btn btn-contorno" data-novo-pedido>Registrar pedido do WhatsApp</button>
+        </div>
+        <div class="adm-tabela-wrap">
+          <table class="adm-tabela">
+            <thead>
+              <tr>
+                <th scope="col">Pedido</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Itens</th>
+                <th scope="col" class="num">Total</th>
+                <th scope="col">Status</th>
+                <th scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody data-tabela="pedidos">
+              <tr class="adm-vazio-linha"><td colspan="6">Nenhum pedido ainda.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== BANNERS DA HOME ===== -->
+      <section class="adm-tela" data-tela="banners" aria-label="Banners da home">
+        <p class="adm-ajuda">Os 3 slides da hero. Ponto de foco = onde está a pessoa na foto (não é cortado no celular).</p>
+        <div class="adm-banners" data-lista="banners">
+          <!-- admin.js repete <template id="tpl-banner"> para cada slide -->
+        </div>
+        <template id="tpl-banner">
+          <fieldset class="adm-card adm-banner">
+            <legend class="eyebrow">Slide <span data-campo="numero"></span></legend>
+            <img src="" alt="" class="adm-banner-img" data-campo="imagem">
+            <label class="adm-campo">Linha pequena <input name="eyebrow"></label>
+            <label class="adm-campo">Título <input name="titulo"></label>
+            <div class="adm-linha">
+              <label class="adm-campo">Texto do botão <input name="cta"></label>
+              <label class="adm-campo">Link do botão <input name="link"></label>
+            </div>
+            <div class="adm-linha">
+              <label class="adm-campo">Foco horizontal (%) <input name="focoX" type="number" min="0" max="100"></label>
+              <label class="adm-campo">Foco vertical (%) <input name="focoY" type="number" min="0" max="100"></label>
+            </div>
+            <label class="btn btn-contorno adm-trocar">Trocar imagem <input type="file" accept="image/*" class="sr-only" name="imagem"></label>
+          </fieldset>
+        </template>
+        <div class="adm-form-acoes"><button class="btn btn-escuro" data-salvar-banners>Salvar banners</button></div>
+      </section>
+
+      <!-- ===== CONFIGURAÇÕES ===== -->
+      <section class="adm-tela" data-tela="config" aria-label="Configurações">
+        <form class="adm-form adm-form-1col" data-form="config" novalidate>
+          <fieldset class="adm-card">
+            <legend class="eyebrow">Contato</legend>
+            <label class="adm-campo">WhatsApp de vendas (só números, com 55 + DDD)
+              <input id="cfg-whatsapp" name="whatsapp" inputmode="numeric" placeholder="556291545748">
+            </label>
+            <label class="adm-campo">Mensagem padrão do WhatsApp
+              <input id="cfg-whatsapp-msg" name="whatsappMsg" placeholder="Olá! Vim pelo site da BRAVO.">
+            </label>
+            <label class="adm-campo">E-mail <input id="cfg-email" name="email" type="email"></label>
+            <label class="adm-campo">Instagram <input id="cfg-instagram" name="instagram" placeholder="@bravomenswear"></label>
+          </fieldset>
+          <fieldset class="adm-card">
+            <legend class="eyebrow">Barra de anúncio (até 3 frases)</legend>
+            <label class="adm-campo">Frase 1 <input id="cfg-anuncio-1" name="anuncio1"></label>
+            <label class="adm-campo">Frase 2 <input id="cfg-anuncio-2" name="anuncio2"></label>
+            <label class="adm-campo">Frase 3 <input id="cfg-anuncio-3" name="anuncio3"></label>
+          </fieldset>
+          <fieldset class="adm-card">
+            <legend class="eyebrow">Empresa (rodapé)</legend>
+            <label class="adm-campo">Razão social <input id="cfg-razao" name="razaoSocial"></label>
+            <label class="adm-campo">CNPJ <input id="cfg-cnpj" name="cnpj" inputmode="numeric"></label>
+            <label class="adm-campo">Endereço <input id="cfg-endereco" name="endereco"></label>
+          </fieldset>
+          <div class="adm-form-acoes"><button type="submit" class="btn btn-escuro">Salvar configurações</button></div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Aviso rápido (salvo, erro). admin.js mostra/esconde. -->
+  <div class="adm-toast" role="status" aria-live="polite" data-toast hidden></div>
+</body>
+</html>
