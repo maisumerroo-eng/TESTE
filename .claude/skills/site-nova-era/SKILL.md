@@ -1,6 +1,6 @@
 ---
 name: site-nova-era
-description: Sistema completo para criar sites de cliente no "novo design" e com megapersonalização. Figma como hub (imagens e ícones por IA, telas, reel), fotos de bancos públicos com licença, vídeo e voz (ElevenLabs, muapi, Higgsfield). Roteiro em 8 atos, momento-assinatura nascido da metáfora do negócio, motion system com vocabulário próprio (reveal por data-attributes, seção fixada com rota SVG, pilha de placas, marquee com inércia, contadores), anti-vício de IA, DNA do cliente, variantes por visitante (UTM, origem, escolha, horário, retorno) com WhatsApp personalizado, performance, acessibilidade, SEO, LGPD, vídeo vertical do site para o reel e deploy. HTML/CSS/JS puro com templates testados. Use quando o usuário pedir site, landing page, site institucional, site pra cliente, site premium/animado/"estilo agência", site personalizado por público/anúncio, ou citar sites como referência de nível (ex. vexterintelligence.com.br).
+description: Sistema completo para criar sites de cliente no "novo design" e com megapersonalização. Figma como hub (imagens e ícones por IA, telas, reel), fotos de bancos públicos com licença, vídeo e voz (ElevenLabs, muapi, Higgsfield), 3D (Three.js, geração e modelagem), modo econômico de tokens e créditos, auditoria e otimização automática. Roteiro em 8 atos, momento-assinatura nascido da metáfora do negócio, motion system com vocabulário próprio (reveal por data-attributes, seção fixada com rota SVG, pilha de placas, marquee com inércia, contadores), anti-vício de IA, DNA do cliente, variantes por visitante (UTM, origem, escolha, horário, retorno) com WhatsApp personalizado, performance, acessibilidade, SEO, LGPD, vídeo vertical do site para o reel e deploy. HTML/CSS/JS puro com templates testados. Use quando o usuário pedir site, landing page, site institucional, site pra cliente, site premium/animado/"estilo agência", site personalizado por público/anúncio, ou citar sites como referência de nível (ex. vexterintelligence.com.br).
 ---
 
 # Site nova era
@@ -34,6 +34,15 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/buscar-imagens.js` | fotos de bancos públicos sem chave (Openverse + Wikimedia), com créditos |
 | `templates/gravar-reel.js` | fase 8: vídeo vertical do site |
 | `templates/montar-reel.sh` | fase 8: junta vídeo + narração ElevenLabs + trilha em MP4 1080x1920 |
+| `references/3d.md` | quando houver 3D: meios de gerar/modelar (procedural, 3D Jutsu grátis, Poly Haven, Blender, imagem→3D), pipeline, Three.js |
+| `templates/base/tres.js` | bloco 3D com Three.js 0.187.0 (carrega sob demanda, poster de fallback) |
+| `templates/otimizar-3d.sh` | GLB para web (meshopt + WebP + simplificação) |
+| `references/economia.md` | sempre: tokens, créditos, revisão só no diff, ciclo de otimização |
+| `templates/auditar-site.js` | auditoria priorizada (LCP, CLS, peso, imagens, código não usado, SEO, a11y) |
+| `templates/otimizar-imagens.sh` | AVIF + WebP responsivos com `<picture>` pronto |
+
+## Modo econômico (vale para todas as fases)
+Siga `references/economia.md`: busque e edite trechos (nunca reescreva arquivo inteiro), parta dos templates testados, rascunho barato antes de geração cara, manifesto de assets, revisão e screenshots só do que mudou, auditoria completa só em marcos (1ª versão, pré-deploy, mudança grande) e correção na ordem P1 → P2.
 | `templates/analisar-site.js` | quando o usuário mandar um site novo para estudar |
 
 ## Atualizar com novo site (quando o usuário mandar uma URL de referência)
@@ -72,6 +81,8 @@ Carregue `frontend-design` e `anthropic-skills:site-sem-cara-de-ia`. Defina em `
 2. HTML semântico completo primeiro (conteúdo final visível sem JS).
 3. CSS mobile primeiro; fundos escuro/claro marcando capítulos.
 4. Motion: siga `motion-system.md`. Use os `data-reveal` com propósito (máx. 4 tipos por página), um `data-pin` para o momento-assinatura, contadores com valor real. Carregue `animate` e `choreograph` para decisões de curva e ordem.
+5. 3D (só se for assinatura ou mostrar o produto melhor que foto): siga `3d.md`. Modelo do meio mais barato que entrega a qualidade, `otimizar-3d.sh`, bloco `tres.js` com poster.
+6. Imagens finais por `otimizar-imagens.sh` (AVIF/WebP, srcset, width/height); a do LCP com `fetchpriority="high"`.
 
 ### 5. Prova de autoria
 Rode o detector e a lista "Prova de autoria" de `anti-vicio-ia.md`. Mínimo 5 de 8 itens. Reescreva o que falhar.
@@ -80,7 +91,9 @@ Rode o detector e a lista "Prova de autoria" de `anti-vicio-ia.md`. Mínimo 5 de
 Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonalizacao.md` (Camada 2). Variantes em `<template data-p-variant>`, ordem por segmento com `data-p-order`, WhatsApp com mensagem do segmento via `data-wa`, seletor de perfil com `data-p-choose`, link "ver versão padrão". Liste cada variante e sua fonte no `dna.md`. Teste com `?seg=<segmento>`.
 
 ### 7. Qualidade
-`qualidade.md` inteiro. Depois: `impeccable` (polish), `emil-design-eng` (interações), `web-design-guidelines` (a11y/UX). Abra com Chrome DevTools MCP ou Playwright: 390px e 1440px, console limpo, reduced motion ligado e desligado, Lighthouse.
+1. `node templates/auditar-site.js <url> auditoria` e corrigir P1 e P2 na ordem (ciclo de `economia.md`: medir → corrigir o maior gargalo → medir de novo → parar na meta).
+2. `qualidade.md` como checklist. Depois: `impeccable` (polish), `emil-design-eng` (interações), `web-design-guidelines` (a11y/UX), cada um só nas seções que mudaram desde a última revisão.
+3. Chrome DevTools MCP ou Playwright: 390px e 1440px, console limpo, reduced motion ligado e desligado.
 
 ### 8. Entrega
 - Vídeo: `templates/gravar-reel.js` (1080x1920). Narração com ElevenLabs (voz pt-BR escolhida pelo tom da marca, roteiro de 15 a 30 s) e montagem com `templates/montar-reel.sh` (trilha opcional abaixa sob a voz; legenda via transcrição). Subir os quadros na página `04 Reel` do Figma. Legenda do post curta citando a marca, sem prometer resultado.
@@ -100,6 +113,8 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 8. Personalização sem dado pessoal e sempre reversível.
 9. Figma é o hub de todo projeto. Geração paga só com estimativa e ok do usuário; nunca repetir chamada de geração.
 10. Imagem de banco público só com licença comercial/editável e crédito quando exigido; nunca imagem do site analisado.
+11. 3D nunca na frente do conteúdo: carrega sob demanda, tem poster e não piora o LCP.
+12. Economia sem perder qualidade: rascunho barato → aprovação → final caro uma vez; revisão e testes só no que mudou.
 
 ## Checklist final
 
@@ -108,7 +123,9 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 - [ ] Detector anti-vício limpo; prova de autoria ≥ 5/8
 - [ ] Variantes testadas com `?seg=` e com escolha manual (se houver Camada 2)
 - [ ] 390px e 1440px sem scroll horizontal; console limpo
-- [ ] Lighthouse ≥ 90; contraste AA; foco visível; reduced motion ok
+- [ ] `auditoria.md` sem P1/P2; LCP < 2,5 s e CLS < 0,1 no mobile; contraste AA; foco visível; reduced motion ok
+- [ ] 3D (se houver) otimizado, com poster e sem piorar o LCP
+- [ ] `assets/manifesto.json` com tudo que foi gerado (ferramenta, modelo, prompt, custo)
 - [ ] JSON-LD, OG 1200x630, sitemap, robots
 - [ ] Arquivo Figma com DNA, tokens, assets, telas e reel
 - [ ] `creditos.md` revisado e créditos CC BY visíveis no site (se houver)

@@ -6,6 +6,10 @@
   <title>[Serviço] para [nicho] em [região] | [Marca]</title>
   <meta name="description" content="[Oferta de entrada] para [nicho]. [Prova curta].">
   <meta name="theme-color" content="#0b0b0a">
+  <!-- Three.js só é baixado se houver [data-tres] perto da tela (tres.js) -->
+  <script type="importmap">{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/" } }</script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="motion.css">
 </head>
@@ -30,6 +34,10 @@
     <div class="hero__nums" data-reveal-group data-stagger="120">
       <p data-reveal="flip"><strong data-count="412" data-count-prefix="R$ " data-count-suffix=" mil">R$ 412 mil</strong><span>por ano</span></p>
       <p data-reveal="flip"><strong data-count="74" data-count-prefix="R$ " data-count-suffix=" mil">R$ 74 mil</strong><span>por mês</span></p>
+    </div>
+    <!-- 3D opcional (references/3d.md): data-src="assets/3d/modelo.glb" ou forma procedural -->
+    <div class="tres" data-tres data-shape="coin" data-idle="0.25" data-tilt role="img" aria-label="[Objeto da marca em 3D]">
+      <!-- <img class="tres__poster" src="assets/3d/poster.webp" alt="" width="560" height="560"> -->
     </div>
     <div class="profile" role="group" aria-label="Seu perfil">
       <button data-p-choose="pis-cofins" aria-pressed="false">[Perfil A]</button>
@@ -105,6 +113,7 @@
 <script type="module">
   import './personaliza.js';   // antes do motion: troca textos e depois o motion anima
   import './motion.js';
+  import './tres.js';        // 3D sob demanda; não faz nada sem [data-tres]
 </script>
 </body>
 </html>

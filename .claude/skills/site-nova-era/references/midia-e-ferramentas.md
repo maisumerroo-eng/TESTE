@@ -13,6 +13,9 @@
 | **Unsplash / Pexels / Pixabay** | HTTP com chave | **sem chave** (401) | bancos de foto. O usuário cria a chave grátis e salva nas configurações do ambiente (Unsplash usa `Client-ID`, Pexels usa a chave pura e Pixabay usa parâmetro de URL: formatos que o formulário de credencial não cobre) |
 | **Logos de marcas** | MCP `21st` → `search_logo` | ok, grátis | SVG de logos (svgl.app) para parceiros/integrações, com permissão |
 | **Lovable** | MCP `Lovable` | conectado | gera CSS e imagens (fluxo da skill `site-hibrido-ia`) |
+| **Higgsfield 3D Jutsu** | MCP `Higgsfield` (`scene_builder_3d_*`) | conectado; **montar/editar/renderizar cena é grátis** | modelagem 3D por Python e exportação GLB (ver `3d.md`) |
+| **Poly Haven** | HTTP sem chave (`api.polyhaven.com`) | ok | modelos, texturas PBR e HDRIs CC0 |
+| **Blender** | MCP `blender` | só no computador do usuário com Blender aberto | modelagem 3D completa |
 
 Status muda: antes de gerar, confirme com 1 chamada barata (`Higgsfield balance`, `GET https://api.muapi.ai/api/v1/account/balance`, `Figma whoami`, `ElevenLabs creative_list_voices`).
 

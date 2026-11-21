@@ -54,6 +54,7 @@ Site de contabilidade/BPO para transportadoras. Serve de régua de qualidade, n�
 ## Pontos fracos (fazer melhor)
 
 - Banner de cookies com botões azuis padrão: quebra a marca. Estilizar com os tokens.
+- LCP medido com `auditar-site.js` (celular, 4G lento, CPU 4x): **~4,9 s** no subtítulo da hero e ~2,5 s de bloqueio de JS. Causa provável: preloader segurando a hero. 5 links/botões sem nome acessível.
 - Preloader de até 6 s e cortina de 1,4 s em toda navegação interna: bonito na primeira vez, cansativo depois. Mostrar preloader só na 1ª visita da sessão; transição ≤ 600 ms.
 - H1 em caixa alta com pergunta: funciona, mas é fórmula comum. Preferir afirmação específica com número.
 - Conteúdo fica invisível até o reveal disparar (screenshot de página inteira sai em branco). Garantir estado final visível para robôs e prints.
