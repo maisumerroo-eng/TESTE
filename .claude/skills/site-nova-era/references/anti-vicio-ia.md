@@ -46,7 +46,7 @@ Complementa `anthropic-skills:site-sem-cara-de-ia`. Rodar esta lista **antes de 
 
 ```bash
 grep -rniE "transform(e|ar) seu|próximo nível|inovador|soluções completas|apaixonad|excelência|—|saiba mais|clique aqui" --include=*.html .
-grep -rnoE "[\x{1F300}-\x{1FAFF}]" --include=*.html . 2>/dev/null | head   # emojis
+python3 -c "import re,glob;[print(f,re.findall('[\U0001F300-\U0001FAFF\u2600-\u27BF]',open(f).read())[:5]) for f in glob.glob('**/*.html',recursive=True)]"   # emojis
 grep -rniE "from-purple|to-indigo|via-pink|bg-gradient-to" --include=*.{html,css} .
 ```
 

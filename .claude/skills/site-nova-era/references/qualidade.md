@@ -3,7 +3,8 @@
 ## Performance (metas)
 
 - LCP < 2,0 s em 4G, CLS < 0,05, INP < 200 ms. Lighthouse ≥ 90 em todas as categorias.
-- Fontes: woff2 self-hosted, subset latin, `font-display: swap`, `preload` só da fonte do H1.
+- Fontes: woff2 self-hosted (variável, subset latin), `preload` das fontes da 1ª dobra. Fonte de **título** com `font-display: optional` (zera o CLS da troca de fonte; testado: CLS 0,27 → 0); texto com `swap` + fallback calibrado (`@font-face` local Arial com `size-adjust` medido **na página servida**, comparando a largura da mesma frase nas duas fontes; medir via `file://` dá valor errado).
+- Hero alinhada embaixo (`align-items: end`) amplifica CLS: qualquer crescimento do texto empurra tudo para cima. Testar com `auditar-site.js` (4G + CPU 4x), não só sem throttle.
 - Imagens: AVIF/WebP, `width`/`height` sempre, `loading="lazy"` abaixo da dobra, `fetchpriority="high"` na hero.
 - JS: 1 arquivo `type="module"` com `defer` implícito; nada bloqueando render. Lenis e Anime.js só se usados.
 - Animar só `transform`, `opacity`, `clip-path`, `filter` (com moderação). Ver `animation-performance`.

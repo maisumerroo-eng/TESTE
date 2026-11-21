@@ -32,7 +32,7 @@ html.motion [data-reveal="develop"] { transition-duration: 1400ms; }
 html.motion [data-reveal="wipe"]    { transition-timing-function: var(--ease-snap); transition-duration: 1000ms; }
 
 /* ---------- words: palavras sobem de dentro de uma máscara ---------- */
-.rv-w  { display: inline-block; overflow: clip; overflow-clip-margin: .12em; vertical-align: bottom; padding-bottom: .06em; }
+.rv-w  { display: inline-block; overflow: clip; overflow-clip-margin: .12em; vertical-align: bottom; padding-bottom: .06em; margin-bottom: -.06em; } /* não altera a altura da linha (evita CLS) */
 .rv-wi { display: inline-block; }
 html.motion [data-reveal="words"] { transition: none; }
 html.motion [data-reveal="words"] .rv-wi {

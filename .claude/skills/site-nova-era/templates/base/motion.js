@@ -78,7 +78,14 @@ function initReveal() {
       io.unobserve(e.target);
     });
   }, { rootMargin: '0px 0px -15% 0px' });
-  targets.forEach((el) => io.observe(el));
+  // o que já está visível ao carregar revela na hora (senão itens perto do rodapé da 1ª dobra ficam escondidos)
+  targets.forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) {
+      el.classList.add('is-in');
+      if (el.dataset.count) runCount(el);
+    } else io.observe(el);
+  });
 }
 
 /* ---------- header esperto ---------- */

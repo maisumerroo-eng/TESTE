@@ -70,7 +70,7 @@ Variar só o assunto. Guardar o prompt-mestre na página `00 DNA` do Figma e no 
 | Vinheta/abertura | animação no Figma → `export_video` |
 | Vídeo do site para o reel | `templates/gravar-reel.js` (grava rolando, 1080x1920) |
 | Reel com narração e trilha | `templates/montar-reel.sh video.webm narracao.mp3 [trilha.mp3] video/reel.mp4` (trilha abaixa sob a voz) |
-| Legendas no reel | `creative_transcribe_audio` (ElevenLabs) → montar `.srt` → `ffmpeg -vf subtitles=legenda.srt` |
+| Legendas no reel | **grátis:** o roteiro já é o texto; achar os cortes com `ffmpeg -i voz.mp3 -af silencedetect=noise=-35dB:d=0.35 -f null -` e montar o `.srt` (testado no caso Meridiano). Pago: `creative_transcribe_audio`. Queimar: `ffmpeg -vf "subtitles=legenda.srt:force_style='Bold=1,FontSize=11,BorderStyle=3,Outline=5,MarginV=110'"` |
 
 ## Voz (ElevenLabs)
 

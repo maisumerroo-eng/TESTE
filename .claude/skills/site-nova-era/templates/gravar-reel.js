@@ -1,7 +1,7 @@
 // gravar-reel.js: grava o site rolando em vídeo vertical para Reels/TikTok.
 // Uso: npx -y serve . -l 8080   (em outro terminal)
 //      node gravar-reel.js http://localhost:8080 [velocidade_px_por_frame=6]
-// Saída: video/*.webm (1080x1920). Converter: ffmpeg -i video/X.webm -c:v libx264 -pix_fmt yuv420p video/reel.mp4
+// Saída: video/*.webm (720x1280, vira 1080x1920 no montar-reel.sh). Converter: ffmpeg -i video/X.webm -c:v libx264 -pix_fmt yuv420p video/reel.mp4
 const { chromium } = require('playwright');
 
 (async () => {
@@ -9,8 +9,9 @@ const { chromium } = require('playwright');
   const step = Number(process.argv[3] || 6);
   const browser = await chromium.launch();
   const ctx = await browser.newContext({
-    viewport: { width: 540, height: 960 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true,
-    recordVideo: { dir: 'video', size: { width: 1080, height: 1920 } },
+    // o Playwright grava no tamanho da tela (não amplia): gravar em 720x1280 e o montar-reel.sh sobe para 1080x1920
+    viewport: { width: 720, height: 1280 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true,
+    recordVideo: { dir: 'video', size: { width: 720, height: 1280 } },
   });
   const page = await ctx.newPage();
   await page.goto(url, { waitUntil: 'networkidle' });

@@ -1,0 +1,90 @@
+/* motion.css: sistema de reveal da skill site-nova-era.
+   Só esconde coisas sob html.motion (adicionada pelo motion.js quando não há reduced motion).
+   Sem JS, com reduced motion, para robôs e prints: tudo visível. */
+
+:root {
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
+  --ease-snap: cubic-bezier(.7, 0, .2, 1);
+  --ease-pop: cubic-bezier(.18, .89, .32, 1.2);
+  --dur-ui: 220ms;
+  --dur-in: 800ms;
+  --stagger: 90ms;
+  --accent: #c8a34d;        /* trocar pela cor da marca */
+  --accent-glow: #fff3cf;
+}
+
+/* ---------- estado inicial (só com motion) ---------- */
+html.motion [data-reveal] {
+  transition-property: opacity, transform, clip-path, filter, scale, translate;
+  transition-duration: var(--dur-in);
+  transition-timing-function: var(--ease-out);
+  transition-delay: calc(var(--i, 0) * var(--stagger) + var(--delay, 0ms));
+}
+html.motion [data-reveal="rise"]:not(.is-in)    { opacity: 0; translate: 0 24px; }
+html.motion [data-reveal="fade"]:not(.is-in)    { opacity: 0; }
+html.motion [data-reveal="wipe"]:not(.is-in)    { clip-path: inset(0 100% 0 0); }
+html.motion [data-reveal="blur"]:not(.is-in)    { opacity: 0; scale: .94; filter: blur(10px); }
+html.motion [data-reveal="develop"]:not(.is-in) { opacity: 0; scale: 1.06; filter: blur(8px) grayscale(1); }
+html.motion [data-reveal="flip"]:not(.is-in)    { opacity: 0; transform: perspective(800px) rotateX(-70deg); transform-origin: 50% 100%; }
+html.motion [data-reveal="track"]:not(.is-in)   { opacity: 0; translate: -16px 0; }
+html.motion [data-reveal="develop"] { transition-duration: 1400ms; }
+html.motion [data-reveal="wipe"]    { transition-timing-function: var(--ease-snap); transition-duration: 1000ms; }
+
+/* ---------- words: palavras sobem de dentro de uma máscara ---------- */
+.rv-w  { display: inline-block; overflow: clip; overflow-clip-margin: .12em; vertical-align: bottom; padding-bottom: .06em; margin-bottom: -.06em; } /* não altera a altura da linha (evita CLS) */
+.rv-wi { display: inline-block; }
+html.motion [data-reveal="words"] { transition: none; }
+html.motion [data-reveal="words"] .rv-wi {
+  transition: translate var(--dur-in) var(--ease-out), rotate var(--dur-in) var(--ease-out);
+  transition-delay: calc(var(--wi, 0) * 70ms + var(--delay, 0ms));
+}
+html.motion [data-reveal="words"]:not(.is-in) .rv-wi { translate: 0 110%; rotate: 6deg; }
+
+/* ---------- ignite: texto acende uma vez ---------- */
+@keyframes rv-ignite {
+  0%   { color: inherit; text-shadow: none; }
+  35%  { color: var(--accent-glow); text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 90%, transparent), 0 0 46px color-mix(in srgb, var(--accent) 50%, transparent); }
+  100% { color: var(--accent); text-shadow: none; }
+}
+html.motion [data-reveal="ignite"]:not(.is-in) { opacity: 0; }
+html.motion [data-reveal="ignite"].is-in { animation: rv-ignite 1.6s var(--ease-out) both; animation-delay: var(--delay, 0ms); }
+
+/* ---------- sweep: brilho diagonal passa uma vez ---------- */
+[data-reveal="sweep"] { position: relative; overflow: hidden; isolation: isolate; }
+html.motion [data-reveal="sweep"]::after {
+  content: ""; position: absolute; inset: -50% auto -50% -40%; width: 30%; z-index: 1; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgb(255 255 255 / .45), transparent);
+  translate: -100% 0; rotate: 12deg;
+}
+html.motion [data-reveal="sweep"].is-in::after { animation: rv-sweep 1.2s var(--ease-io) .3s both; }
+@keyframes rv-sweep { to { translate: 600% 0; } }
+
+/* ---------- contador ---------- */
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* ---------- header esperto ---------- */
+.site-header { position: fixed; inset: 0 0 auto; z-index: 50; transition: translate .5s var(--ease-out), background-color .3s, backdrop-filter .3s; }
+.site-header.is-scrolled { background: color-mix(in srgb, #000 72%, transparent); backdrop-filter: blur(12px); }
+.site-header.is-hidden { translate: 0 -100%; }
+
+/* ---------- marquee arrastável ---------- */
+[data-marquee] { display: flex; overflow-x: auto; scrollbar-width: none; cursor: grab; touch-action: pan-y; }
+[data-marquee]::-webkit-scrollbar { display: none; }
+[data-marquee].is-dragging { cursor: grabbing; user-select: none; }
+[data-marquee] > * { flex: none; display: flex; }
+
+/* ---------- seção fixada com progresso ---------- */
+[data-pin] { position: relative; height: var(--pin-h, 400svh); }
+[data-pin] > [data-pin-stage] { position: sticky; top: 0; height: 100svh; overflow: clip; }
+[data-pin] [data-step] { transition: opacity .5s var(--ease-out), translate .5s var(--ease-out); }
+html.motion [data-pin] [data-step]:not(.is-current) { opacity: 0; translate: 0 16px; pointer-events: none; }
+[data-pin-path] { transition: none; }
+/* sem motion: vira lista comum */
+html:not(.motion) [data-pin] { height: auto; }
+html:not(.motion) [data-pin] > [data-pin-stage] { position: static; height: auto; }
+
+/* ---------- reduced motion: garantia extra ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

@@ -14,14 +14,14 @@ processa() {
   IFS=x read -r w0 h0 < <(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x "$f")
   for w in $WIDTHS; do
     [[ $w -gt $w0 ]] && continue
-    ffmpeg -y -v error -i "$f" -vf "scale=$w:-2:flags=lanczos" -c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 "$OUT/$base-$w.avif"
-    ffmpeg -y -v error -i "$f" -vf "scale=$w:-2:flags=lanczos" -c:v libwebp -quality 80 "$OUT/$base-$w.webp"
+    ffmpeg -nostdin -y -v error -i "$f" -vf "scale=$w:-2:flags=lanczos" -c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 "$OUT/$base-$w.avif"
+    ffmpeg -nostdin -y -v error -i "$f" -vf "scale=$w:-2:flags=lanczos" -c:v libwebp -quality 80 "$OUT/$base-$w.webp"
     srcavif+="$OUT/$base-$w.avif ${w}w, "; srcwebp+="$OUT/$base-$w.webp ${w}w, "; maior=$w
   done
   if [[ $maior -eq 0 ]]; then  # original menor que todas as larguras: mantém o tamanho
     maior=$w0
-    ffmpeg -y -v error -i "$f" -c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 "$OUT/$base-$w0.avif"
-    ffmpeg -y -v error -i "$f" -c:v libwebp -quality 80 "$OUT/$base-$w0.webp"
+    ffmpeg -nostdin -y -v error -i "$f" -c:v libaom-av1 -still-picture 1 -crf 30 -cpu-used 6 "$OUT/$base-$w0.avif"
+    ffmpeg -nostdin -y -v error -i "$f" -c:v libwebp -quality 80 "$OUT/$base-$w0.webp"
     srcavif="$OUT/$base-$w0.avif ${w0}w, "; srcwebp="$OUT/$base-$w0.webp ${w0}w, "
   fi
   local h=$(( h0 * maior / w0 )) antes depois
