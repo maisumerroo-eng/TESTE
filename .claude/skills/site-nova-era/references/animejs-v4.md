@@ -1,6 +1,6 @@
 # Referência: Anime.js v4
 
-Referência de implementação da skill `site-animado` (passo 5). Decisão de SE e COMO animar vem das skills `animate`/`choreograph`.
+Referência de implementação da skill `site-nova-era` (motion system). Decisão de SE e COMO animar vem das skills `animate`/`choreograph`.
 
 Versão fixa: **animejs@4.5.0**. A API v4 é diferente da v3 (`anime({...})` não existe mais). Nunca escreva sintaxe v3.
 
