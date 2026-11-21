@@ -45,6 +45,7 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/scrub/` | motor de vídeo no scroll testado (`scrub.js`, `scrub.css`, `exemplo.html`) |
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
+| `templates/comparar-densidade.js` | régua de acabamento: mede o nosso site contra a referência (ícones, hovers, animações, gradientes, conteúdo) |
 | `templates/gate-texto.py` | gate de texto: travessão, estoque, sinais quietos de IA, emoji |
 
 ## Como falar com o usuário
@@ -147,6 +148,7 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 
 - [ ] `dna.md` preenchido, sem `[A CONFIRMAR]` no texto visível
 - [ ] 8 atos revisados; momento-assinatura funcionando e com versão estática
+- [ ] Régua de acabamento de `qualidade.md` conferida (`comparar-densidade.js` contra a referência)
 - [ ] `gate-texto.py` limpo; prova de autoria ≥ 5/8; teste de remoção da assinatura
 - [ ] Contraste do pior pixel aprovado; teste de flick aprovado em seções fixadas/scrub
 - [ ] Premissa da marca e frases reais dos compradores no `dna.md`

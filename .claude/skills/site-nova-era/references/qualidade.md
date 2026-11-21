@@ -78,3 +78,31 @@
 - Recibos reais (nunca estimativa): `curl -s -o /dev/null -w "TTFB %{time_starttransfer}s, total %{time_total}s, %{size_download} bytes\n" "$URL"` + `auditar-site.js` na URL do ar. Apresentar ao usuário com o argumento: site estático, sem backend para ser lento, mídia pesada atrás de pôster.
 - Domínio novo: DNS pode levar horas e o certificado HTTPS sai depois; avisar em vez de declarar quebrado.
 - Pedir ao usuário que teste no celular dele, na rede real.
+
+## Régua de acabamento (nível de referência premium)
+
+Medido com `templates/comparar-densidade.js` em 21/11/2026, Vexter (referência) x Meridiano v1 (nosso, aprovado em todas as auditorias técnicas e ainda assim percebido como "abaixo"):
+
+| Métrica | Vexter | Meridiano v1 |
+|---|---|---|
+| Regras CSS | 1550 | 221 |
+| Keyframes (animações nomeadas) | 57 | 2 |
+| Regras de hover | 59 | 3 |
+| Gradientes / mask-image | 87 / 21 | 6 / 0 |
+| Elementos SVG (ícones, desenhos) | 223 | 24 |
+| Imagens | 35 | 6 |
+| Títulos h3 / palavras | 64 / 1676 | 7 / 782 |
+| Links | 69 | 15 |
+
+Lição: performance, contraste e ausência de vícios **não bastam** para parecer premium. O que separa é **densidade de acabamento**. Antes de entregar, conferir:
+- [ ] **Sistema de ícones próprio** (8 a 40) num estilo só, usado em faixa de prova, frentes, etapas e valores.
+- [ ] **Estado de hover/foco em tudo que é clicável** (botão com preenchimento/face, link com sublinhado animado, card que responde), 20+ estados.
+- [ ] **Material nos números-chave:** gradiente metálico/da marca, varredura de luz uma vez, cartões com borda e brilho.
+- [ ] **Bordas que somem** (`mask-image`) em carrosséis e fotos que sangram no fundo.
+- [ ] **Assinatura com acabamento fotográfico ou 3D**, não ilustração chapada (blocos de cor lisos leem como placeholder).
+- [ ] **Placas empilhadas mostrando o cabeçalho de cada placa** (lê como baralho, não como tela que cobre tela).
+- [ ] **Resultados com antes/depois e gráfico que cresce**, não só números em linha.
+- [ ] **Profundidade de conteúdo:** seção de autoridade (artigos/guias com imagem), rodapé completo (colunas, contatos, slogan), 1.500+ palavras na home quando o nicho pede confiança.
+- [ ] **Peso na rolagem:** smooth scroll (Lenis) quando houver seções fixadas; microdetalhes (traço que se desenha, ícone que respira) em nível de sussurro.
+- [ ] Rodar `comparar-densidade.js` contra a referência do cliente/nicho e fechar as lacunas que importam (não perseguir número).
+
