@@ -8,13 +8,21 @@ description: Sistema completo para criar sites de cliente no "novo design" e com
 Meta: o site parece **feito à mão para aquele cliente** e **escrito para cada visitante**. Nada de template, nada de cara de IA.
 
 Stack: HTML + CSS + JS puro (ES modules), sem build. Lenis e Anime.js opcionais. Deploy na Vercel.
-Régua de qualidade: `references/caso-vexter.md` (análise do site que inspirou esta skill; aprender princípios, nunca copiar).
+Régua de qualidade: os casos em `references/casos/` (sites analisados; aprender princípios, nunca copiar).
+
+## Casos estudados
+
+| Caso | Nicho | Lição principal |
+|---|---|---|
+| `casos/vexter.md` | contabilidade/BPO para transportadoras | metáfora do negócio (estrada) vira a seção fixada; uma oferta só; prova em reais |
+
+Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição que o projeto precisa.
 
 ## Mapa de arquivos
 
 | Arquivo | Quando ler |
 |---|---|
-| `references/caso-vexter.md` | antes de começar: o nível esperado, estratégias, estrutura, pontos fracos a superar |
+| `references/casos/*.md` | antes de começar: nível esperado, estratégias, estrutura, pontos fracos a superar |
 | `references/megapersonalizacao.md` | fase 1 (DNA) e fase 6 (variantes por visitante) |
 | `references/narrativa-estrutura.md` | fase 2: roteiro, momento-assinatura por nicho, fórmulas de copy |
 | `references/motion-system.md` | fase 4: tokens, vocabulário de reveal, biblioteca de interações |
@@ -23,6 +31,24 @@ Régua de qualidade: `references/caso-vexter.md` (análise do site que inspirou 
 | `references/qualidade.md` | fase 7: performance, a11y, SEO, LGPD |
 | `templates/base/` | copiar para o projeto: `index.html`, `style.css`, `motion.css`, `motion.js`, `personaliza.js` (testados juntos) |
 | `templates/gravar-reel.js` | fase 8: vídeo vertical do site |
+| `templates/analisar-site.js` | quando o usuário mandar um site novo para estudar |
+
+## Atualizar com novo site (quando o usuário mandar uma URL de referência)
+
+1. **Raio-x:** `node templates/analisar-site.js <url> <scratchpad>/<nome>`. Montar folhas de contato das telas (PIL) e olhar todas.
+2. **Código:** baixar o JS e o CSS principais de `reqs.txt` e procurar: libs (gsap, anime, lenis, three, swiper, framer), `IntersectionObserver`, `requestAnimationFrame`, `cubic-bezier`, keyframes, `clip-path`, `mask-image`, `@property`, `animation-timeline`, `:has(`, `@container`, `startViewTransition`, `getContext`, `matchMedia`. Separar o bundle por módulos e resumir o que cada um faz.
+3. **Caso:** criar `references/casos/<nome>.md` no mesmo formato de `vexter.md`: stack real, estrutura em ordem, estratégias de conversão, por que não tem cara de IA, pontos fracos, e o que existe de personalização. Afirmar só o que foi medido; o que for suposição, marcar como suposição.
+4. **Comparar com a skill e incorporar só o que for novo:**
+   - estrutura/copy/assinatura nova → `narrativa-estrutura.md` (tabela de metáforas, fórmulas)
+   - efeito ou interação nova → `motion-system.md` (vocabulário ou biblioteca) e, se for reutilizável e testável, `templates/base/`
+   - vício evitado de um jeito novo → `anti-vicio-ia.md`
+   - personalização nova → `megapersonalizacao.md`
+   - técnica de performance/a11y/SEO → `qualidade.md`
+   Se contradizer uma regra existente, manter a regra mais forte e registrar a divergência no caso.
+5. **Tabela "Casos estudados"** acima: adicionar a linha com nicho e lição principal.
+6. **Testar** qualquer mudança em `templates/base/` no Chromium (console limpo, reduced motion, 390px e 1440px).
+7. Nunca copiar texto, código, ícones ou imagens do site analisado. Escrever implementação própria.
+8. Commit e push; responder ao usuário com o resumo do raio-x e a lista do que mudou na skill.
 
 ## Fases
 
