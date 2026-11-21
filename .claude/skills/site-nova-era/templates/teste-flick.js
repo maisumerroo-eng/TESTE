@@ -18,7 +18,7 @@ if (!url) { console.error('uso: node teste-flick.js <url> "<seção>" "<itens>"'
   }), itemSel);
   let falhou = false;
   for (const passo of [120, 240, 360]) {
-    await p.evaluate((s) => { const e = document.querySelector(s); scrollTo(0, e.offsetTop - innerHeight * 0.1); }, secSel);
+    await p.evaluate((s) => { const e = document.querySelector(s); const y = e.offsetTop - innerHeight * 0.1; if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true, force: true }); else scrollTo(0, y); }, secSel);   // com Lenis, posicionar pelo Lenis
     await p.waitForTimeout(600);
     await p.mouse.move(700, 450);
     const fim = await p.evaluate((s) => { const e = document.querySelector(s); return e.offsetTop + e.offsetHeight; }, secSel);

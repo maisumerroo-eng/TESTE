@@ -1,6 +1,6 @@
 ---
 name: site-nova-era
-description: Sistema completo para sites de cliente no "novo design" com megapersonalização. DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), motion system com vocabulário próprio, anti-vício de IA com gate de texto, variantes por visitante (UTM, origem, escolha, horário) com WhatsApp personalizado. Figma como hub (imagens e ícones por IA), bancos públicos com licença, voz ElevenLabs, muapi/Higgsfield. Qualidade medida: auditoria (LCP, CLS, peso), contraste do pior pixel, teste de flick, SEO, LGPD; modo econômico de tokens e créditos; reel vertical e deploy. HTML/CSS/JS puro com templates testados. Use quando pedirem site, landing page, site institucional, site pra cliente, site premium/animado/cinematográfico/"estilo agência", site com vídeo no scroll, site personalizado por público/anúncio, ou citarem um site como referência de nível.
+description: Sistema completo para sites de cliente no "novo design" com megapersonalização. Plano obrigatório antes de criar, objeto-herói por nicho, estratégias de conversão e componentes premium testados, DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), motion system com vocabulário próprio, anti-vício de IA com gate de texto, variantes por visitante (UTM, origem, escolha, horário) com WhatsApp personalizado. Figma como hub (imagens e ícones por IA), bancos públicos com licença, voz ElevenLabs, muapi/Higgsfield. Qualidade medida (LCP, CLS, contraste, flick, SEO, LGPD); modo econômico de tokens e créditos; reel vertical e deploy. HTML/CSS/JS puro. Use quando pedirem site, landing page, site institucional, site pra cliente, site premium/animado/cinematográfico/"estilo agência", site com vídeo no scroll, site personalizado por público/anúncio, ou citarem um site como referência de nível.
 ---
 
 # Site nova era
@@ -45,6 +45,11 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/scrub/` | motor de vídeo no scroll testado (`scrub.js`, `scrub.css`, `exemplo.html`) |
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
+| `references/plano.md` + `templates/plano.md` | **fase de plano obrigatória**: o site inteiro desenhado antes de qualquer arquivo ou crédito |
+| `references/objeto-heroi.md` | o objeto do nicho que representa a promessa (a "mão com a moeda" adaptada), prompt, fusão, ambiente da hero |
+| `references/estrategias-de-conversao.md` | catálogo das estratégias de venda extraídas da estrutura real da Vexter → como adaptar → componente |
+| `references/icones-isometricos.md` | técnica dos ícones "quase 3D" (3 tons + acento), sprite e metáforas por nicho |
+| `templates/componentes/` | biblioteca testada: botão 3D, cartão de prova, faixa de ícones, placas com aba, lista de serviços, número gigante, antes/depois, gráfico interativo, valores escalonados, carrossel, formulário → WhatsApp, rodapé com wordmark, odômetro, ambiente de brises, estudo solar 3D, gerador de ícones isométricos |
 | `templates/comparar-densidade.js` | régua de acabamento: mede o nosso site contra a referência (ícones, hovers, animações, gradientes, conteúdo) |
 | `templates/gate-texto.py` | gate de texto: travessão, estoque, sinais quietos de IA, emoji |
 
@@ -91,6 +96,9 @@ Leia `midia-e-ferramentas.md`. Confirme com 1 chamada barata o que está ativo (
 ### 1. DNA do cliente (não pule)
 Preencha `dna.md` no projeto com o modelo de `megapersonalizacao.md` (Camada 1). Fontes: briefing, site atual, Instagram, Google Business, concorrentes. Lacunas viram `[A CONFIRMAR]`, nunca invenção. Pergunte ao usuário só o que for bloqueante (oferta, nicho, contato). Faça a **pesquisa da voz do comprador** (avaliações e fóruns do nicho, frases exatas de dor, desejo e objeção) e defina a **premissa da marca** (uma palavra/ideia que o site inteiro vende). Negócio real sem fotos: decidir com o usuário se as imagens de IA serão declaradas ou trocadas depois.
 
+### 1b. Plano (obrigatório, antes de criar qualquer arquivo)
+Preencha `plano.md` no projeto com `templates/plano.md` seguindo `references/plano.md`: premissa e oferta com selo, **objeto-herói** (`objeto-heroi.md`), tabela referência → adaptação (estratégias de `estrategias-de-conversao.md`), mapa seção a seção (estratégia, componente, ícones, número, interação, efeito de fundo), inventário de componentes, lista de ícones, gráficos com dados e interação, metas de densidade, assets com custo. Mostre o resumo e peça ok (pergunta clicável). Mudança grande depois volta ao plano antes do código.
+
 ### 2. Roteiro
 Monte os 8 atos de `narrativa-estrutura.md`, cortando o que o cliente não sustenta com verdade. Escolha **um** momento-assinatura a partir da metáfora do negócio (tabela por nicho) e do tipo certo: seção fixada SVG/CSS (padrão, leve e grátis), **vídeo no scroll** (`video-scrub.md`, quando a jornada de câmera é a metáfora e há verba) ou 3D. Descreva em 3 linhas: o que o visitante vê, o que o scroll controla, como fica sem animação. Teste de remoção: sem ela, a página mudaria de verdade? Opcional: um momento interativo que encena a ideia da marca. Seção que não serve a premissa sai.
 
@@ -98,7 +106,8 @@ Monte os 8 atos de `narrativa-estrutura.md`, cortando o que o cliente não suste
 Carregue `frontend-design` e `anthropic-skills:site-sem-cara-de-ia`. Defina em `:root`: 1 cor de marca + neutros (claro e escuro), 1 fonte display + 1 de texto, escala tipográfica com contraste forte, linhas finas. Defina 1 detalhe tipográfico de assinatura. Barras de direção: **uma** direção tirada do mundo do cliente comandando paleta, tipo, movimento e imagem juntos; acento em doses raras; fundo nunca `#000`/`#fff` puro; hero assimétrica; seções vizinhas nunca com o mesmo esqueleto; nenhum "look reflexo de IA" (lista em `anti-vicio-ia.md`) a não ser que seja o mundo material do cliente, declarado. Ícones: SVG próprios num estilo só, gerados no Figma (`generate_vector_illustration`, `kind: "icon"`). Imagens: do cliente; senão geradas com o prompt-mestre de `midia-e-ferramentas.md` (Figma `generate_image` primeiro, depois muapi/Higgsfield/Lovable); bancos públicos via `templates/buscar-imagens.js` para textura, fundo e placeholder, com créditos. Tudo vai para a página `02 Assets` do Figma. Logos de parceiros: `21st` `search_logo`. Inspiração de componentes: Magic MCP (`21st`), `shadcn` se for React.
 
 ### 4. Construção
-1. Copie `templates/base/` para o projeto e troque os placeholders `[...]` pelo DNA.
+1. Copie `templates/base/` e os componentes do plano de `templates/componentes/` (`componentes.css`, `componentes.js`, e `estudo-solar-3d.js`/ícones quando usados) para o projeto e troque os placeholders `[...]` pelo DNA.
+   Ícones: `python3 templates/componentes/gerar-icones-iso.py` com a paleta e as metáforas do cliente (grátis, ver `icones-isometricos.md`).
 2. HTML semântico completo primeiro (conteúdo final visível sem JS).
 3. CSS mobile primeiro; fundos escuro/claro marcando capítulos.
 4. Motion: siga `motion-system.md`. Use os `data-reveal` com propósito (máx. 4 tipos por página), um `data-pin` para o momento-assinatura, contadores com valor real. Carregue `animate` e `choreograph` para decisões de curva e ordem.
@@ -143,9 +152,12 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 13. Texto sobre mídia só com contraste medido no pior pixel; seções guiadas por scroll só com teste de flick aprovado.
 14. Vídeo no scroll: nada é montado em volta de vídeo que o usuário não aprovou; celular e reduced motion recebem hero estático desenhado; página completa sem o vídeo.
 15. Uma premissa de marca: seção que não serve a ela sai.
+16. Nada é criado sem `plano.md` aprovado. Toda hero tem objeto-herói planejado (ou justificativa escrita para não ter).
+17. Toda seção cumpre pelo menos uma estratégia de `estrategias-de-conversao.md`; número de prova aparece grande e colorido; gráfico prova a mudança e é interativo e acessível.
 
 ## Checklist final
 
+- [ ] `plano.md` aprovado e seguido (objeto-herói, mapa de seções, componentes, ícones, gráficos, metas)
 - [ ] `dna.md` preenchido, sem `[A CONFIRMAR]` no texto visível
 - [ ] 8 atos revisados; momento-assinatura funcionando e com versão estática
 - [ ] Régua de acabamento de `qualidade.md` conferida (`comparar-densidade.js` contra a referência)

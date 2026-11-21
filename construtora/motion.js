@@ -19,7 +19,15 @@ function splitWords(el) {
     [...node.childNodes].forEach((child) => {
       if (child.nodeType === 3) {
         const frag = document.createDocumentFragment();
-        child.textContent.split(/(\s+)/).forEach((part) => {
+        let texto = child.textContent;
+        // pontuação logo depois de um trecho marcado (<em>, <strong>) gruda na palavra anterior, senão quebra sozinha na linha de baixo
+        const pont = texto.match(/^[.,;:!?)»”]+/);
+        if (pont && el.querySelectorAll('.rv-wi').length) {
+          const ult = [...el.querySelectorAll('.rv-wi')].pop();
+          ult.textContent += pont[0];
+          texto = texto.slice(pont[0].length);
+        }
+        texto.split(/(\s+)/).forEach((part) => {
           if (!part) return;
           if (/^\s+$/.test(part)) { frag.append(' '); return; }
           const w = document.createElement('span');

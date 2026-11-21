@@ -10,20 +10,26 @@
   <!-- DEPLOY STEP: trocar canonical/og pela URL absoluta do site no ar -->
   <link rel="canonical" href="https://meridiano-demo.vercel.app/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Meridiano | Casas de alto padrão construídas a partir da luz do terreno">
+  <meta property="og:title" content="Meridiano | Casas de alto padrão desenhadas pela luz do terreno">
   <meta property="og:description" content="Estudo solar gratuito do seu terreno. Projeto, obra e acabamento com cronograma aberto.">
   <meta property="og:image" content="assets/img/hero-1536.webp">
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/hanken-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/hero-640.avif 640w, assets/img/hero-1024.avif 1024w, assets/img/hero-1536.avif 1536w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="assets/img/objeto-640.avif 640w, assets/img/objeto-1024.avif 1024w" imagesizes="(min-width: 900px) 46vw, 90vw" fetchpriority="high">
+  <script type="importmap">{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.min.js",
+    "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.core.js": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.core.min.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/" } }</script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="motion.css">
+  <link rel="stylesheet" href="componentes.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"GeneralContractor","name":"Meridiano Construtora (demonstração)","description":"Construção de casas de alto padrão sob medida. Marca fictícia para demonstração.","areaServed":"Campinas e região","telephone":"+55 19 90000-0000","url":"https://meridiano-demo.vercel.app/"}
   </script>
 </head>
 <body>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 16.4a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 1 1 12 19.4Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3 2.4 2.4 0 0 0-.8 1.8 4.3 4.3 0 0 0 .9 2.2 9.6 9.6 0 0 0 3.7 3.3c1.4.6 1.9.6 2.6.5a2.2 2.2 0 0 0 1.4-1c.2-.5.2-.9.1-1l-.4-.2Z"/></symbol><symbol id="i-seta" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4"/></symbol></svg>
 
 <header class="site-header">
   <a class="brand" href="#topo" aria-label="Meridiano Construtora, início">
@@ -32,8 +38,9 @@
   </a>
   <nav aria-label="Principal">
     <a href="#frentes">Como construímos</a>
+    <a href="#casas">Resultados</a>
     <a href="#um-dia">O processo</a>
-    <a href="#casas">Casas</a>
+    <a href="#guias">Guias</a>
     <a href="#perguntas">Perguntas</a>
   </nav>
   <a class="btn btn--sol" data-wa="5519900000000" data-cta="header" href="#contato">Estudo solar<span class="so-desktop">&nbsp;gratuito</span></a>
@@ -41,24 +48,24 @@
 
 <main id="conteudo">
 
-  <!-- ATO 1 · GANCHO -->
+  <!-- 1 · HERO: objeto-herói + ganho nomeado + prova imediata -->
   <section class="hero" id="topo" data-hero aria-labelledby="h-hero">
-    <picture class="hero__img">
-      <source type="image/avif" srcset="assets/img/hero-640.avif 640w, assets/img/hero-1024.avif 1024w, assets/img/hero-1536.avif 1536w" sizes="100vw">
-      <source type="image/webp" srcset="assets/img/hero-640.webp 640w, assets/img/hero-1024.webp 1024w, assets/img/hero-1536.webp 1536w" sizes="100vw">
-      <img src="assets/img/hero-1536.webp" width="1536" height="864" alt="Casa contemporânea de concreto aparente e madeira freijó ao pôr do sol, com espelho d'água refletindo a fachada" fetchpriority="high" decoding="async">
+    <div class="amb-brise" aria-hidden="true"><div class="amb-brise__ripas"></div><div class="amb-brise__luz"></div></div>
+    <picture class="hero__obj" data-reveal="blur">
+      <source type="image/avif" srcset="assets/img/objeto-640.avif 640w, assets/img/objeto-1024.avif 1024w" sizes="(min-width: 900px) 46vw, 90vw">
+      <img src="assets/img/objeto-1024.webp" srcset="assets/img/objeto-640.webp 640w, assets/img/objeto-1024.webp 1024w" sizes="(min-width: 900px) 46vw, 90vw" width="1024" height="1280" alt="Mão segurando a maquete branca de uma casa contemporânea, com o sol da tarde desenhando a sombra da casa na palma" fetchpriority="high" decoding="async">
     </picture>
     <div class="hero__body">
       <p class="cota cota--light" data-reveal="fade"><span>Campinas</span> Casas de alto padrão sob medida</p>
-      <h1 id="h-hero" data-p="hero-title" data-reveal="words">Casas de alto padrão construídas a partir da luz do seu terreno.</h1>
-      <template data-p-variant="hero-title" data-seg="terreno">Seu terreno já diz como a casa deve ser. A gente começa ouvindo o sol.</template>
-      <template data-p-variant="hero-title" data-seg="projeto">Seu projeto construído do jeito que o arquiteto desenhou, até o último encaixe.</template>
-      <template data-p-variant="hero-title" data-seg="comecando">Antes de comprar o lote, descubra qual deles recebe a melhor luz.</template>
-      <p class="hero__lead" data-p="hero-lead" data-reveal="rise" data-delay="350">Antes do primeiro traço, estudamos onde o sol nasce e se põe no seu lote. Depois projetamos, aprovamos e construímos com cronograma aberto e diário de obra que você acompanha pelo celular.</p>
+      <h1 id="h-hero" data-p="hero-title" data-reveal="words">Casas de alto padrão desenhadas pela <em>luz do seu terreno</em>.</h1>
+      <template data-p-variant="hero-title" data-seg="terreno">Seu terreno já diz como a casa deve ser. A gente começa <em>ouvindo o sol</em>.</template>
+      <template data-p-variant="hero-title" data-seg="projeto">Seu projeto construído <em>como o arquiteto desenhou</em>, até o último encaixe.</template>
+      <template data-p-variant="hero-title" data-seg="comecando">Antes de comprar o lote, descubra qual deles recebe <em>a melhor luz</em>.</template>
+      <p class="hero__lead" data-p="hero-lead" data-reveal="rise" data-delay="300">Antes do primeiro traço, estudamos onde o sol nasce e se põe no seu lote. Depois projetamos, aprovamos e construímos com cronograma aberto e diário de obra que você acompanha pelo celular.</p>
       <template data-p-variant="hero-lead" data-seg="projeto">Executamos projetos de arquitetura autoral com memorial descritivo fechado, compatibilização em BIM e o acabamento especificado, sem substituição por "similar".</template>
-      <template data-p-variant="hero-lead" data-seg="comecando">Visitamos até três terrenos com você e entregamos o estudo de insolação, vista e implantação de cada um para a escolha ser pela casa, não pelo anúncio.</template>
-      <div class="hero__ctas" data-reveal="rise" data-delay="500">
-        <a class="btn btn--sol" data-reveal="sweep" data-wa="5519900000000" data-cta="hero" href="#contato">Pedir estudo solar gratuito</a>
+      <template data-p-variant="hero-lead" data-seg="comecando">Visitamos até três terrenos com você e entregamos o estudo de insolação, vista e implantação de cada um, para a escolha ser pela casa, não pelo anúncio.</template>
+      <div class="hero__ctas" data-reveal="rise" data-delay="450">
+        <a class="btn3d" data-wa="5519900000000" data-cta="hero" href="#contato"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir estudo solar gratuito</a>
         <a class="link-seta" href="#um-dia">Ver como a obra acontece</a>
       </div>
       <div class="perfil" role="group" aria-label="Em que momento você está?">
@@ -68,104 +75,141 @@
         <button type="button" data-p-choose="comecando" aria-pressed="false">Estou começando</button>
       </div>
     </div>
+    <aside class="hero__prova" aria-label="Casas entregues, média ilustrativa">
+      <p class="hero__prova-tit" data-reveal="track">Casas entregues · média ilustrativa</p>
+      <div class="prova"><strong data-count="14" data-count-suffix=" meses">14 meses</strong><span>prazo médio de obra</span></div>
+      <div class="prova prova--lg"><strong data-count="2.1" data-count-suffix="%">2,1%</strong><span>desvio médio de orçamento</span></div>
+    </aside>
   </section>
 
-  <!-- ATO 2 · CREDIBILIDADE -->
-  <section class="garantias" aria-label="Como trabalhamos">
-    <div data-marquee="34">
-      <ul class="garantias__track">
-        <li>ART e RRT em todas as obras</li>
-        <li>Cronograma físico-financeiro semanal</li>
-        <li>Diário de obra com fotos todo dia útil</li>
-        <li>Desempenho conforme NBR 15575</li>
-        <li>Equipe própria de estrutura e acabamento</li>
-        <li>Obra limpa e canteiro organizado</li>
+  <!-- 2 · COMPETÊNCIAS com ícones isométricos -->
+  <section class="competencias" aria-labelledby="h-comp">
+    <h2 id="h-comp" class="competencias__tit" data-reveal="words">O que a Meridiano faz na sua obra</h2>
+    <div class="faixa-icones" data-marquee="30" data-reveal="wipe">
+      <ul>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#sol-lote"/></svg><h3>Estudo solar</h3><p>Insolação, vento e vista medidos no terreno</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#plantas"/></svg><h3>Projeto e aprovação</h3><p>Arquitetura, complementares, prefeitura e condomínio</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#estrutura"/></svg><h3>Estrutura própria</h3><p>Concreto com controle tecnológico em cada concretagem</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#cronograma"/></svg><h3>Cronograma aberto</h3><p>Físico-financeiro atualizado toda semana</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#esquadria"/></svg><h3>Esquadrias testadas</h3><p>Ensaio de estanqueidade na obra</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#agua"/></svg><h3>Impermeabilização</h3><p>Lâmina d'água por 72 horas antes do contrapiso</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#diario"/></svg><h3>Diário de obra</h3><p>Fotos todo dia útil, no seu celular</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#garantia"/></svg><h3>Garantia NBR 15575</h3><p>Desempenho e assistência no primeiro ano</p></li>
+        <li><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#regiao"/></svg><h3>Campinas e região</h3><p>Valinhos, Vinhedo, Indaiatuba e Itatiba</p></li>
       </ul>
     </div>
   </section>
 
-  <!-- ATO 3 · OFERTA -->
+  <!-- 3 · FRENTES: placas com aba + lista de serviços -->
   <section class="sec" id="frentes" aria-labelledby="h-frentes">
     <div class="sec-head">
       <p class="cota" data-reveal="wipe"><span>01</span> Como construímos</p>
-      <h2 id="h-frentes" data-reveal="words">Um responsável do terreno às chaves.</h2>
-      <p data-reveal="rise">Quem projeta, quem calcula a estrutura e quem coloca o último rodapé conversam todo dia. É isso que mantém prazo, custo e acabamento no lugar.</p>
+      <h2 id="h-frentes" data-reveal="words">Projeto, obra e acabamento <em>sob a mesma responsabilidade</em>.</h2>
+      <p data-reveal="rise">Quando arquiteto, calculista e empreiteiro trabalham cada um com a sua planilha, o prazo e o custo escapam entre eles. Aqui, as três frentes respondem ao mesmo cronograma.</p>
     </div>
-    <div class="stack" data-p-order>
-      <article class="placa" data-seg="terreno">
-        <div class="placa__txt">
-          <p class="placa__tipo">Projeto + obra</p>
-          <h3>Do estudo solar à entrega, com um contrato só.</h3>
-          <p>Estudo de implantação, projeto de arquitetura e complementares, aprovação na prefeitura e no condomínio, obra e acabamento. Você assina um memorial descritivo e acompanha cada etapa no cronograma.</p>
-          <p class="placa__entrega"><b>Você recebe</b> memorial descritivo, orçamento por etapa e cronograma antes da obra começar.</p>
-          <a class="btn btn--ghost" data-wa="5519900000000" data-cta="placa-projeto-obra" href="#contato">Quero começar pelo estudo</a>
+    <div class="placas" data-p-order>
+      <article class="placa2" data-seg="terreno" style="--n:0">
+        <div class="placa2__aba"><h3>Projeto + obra</h3><span class="placa2__modos">Contrato único · turn key</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-planta" aria-hidden="true"><i></i></div>
+            <p class="placa2__lead">Do estudo solar à entrega das chaves, com um contrato só e um preço por etapa.</p>
+            <p class="placa2__nota">Estudo de implantação, arquitetura e complementares, aprovações, obra e acabamento. Você assina o memorial descritivo antes da obra começar e acompanha cada etapa no cronograma.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Estudo solar e implantação</span><span class="servicos__linha"></span><span class="servicos__modo">gratuito</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Projeto de arquitetura</span><span class="servicos__linha"></span><span class="servicos__modo">projeto</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Construção turn key</span><span class="servicos__linha"></span><span class="servicos__modo">obra completa</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <picture class="placa2__img">
+            <source type="image/avif" srcset="assets/img/interior-640.avif 640w, assets/img/interior-1024.avif 1024w, assets/img/interior-1536.avif 1536w" sizes="(min-width: 900px) 50vw, 100vw">
+            <img src="assets/img/interior-1024.webp" srcset="assets/img/interior-640.webp 640w, assets/img/interior-1024.webp 1024w, assets/img/interior-1536.webp 1536w" sizes="(min-width: 900px) 50vw, 100vw" width="1536" height="1024" alt="Sala com pé-direito duplo, parede de concreto aparente e faixas de sol sobre piso de travertino" loading="lazy" decoding="async" data-reveal="develop">
+          </picture>
         </div>
-        <picture class="placa__img">
-          <source type="image/avif" srcset="assets/img/interior-640.avif 640w, assets/img/interior-1024.avif 1024w, assets/img/interior-1536.avif 1536w" sizes="(min-width: 900px) 50vw, 100vw">
-          <img src="assets/img/interior-1024.webp" srcset="assets/img/interior-640.webp 640w, assets/img/interior-1024.webp 1024w, assets/img/interior-1536.webp 1536w" sizes="(min-width: 900px) 50vw, 100vw" width="1536" height="1024" alt="Sala com pé-direito duplo, parede de concreto aparente e faixas de sol sobre piso de travertino" loading="lazy" decoding="async" data-reveal="develop">
-        </picture>
       </article>
-      <article class="placa" data-seg="projeto">
-        <div class="placa__txt">
-          <p class="placa__tipo">Obra a partir do seu projeto</p>
-          <h3>O desenho do arquiteto, sem trocas no caminho.</h3>
-          <p>Compatibilizamos arquitetura, estrutura e instalações em BIM antes de comprar o primeiro saco de cimento. O que muda passa pelo arquiteto, por escrito.</p>
-          <p class="placa__entrega"><b>Você recebe</b> relatório de compatibilização e lista de especificações aprovada pelo arquiteto.</p>
-          <a class="btn btn--ghost" data-wa="5519900000000" data-cta="placa-projeto" href="#contato">Enviar meu projeto</a>
+      <article class="placa2" data-seg="projeto" style="--n:1">
+        <div class="placa2__aba"><h3>Obra a partir do seu projeto</h3><span class="placa2__modos">Obra · gestão</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-barras" aria-hidden="true"><i style="--h:30%"></i><i style="--h:42%"></i><i style="--h:38%"></i><i style="--h:55%"></i><i style="--h:62%"></i><i style="--h:58%"></i><i style="--h:74%"></i><i style="--h:82%"></i><i style="--h:96%"></i></div>
+            <p class="placa2__lead">O desenho do arquiteto, sem trocas no caminho e com o prazo medido toda semana.</p>
+            <p class="placa2__nota">Compatibilizamos arquitetura, estrutura e instalações em BIM antes de comprar o primeiro saco de cimento. O que muda passa pelo arquiteto, por escrito.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Compatibilização em BIM</span><span class="servicos__linha"></span><span class="servicos__modo">projeto</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Execução da obra</span><span class="servicos__linha"></span><span class="servicos__modo">obra completa</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <picture class="placa2__img">
+            <source type="image/avif" srcset="assets/img/obra-640.avif 640w, assets/img/obra-1024.avif 1024w, assets/img/obra-1536.avif 1536w" sizes="(min-width: 900px) 50vw, 100vw">
+            <img src="assets/img/obra-1024.webp" srcset="assets/img/obra-640.webp 640w, assets/img/obra-1024.webp 1024w, assets/img/obra-1536.webp 1536w" sizes="(min-width: 900px) 50vw, 100vw" width="1536" height="1024" alt="Canteiro organizado com estrutura de concreto, laje em balanço e andaimes alinhados pela manhã" loading="lazy" decoding="async" data-reveal="develop">
+          </picture>
         </div>
-        <picture class="placa__img">
-          <source type="image/avif" srcset="assets/img/obra-640.avif 640w, assets/img/obra-1024.avif 1024w, assets/img/obra-1536.avif 1536w" sizes="(min-width: 900px) 50vw, 100vw">
-          <img src="assets/img/obra-1024.webp" srcset="assets/img/obra-640.webp 640w, assets/img/obra-1024.webp 1024w, assets/img/obra-1536.webp 1536w" sizes="(min-width: 900px) 50vw, 100vw" width="1536" height="1024" alt="Canteiro organizado com estrutura de concreto, laje em balanço e andaimes alinhados pela manhã" loading="lazy" decoding="async" data-reveal="develop">
-        </picture>
       </article>
-      <article class="placa" data-seg="comecando">
-        <div class="placa__txt">
-          <p class="placa__tipo">Escolha do terreno</p>
-          <h3>Antes de comprar o lote, a gente lê a luz dele.</h3>
-          <p>Visitamos os terrenos que você está considerando e comparamos insolação, vista, ventilação, recuos e taxa de ocupação. A casa certa começa no lote certo.</p>
-          <p class="placa__entrega"><b>Você recebe</b> comparativo de até três terrenos com estudo de massa de cada um.</p>
-          <a class="btn btn--ghost" data-wa="5519900000000" data-cta="placa-terreno" href="#contato">Comparar terrenos</a>
+      <article class="placa2" data-seg="comecando" style="--n:2">
+        <div class="placa2__aba"><h3>Escolha do terreno e acabamento</h3><span class="placa2__modos">Consultoria · avulso</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-cotas" aria-hidden="true"><svg viewBox="0 0 400 300"><path d="M20 260 H380 M20 250 V270 M380 250 V270 M60 40 V230 M50 40 H70 M50 230 H70 M120 80 H340 V220 H120 Z M120 150 H340 M230 80 V220"/></svg></div>
+            <p class="placa2__lead">Antes de comprar o lote, a gente lê a luz dele. Depois de construída, a casa recebe o acabamento que foi desenhado.</p>
+            <p class="placa2__nota">Comparamos insolação, vista, ventilação, recuos e taxa de ocupação dos terrenos que você está considerando, e fazemos a gestão de acabamento de alto padrão.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Comparativo de terrenos</span><span class="servicos__linha"></span><span class="servicos__modo">avulso</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Gestão de acabamento</span><span class="servicos__linha"></span><span class="servicos__modo">projeto</span><span class="servicos__cta">Ver serviço<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <picture class="placa2__img">
+            <source type="image/avif" srcset="assets/img/detalhe-640.avif 640w, assets/img/detalhe-1024.avif 1024w" sizes="(min-width: 900px) 50vw, 100vw">
+            <img src="assets/img/detalhe-1024.webp" srcset="assets/img/detalhe-640.webp 640w, assets/img/detalhe-1024.webp 1024w" sizes="(min-width: 900px) 50vw, 100vw" width="1024" height="1280" alt="Encontro de concreto aparente com ripas de freijó e um friso de bronze sob luz rasante" loading="lazy" decoding="async" data-reveal="develop">
+          </picture>
         </div>
-        <picture class="placa__img">
-          <source type="image/avif" srcset="assets/img/detalhe-640.avif 640w, assets/img/detalhe-1024.avif 1024w" sizes="(min-width: 900px) 40vw, 100vw">
-          <img src="assets/img/detalhe-1024.webp" srcset="assets/img/detalhe-640.webp 640w, assets/img/detalhe-1024.webp 1024w" sizes="(min-width: 900px) 40vw, 100vw" width="1024" height="1280" alt="Encontro de concreto aparente com ripas de freijó e um friso de bronze sob luz rasante" loading="lazy" decoding="async" data-reveal="develop">
-        </picture>
       </article>
     </div>
   </section>
 
-  <!-- ATO 4 · PROVA -->
-  <section class="sec dark" id="casas" aria-labelledby="h-casas">
+  <!-- 4 · RESULTADOS: número gigante + gráfico interativo + antes/depois -->
+  <section class="sec dark resultados" id="casas" aria-labelledby="h-casas">
     <div class="sec-head">
       <p class="cota cota--light" data-reveal="wipe"><span>02</span> Casas entregues</p>
-      <h2 id="h-casas" data-reveal="words">Prazo e orçamento medidos na entrega, não na promessa.</h2>
-      <p data-reveal="rise">Cada casa fecha com um relatório: o que foi orçado, o que foi gasto e quantos dias levou.</p>
+      <h2 id="h-casas" data-reveal="words">Prazo e orçamento medidos <em>na entrega</em>, não na promessa.</h2>
+      <p data-reveal="rise">Cada casa fecha com um relatório: o que foi orçado, o que foi gasto e quantos dias levou. Dois recortes, de uma marca de demonstração.</p>
     </div>
-    <div class="casos" data-reveal-group data-stagger="140">
-      <article class="caso" data-reveal="rise">
-        <p class="caso__local">Casa Pátio · condomínio fechado</p>
-        <dl class="caso__nums">
-          <div><dt>Área construída</dt><dd><span data-count="480" data-count-suffix=",00 m²">480,00 m²</span></dd></div>
-          <div><dt>Prazo da obra</dt><dd><span data-count="14" data-count-suffix=" meses">14 meses</span></dd></div>
-          <div><dt>Desvio de orçamento</dt><dd><span data-reveal="ignite" data-count="2.1" data-count-suffix="%">2,1%</span></dd></div>
-        </dl>
-        <p>Laje em balanço de 6 metros sobre o espelho d'água e fachada em concreto aparente com fôrma de tábua.</p>
-      </article>
-      <article class="caso" data-reveal="rise">
-        <p class="caso__local">Casa Mirante · lote em aclive</p>
-        <dl class="caso__nums">
-          <div><dt>Área construída</dt><dd><span data-count="365" data-count-suffix=",00 m²">365,00 m²</span></dd></div>
-          <div><dt>Prazo da obra</dt><dd><span data-count="12" data-count-suffix=" meses">12 meses</span></dd></div>
-          <div><dt>Desvio de orçamento</dt><dd><span data-count="3.4" data-count-suffix="%">3,4%</span></dd></div>
-        </dl>
-        <p>Implantação em três platôs para que todos os quartos recebam sol da manhã e vista para o vale.</p>
-      </article>
+    <article class="caso">
+      <div class="caso__fig">
+        <p class="caso__tag">Casa Pátio · condomínio fechado · 480 m²</p>
+        <p class="num-g"><span class="num-g__pre">obra entregue em</span><span class="num-g__val"><span class="num-g__digitos" data-count="13.8">13,8</span><span class="num-g__mag">meses</span></span><span class="num-g__uni">para 14 meses previstos no cronograma</span></p>
+      </div>
+      <div class="caso__hist">
+        <figure class="grafico" data-grafico='{"titulo":"Previsto x realizado por etapa (meses)","rotulos":["Projeto","Aprovação","Estrutura","Vedação e instalações","Acabamento"],"series":[{"nome":"Previsto","cor":"#8a7f72","valores":[3,2,4,3,2]},{"nome":"Realizado","cor":"#e7a274","valores":[3,1.8,3.8,3.2,2]}],"unidade":" meses","max":4.4,"nota":"Passe o mouse, toque ou navegue com o teclado nas barras para ver os valores."}'></figure>
+        <h3 class="caso__tit">Laje em balanço de 6 metros sobre o espelho d'água, entregue um dia antes.</h3>
+        <p class="caso__nota">A aprovação no condomínio saiu antes do previsto porque o estudo de implantação já respondia recuos e insolação dos vizinhos.</p>
+      </div>
+    </article>
+    <article class="caso">
+      <div class="caso__fig">
+        <p class="caso__tag">Casa Mirante · lote em aclive · 365 m²</p>
+        <p class="num-g"><span class="num-g__pre">gasto fora do memorial</span><span class="num-g__val"><span class="num-g__cur">R$</span><span class="num-g__digitos" data-count="0">0</span></span><span class="num-g__uni">nenhum aditivo depois da assinatura</span></p>
+      </div>
+      <div class="caso__hist">
+        <figure class="ad">
+          <figcaption>Como o orçamento foi fechado</figcaption>
+          <div class="ad__linha">
+            <div class="ad__card"><span class="ad__quando">Antes</span><strong class="ad__estado">Preço por m²</strong><span class="ad__desc">Estimativa genérica que muda a cada escolha de acabamento</span></div>
+            <svg class="ad__seta" viewBox="0 0 30 14" aria-hidden="true"><path d="M1 7h26M21 2l6 5-6 5"/></svg>
+            <div class="ad__card ad__card--depois"><span class="ad__quando">Depois</span><strong class="ad__estado">Preço por etapa</strong><span class="ad__desc">Memorial descritivo fechado, item a item, antes da obra</span></div>
+          </div>
+        </figure>
+        <h3 class="caso__tit">Implantação em três platôs para todos os quartos receberem sol da manhã.</h3>
+        <p class="caso__nota">O aclive virou vista: cada platô foi desenhado a partir do estudo solar, e as escolhas de acabamento entraram no memorial antes da primeira estaca.</p>
+      </div>
+    </article>
+    <div class="resultados__pe" data-reveal="rise">
+      <p class="nota">Demonstração: casas e números ilustrativos de uma marca fictícia. Cada obra tem um cenário próprio.</p>
+      <div class="resultados__cta"><p>Quer saber como o sol bate no seu terreno?</p><a class="btn3d" data-wa="5519900000000" data-cta="resultados" href="#contato">Pedir estudo solar</a></div>
     </div>
-    <p class="nota">Demonstração: casas e números ilustrativos de uma marca fictícia.</p>
   </section>
 
-  <!-- ATO 5 · PROCESSO = MOMENTO-ASSINATURA -->
-  <section class="dia" id="um-dia" data-pin style="--pin-h: 520svh" aria-labelledby="h-dia">
+  <!-- 5 · PROCESSO = MOMENTO-ASSINATURA: estudo solar 3D -->
+  <section class="dia" id="um-dia" data-pin style="--pin-h: 560svh" aria-labelledby="h-dia">
     <div class="dia__stage" data-pin-stage>
       <svg class="dia__cena" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
         <defs>
@@ -186,58 +230,78 @@
           <rect class="casa__laje" x="190" y="262" width="640" height="16"/>
           <rect class="casa__volume" x="250" y="278" width="470" height="202"/>
           <rect class="casa__bloco" x="720" y="214" width="70" height="266"/>
-          <g class="casa__vidro">
-            <rect x="290" y="300" width="88" height="160"/><rect x="386" y="300" width="88" height="160"/>
-            <rect x="482" y="300" width="88" height="160"/><rect x="578" y="300" width="88" height="160"/>
-          </g>
-          <g class="casa__luz">
-            <rect x="290" y="300" width="88" height="160"/><rect x="386" y="300" width="88" height="160"/>
-            <rect x="482" y="300" width="88" height="160"/><rect x="578" y="300" width="88" height="160"/>
-          </g>
+          <g class="casa__vidro"><rect x="290" y="300" width="88" height="160"/><rect x="386" y="300" width="88" height="160"/><rect x="482" y="300" width="88" height="160"/><rect x="578" y="300" width="88" height="160"/></g>
+          <g class="casa__luz"><rect x="290" y="300" width="88" height="160"/><rect x="386" y="300" width="88" height="160"/><rect x="482" y="300" width="88" height="160"/><rect x="578" y="300" width="88" height="160"/></g>
           <path class="casa__cotas" d="M250 528 V540 M720 528 V540 M250 534 H720"/>
         </g>
         <line class="chao" x1="-3000" y1="480" x2="4000" y2="480"/>
       </svg>
+      <div class="solar3d" data-solar3d aria-hidden="true"></div>
       <div class="dia__txt">
-        <p class="cota" id="h-dia-k"><span>03</span> Um dia na obra</p>
+        <p class="cota"><span>03</span> Um dia na obra</p>
         <h2 id="h-dia" class="dia__titulo">Cada etapa acontece na hora certa do dia.</h2>
+        <div class="dia__contador" aria-hidden="true">
+          <span class="odo"><span class="odo__zero">0</span><span class="odo__mascara"><span class="odo__rolo"><i>1</i><i>2</i><i>3</i><i>4</i></span></span></span><span class="odo__total">/04</span>
+          <span class="dia__icones">
+            <svg data-etapa-icone viewBox="0 0 80 72"><use href="assets/icons/icones-meridiano.svg#sol-lote"/></svg>
+            <svg data-etapa-icone viewBox="0 0 80 72"><use href="assets/icons/icones-meridiano.svg#plantas"/></svg>
+            <svg data-etapa-icone viewBox="0 0 80 72"><use href="assets/icons/icones-meridiano.svg#grua"/></svg>
+            <svg data-etapa-icone viewBox="0 0 80 72"><use href="assets/icons/icones-meridiano.svg#casa"/></svg>
+          </span>
+        </div>
         <ol class="dia__passos">
-          <li data-step><p class="dia__hora">06:10 · amanhecer</p><h3>Estudo solar do terreno</h3><p>Medimos o caminho do sol, os ventos e a vista. A casa se vira para a luz antes de existir.</p><p class="dia__entrega"><b>Entrega</b> estudo de implantação e insolação.</p></li>
-          <li data-step><p class="dia__hora">09:30 · manhã</p><h3>Projeto e aprovação</h3><p>Arquitetura, estrutura e instalações compatibilizadas em BIM, aprovadas na prefeitura e no condomínio.</p><p class="dia__entrega"><b>Entrega</b> projeto executivo, alvará e memorial descritivo.</p></li>
-          <li data-step><p class="dia__hora">13:00 · tarde</p><h3>Obra com cronograma aberto</h3><p>Equipe própria, diário de obra com fotos e medição quinzenal: você paga o que foi executado.</p><p class="dia__entrega"><b>Entrega</b> relatório semanal de prazo e custo.</p></li>
-          <li data-step><p class="dia__hora">18:40 · anoitecer</p><h3>Entrega das chaves</h3><p>Vistoria com checklist de acabamento, manual da casa e assistência técnica no primeiro ano.</p><p class="dia__entrega"><b>Entrega</b> habite-se, manual do proprietário e garantias.</p></li>
+          <li data-step><p class="dia__hora">Etapa 01 · 06:10 · amanhecer</p><h3>Estudo solar do terreno <span class="selo">Gratuito</span></h3><p>Medimos o caminho do sol ao longo do ano, os ventos e a vista. A casa se vira para a luz antes de existir.</p><p class="dia__entrega"><b>Entrega</b> estudo de implantação e insolação, seu mesmo que não construa com a gente.</p></li>
+          <li data-step><p class="dia__hora">Etapa 02 · 09:30 · manhã</p><h3>Projeto e aprovação</h3><p>Arquitetura, estrutura e instalações compatibilizadas em BIM, aprovadas na prefeitura e no condomínio.</p><p class="dia__entrega"><b>Entrega</b> projeto executivo, alvará e memorial descritivo com preço por etapa.</p></li>
+          <li data-step><p class="dia__hora">Etapa 03 · 13:00 · tarde</p><h3>Obra com cronograma aberto</h3><p>Equipe própria, diário de obra com fotos e medição quinzenal: você paga o que foi executado.</p><p class="dia__entrega"><b>Entrega</b> relatório semanal de prazo e custo.</p></li>
+          <li data-step><p class="dia__hora">Etapa 04 · 18:40 · anoitecer</p><h3>Entrega das chaves</h3><p>Vistoria com checklist de acabamento, manual da casa e assistência técnica no primeiro ano.</p><p class="dia__entrega"><b>Entrega</b> habite-se, manual do proprietário e garantias.</p></li>
         </ol>
-        <a class="pular" href="#materiais">Pular etapas</a>
+        <a class="pular" href="#valores">Pular etapas</a>
       </div>
     </div>
   </section>
 
-  <!-- ATO 6 · IDENTIDADE -->
-  <section class="sec materiais" id="materiais" aria-labelledby="h-mat">
-    <div class="materiais__grid">
-      <picture class="materiais__img">
-        <source type="image/avif" srcset="assets/img/detalhe-640.avif 640w, assets/img/detalhe-1024.avif 1024w" sizes="(min-width: 900px) 40vw, 100vw">
-        <img src="assets/img/detalhe-1024.webp" srcset="assets/img/detalhe-640.webp 640w, assets/img/detalhe-1024.webp 1024w" sizes="(min-width: 900px) 40vw, 100vw" width="1024" height="1280" alt="Detalhe de concreto aparente, ripas de freijó e friso de bronze" loading="lazy" decoding="async" data-reveal="develop">
-      </picture>
-      <div>
-        <p class="cota" data-reveal="wipe"><span>04</span> O que não aparece na foto</p>
-        <h2 id="h-mat" data-reveal="words">Alto padrão é o que fica atrás do acabamento.</h2>
-        <ul class="lista-tec" data-reveal-group data-stagger="80">
-          <li data-reveal="track"><b>Impermeabilização</b> testada com lâmina d'água por 72 horas antes do contrapiso.</li>
-          <li data-reveal="track"><b>Estrutura</b> com controle tecnológico do concreto em cada concretagem.</li>
-          <li data-reveal="track"><b>Instalações</b> em shafts visitáveis, para manutenção sem quebrar parede.</li>
-          <li data-reveal="track"><b>Esquadrias</b> com ensaio de estanqueidade na obra, não só no catálogo.</li>
-          <li data-reveal="track"><b>Acústica</b> entre quartos e áreas sociais definida em projeto.</li>
-        </ul>
-      </div>
+  <!-- 6 · MANIFESTO: Da luz à casa + valores escalonados -->
+  <section class="sec valores-sec" id="valores" aria-labelledby="h-val">
+    <div class="valores__titulo">
+      <h2 id="h-val" data-reveal="words">Da luz <em>à casa.</em></h2>
+      <p class="valores__intro" data-reveal="rise">Para a Meridiano, construir começa antes da obra: entender a luz, o terreno e a rotina de quem vai morar. O resto é precisão.</p>
+    </div>
+    <div class="valores__rot" data-reveal="fade"><span>O que guia cada obra</span></div>
+    <ul class="valores" data-reveal-group data-stagger="90">
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#sol-lote"/></svg><h3>Luz</h3><p>A implantação nasce do caminho do sol no terreno.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#nivel"/></svg><h3>Precisão</h3><p>Medida conferida em cada etapa, não só na entrega.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#estrutura"/></svg><h3>Estrutura</h3><p>Equipe própria e controle tecnológico do concreto.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#diario"/></svg><h3>Transparência</h3><p>Diário de obra e medição que você confere.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#cronograma"/></svg><h3>Prazo</h3><p>Cronograma físico-financeiro atualizado toda semana.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#bloco"/></svg><h3>Acabamento</h3><p>O que está no memorial é o que vai para a parede.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-meridiano.svg#garantia"/></svg><h3>Garantia</h3><p>Desempenho conforme norma e assistência no primeiro ano.</p></li>
+    </ul>
+  </section>
+
+  <!-- 7 · GUIAS: autoridade -->
+  <section class="sec dark guias" id="guias" aria-labelledby="h-guias">
+    <div class="sec-head">
+      <p class="cota cota--light" data-reveal="wipe"><span>04</span> Guias</p>
+      <h2 id="h-guias" data-reveal="words">Para quem vai construir <em>a casa da vida</em>.</h2>
+      <p data-reveal="rise">As perguntas que mais ouvimos antes de um contrato, respondidas com o que a obra ensina.</p>
+    </div>
+    <div class="conteudo" data-marquee="22">
+      <ul>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/hero-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"></span><span class="conteudo__corpo"><span class="conteudo__cat">Terreno</span><h3>Como ler um estudo solar antes de comprar o lote</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/obra-640.webp" width="640" height="427" alt="" loading="lazy" decoding="async"></span><span class="conteudo__corpo"><span class="conteudo__cat">Orçamento</span><h3>Preço por m² ou por etapa: o que muda no seu bolso</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/detalhe-640.webp" width="640" height="800" alt="" loading="lazy" decoding="async" style="object-position:50% 30%"></span><span class="conteudo__corpo"><span class="conteudo__cat">Acabamento</span><h3>Memorial descritivo: os 12 itens que evitam aditivo</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/interior-640.webp" width="640" height="427" alt="" loading="lazy" decoding="async"></span><span class="conteudo__corpo"><span class="conteudo__cat">Projeto</span><h3>Pé-direito duplo: conforto térmico e custo real</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/noite-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"></span><span class="conteudo__corpo"><span class="conteudo__cat">Aprovação</span><h3>Recuos e taxa de ocupação em condomínio: o que checar</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+        <li><a href="#perguntas"><span class="conteudo__img"><img src="assets/img/obra-640.webp" width="640" height="427" alt="" loading="lazy" decoding="async" style="object-position:20% 50%"></span><span class="conteudo__corpo"><span class="conteudo__cat">Estrutura</span><h3>Laje em balanço: quando vale e quanto custa</h3><span class="conteudo__ler">Ler guia</span></span></a></li>
+      </ul>
     </div>
   </section>
 
-  <!-- ATO 7 · AUTORIDADE -->
+  <!-- 8 · PERGUNTAS -->
   <section class="sec perguntas" id="perguntas" aria-labelledby="h-faq">
     <div class="sec-head">
       <p class="cota" data-reveal="wipe"><span>05</span> Perguntas de quem vai construir</p>
-      <h2 id="h-faq" data-reveal="words">O que todo mundo pergunta antes de assinar.</h2>
+      <h2 id="h-faq" data-reveal="words">O que todo mundo pergunta <em>antes de assinar</em>.</h2>
     </div>
     <div class="faq">
       <details><summary>Quanto custa construir uma casa de alto padrão?</summary><p>Depende do terreno, da área e do nível de acabamento. Por isso o orçamento sai por etapa, depois do estudo e do memorial descritivo: você sabe quanto custa cada fase antes de começar.</p></details>
@@ -245,10 +309,11 @@
       <details><summary>Posso acompanhar a obra morando longe?</summary><p>Sim. O diário de obra recebe fotos todo dia útil e a medição quinzenal mostra o que foi executado e o que será pago.</p></details>
       <details><summary>Vocês constroem projeto de outro arquiteto?</summary><p>Sim. Compatibilizamos o projeto em BIM, discutimos as especificações com o arquiteto e só alteramos algo com a aprovação dele por escrito.</p></details>
       <details><summary>O que é o estudo solar gratuito?</summary><p>Uma visita ao terreno com levantamento do caminho do sol ao longo do ano, ventos, vista e restrições do lote. Você recebe a melhor implantação para a casa, mesmo que decida construir com outra empresa.</p></details>
+      <details><summary>Como funciona a garantia?</summary><p>A casa é entregue com manual do proprietário, prazos de garantia por sistema conforme a norma de desempenho e assistência técnica no primeiro ano, com visita agendada.</p></details>
     </div>
   </section>
 
-  <!-- ATO 8 · AÇÃO -->
+  <!-- 9 · CTA FINAL: formulário curto → WhatsApp -->
   <section class="cta-final dark" id="contato" aria-labelledby="h-cta">
     <picture class="cta-final__img">
       <source type="image/avif" srcset="assets/img/noite-640.avif 640w, assets/img/noite-1024.avif 1024w, assets/img/noite-1536.avif 1536w" sizes="100vw">
@@ -256,9 +321,21 @@
     </picture>
     <div class="cta-final__body">
       <p class="cota cota--light" data-reveal="fade"><span>06</span> Próximo passo</p>
-      <h2 id="h-cta" data-reveal="words">Antes do primeiro tijolo, descubra onde o sol nasce no seu terreno.</h2>
+      <h2 id="h-cta" data-reveal="words">Antes do primeiro tijolo, descubra <em>onde o sol nasce</em> no seu terreno.</h2>
       <p data-reveal="rise">Estudo solar gratuito para lotes em Campinas e região a partir de 450 m². Você fica com o estudo, construindo com a gente ou não.</p>
-      <a class="btn btn--sol" data-reveal="sweep" data-wa="5519900000000" data-cta="final" href="#contato">Agendar meu estudo solar</a>
+      <form class="form-wa" data-wa="5519900000000" data-msg="Olá! Quero agendar o estudo solar gratuito. Momento: {momento}. Local: {local}. Lote: {lote} m²." novalidate>
+        <label for="f-momento">Seu momento
+          <select id="f-momento" name="momento" required>
+            <option value="tenho terreno">Tenho terreno</option>
+            <option value="tenho projeto">Tenho projeto</option>
+            <option value="estou começando">Estou começando</option>
+          </select>
+        </label>
+        <label for="f-local">Bairro ou condomínio<input id="f-local" name="local" autocomplete="address-level3" placeholder="Ex.: Alphaville Campinas" required></label>
+        <label for="f-lote">Tamanho do lote (m²)<input id="f-lote" name="lote" inputmode="numeric" placeholder="Ex.: 600"></label>
+        <button type="submit" class="btn3d" data-cta="form"><svg aria-hidden="true"><use href="#i-wa"/></svg>Agendar estudo solar</button>
+        <p class="form-wa__nota">O formulário só monta a sua mensagem no WhatsApp; nada fica guardado aqui.</p>
+      </form>
       <ul class="contatos">
         <li><span>WhatsApp</span> (19) 90000-0000</li>
         <li><span>Atendimento</span> seg. a sex., 8h às 18h</li>
@@ -269,20 +346,27 @@
 </main>
 
 <footer class="site-footer">
-  <p class="wordmark" aria-hidden="true">MERIDIANO</p>
-  <div class="site-footer__row">
-    <p>Meridiano Construtora · casas de alto padrão sob medida</p>
-    <p class="demo">Demonstração: marca, endereço, números e casos fictícios. Imagens geradas por IA.</p>
+  <div class="rod__grid">
+    <div class="rod__marca">
+      <a class="brand" href="#topo"><svg class="brand__mark" viewBox="0 0 40 24" aria-hidden="true"><path d="M2 22 H38" /><path d="M6 22 A14 14 0 0 1 34 22" /><circle cx="27.5" cy="11" r="2.6" /></svg><span>Meridiano</span></a>
+      <p>Casas de alto padrão desenhadas pela luz do terreno.</p>
+    </div>
+    <div><p class="rod__tit">Serviços</p><a href="#frentes">Estudo solar</a><a href="#frentes">Projeto de arquitetura</a><a href="#frentes">Construção turn key</a><a href="#frentes">Obra a partir do seu projeto</a><a href="#frentes">Gestão de acabamento</a></div>
+    <div><p class="rod__tit">Meridiano</p><a href="#casas">Casas entregues</a><a href="#um-dia">Como funciona</a><a href="#guias">Guias</a><a href="#perguntas">Perguntas</a></div>
+    <div><p class="rod__tit">Contato</p><p>Campinas, SP. Atendimento em Campinas, Valinhos, Vinhedo e Indaiatuba.</p><p>(19) 90000-0000</p><a href="#contato" data-wa="5519900000000">WhatsApp</a></div>
   </div>
+  <div class="rod__ass"><span>Luz. Projeto. Obra. Entrega.</span><span class="demo">Demonstração: marca, endereço, números e casos fictícios. Imagens geradas por IA.</span></div>
+  <p class="wm" aria-hidden="true"><span class="wm__vazado">MERIDIANO</span><span class="wm__cheio">MERIDIANO</span><span class="wm__feixe"></span></p>
 </footer>
 
-<a class="wa-float" data-after-hero data-wa="5519900000000" data-cta="flutuante" href="#contato" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm0 16.4a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.7.7.7-2.6-.2-.3A7.4 7.4 0 1 1 12 19.4Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3 2.4 2.4 0 0 0-.8 1.8 4.3 4.3 0 0 0 .9 2.2 9.6 9.6 0 0 0 3.7 3.3c1.4.6 1.9.6 2.6.5a2.2 2.2 0 0 0 1.4-1c.2-.5.2-.9.1-1l-.4-.2Z"/></svg>
-</a>
+<a class="wa-float" data-after-hero data-wa="5519900000000" data-cta="flutuante" href="#contato" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" defer></script>
 <script type="module">
   import './personaliza.js';
   import './motion.js';
+  import './componentes.js';
+  import './estudo-solar-3d.js';
 </script>
 </body>
 </html>
