@@ -13,7 +13,8 @@ Regra: **nenhuma linha de HTML/CSS e nenhuma geração paga antes do `plano.md` 
 7. **Números de prova**: cada número com fonte real (ou rótulo "ilustrativo" em demo) e onde aparece grande e colorido.
 8. **Gráficos**: o que cada um prova (antes/depois, acumulado, previsto x realizado), dados, interação (hover/foco/toque mostra valor).
 9. **Ambiente e microdetalhes**: o elemento vivo de cada seção (em nível de sussurro), estados de hover previstos, efeitos de fundo por placa.
-10. **Metas de densidade** (régua de `qualidade.md`): nº de ícones, estados de hover, keyframes nomeados, palavras, links, e a referência contra a qual `comparar-densidade.js` vai medir.
+10. **Régua mínima obrigatória** (`qualidade.md`): como cada parâmetro do piso Vexter será atingido com conteúdo e estados reais, seção por seção.
+10b. **Reuso e inovação** (`inovacao.md`): reusos declarados + no mínimo 3 inovações de 2 tipos, checadas contra `portfolio.md`.
 11. **Assets e custo**: cada imagem/vídeo/voz/3D com ferramenta, modelo, custo estimado e alternativa grátis. Total.
 12. **Personalização**: segmentos, sinais, o que muda por segmento.
 13. **Riscos e cortes**: o que sai se faltar dado real ou verba.

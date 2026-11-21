@@ -4,6 +4,32 @@ Na Vexter, a hero é uma **mão segurando uma moeda de real** ao lado da pergunt
 
 Todo site da skill planeja o seu objeto-herói (fase de plano), adaptado ao nicho.
 
+## A mão: diferencial para REUSAR (não obrigação)
+
+A mão funciona porque é **humana**: dá escala, aproxima, transmite cuidado e confiança, e afasta a cara de "render de IA". Por isso ela é o padrão recomendado e **deve ser reusada** sempre que servir ao cliente. Mas não é prisão: em temas novos, pode e deve haver variação. O objetivo é **presença humana + promessa visível**, não "sempre uma mão segurando algo".
+
+### Variações com presença humana (reusar a ideia, inovar a forma)
+| Forma | Quando |
+|---|---|
+| Mão segurando/apresentando (padrão) | promessa que cabe na palma (moeda, maquete, chave, frasco) |
+| Mão em ação (traçando, montando, assinando, regando) | serviço que é um gesto (arquitetura, advocacia, estética, agro) |
+| Duas mãos (entregando, protegendo, encaixando) | entrega, cuidado, parceria |
+| Silhueta/contraluz de pessoa | lifestyle, morar, viajar, esporte |
+| Sombra humana sobre o objeto/cena | sutileza, alto padrão |
+| Ponto de vista em 1ª pessoa (POV) | experiência (entrar na casa, sentar à mesa) |
+| Rosto parcial/olhar (com consentimento e foto real) | saúde, beleza, educação, marca pessoal |
+
+### Sem mão (quando o objeto fala sozinho)
+| Forma | Quando |
+|---|---|
+| Objeto levitando ou em pedestal, com luz de produto | produto físico premium, joia, embalagem |
+| Objeto 3D interativo (gira com o mouse/scroll) | produto, maquete, peça técnica (`tres.js`) |
+| Macro de material (textura, grão, gota, fio) | marca de material/acabamento |
+| Cena viva mínima (vapor, luz, água) em vez de objeto | gastronomia, bem-estar |
+| Tipografia como objeto (palavra/número gigante esculpido) | marca de dado, finanças, tecnologia |
+
+Decisão consciente no `plano.md`: reusar a mão (e de que forma) ou justificar a alternativa. Ver `inovacao.md` e `portfolio.md` (não repetir a mesma composição em clientes seguidos).
+
 ## Regras
 
 1. **O objeto é a promessa, não o produto genérico.** Mostra o resultado que o cliente quer ter na mão (dinheiro recuperado, a casa antes de existir, o sorriso alinhado), não "um escritório" ou "um prédio".

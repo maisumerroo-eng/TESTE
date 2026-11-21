@@ -106,3 +106,34 @@ Lição: performance, contraste e ausência de vícios **não bastam** para pare
 - [ ] **Peso na rolagem:** smooth scroll (Lenis) quando houver seções fixadas; microdetalhes (traço que se desenha, ícone que respira) em nível de sussurro.
 - [ ] Rodar `comparar-densidade.js` contra a referência do cliente/nicho e fechar as lacunas que importam (não perseguir número).
 
+## Régua mínima (OBRIGATÓRIA): nível Vexter é o piso
+
+Todo site da skill precisa **igualar ou superar** a Vexter em cada parâmetro abaixo **e** ficar dentro do teto de performance. Gate: `node templates/regua-minima.js <url>` (sai com código 1 se reprovar). Sem aprovação na régua, o site não é entregue.
+
+| Parâmetro (home) | Mínimo | Por que importa |
+|---|---|---|
+| Regras CSS | 1550 | densidade de estados, variações e responsividade |
+| Keyframes (animações nomeadas) | 57 | movimento com vocabulário, não fade genérico |
+| Regras de hover | 59 | tudo que é clicável responde |
+| Transições | 91 | nada estala |
+| Gradientes / mask-image / clip-path | 87 / 21 / 7 | material, luz, bordas que somem, revelações |
+| Elementos SVG (ícones, desenhos) | 223 | sistema de ícones e desenhos próprios |
+| Imagens | 35 | prova visual em todas as seções |
+| Subtítulos h3 / palavras | 64 / 1676 | profundidade de conteúdo e SEO |
+| Links | 69 | navegação completa, serviços como link |
+| Variáveis CSS | 89 | sistema de design tokenizado |
+
+| Teto de performance | Máximo |
+|---|---|
+| LCP (desktop, gate) | 2500 ms (mobile 4G/CPU 4x pelo `auditar-site.js`: também < 2500 ms) |
+| CLS | 0,1 |
+| Peso inicial | 1500 KB |
+| CSS | 220 KB |
+| Bloqueio no carregamento | 600 ms |
+
+**Anti-inflação (regra dura):** número só conta se vier de componente, conteúdo ou estado real. Proibido: regra CSS duplicada ou morta, SVG vazio/escondido, imagem decorativa sem função, texto de enchimento, links para lugar nenhum, h3 sem seção. A régua mede **acabamento real**; quem inflar número reprova no passe de olhos frescos e no gate de texto.
+
+**Como subir de verdade** (do maior retorno ao menor): mais seções que cumprem estratégias (`estrategias-de-conversao.md`), cada componente com todos os estados (hover, foco, ativo, aberto, carregando), animações nomeadas por tipo de conteúdo, ícones em toda lista e etapa, imagens em todo card/guia/caso, conteúdo de autoridade (guias, FAQ, áreas atendidas, equipe com dados reais), rodapé com todos os serviços como link, páginas internas linkadas.
+
+Exceção: só quando o usuário pedir explicitamente uma página enxuta (registrar no `plano.md`).
+

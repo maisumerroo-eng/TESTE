@@ -17,6 +17,14 @@
 - Prova na 1ª dobra (cartões de número):
 - Prompt (EN):
 
+## 2b. Reuso e inovação (`references/inovacao.md`)
+- Reusos (componentes/estratégias/mão):
+- Inovações (mínimo 3, de 2 tipos ou mais):
+  1.
+  2.
+  3.
+- Checagem no `portfolio.md` (não repetir objeto + assinatura + ambiente do cliente anterior): [ ] ok
+
 ## 3. Referência → adaptação (se houver referência)
 | Seção da referência | Estratégia que cumpre | Como o nosso cliente cumpre (metáfora própria) |
 |---|---|---|
@@ -51,8 +59,9 @@
 - Elemento vivo por seção:
 - Estados de hover previstos:
 
-## 11. Metas de densidade (referência: ______)
-ícones ≥ __ · hovers ≥ __ · keyframes ≥ __ · palavras ≥ __ · links ≥ __
+## 11. Régua mínima (obrigatória, `templates/regua-minima.js`)
+Piso Vexter: CSS 1550 · keyframes 57 · hovers 59 · transições 91 · gradientes 87 · mask 21 · clip-path 7 · SVG 223 · imagens 35 · h3 64 · palavras 1676 · links 69 · variáveis 89.
+Como cada número será alcançado com conteúdo/estado real (por seção):
 
 ## 12. Assets e custo
 | Asset | Ferramenta/modelo | Custo | Alternativa grátis |

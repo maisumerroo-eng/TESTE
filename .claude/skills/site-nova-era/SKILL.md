@@ -50,6 +50,8 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `references/estrategias-de-conversao.md` | catálogo das estratégias de venda extraídas da estrutura real da Vexter → como adaptar → componente |
 | `references/icones-isometricos.md` | técnica dos ícones "quase 3D" (3 tons + acento), sprite e metáforas por nicho |
 | `templates/componentes/` | biblioteca testada: botão 3D, cartão de prova, faixa de ícones, placas com aba, lista de serviços, número gigante, antes/depois, gráfico interativo, valores escalonados, carrossel, formulário → WhatsApp, rodapé com wordmark, odômetro, ambiente de brises, estudo solar 3D, gerador de ícones isométricos |
+| `templates/regua-minima.js` | **gate obrigatório**: piso Vexter em 13 parâmetros + teto de performance (reprova com código 1) |
+| `references/inovacao.md` + `references/portfolio.md` | reusar o que funciona e inovar ≥ 3 meios por site; registro para não repetir composições |
 | `templates/comparar-densidade.js` | régua de acabamento: mede o nosso site contra a referência (ícones, hovers, animações, gradientes, conteúdo) |
 | `templates/gate-texto.py` | gate de texto: travessão, estoque, sinais quietos de IA, emoji |
 
@@ -122,6 +124,7 @@ Rode `python3 templates/gate-texto.py <projeto>` até sair limpo e a lista "Prov
 Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonalizacao.md` (Camada 2). Variantes em `<template data-p-variant>`, ordem por segmento com `data-p-order`, WhatsApp com mensagem do segmento via `data-wa`, seletor de perfil com `data-p-choose`, link "ver versão padrão". Liste cada variante e sua fonte no `dna.md`. Teste com `?seg=<segmento>`.
 
 ### 7. Qualidade
+0. **Gate da régua mínima:** `node templates/regua-minima.js <url>` precisa aprovar (piso Vexter + teto de performance). Reprovou: subir com conteúdo e estados reais, nunca enchimento.
 1. `node templates/auditar-site.js <url> auditoria` e corrigir P1 e P2 na ordem (ciclo de `economia.md`: medir → corrigir o maior gargalo → medir de novo → parar na meta).
 2. `qualidade.md` como checklist. Depois: `impeccable` (polish), `emil-design-eng` (interações), `web-design-guidelines` (a11y/UX), cada um só nas seções que mudaram desde a última revisão.
 3. `auditar-contraste.js` em 390 e 1440 (pior pixel ≥ 3,5:1 grande, 4,5:1 normal) e `teste-flick.js` em cada seção fixada/scrub.
@@ -153,10 +156,14 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 14. Vídeo no scroll: nada é montado em volta de vídeo que o usuário não aprovou; celular e reduced motion recebem hero estático desenhado; página completa sem o vídeo.
 15. Uma premissa de marca: seção que não serve a ela sai.
 16. Nada é criado sem `plano.md` aprovado. Toda hero tem objeto-herói planejado (ou justificativa escrita para não ter).
+18. **Régua mínima:** nenhum site é entregue abaixo do nível Vexter (`regua-minima.js` aprovado) nem acima do teto de performance.
+19. **Reusar e inovar:** reusar componentes, estratégias e a mão (presença humana aproxima) sempre que servirem, e inovar em pelo menos 3 meios de cumprir a skill por site; inovação testada volta para a biblioteca e para o `portfolio.md`.
 17. Toda seção cumpre pelo menos uma estratégia de `estrategias-de-conversao.md`; número de prova aparece grande e colorido; gráfico prova a mudança e é interativo e acessível.
 
 ## Checklist final
 
+- [ ] `regua-minima.js` APROVADO (piso Vexter + teto de performance)
+- [ ] 3+ inovações entregues e devolvidas à skill; linha no `portfolio.md`
 - [ ] `plano.md` aprovado e seguido (objeto-herói, mapa de seções, componentes, ícones, gráficos, metas)
 - [ ] `dna.md` preenchido, sem `[A CONFIRMAR]` no texto visível
 - [ ] 8 atos revisados; momento-assinatura funcionando e com versão estática
