@@ -69,3 +69,40 @@ main.js           comportamentos (templates/motion.js)
 personaliza.js    variantes por visitante (templates/personaliza.js)
 assets/img, assets/icons (SVG próprios), assets/fonts (woff2 subset)
 ```
+
+## Premissa da marca (antes do roteiro)
+
+Um parágrafo construído sobre **uma palavra ou ideia real do mundo do cliente** (Meridiano: "luz"). O site inteiro ensina e vende essa ideia: cada seção, o momento interativo e a linha final servem a ela. **Seção que não serve a premissa sai da página.**
+
+## Escrever nas palavras de quem compra
+
+Antes da copy, coletar frases reais de dor, desejo e objeção (método em `megapersonalizacao.md`). Usar as palavras deles nos títulos de dor, nas perguntas do FAQ e nas objeções respondidas. Regra aprendida: quando o assunto é **uma pessoa** (dono, chef, artesão, profissional liberal), o hero apresenta essa pessoa na voz confiante dela; a linguagem de dor dos compradores trabalha nas seções de baixo (gancho de dor sobre o rosto de alguém soa como reclamação alheia).
+
+## Tipos de momento-assinatura
+
+| Tipo | Quando | Base |
+|---|---|---|
+| Seção fixada com SVG/CSS (rota, sol, planta, extrato) | padrão: leve, editável, grátis | `data-pin` do `motion.js` |
+| **Vídeo no scroll (scrub)** | jornada de câmera contínua é a metáfora e há verba de vídeo | `references/video-scrub.md`, `templates/scrub/` |
+| 3D | produto físico ou símbolo da marca que ganha com rotação/explosão | `references/3d.md`, `tres.js` |
+
+Um por página.
+
+## Momento interativo único (opcional, um por site)
+
+Uma ação que o visitante **executa** e que encena a ideia da marca (segurar para "assentar o concreto", arrastar o sol sobre o terreno, montar o kit). Mecânica que parece desenhada, não truque:
+- o progresso cresce enquanto o visitante segura/arrasta;
+- soltar cedo desce o progresso suavemente (nunca estala para zero);
+- completar acende o conteúdo da seção em sequência (a ação conquista algo real);
+- reduced motion recebe o estado final na hora; teclado tem alternativa (botão).
+Não somar com a assinatura na mesma dobra. O seletor de perfil da personalização conta como interação útil; o momento interativo é sobre a marca.
+
+## Formulário em site estático (dizer a verdade sobre o destino)
+
+| Destino | Quando |
+|---|---|
+| WhatsApp com mensagem pronta (`data-wa`) | padrão BR, já personalizado por segmento |
+| Serviço de formulário (Formspree e similares) | negócio real captando lead por e-mail; conta do cliente |
+| `mailto:` | simples, abre o e-mail do visitante |
+| Só estado de sucesso em JS | demo/portfólio (declarar que não envia) |
+Escrever no `dna.md` onde a mensagem do visitante termina e fazer o estado de sucesso combinar com isso.

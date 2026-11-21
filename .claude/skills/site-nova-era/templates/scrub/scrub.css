@@ -1,0 +1,36 @@
+/* scrub.css: hero de vídeo controlado pelo scroll (skill site-nova-era, references/video-scrub.md).
+   Os 5 portões do hero estático abaixo precisam ser IDÊNTICOS aos de scrub.js. */
+
+.scrub { position: relative; height: var(--scrub-h, 400vh); background: var(--scrub-bg, #14110f); }
+.scrub__stage { position: sticky; top: 0; height: 100svh; overflow: clip; isolation: isolate; }
+.scrub__poster, .scrub__video, .scrub__static { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: center / cover no-repeat; }
+.scrub__video { opacity: 0; transform: translateZ(0); transition: opacity .6s ease; }
+.scrub.is-ready .scrub__video { opacity: 1; }
+.scrub.is-failed .scrub__video { display: none; }
+
+/* legibilidade em 4 camadas: scrim global, scrim por faixa, sombra de texto, chip */
+.scrub__scrim { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 120% 90% at 50% 45%, rgb(10 10 18 / 0) 35%, rgb(10 10 18 / .6) 100%); }
+:root { --tshadow: 0 1px 2px rgb(5 5 10 / .95), 0 3px 12px rgb(5 5 10 / .78), 0 10px 44px rgb(5 5 10 / .8); }
+.scrub__band { position: absolute; inset: auto var(--gutter, 24px) 14vh; max-width: 40rem; opacity: 0; color: #fff; text-shadow: var(--tshadow); will-change: opacity; }
+.scrub__band::before { content: ""; position: absolute; inset: -30% -20%; z-index: -1; pointer-events: none; opacity: calc(.25 + .75 * var(--k, 1)); background: radial-gradient(ellipse 74% 62% at 50% 50%, rgb(5 5 10 / var(--scrim-a, .64)) 0%, rgb(5 5 10 / calc(var(--scrim-a, .64) * .66)) 46%, rgb(5 5 10 / 0) 76%); }
+.scrub__band .btn { text-shadow: none; }
+.scrub__chip { display: inline-block; padding: 4px 10px; background: rgb(8 8 15 / .55); border: 1px solid rgb(255 255 255 / .18); border-radius: 10px; backdrop-filter: blur(10px); text-shadow: 0 1px 3px rgb(5 5 10 / .85); }
+
+/* entrada guiada por --k (0..1), só transform/opacity, reversível */
+.scrub__band .rv-wi { display: inline-block; opacity: clamp(0, calc((var(--k, 0) - var(--th, 0)) * 3), 1); transform: translateY(calc((1 - clamp(0, calc((var(--k, 0) - var(--th, 0)) * 3), 1)) * 0.6em)); }
+
+/* anel de carregamento honesto */
+.scrub__ring { position: absolute; right: 24px; bottom: 24px; width: 40px; height: 40px; color: rgb(255 255 255 / .8); transition: opacity .4s; }
+.scrub__ring circle { stroke-dashoffset: var(--ld, 126); transition: stroke-dashoffset .2s linear; }
+.scrub.is-ready .scrub__ring, .scrub.is-failed .scrub__ring { opacity: 0; }
+
+/* ---------- os 5 portões: hero estático desenhado ---------- */
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce) {
+  .scrub { height: auto; }
+  .scrub__stage { position: relative; height: auto; min-height: 100svh; display: grid; align-items: end; }
+  .scrub__video, .scrub__ring, .scrub__poster { display: none; }
+  .scrub__static { background-image: var(--scrub-static); }   /* só baixa aqui: background CSS sob a media query */
+  .scrub__band { display: none; }
+  .scrub__band[data-static] { display: block; position: relative; inset: auto; opacity: 1 !important; --k: 1; padding: 0 var(--gutter, 24px) 12vh; }
+}
+@media (max-height: 560px) { .scrub__ring { display: none; } }

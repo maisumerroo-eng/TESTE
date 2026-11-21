@@ -44,6 +44,7 @@ Implementação pronta: `templates/motion.css` + `templates/motion.js` (sem depe
 | **Marquee arrastável** | loop infinito + arrasto com inércia + setas do teclado; clone com `aria-hidden` e `inert`; pausa fora da tela | médio |
 | **Pilha de placas (sticky stack)** | cards `position: sticky` com `top` crescente; o de baixo escurece/encolhe ao ser coberto | médio |
 | **Seção fixada com progresso** | container alto (300–500 svh) + palco `sticky`; progresso 0→1 do scroll controla passos, caminho SVG (`stroke-dashoffset`), marcador (`getPointAtLength`) | alto, é o momento-assinatura |
+| **Vídeo no scroll (scrub)** | vídeo avança/volta com o scroll, faixas de legenda com platô, hero estático em celular/reduced motion; `templates/scrub/`, regras em `video-scrub.md` | alto, é o momento-assinatura |
 | **Troca de clima** | fundo muda de escuro para claro no último passo (amanhecer = resultado) | baixo |
 | **Número que conta** | ease-out, 1,2–1,8 s, sempre até o mesmo valor, `tabular-nums` | baixo |
 | **Ambiente em canvas** | partículas/chuva/grão; DPR ≤ 2, pausa com IntersectionObserver e `document.hidden`, densidade pela área | médio |
@@ -69,3 +70,34 @@ Implementação pronta: `templates/motion.css` + `templates/motion.js` (sem depe
 - `@property` para animar variáveis (ângulo de gradiente, porcentagem de brilho).
 - `:has()` para estado de seção (`.sec:has(.is-active)`), `@container` para cards que se adaptam ao espaço.
 - `text-wrap: balance` em títulos, `font-variant-numeric: tabular-nums` em números.
+
+## 6. Coreografia "eco" (seções guiadas por scroll: pin e scrub)
+
+Cada batida ganha a própria entrada, e ela **ecoa o que a cena está fazendo** naquele momento: palavras derivam para baixo enquanto algo cai, uma palavra "soca" quando um impacto pousa, letras se juntam enquanto a tinta se junta. Entrada e cena leem como um evento só. Parte fixa (vale para qualquer entrada inventada): só `transform` e `opacity`, guiadas por uma variável de progresso `--k` (0 a 1) escrita pelo loop só quando muda, **reversíveis** ao rolar para cima (exceção: a 1ª batida abre montada no carregamento), deslocamentos "aleatórios" com **semente fixa** (iguais a cada carregamento).
+
+Cardápio (exemplos, não lista fechada):
+| Entrada | Ecoa | Como |
+|---|---|---|
+| Dispersão | tinta/partículas se juntando | por letra, limiar aleatório `--th`, voo de `--jx/--jy/--jr` até 0 |
+| Alinhamento em grade | precisão, montagem | igual à dispersão, limiar em ordem de leitura, só horizontal |
+| Desfoque → nítido | névoa clareando, foco | duas cópias: a suave com `blur` **estático**; crossfade só de opacidade (nunca animar `filter`) |
+| Soco com overshoot | impacto | escala por palavra passa de 1 e assenta; ênfase com overshoot maior |
+| Subida em etapas | chegada ao repouso | título por palavra → subtítulo (`--k` > .66) → CTA (`--k` > .78) |
+| Deriva para baixo | queda, despejo | `translateY` negativo até 0 |
+| Aproximação | túnel, avanço | `scale(.82 → 1)` com opacidade |
+| Metades se abrindo | cortina, dobra | duas metades saem da linha central |
+
+## 7. Armadilhas que matam animação em silêncio
+
+- **Cascata:** estados inicial e final da entrada com o prefixo do contêiner (`.card .part` / `.card.in .part`), senão uma regra posterior cancela. Provar que cada entrada toca.
+- **Aposentar o escalonamento:** depois da entrada, o atraso e a transição de reveal não podem continuar valendo (hover de botão ficaria seco ou atrasado). O `motion.js` já troca `data-reveal` por `data-revealed` ao terminar.
+- **`animation-fill-mode: forwards` vence para sempre:** entrada no pai, estilo dinâmico no filho.
+- **Loops começam no meio do ciclo:** atraso negativo (`-1.2s`). Pausar fora da tela com classe via IntersectionObserver e em aba oculta com `body.paused *, body.paused *::before, body.paused *::after { animation-play-state: paused !important }` (a propriedade não é herdada).
+- **Nunca** sobrescrever `el.style.transition` em JS: alternar classe.
+- **Texto mascarado** precisa de respiro para descendentes (g, y, p): padding em em com margem negativa igual (já no `.rv-w`).
+- **Loop de scroll suavizado:** `shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667))` para a mesma sensação em 60 e 120 Hz; o loop descansa ao convergir.
+- **DOM só na mudança:** comparar com valor em cache; texto que muda com scroll no máximo ~10 Hz.
+
+## 8. Ambiente (opcional, com crítica)
+
+Uma camada fixa atrás de tudo (grão, deriva lenta ≥ 60 s, brilho suave no mundo da marca) faz rolar parecer atravessar um lugar. Usar só se a marca pedir e se não brigar com a assinatura; pausada fora de foco; desligada em reduced motion. O padrão "site inteiro animado, partículas em todo lugar" **não** entra: conflita com a regra de uma assinatura e loops só no fundo.

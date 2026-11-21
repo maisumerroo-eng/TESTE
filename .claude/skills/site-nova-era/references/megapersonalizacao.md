@@ -17,12 +17,21 @@ Vocabulário do nicho (10+ termos, siglas, leis, ferramentas):
 Objeções que o comercial mais ouve (5):
 Provas reais (números, casos, selos, anos, clientes que podem ser citados):
 Metáfora do negócio → momento-assinatura:
+Premissa da marca (1 palavra/ideia que o site inteiro vende):
+Frases reais dos compradores (dor / desejo / objeção, com fonte):
+Imagens: fotos reais / IA declarada / IA temporária até fotos reais:
 Personalidade (3 pares "é / não é"): ex. sóbria / não fria
 Cor de marca + neutros; fonte display + texto:
 Canal de contato principal (WhatsApp nº, e-mail):
 ```
 
 Fontes do DNA: briefing, site atual, Instagram, Google Business, conversas de WhatsApp que o cliente mostrar, concorrentes. Lacuna sem resposta: marcar `[A CONFIRMAR]` no texto, nunca inventar.
+
+### Pesquisa da voz do comprador (antes de escrever)
+Busca na web (WebSearch) em avaliações e conversas reais do nicho, priorizando fontes brasileiras: Google Maps do cliente e dos concorrentes, Reclame Aqui, iFood/marketplaces, grupos e fóruns do nicho. Um punhado de fontes basta. Coletar **frases exatas** recorrentes em três listas: dores, resultados desejados, objeções. Sem busca disponível: pedir ao usuário 5 avaliações reais ou as objeções que o comercial mais ouve. Uso: títulos de dor, perguntas do FAQ, objeções respondidas, variantes por segmento. Registrar as frases (com a fonte) no `dna.md`.
+
+### Imagens de negócio real sem fotos
+Decidir com o usuário, em voz alta: o site declara que as imagens são geradas por IA, ou elas serão trocadas por fotos reais depois? As duas respostas funcionam; o que não pode é não decidir. Marca fictícia/demo: rodapé declara.
 
 Saídas personalizadas obrigatórias:
 - Copy com o vocabulário do nicho (veja `narrativa-estrutura.md`).

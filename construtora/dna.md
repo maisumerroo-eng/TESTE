@@ -2,6 +2,9 @@
 
 > Marca, região, números e casos são **fictícios**, criados para demonstração. Em cliente real, cada item abaixo vem do briefing.
 
+Premissa da marca: **luz**. O site inteiro vende a ideia de que a casa certa nasce da luz do terreno (estudo solar como oferta, sol atravessando a obra como assinatura, CTA "descubra onde o sol nasce").
+Frases reais dos compradores: [pesquisa não feita: marca demo; em cliente real, coletar em Google Maps/Reclame Aqui/fóruns]
+Desvio declarado: pedra + terracota está na lista de "looks reflexo de IA", mas aqui vem do material (concreto aparente, freijó) e da luz do pôr do sol das imagens; display sem serifa expandida.
 Negócio em 1 frase: constrói casas de alto padrão sob medida, do estudo do terreno à entrega das chaves.
 Nicho e subnichos: residencial alto padrão; turn key (projeto + obra), obra a partir de projeto de arquiteto, gestão de acabamento.
 Região de atuação: Campinas e região (demo).

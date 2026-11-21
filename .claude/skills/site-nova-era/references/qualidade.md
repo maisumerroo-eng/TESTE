@@ -41,3 +41,40 @@
 - Scripts de análise/pixel só após aceitar. Personalização da Camada 2 com sinais de primeira parte não exige cookie de terceiro.
 - Páginas: Política de Privacidade, Termos, canal do encarregado (DPO).
 - Formulários: só os campos necessários, finalidade escrita ao lado do botão.
+
+## Legibilidade sobre imagem, vídeo e gradiente (sistema de 4 camadas)
+
+1. **Scrim global** suave sobre a mídia (radial ou linear), sempre ligado.
+2. **Scrim local** atrás do bloco de texto (que aprofunda só enquanto o texto está ativo em seções guiadas por scroll); escurecer sem achatar: o gradiente morre antes dos cantos.
+3. **Sombra de texto** em 3 camadas (borda justa, brilho médio, queda larga); desligada em botões.
+4. **Chip** (pílula com fundo desfocado) para rótulos pequenos sobre mídia.
+
+**Auditoria do pior pixel:** `node templates/auditar-contraste.js <url> 390 "<seletores>"` e de novo em 1440. Esconde só os glifos, fotografa a caixa como o visitante vê e mede contra o pixel mais desfavorável. Metas: 3,5:1 texto grande, 4,5:1 texto normal. Calibrar o scrim contra o pior quadro, nunca o médio. (No caso Meridiano pegou 2 falhas que Lighthouse e a auditoria geral não pegaram: título da hero no celular 2,85:1 e parágrafo do CTA 1,61:1.)
+
+## Piso de qualidade (sempre)
+
+- `overflow-x: clip` em `html` **e** `body`, com `hidden` antes como recuo.
+- Largura de texto em `ch` **no próprio elemento de texto**, nunca no contêiner (o `ch` usa a fonte herdada).
+- Linhas de texto lado a lado alinhadas na linha de base (`align-items: baseline`).
+- Alvos de toque ≥ 44px em `(pointer: coarse)` sem mudar o layout (re-declarar alinhamento ao trocar `display`).
+- Decorações posicionadas reservam espaço e somem em telas baixas (`@media (max-height: 560px)`).
+- `<title>`, meta description, `theme-color` e **favicon SVG inline** da marca.
+- `og:image`/`og:url` com URL absoluta: comentário `<!-- DEPLOY STEP -->` e ajuste na publicação.
+- Marcos semânticos, skip link, `aria-hidden` em decoração; vídeo decorativo com `aria-hidden`, sem `controls`, fora da ordem de tab.
+- Reduced motion no scrub é **ao vivo** (portões com listener de mudança). Nos reveals, a decisão é no carregamento; quem liga reduced motion no meio da sessão vê o resto revelar sem animação (limitação aceita).
+
+## Testes antes de mostrar a alguém
+
+- Larguras: **360, 390, 768, 1280 e 1440** (sem rolagem lateral, sem texto estourando, sem imagem quebrada).
+- `auditar-site.js` (performance, peso, SEO, a11y básica) e `auditar-contraste.js` (pior pixel).
+- `teste-flick.js` em toda seção fixada/scrub (5+ flicks de 120px por batida, nenhuma pulável em 360px).
+- `gate-texto.py` limpo.
+- Exercitar cada botão, link e o formulário; links reais (WhatsApp, Instagram, mapa).
+- **Passe de olhos frescos, por último:** largar o checklist e olhar como visitante sem contexto. Algo flutua sem explicação? Algum item paralelo desigual? Algum trecho lê como enchimento? Consertar antes do usuário ver. Se houver como, um revisor independente acha o que o checklist não pensou.
+
+## Depois de publicar: verificação no ar e recibos de velocidade
+
+- `curl -sSI "$URL"` (200 por HTTPS), mídia pesada servindo direto, console limpo na URL do ar, scrub/pin funcionando no ar.
+- Recibos reais (nunca estimativa): `curl -s -o /dev/null -w "TTFB %{time_starttransfer}s, total %{time_total}s, %{size_download} bytes\n" "$URL"` + `auditar-site.js` na URL do ar. Apresentar ao usuário com o argumento: site estático, sem backend para ser lento, mídia pesada atrás de pôster.
+- Domínio novo: DNS pode levar horas e o certificado HTTPS sai depois; avisar em vez de declarar quebrado.
+- Pedir ao usuário que teste no celular dele, na rede real.

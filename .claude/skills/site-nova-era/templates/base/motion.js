@@ -70,21 +70,30 @@ function initReveal() {
     targets.forEach((el) => { el.classList.add('is-in'); if (el.dataset.count) runCount(el); });
     return;
   }
+  const TRANSICAO = ['rise', 'fade', 'wipe', 'blur', 'develop', 'flip', 'track'];
+  // aposenta a regra de reveal quando a entrada termina (transições próprias do elemento voltam a valer)
+  const aposentar = (el) => {
+    if (!TRANSICAO.includes(el.dataset.reveal)) return;
+    let feito = false;
+    const fim = () => { if (feito) return; feito = true; el.dataset.revealed = el.dataset.reveal; el.removeAttribute('data-reveal'); };
+    el.addEventListener('transitionend', (ev) => { if (ev.target === el) fim(); });
+    const cs = getComputedStyle(el);
+    const ms = (v) => Math.max(...v.split(',').map((x) => parseFloat(x) * (x.includes('ms') ? 1 : 1000)));
+    setTimeout(fim, ms(cs.transitionDuration) + ms(cs.transitionDelay) + 150);   // garantia se transitionend não vier
+  };
+  const revelar = (el) => { el.classList.add('is-in'); if (el.dataset.count) runCount(el); if (el.dataset.reveal) aposentar(el); };
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
-      e.target.classList.add('is-in');
-      if (e.target.dataset.count) runCount(e.target);
+      revelar(e.target);
       io.unobserve(e.target);
     });
   }, { rootMargin: '0px 0px -15% 0px' });
   // o que já está visível ao carregar revela na hora (senão itens perto do rodapé da 1ª dobra ficam escondidos)
   targets.forEach((el) => {
     const r = el.getBoundingClientRect();
-    if (r.top < innerHeight && r.bottom > 0) {
-      el.classList.add('is-in');
-      if (el.dataset.count) runCount(el);
-    } else io.observe(el);
+    if (r.top < innerHeight && r.bottom > 0) revelar(el);
+    else io.observe(el);
   });
 }
 

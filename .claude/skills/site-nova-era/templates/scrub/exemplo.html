@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exemplo de hero com vídeo no scroll</title>
+  <link rel="stylesheet" href="scrub.css">
+  <style>
+    html, body { overflow-x: hidden; overflow-x: clip; }
+    body { margin: 0; font: 18px/1.5 system-ui, sans-serif; background: #f1ece4; color: #1c1915; }
+    h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 .4em; }
+    .depois { padding: 120px 24px; min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <!-- Troque: data-src (vídeo encodado com -g 8), data-poster (1º quadro), --scrub-static (quadro final, usado no celular/reduced motion) -->
+  <section class="scrub" data-scrub data-src="assets/hero-scrub.mp4" data-poster="assets/hero-poster.jpg" data-bytes="900000"
+           style="--scrub-h: 400vh; --scrub-static: url(assets/hero-final.jpg)">
+    <div class="scrub__stage">
+      <div class="scrub__static" aria-hidden="true"></div>
+      <div class="scrub__poster" aria-hidden="true"></div>
+      <video class="scrub__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+      <div class="scrub__scrim" aria-hidden="true"></div>
+      <div class="scrub__band" data-band="0,0.30" data-static>
+        <h1 data-split>[Promessa da marca em uma linha]</h1>
+        <p>[Subtítulo curto.]</p>
+      </div>
+      <div class="scrub__band" data-band="0.34,0.64"><h2 data-split>[Batida 2: o que muda]</h2></div>
+      <div class="scrub__band" data-band="0.68,1"><h2 data-split>[Batida 3: chegada]</h2><a class="btn" href="#cta">[CTA]</a></div>
+      <svg class="scrub__ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="126"/></svg>
+    </div>
+  </section>
+  <section class="depois" id="cta"><h2>O site de verdade começa aqui.</h2></section>
+  <script type="module" src="scrub.js"></script>
+</body>
+</html>

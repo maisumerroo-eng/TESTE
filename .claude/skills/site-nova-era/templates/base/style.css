@@ -1,13 +1,17 @@
 /* style.css base: trocar tokens pelo DNA da marca. Estrutura mínima para os templates funcionarem. */
 :root {
-  --bg: #fff; --ink: #111; --muted: #5b5b5b; --line: #e3e3e3;
+  /* nunca #fff/#000 puros: tingir na direção da marca */
+  --bg: #f5f2ec; --ink: #16140f; --muted: #5b5b5b; --line: #e3e3e3;
   --dark: #0b0b0a; --dark-ink: #f2efe8; --dark-line: #2a261f;
   --accent: #c8a34d; --accent-ink: #8a6720;
   --font-display: "Poppins", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
   --gutter: clamp(16px, 5vw, 64px);
+  /* escala fixa de espaçamento */
+  --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 48px; --s6: 96px;
 }
 *, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; overflow-x: clip; }   /* hidden antes como recuo; clip impede rolagem lateral até por código/âncora */
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font-body); }
 h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; text-wrap: balance; margin: 0 0 .5em; }
 h1 { font-size: clamp(2.2rem, 6vw, 4.8rem); }
@@ -30,12 +34,13 @@ a { color: inherit; }
 .btn--gold { background: var(--dark); color: #fff; }
 @media (hover: hover) { .btn--gold:hover { background: var(--accent); color: var(--dark); } }
 
-.hero { min-height: 100svh; display: grid; align-content: center; justify-items: center; text-align: center; gap: 20px; padding: 120px var(--gutter) 64px; }
+/* hero assimétrica, alinhada à esquerda (hero centralizada com título + 2 botões é o molde mais batido de IA) */
+.hero { min-height: 100svh; display: grid; align-content: end; justify-items: start; text-align: left; gap: 20px; padding: 120px var(--gutter) clamp(40px, 8vh, 88px); }
 .hero .lead { max-width: 60ch; color: color-mix(in srgb, var(--dark-ink) 80%, transparent); }
-.hero__nums { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.hero__nums { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero__nums p { margin: 0; padding: 14px 18px; border: 1px solid var(--dark-line); text-align: left; }
 .hero__nums strong { display: block; font: 700 clamp(1.6rem, 3vw, 2.4rem) var(--font-display); color: var(--accent); }
-.profile { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; font-size: 14px; }
+.profile { display: flex; gap: 8px; flex-wrap: wrap; font-size: 14px; }
 .profile button { min-height: 44px; padding: 0 14px; background: transparent; color: inherit; border: 1px solid var(--dark-line); cursor: pointer; }
 .profile button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 
@@ -80,3 +85,8 @@ html:not(.motion) .route__steps > li { grid-area: auto; margin-bottom: 32px; }
 .tres__canvas { opacity: 0; transition: opacity .6s var(--ease-out, ease); }
 .tres.is-ready .tres__canvas { opacity: 1; }
 .tres.is-ready .tres__poster { opacity: 0; transition: opacity .6s; }
+
+/* alvos de toque ≥ 44px em ponteiro grosso, sem mudar o layout */
+@media (pointer: coarse) { .btn, .profile button, .site-header nav a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; } }
+/* decorações não colidem com conteúdo em telas baixas */
+@media (max-height: 560px) { .wa-float { display: none; } }

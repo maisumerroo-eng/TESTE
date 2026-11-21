@@ -32,6 +32,10 @@ Projeto com CLAUDE.md grande: backup e `npx -y claude-token-optimizer measure` �
 8. **3D:** procedural, Poly Haven ou 3D Jutsu (grátis) antes de imagem→3D pago; "standard" antes de "detailed".
 9. **Grátis primeiro quando a qualidade empata:** bancos públicos para textura/fundo, `search_logo` para logos, ícones procedurais em SVG.
 10. **Nunca regerar por timeout:** consultar status/ID; repetir cobra de novo.
+10a. **Gates do mais barato ao mais caro:** storyboard aprovado (grátis) → quadro/imagem (barato) → vídeo (caro). Um "sim" antes de gastar vale mais que três takes depois.
+10b. **Consertar sem regerar:** final de vídeo ruim → corte de cauda no último quadro estável; costura visível → `xfade`; enquadramento → expandir/editar.
+10c. **Comparar modelos com o mesmo pedido:** o preço da mesma tomada já variou ~5x entre o topo e um intermediário de qualidade. Mostrar os números e deixar o usuário escolher.
+10d. **Três falhas no mesmo conceito:** trocar o conceito, não reescrever o prompt pela quarta vez.
 11. **Manifesto de assets** em `assets/manifesto.json`: arquivo, ferramenta, modelo, prompt, seed/ID, custo, aprovado (sim/não). Antes de gerar, conferir se já existe algo reaproveitável.
 
 ```json

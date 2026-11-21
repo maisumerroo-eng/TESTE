@@ -86,3 +86,13 @@ Variar só o assunto. Guardar o prompt-mestre na página `00 DNA` do Figma e no 
 - Fluxo: `POST https://api.muapi.ai/api/v1/<endpoint>` com JSON (`prompt`, `width`, `height`...) → a resposta traz o id da previsão → `GET /api/v1/predictions/{id}/result` até concluir → baixar as URLs de saída. O OpenAPI não descreve os campos da resposta: na 1ª chamada, imprimir o JSON inteiro e confirmar os nomes antes de automatizar.
 - Autenticação injetada pelo proxy: não pedir chave nem colocar chave no código.
 - Úteis: `ai-background-remover` (produto sem fundo), `ai-image-upscale`, `ai-image-extension` (expandir para 16:9/9:16), `gpt-image-2.6-*`, `midjourney-v8`, `veo3-fast-image-to-video`, `kling-*`, `seedance-*`, `suno-create-music` (trilha do reel).
+
+## Regras de geração (todas as ferramentas)
+
+- **Prompts em inglês** (modelos rendem melhor); conversa com o usuário em português.
+- **"No text, no logos, no lettering anywhere"** em todo prompt de imagem e vídeo.
+- **Armadilha do espaço negativo:** para reservar lugar de texto, descreva a área calma como parte da cena (céu, sombra suave, profundidade, superfície lisa), nunca como "empty darkness" ou "void" (gera painéis pretos).
+- **Inspecionar cada imagem antes de usar:** marcas registradas contrabandeadas, anatomia, composição e **coerência de marca** (cor, materiais e detalhes assinatura batem com a história do cliente?). A inspeção também captura presentes: se a imagem saiu melhor que o plano, ajuste o layout para destacar.
+- **Recusar presets** que o gerador oferecer quando há tomada desenhada.
+- Itens paralelos recebem o mesmo tratamento (3 passos = 3 imagens no mesmo mundo).
+- Vídeo no scroll: pipeline completo em `references/video-scrub.md`.

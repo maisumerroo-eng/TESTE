@@ -15,7 +15,9 @@
 }
 
 /* ---------- estado inicial (só com motion) ---------- */
-html.motion [data-reveal] {
+/* só os tipos de transição; ao terminar, o motion.js troca data-reveal por data-revealed e a regra se aposenta
+   (devolve ao elemento as transições próprias, ex.: hover de botão, sem atraso herdado do escalonamento) */
+html.motion :is([data-reveal="rise"], [data-reveal="fade"], [data-reveal="wipe"], [data-reveal="blur"], [data-reveal="develop"], [data-reveal="flip"], [data-reveal="track"]) {
   transition-property: opacity, transform, clip-path, filter, scale, translate;
   transition-duration: var(--dur-in);
   transition-timing-function: var(--ease-out);

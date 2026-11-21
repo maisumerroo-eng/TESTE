@@ -44,6 +44,8 @@ Complementa `anthropic-skills:site-sem-cara-de-ia`. Rodar esta lista **antes de 
 
 ## Detector rápido (rodar no projeto)
 
+Gate oficial: `python3 templates/gate-texto.py <pasta>` (texto visível + variantes `<template>`: travessões, palavras de estoque, "não é só X, é Y", atribuições vagas, finais grandiosos, palavras entregadoras, emojis). Precisa sair limpo antes de qualquer pessoa ver o site. Atalhos manuais:
+
 ```bash
 grep -rniE "transform(e|ar) seu|próximo nível|inovador|soluções completas|apaixonad|excelência|—|saiba mais|clique aqui" --include=*.html .
 python3 -c "import re,glob;[print(f,re.findall('[\U0001F300-\U0001FAFF\u2600-\u27BF]',open(f).read())[:5]) for f in glob.glob('**/*.html',recursive=True)]"   # emojis
@@ -60,3 +62,30 @@ grep -rniE "from-purple|to-indigo|via-pink|bg-gradient-to" --include=*.{html,css
 - [ ] Um detalhe tipográfico de assinatura (número vazado, kicker com traço, wordmark gigante)
 - [ ] Números com contexto e disclaimer honesto
 - [ ] Copy que só serve para este cliente (trocar o nome da marca quebraria o texto)
+
+## Vícios adicionais (filtrados de site-de-10k e site-sem-cara-de-ia)
+
+### Composição e direção
+| Vício | Troque por |
+|---|---|
+| Hero centralizada com título + subtítulo + 2 botões como única composição | composição assimétrica, texto ancorado num lado, mídia com peso |
+| Duas seções vizinhas com o mesmo esqueleto (kicker + título + lede na mesma grade) | remodelar uma delas: lista, editorial, número gigante, placa, mídia sangrada |
+| Acento em tudo | acento em doses raras: CTA, foco, 1 ou 2 ênfases |
+| Fundo `#000` ou `#fff` puro | tingir na direção da marca/fotografia |
+| Paleta de framework (indigo/violet do Tailwind, azul padrão de botão) e componente de biblioteca sem personalização | tokens próprios, componentes redesenhados |
+| Dark mode com neon por padrão | escuro só se a marca ou a referência pedirem |
+| Elementos paralelos desiguais (3 passos e só 2 com imagem; um card estilizado diferente) | tratamento igual para itens paralelos |
+
+**Looks "reflexo de IA"** (proibidos como padrão automático, permitidos quando são o mundo material do assunto): creme + serifa + acento terracota; quase-preto + verde-ácido; quase-preto + âmbar quente + serifa de alto contraste (o reflexo de "escuro, rico, cinematográfico"); brutalismo de borda fininha. Quando um deles for genuinamente o mundo do cliente (ateliê de cerâmica = creme e terracota), mereça: amostre os tons da fotografia real, invente a assinatura, fuja do molde, e **declare o desvio** no `dna.md`. Caso Meridiano: pedra + terracota veio do concreto, do freijó e da luz do pôr do sol das imagens, com display sem serifa expandida, e foi declarado.
+
+### Texto (sinais quietos)
+- Palavras de estoque: alavancar, robusto, empoderar, destravar, acionável, orientado a dados, soluções, sinergia, escalável.
+- Construções "não é só X, é Y"; faixas falsas ("de X a Y" que é só uma lista); atribuições vagas ("muitos especialistas dizem"); finais grandiosos ("o futuro é promissor"); palavras entregadoras (testamento, panorama, mergulhar, elevar).
+- **Exceção que importa:** dispositivo de marca deliberado, decidido no `dna.md` (um trio desenhado "Colher. Coar. Servir.", um staccato planejado), é ofício e fica. Sinal é o que apareceu sem convite.
+- O texto do site fala na **voz da marca**, não na voz de amigo: casa de luxo e streetwear são ambas simples, mas não soam iguais. Frases do tamanho de um flick de scroll.
+
+### Referência do cliente
+Se o cliente mandar um site e disser "quero assim", siga **estrutura, ritmo, tipografia e clima** com fidelidade (não "melhore" trocando por layout padrão), mas nunca copie texto, código, imagens ou ícones. Sites estudados para a régua (`casos/`) são outra coisa: princípios, não molde.
+
+### Prova de autoria: teste de remoção
+Se a assinatura fosse retirada, a página mudaria de verdade? Se mal mudaria, não é assinatura: gastar o orçamento de ousadia em algo cuja ausência seria notada.
