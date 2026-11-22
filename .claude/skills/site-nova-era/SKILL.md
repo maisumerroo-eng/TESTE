@@ -47,6 +47,8 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
 | `references/aprimorar-existente.md` | **site que já existe**: raio-x só leitura, diagnóstico manter/mudar, caminho (evolução no lugar, refazer com 301, plataforma fechada, só imagem), lotes medidos, prova antes/depois |
+| `references/laboratorio-referencias.md` | função do imagem → HTML: estudar (em privado) páginas virais/hiperpersonalizadas e devolver técnicas próprias à skill |
+| `templates/prospect/` | página por prospect: `novo-prospect.py` (ficha do lead a partir do logo/fotos, paleta medida) + `prospect.js` (`?para=slug`, noindex, fallback) |
 | `references/imagem-para-html.md` | **opcional, só sob pedido**: print/mockup **do cliente** → HTML fiel: paleta medida, análise em camadas, uma imagem por vez, loop de comparação de pixels |
 | `templates/paleta-da-imagem.py` / `templates/comparar-imagem.js` | paleta real de uma imagem / semelhança render × imagem com mapa de diferenças |
 | `references/estrategia.md` | **estratégia antes do design**: medos e critérios do cliente, buscas no Google e em IA (GEO), concorrentes e diferencial, posicionamento em 1 frase, mapa do site com palavra-chave por página, texto completo, rascunho de layout no celular |
@@ -98,7 +100,7 @@ Siga `references/economia.md`: busque e edite trechos (nunca reescreva arquivo i
 ## Modos de entrada
 - **Site novo:** fases abaixo, desde a 0.
 - **Aprimorar site existente:** comece por `references/aprimorar-existente.md` (raio-x e diagnóstico), escolha o caminho com o usuário e então siga as fases a partir da estratégia, preservando URLs, conteúdo que posiciona e a stack do cliente.
-- **Imagem → HTML (opcional, só quando o usuário pedir ou enviar uma imagem para converter):** `references/imagem-para-html.md` (fidelidade medida), depois as fases para subir de nível. Nunca usar por iniciativa própria.
+- **Imagem → HTML (opcional, só quando o usuário pedir ou enviar uma imagem para converter):** `references/imagem-para-html.md` (fidelidade medida), depois as fases para subir de nível. Nunca usar por iniciativa própria. Funções: (1) design do cliente → HTML, (2) laboratório de referências virais em estudo privado (`laboratorio-referencias.md`), (3) página por prospect a partir das imagens do lead (`templates/prospect/`).
 
 ## Incorporar skill, reel ou conceito externo (quando o usuário mandar um link)
 1. **Ler a fonte real**, não o marketing: página via web-fetch; se for skill, achar o `SKILL.md` original (marketplaces costumam só ter propaganda). Repositório público: `add_repo` (leitura) e `git clone --depth 1 --filter=blob:none --no-checkout <repo>` + `git ls-tree -r --name-only HEAD | grep <nome>` + `git show HEAD:<caminho>` (rápido, baixa só o que lê). Atenção: o autor listado pode não ser o real.
@@ -115,6 +117,7 @@ Siga `references/economia.md`: busque e edite trechos (nunca reescreva arquivo i
 | Skill site-de-10k | vídeo no scroll (12 leis, motor testado), legibilidade e contraste do pior pixel, teste de flick, coreografia eco, piso de qualidade, verificação no ar |
 | Skill site-sem-cara-de-ia | vícios de composição/texto, hero assimétrica, fidelidade a referência do cliente, larguras de teste, pendências |
 | Reel @mateus_webdesigner | `estrategia.md`: estratégia antes do design (medos, busca Google/IA, concorrentes, posicionamento, mapa com palavra-chave, texto, rascunho mobile) |
+| Pedido: páginas hiperpersonalizadas virais em Reels | `laboratorio-referencias.md`, página por prospect (`templates/prospect/`), Camada 3 em `megapersonalizacao.md` |
 | Skill img2html (repo dvcrn/openclaw-skills-marketplace, autor real jinqiu193) | `imagem-para-html.md` (opcional), `paleta-da-imagem.py`, `comparar-imagem.js` |
 | Pedidos diretos do usuário | megapersonalização, Figma como hub, ElevenLabs, 3D, economia, plano obrigatório, régua mínima, reusar e inovar, aprimorar existente |
 

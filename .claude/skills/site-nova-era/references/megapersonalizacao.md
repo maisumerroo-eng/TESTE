@@ -99,3 +99,14 @@ Marcação: o conteúdo padrão fica no HTML (SEO e sem JS); variantes ficam em 
 ### Medição
 
 Eventos mínimos: `seg_resolvido`, `cta_click` (com segmento e posição), `whatsapp_open`, `diagnostico_concluido`. Comparar conversão por segmento depois de 2 a 4 semanas e cortar variante que não ganha.
+
+## Camada 3: página por prospect (hiperpersonalização por lead)
+
+Formato que circula em Reels de web designers: em vez de mandar portfólio, mandar ao lead **uma página já com a cara dele** (nome do negócio, cidade, logo, cores, fotos que ele publica). Uma página serve todos os leads; cada um recebe um link.
+
+- **Criar a ficha do lead a partir das imagens dele:** `python3 templates/prospect/novo-prospect.py <site> --nome "Padaria Sol" --cidade Valinhos --nicho padaria --logo logo.png [--foto f1.jpg] --whatsapp-agencia 5519...` → mede a paleta do logo, copia logo/fotos e grava `prospects/<slug>.json`.
+- **Na página:** `templates/prospect/prospect.js` (importar depois do `personaliza.js` e antes do `motion.js`); marcação `data-pp="nome"`, `data-pp="cidade"`, `data-pp-src="logo"`, `data-pp-show="logo"`, cores aplicadas nos tokens (`--accent`, `--accent-claro`, `--accent-escuro`, `--sol`...), WhatsApp com mensagem do lead.
+- **Link do lead:** `<site>/?para=<slug>` (ou `#para-<slug>`). Sem parâmetro ou slug inexistente: versão padrão intacta.
+- **Proteções:** página de prospect ganha `noindex, nofollow`; só dados públicos do negócio (nada de dado pessoal de pessoa física); o lead pode pedir remoção (apagar o JSON); evento `prospect_aberto` para medir quem abriu.
+- Testado em 22/11/2026: troca de nome, cidade, logo, cor e WhatsApp, `noindex` ativo, fallback para a versão padrão.
+

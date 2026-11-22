@@ -4,6 +4,13 @@
 
 Filtrado da skill pública "img2html" (análise por camadas, uma imagem por vez, estados de hover) e completado com o que ela não tinha: **medição** de cores e **loop de verificação** por comparação de pixels.
 
+## Funções (todas só sob pedido do usuário)
+| Função | O que faz | Onde |
+|---|---|---|
+| **1. Design do cliente → HTML** | mockup/print do próprio cliente vira código fiel e depois sobe de nível | este arquivo (processo abaixo) |
+| **2. Laboratório de referências virais** | reconstrói em **estudo privado** páginas que viralizam (hiperpersonalizadas, demos por prospect) para extrair técnicas e componentes próprios | `laboratorio-referencias.md` |
+| **3. Página por prospect** | a partir das **imagens do lead** (logo, print do Instagram), mede a paleta e gera a versão personalizada da página para ele (`?para=slug`) | `templates/prospect/` + `megapersonalizacao.md` |
+
 ## Quando usar (pensamento crítico)
 - **Sim:** o design é **do cliente** (mockup no Figma, export do Lovable, print do site antigo dele, desenho de designer contratado) e precisa virar código fiel; ou o site antigo existe só como imagem.
 - **Não:** recriar pixel a pixel o site de terceiros. Referência de outra marca é para extrair princípios (`casos/`), nunca copiar.
