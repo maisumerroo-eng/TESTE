@@ -3,7 +3,13 @@
 Portfólio usado: fisioaquatica.com.br (Fisio Aquática, Goiânia). Contato de retorno: WhatsApp (64) 99933-2113.
 
 ## E-mails enviados (suportefatormarketing@gmail.com, 22/11)
-Acquavita, Acqua Fisio Curitiba, Reabilitação Total, Gustavo Balieiro, AcquaClínica, Forma e Fisio, Acquafisio Itatiba.
+Lote 1: Acquavita, Acqua Fisio Curitiba, Reabilitação Total, Gustavo Balieiro, AcquaClínica, Forma e Fisio, Acquafisio Itatiba.
+
+Lote 2: Ativos Reabilitação (ativosreabilitacao@gmail.com, DDD 85), Clínica Hidroterapia (contato@clinicahidroterapia.com.br, SP), Equilibre (recepcao@clinicaequilibre.com, RJ), Aquatop (aquatopleblon@gmail.com, Leblon/RJ), Acquativa (administrativo@hidroacquativa.com.br, Joinville/SC), Acquaticus (acquaticus@acquaticus.com.br, Porto Alegre/RS), Aqua Fisio (aquafisio@aquafisio.com.br, Caxias do Sul/RS).
+
+Só WhatsApp (sem e-mail no site): Qualli Vitta Campinas 5519999673454, Spa Sorocaba 5515991830420, Sulfisio Porto Alegre 5551980278257, Hidromaster Guarulhos 5511999460760, Hidrofísio Uberlândia, Acqua Fisio Rondonópolis.
+
+Total: 14 e-mails enviados, 20 clínicas mapeadas. Meta: 30.
 
 ## WhatsApp: tocar no link, a mensagem abre pronta (revisar e enviar do seu número)
 
