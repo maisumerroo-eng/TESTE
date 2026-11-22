@@ -1,0 +1,82 @@
+/* temas.css: o site "vira" o anime escolhido (html[data-anime]) e cada sombra tem a sua cor no seletor por scroll.
+   Função real: personalização por anime favorito (kagerima.js) + identidade de cada obra. */
+
+/* acento da marca: motion.css traz um padrão genérico; aqui volta o lima do banner */
+:root { --accent: var(--lima); --accent-claro: var(--lima-claro); --accent-escuro: var(--lima-escuro); }
+
+/* ---------- anime favorito: troca o acento do site inteiro ---------- */
+html[data-anime="naruto"] { --accent: #e0263a; --accent-claro: #ff7a85; --accent-escuro: #9c1424; --hero-k: "写"; }
+html[data-anime="jujutsu-kaisen"] { --accent: #3aa4fa; --accent-claro: #8fd0ff; --accent-escuro: #1f6fb0; --hero-k: "無"; }
+html[data-anime="one-piece"] { --accent: #e53845; --accent-claro: #ff8a92; --accent-escuro: #a3202b; --hero-k: "海"; }
+html[data-anime="bleach"] { --accent: #fb660f; --accent-claro: #ffa56b; --accent-escuro: #b44608; --hero-k: "卍"; }
+html[data-anime="dragon-ball"] { --accent: #fe8c00; --accent-claro: #ffc066; --accent-escuro: #b86400; --hero-k: "超"; }
+
+/* textos e botões que ficam claros sobre o acento escuro */
+html[data-anime="naruto"] .chip[aria-pressed="true"], html[data-anime="naruto"] .btn-ouvir, html[data-anime="naruto"] .selo, html[data-anime="naruto"] .rotulo span, html[data-anime="naruto"] .wa-float, html[data-anime="naruto"] .btn3d__t { color: #fff; }
+html[data-anime="one-piece"] .chip[aria-pressed="true"], html[data-anime="one-piece"] .btn-ouvir, html[data-anime="one-piece"] .selo, html[data-anime="one-piece"] .rotulo span, html[data-anime="one-piece"] .wa-float, html[data-anime="one-piece"] .btn3d__t { color: #fff; }
+html[data-anime="jujutsu-kaisen"] .hero { background: radial-gradient(ellipse 70% 55% at 62% 46%, #0f2236, var(--preto) 70%); }
+html[data-anime="naruto"] .hero { background: radial-gradient(ellipse 70% 55% at 62% 46%, #2a0f16, var(--preto) 70%); }
+html[data-anime="one-piece"] .hero { background: radial-gradient(ellipse 70% 55% at 62% 46%, #2a1216, var(--preto) 70%); }
+html[data-anime="bleach"] .hero { background: radial-gradient(ellipse 70% 55% at 62% 46%, #2a170c, var(--preto) 70%); }
+html[data-anime="dragon-ball"] .hero { background: radial-gradient(ellipse 70% 55% at 62% 46%, #2b1c08, var(--preto) 70%); }
+
+/* o kanji do anime favorito acende no ambiente da hero */
+html[data-anime="jujutsu-kaisen"] .hero__amb span:nth-child(1), html[data-anime="jujutsu-kaisen"] .hero__amb span:nth-child(7),
+html[data-anime="jujutsu-kaisen"] .hero__amb span:nth-child(6), html[data-anime="jujutsu-kaisen"] .hero__amb span:nth-child(12) { opacity: .28; }
+html[data-anime="dragon-ball"] .hero__amb span:nth-child(2), html[data-anime="dragon-ball"] .hero__amb span:nth-child(8) { opacity: .28; }
+html[data-anime="bleach"] .hero__amb span:nth-child(3), html[data-anime="bleach"] .hero__amb span:nth-child(9) { opacity: .28; }
+html[data-anime="one-piece"] .hero__amb span:nth-child(4), html[data-anime="one-piece"] .hero__amb span:nth-child(10) { opacity: .28; }
+html[data-anime="naruto"] .hero__amb span:nth-child(5), html[data-anime="naruto"] .hero__amb span:nth-child(11) { opacity: .28; }
+
+/* faixas do anime favorito ganham destaque na lista */
+html[data-anime="naruto"] .faixa[data-anime="naruto"], html[data-anime="jujutsu-kaisen"] .faixa[data-anime="jujutsu-kaisen"],
+html[data-anime="one-piece"] .faixa[data-anime="one-piece"], html[data-anime="bleach"] .faixa[data-anime="bleach"],
+html[data-anime="dragon-ball"] .faixa[data-anime="dragon-ball"] { border-color: var(--accent); }
+html[data-anime] .faixa[data-anime]::before { content: ""; position: absolute; z-index: 1; left: 10px; top: 10px; padding: 4px 7px; font: 700 10px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+html[data-anime="naruto"] .faixa[data-anime="naruto"]::before, html[data-anime="jujutsu-kaisen"] .faixa[data-anime="jujutsu-kaisen"]::before,
+html[data-anime="one-piece"] .faixa[data-anime="one-piece"]::before, html[data-anime="bleach"] .faixa[data-anime="bleach"]::before,
+html[data-anime="dragon-ball"] .faixa[data-anime="dragon-ball"]::before { content: "seu anime"; background: var(--accent); color: var(--preto); }
+
+/* ---------- seletor por scroll: cor da sombra ativa ---------- */
+.sel[data-current="0"] { --cor-ativa: var(--azul); }
+.sel[data-current="1"] { --cor-ativa: var(--laranja); }
+.sel[data-current="2"] { --cor-ativa: var(--laranja-2); }
+.sel[data-current="3"] { --cor-ativa: var(--vermelho); }
+.sel[data-current="4"] { --cor-ativa: var(--vermelho-2); }
+.sel[data-current="5"] { --cor-ativa: var(--vinho); }
+/* a coluna de kanjis da sombra ativa acende na grade */
+.sel[data-current="0"] .sel__grade span:nth-child(1), .sel[data-current="0"] .sel__grade span:nth-child(7) { opacity: .5; color: var(--azul); scale: 1.08; }
+.sel[data-current="1"] .sel__grade span:nth-child(2), .sel[data-current="1"] .sel__grade span:nth-child(8) { opacity: .5; color: var(--laranja); scale: 1.08; }
+.sel[data-current="2"] .sel__grade span:nth-child(3), .sel[data-current="2"] .sel__grade span:nth-child(9) { opacity: .5; color: var(--laranja-2); scale: 1.08; }
+.sel[data-current="3"] .sel__grade span:nth-child(4), .sel[data-current="3"] .sel__grade span:nth-child(10) { opacity: .5; color: var(--vermelho); scale: 1.08; }
+.sel[data-current="4"] .sel__grade span:nth-child(5), .sel[data-current="4"] .sel__grade span:nth-child(11) { opacity: .5; color: var(--vermelho-2); scale: 1.08; }
+.sel[data-current="5"] .sel__grade span:nth-child(6), .sel[data-current="5"] .sel__grade span:nth-child(12) { opacity: .5; color: var(--vinho); scale: 1.08; }
+/* as já vistas ficam com um rastro */
+.sel[data-current="1"] .sel__grade span:nth-child(1), .sel[data-current="2"] .sel__grade span:nth-child(-n+2), .sel[data-current="3"] .sel__grade span:nth-child(-n+3),
+.sel[data-current="4"] .sel__grade span:nth-child(-n+4), .sel[data-current="5"] .sel__grade span:nth-child(-n+5) { opacity: .12; }
+.sel__passos > li.is-past { border-left-color: var(--grafite); }
+.sel__passos > li.is-current .sel__kanji { text-shadow: 3px 0 var(--rgb-a), -3px 0 var(--rgb-b); }
+
+/* ---------- cores por obra nos componentes ---------- */
+.faixa[data-anime="naruto"] .faixa__meta, .letra-naruto { color: var(--vermelho-2); }
+.faixa[data-anime="jujutsu-kaisen"] .faixa__meta { color: var(--azul); }
+.faixa[data-anime="one-piece"] .faixa__meta { color: var(--vermelho); }
+.faixa[data-anime="bleach"] .faixa__meta { color: var(--laranja-2); }
+.faixa[data-anime="dragon-ball"] .faixa__meta { color: var(--laranja); }
+.filtro[data-filtro="naruto"][aria-pressed="true"] { background: var(--vermelho-2); border-color: var(--vermelho-2); color: #fff; }
+.filtro[data-filtro="jujutsu-kaisen"][aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: var(--preto); }
+.filtro[data-filtro="one-piece"][aria-pressed="true"] { background: var(--vermelho); border-color: var(--vermelho); color: #fff; }
+.filtro[data-filtro="bleach"][aria-pressed="true"] { background: var(--laranja-2); border-color: var(--laranja-2); color: var(--preto); }
+.filtro[data-filtro="dragon-ball"][aria-pressed="true"] { background: var(--laranja); border-color: var(--laranja); color: var(--preto); }
+@media (hover: hover) {
+  .filtro[data-filtro="naruto"]:hover { border-color: var(--vermelho-2); color: var(--vermelho-2); }
+  .filtro[data-filtro="jujutsu-kaisen"]:hover { border-color: var(--azul); color: var(--azul); }
+  .filtro[data-filtro="one-piece"]:hover { border-color: var(--vermelho); color: var(--vermelho); }
+  .filtro[data-filtro="bleach"]:hover { border-color: var(--laranja-2); color: var(--laranja-2); }
+  .filtro[data-filtro="dragon-ball"]:hover { border-color: var(--laranja); color: var(--laranja); }
+  .chip[data-anime-choose="naruto"]:hover { border-color: var(--vermelho-2); }
+  .chip[data-anime-choose="jujutsu-kaisen"]:hover { border-color: var(--azul); }
+  .chip[data-anime-choose="one-piece"]:hover { border-color: var(--vermelho); }
+  .chip[data-anime-choose="bleach"]:hover { border-color: var(--laranja-2); }
+  .chip[data-anime-choose="dragon-ball"]:hover { border-color: var(--laranja); }
+}

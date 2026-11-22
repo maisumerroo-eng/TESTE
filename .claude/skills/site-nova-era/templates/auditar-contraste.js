@@ -40,7 +40,8 @@ if (!url) { console.error('uso: node auditar-contraste.js <url> [largura] ["sele
       const d = c.getImageData(0, 0, img.width, img.height).data;
       const lin = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
       const lum = (r, g, b) => 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
-      const [tr, tg, tb] = cor.match(/[\d.]+/g).map(Number);
+      // rgb(…) vem em 0–255; color(srgb …), resultado de color-mix(), vem em 0–1
+      const nums = cor.match(/[\d.]+/g).map(Number); const [tr, tg, tb] = cor.startsWith('color(') ? nums.slice(0, 3).map((v) => v * 255) : nums;
       const lt = lum(tr, tg, tb);
       const claro = lt > 0.4;
       let pior = claro ? 0 : 1;

@@ -16,6 +16,7 @@ Régua de qualidade: os casos em `references/casos/` (sites analisados; aprender
 |---|---|---|
 | `casos/vexter.md` | contabilidade/BPO para transportadoras | metáfora do negócio (estrada) vira a seção fixada; uma oferta só; prova em reais |
 | `casos/bravo-diagnostico.md` | moda/e-commerce (site existente) | formato do diagnóstico de aprimoramento: régua, auditoria, manter/mudar, caminho |
+| `casos/kagerima.md` | canal de rap geek (criador de conteúdo) | primeiro site a passar a régua 13/13: tema por interesse, seletor por scroll, armadilhas de performance medidas |
 
 Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição que o projeto precisa.
 

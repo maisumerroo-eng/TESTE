@@ -1,0 +1,114 @@
+/* estados.css: estados completos de cada peça interativa (foco de teclado, pressionado, carregando) e os efeitos
+   de hover com a assinatura de cada obra nos cartões de faixa e de letra. */
+:root {
+  --foco: 2px solid var(--accent); --foco-off: 3px;
+  --press: .97;
+  --hdr-y: 0%;
+  --img-carregando: linear-gradient(110deg, var(--preto-3) 30%, var(--grafite) 50%, var(--preto-3) 70%);
+  --sombra-cartao: 0 18px 40px rgb(0 0 0 / .45);
+  --vinheta: radial-gradient(ellipse at 50% 40%, #000 55%, transparent 100%);
+}
+
+/* ---------- header que some ao descer e volta ao subir ---------- */
+.site-header { translate: 0 var(--hdr-y); transition: translate .4s var(--ease-out), background-color .3s, border-color .3s; }
+html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
+.site-header.is-scrolled .logo__k { width: 34px; height: 34px; font-size: 21px; }
+
+/* ---------- foco de teclado visível em tudo (mesmo desenho) ---------- */
+.btn-ouvir:focus-visible, .chip:focus-visible, .filtro:focus-visible, .spoiler-toggle:focus-visible, .lnk-yt:focus-visible, .lnk-sp:focus-visible { outline: var(--foco); outline-offset: var(--foco-off); }
+.faixa__links a:focus-visible, .redes a:focus-visible, .menu-btn:focus-visible, .mini__x:focus-visible, .letra-dlg__x:focus-visible { outline: var(--foco); outline-offset: 2px; }
+.faixa-obras a:focus-visible, .conteudo a:focus-visible, .servicos a:focus-visible { outline: var(--foco); outline-offset: -2px; }
+.voto__btn:focus-visible, .estudio__tab:focus-visible { outline: var(--foco); }
+.faq summary:focus-visible { outline: var(--foco); outline-offset: 2px; color: var(--accent); }
+.rod__grid a:not(.logo):focus-visible { outline: var(--foco); outline-offset: 2px; color: var(--branco); }
+.logo:focus-visible { outline: var(--foco); outline-offset: 4px; }
+.pular:focus-visible, .link-seta:focus-visible, .mini__ir:focus-visible { outline: var(--foco); outline-offset: 4px; }
+
+/* ---------- pressionado ---------- */
+.filtro:active, .spoiler-toggle:active, .lnk-yt:active, .lnk-sp:active, .redes a:active { scale: var(--press); }
+.faixa__play:active .faixa__btn { scale: .92; }
+.faixa__links a:active { scale: .92; }
+.menu-btn:active, .mini__x:active, .letra-dlg__x:active { scale: .94; }
+.estudio__tab:active { background: rgb(255 255 255 / .06); }
+.opc:active .opc__c { scale: .99; }
+.clima:active span, .extra:active span { scale: .98; }
+.faq summary:active { color: var(--accent); }
+.busca input:active { border-color: var(--branco); }
+.dic__card:active .dic__k { scale: .96; }
+
+/* ---------- imagem carregando (fundo animado até o arquivo chegar) ---------- */
+.faixa__play picture, .letra picture, .placa2__img picture, .obra__capa, .sel__capas li { background: var(--img-carregando) 0 0 / 200% 100%; }
+.faixa__play img, .letra img { position: relative; }
+
+/* ---------- hover dos cartões de faixa com a assinatura da obra ---------- */
+.faixa__play::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .4s; -webkit-mask-image: var(--vinheta); mask-image: var(--vinheta); }
+.faixa[data-anime="jujutsu-kaisen"] .faixa__play::after { background: repeating-radial-gradient(circle at 50% 50%, transparent 0 16px, rgb(58 164 250 / .28) 16px 18px); }
+.faixa[data-anime="dragon-ball"] .faixa__play::after { background: repeating-conic-gradient(from 0deg at 50% 60%, rgb(254 140 0 / .3) 0 4deg, transparent 4deg 14deg); }
+.faixa[data-anime="bleach"] .faixa__play::after { background: linear-gradient(-32deg, transparent 46%, rgb(255 255 255 / .9) 49.5%, rgb(251 102 15 / .8) 50.5%, transparent 54%); }
+.faixa[data-anime="one-piece"] .faixa__play::after { background: radial-gradient(circle at 50% 0, transparent 14px, rgb(229 56 69 / .4) 15px 17px, transparent 18px) 0 100% / 40px 22px repeat-x, linear-gradient(0deg, rgb(229 56 69 / .3), transparent 40%); }
+.faixa[data-anime="naruto"] .faixa__play::after { background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0 110deg, rgb(224 38 58 / .35) 110deg 120deg); }
+@media (hover: hover) {
+  .faixa__play:hover::after { opacity: 1; }
+  .faixa[data-anime="naruto"] .faixa__play:hover::after { animation: k-aura-sasuke 3s linear infinite; }
+  .faixa[data-anime="one-piece"] .faixa__play:hover::after { animation: k-pad-mar 1.6s linear infinite; }
+  .faixa[data-anime="dragon-ball"] .faixa__play:hover::after { animation: k-aura-goku .6s ease-in-out infinite; }
+}
+.faixa__play:focus-visible::after { opacity: 1; }
+
+/* ---------- cartões de letra por obra ---------- */
+.letra { --cor-l: var(--accent); }
+.letra[data-letra="gojo"] { --cor-l: var(--azul); }
+.letra[data-letra="goku"] { --cor-l: var(--laranja); }
+.letra[data-letra="ichigo"] { --cor-l: var(--laranja-2); }
+.letra[data-letra="luffy"] { --cor-l: var(--vermelho); }
+.letra[data-letra="sasuke"] { --cor-l: var(--vermelho-2); }
+.letra[data-letra="megumi"] { --cor-l: var(--vinho); }
+.letra .letra__cat { color: var(--cor-l); }
+.letra picture { position: relative; }
+.letra picture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, color-mix(in srgb, var(--cor-l) 40%, transparent), transparent 55%); opacity: .6; transition: opacity .4s; }
+@media (hover: hover) { .conteudo a.letra:hover { border-color: var(--cor-l); } .letra:hover picture::after { opacity: 1; } .letra:hover .letra__ler::after { background: var(--cor-l); border-color: var(--cor-l); } }
+
+/* ---------- seletor: cada etapa com o kanji na cor e o selo da obra ---------- */
+.sel__passos > li::before { content: ""; position: absolute; right: 16px; top: 16px; width: 10px; height: 10px; background: var(--cor); box-shadow: 0 0 0 4px color-mix(in srgb, var(--cor) 25%, transparent); }
+.sel__passos > li { position: relative; }
+.sel__passos > li:nth-child(1) .sel__kanji { text-shadow: 0 0 30px rgb(58 164 250 / .5); }
+.sel__passos > li:nth-child(2) .sel__kanji { text-shadow: 0 0 30px rgb(254 140 0 / .55); }
+.sel__passos > li:nth-child(3) .sel__kanji { text-shadow: 0 0 30px rgb(251 102 15 / .5); }
+.sel__passos > li:nth-child(4) .sel__kanji { text-shadow: 0 0 30px rgb(229 56 69 / .5); }
+.sel__passos > li:nth-child(5) .sel__kanji { text-shadow: 0 0 30px rgb(224 38 58 / .5); }
+.sel__passos > li:nth-child(6) .sel__kanji { text-shadow: 0 0 30px rgb(200 16 46 / .55); }
+.sel__passos > li .lnk-yt, .sel__passos > li .lnk-sp { background: rgb(6 6 9 / .5); }
+
+/* ---------- valores e etapas: ícones reagem ---------- */
+.valores li { transition: background-color var(--dur-hover); }
+.valores li svg { transition: translate .4s var(--ease-out), filter .4s; }
+@media (hover: hover) { .valores li:hover svg { translate: 0 -4px; filter: drop-shadow(0 8px 14px color-mix(in srgb, var(--accent) 40%, transparent)); } .valores li:hover h3 { color: var(--accent); } }
+.valores h3 { transition: color var(--dur-hover); }
+.etapas__lista li:focus-within { background: var(--preto-2); }
+
+/* ---------- números ---------- */
+.num-g { position: relative; }
+.num-g::before { content: ""; position: absolute; left: -4%; top: 10%; width: 60%; height: 80%; background: radial-gradient(ellipse, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); filter: blur(20px); pointer-events: none; z-index: -1; }
+.grafico { position: relative; padding: 22px; border: 1px solid var(--linha-k); background: linear-gradient(180deg, var(--preto-2), var(--preto)); }
+
+/* ---------- rodapé: voltar ao topo ---------- */
+.topo-btn { position: absolute; right: var(--gutter); top: -22px; display: grid; place-items: center; width: 44px; height: 44px; background: var(--accent); color: var(--preto); text-decoration: none; font-size: 20px; transition: translate .3s var(--ease-out), background-color var(--dur-hover); }
+@media (hover: hover) { .topo-btn:hover { translate: 0 -4px; background: var(--branco); } }
+.topo-btn:focus-visible { outline: var(--foco); outline-offset: 3px; }
+.rod__marca .logo__t { font-size: 20px; }
+.rod__ass .demo { max-width: 70ch; }
+
+/* ---------- obras: fundo com o kanji da obra no hover ---------- */
+.faixa-obras a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--cor, var(--accent)) 14%, transparent), transparent 70%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+@media (hover: hover) { .faixa-obras a:hover::before { opacity: 1; } }
+
+/* ---------- formulário do CTA: estados ---------- */
+.form-wa label { transition: color var(--dur-hover); }
+.form-wa label:focus-within { color: var(--accent); }
+.form-wa button[type="submit"]:disabled { opacity: .5; cursor: not-allowed; }
+.form-wa select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cinza) 50%), linear-gradient(135deg, var(--cinza) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+
+/* ---------- legibilidade: rótulos pequenos na cor da obra ganham luz (vermelhos escuros não passam 4,5:1 puros) ---------- */
+.hub__btn .hub__txt small, .dic__card .dic__n, .sel__passos .sel__meta, .destaque .destaque__meta { color: color-mix(in srgb, var(--cor) 72%, #fff); }
+.faixa .faixa__meta { color: color-mix(in srgb, var(--cor) 72%, #fff) !important; }
+.letra .letra__cat { color: color-mix(in srgb, var(--cor-l) 72%, #fff); }

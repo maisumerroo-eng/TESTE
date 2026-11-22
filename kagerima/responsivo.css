@@ -1,0 +1,133 @@
+/* responsivo.css: ajustes finos por faixa de tela, medidos em 360, 390, 768, 1024, 1440 e 1920.
+   Celular pequeno (≤ 420), celular deitado (altura ≤ 520), tablet (768–1099) e telas grandes (≥ 1600). */
+
+/* ---------- telas grandes ---------- */
+@media (min-width: 1600px) {
+  :root { --max: 1480px; --gutter: 88px; }
+  body { font-size: 18px; }
+  .hero__corpo { width: min(100%, 860px); padding-bottom: 96px; }
+  .hero__palco { width: min(44vw, 760px); }
+  .hero__amb { padding: 10vh 8vw; }
+  .sel__capas { width: min(32vw, 560px); }
+  .sel__txt { max-width: 700px; }
+  .faixas { grid-template-columns: repeat(6, 1fr); }
+  .dic__card { min-height: 330px; padding: 26px 22px 28px; }
+  .estudio__mesa { grid-template-columns: 320px 1fr; }
+  .estudio__palco { min-height: 420px; padding: 36px 48px; }
+  .eq { height: 120px; }
+  .resumo { padding: 30px; }
+  .voto__lista { max-width: 1100px; }
+  .cta__corpo { width: min(100%, 1000px); }
+  .rod__grid { grid-template-columns: 1.6fr repeat(4, 1fr); }
+}
+
+/* ---------- desktop comum (1400–1599): 12 faixas em 2 linhas de 6 ---------- */
+@media (min-width: 1400px) and (max-width: 1599px) { .faixas { grid-template-columns: repeat(6, 1fr); } .dic__card { min-height: 310px; } }
+
+/* ---------- notebook ---------- */
+@media (min-width: 1100px) and (max-width: 1399px) {
+  .site-header nav { gap: 16px; font-size: 12px; }
+  .hero__palco { width: min(44vw, 560px); }
+  .faixas { grid-template-columns: repeat(4, 1fr); }
+  .dic__card { padding: 20px 14px 22px; }
+}
+
+/* ---------- tablet ---------- */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .hero__corpo { width: min(100%, 640px); }
+  .hero__palco { width: min(52vw, 520px); }
+  .hero__prova { right: 24px; }
+  .sel__titulo { font-size: 2rem; }
+  .sel__passos > li { padding: 18px 20px; }
+  .faixas { grid-template-columns: repeat(3, 1fr); }
+  .numeros__grade { gap: 32px; }
+  .etapas__lista { grid-template-columns: repeat(3, 1fr); }
+  .etapas__lista li:nth-child(n+4) { grid-column: span 1; }
+  .monte__grupo { padding: 18px; }
+  .rod__grid { grid-template-columns: repeat(3, 1fr); }
+  .rod__marca { grid-column: 1 / -1; }
+}
+
+/* ---------- celular ---------- */
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  .site-header { padding: 10px 16px; }
+  .btn-ouvir { min-height: 40px; padding: 0 12px; font-size: 11px; }
+  .logo__k { width: 34px; height: 34px; font-size: 21px; }
+  .logo__t { font-size: 16px; }
+  .hero__lead { font-size: 1rem; }
+  .hero__ctas { gap: 14px 22px; margin: 20px 0; }
+  .hero__bloco { top: 6%; width: 52%; }
+  .hero__kanji { font-size: clamp(5.6rem, 30vw, 9rem); }
+  .chips { gap: 6px; }
+  .chip { padding: 0 11px; font-size: 11px; }
+  .obras { padding-top: 32px; }
+  .faixa-obras a { grid-template-columns: 60px 1fr; padding: 14px 16px; }
+  .obra__capa { width: 60px; height: 60px; }
+  .sec { padding-block: 76px; }
+  .sec-head { margin-bottom: 32px; }
+  .sel__txt { padding-top: 76px; }
+  .sel__kanji { font-size: 2.4rem; }
+  .sel__passos p { font-size: 15px; }
+  .filtros { gap: 6px; }
+  .filtro { padding: 0 11px; font-size: 11px; }
+  .spoiler-toggle { margin-left: 0; width: 100%; justify-content: center; }
+  .faixas { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .faixa__info { padding: 12px 12px 14px; }
+  .faixa h3 { font-size: .95rem; }
+  .faixa__btn { width: 42px; height: 42px; right: 8px; top: 8px; }
+  .faixa[data-spoiler]::after { top: 24%; font-size: 11px; padding: 8px; }
+  .grafico__area { height: 180px; }
+  .placa2__lead { font-size: 1.1rem; }
+  .etapas__lista li { padding: 22px 18px 24px; }
+  .valores__intro { font-size: 1rem; }
+  .letra__corpo { padding: 14px 16px 18px; }
+  .faq summary { padding: 16px 2px; }
+  .cta { min-height: 0; }
+  .cta__corpo { padding: 76px 16px; }
+  .redes a { flex: 1 1 calc(50% - 10px); justify-content: center; }
+  .rodape { padding-top: 48px; }
+  .rod__ass { flex-direction: column; }
+  .rod__grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .rod__marca { grid-column: 1 / -1; }
+  .cta__k { top: 14%; right: -14vw; font-size: 70vw; opacity: .05; }
+  .resumo { padding: 20px; }
+  .resumo__lista li { grid-template-columns: 70px 1fr; }
+}
+
+/* ---------- celular pequeno ---------- */
+@media (max-width: 420px) {
+  .site-header .btn-ouvir svg { display: none; }
+  .hero__corpo { padding-top: 92px; }
+  .rotulo { font-size: 11px; letter-spacing: .18em; }
+  .faixas { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .faixa__links a { width: 40px; height: 40px; }
+  .opc__c { padding: 14px; }
+  .opc__c svg { width: 46px; height: 42px; }
+  .clima span { padding: 0 12px; }
+  .voto__h { font-size: .92rem; }
+  .estudio__tab { font-size: .76rem; }
+  .estudio__n { display: none; }
+}
+
+/* ---------- celular deitado (pouca altura) ---------- */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { min-height: 0; align-items: start; }
+  .hero__corpo { padding-top: 88px; width: 60%; }
+  .hero__palco { width: 34vw; }
+  .hero__prova { display: none; }
+  .sel__txt { padding-top: 64px; }
+  .sel__passos > li { padding: 12px 14px; }
+  .sel__passos p:not(.sel__meta):not(.sel__acoes) { display: none; }
+  .sel__capas { width: 28vw; }
+  .cta { min-height: 0; }
+}
+
+/* ---------- ponteiro grosso: alvos maiores ---------- */
+@media (pointer: coarse) {
+  .estudio__tab { min-height: 64px; }
+  .voto__btn { min-height: 72px; }
+  .rod__grid a:not(.logo) { padding: 8px 0; }
+  .pular { padding: 10px 0; }
+  .spoiler-toggle { min-height: 44px; }
+}

@@ -1,0 +1,8 @@
+{"sombras":[
+ {"id":"gojo","anime":"Jujutsu Kaisen","slug":"jujutsu-kaisen","personagem":"Satoru Gojo","k1":"無","k2":"処","termo":"Vazio Infinito","cor":"#3aa4fa","faixas":["Vazio Infinito","O Mais Forte"]},
+ {"id":"goku","anime":"Dragon Ball","slug":"dragon-ball","personagem":"Goku","k1":"超","k2":"超","termo":"Além do limite","cor":"#fe8c00","faixas":["Instinto Superior","Além do Limite"]},
+ {"id":"ichigo","anime":"Bleach","slug":"bleach","personagem":"Ichigo Kurosaki","k1":"卍","k2":"解","termo":"Bankai","cor":"#fb660f","faixas":["Bankai","Lua Cortante"]},
+ {"id":"luffy","anime":"One Piece","slug":"one-piece","personagem":"Monkey D. Luffy","k1":"海","k2":"王","termo":"Rei dos Piratas","cor":"#e53845","faixas":["Rei dos Piratas","Gear Cinco"]},
+ {"id":"sasuke","anime":"Naruto","slug":"naruto","personagem":"Sasuke Uchiha","k1":"写","k2":"眼","termo":"Sharingan","cor":"#e0263a","faixas":["Sharingan","Laços Cortados"]},
+ {"id":"megumi","anime":"Jujutsu Kaisen","slug":"jujutsu-kaisen","personagem":"Megumi Fushiguro","k1":"伏","k2":"子","termo":"Dez Sombras","cor":"#c8102e","faixas":["Dez Sombras","Domínio da Sombra"]}
+]}

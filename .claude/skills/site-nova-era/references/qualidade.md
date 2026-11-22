@@ -10,6 +10,7 @@
 - Animar só `transform`, `opacity`, `clip-path`, `filter` (com moderação). Ver `animation-performance`.
 - Canvas e loops: pausar com IntersectionObserver e `visibilitychange`; DPR ≤ 2; densidade pela área.
 - Vídeo de fundo: mudo, `playsinline`, poster, ≤ 2 MB, nunca no mobile em conexão `saveData`.
+- **Armadilhas medidas (caso KAGERIMA, `casos/kagerima.md`):** (1) nunca escrever variável CSS no `:root`/`html` a cada quadro (progresso, scroll): escrever no próprio elemento (bloqueio 26,8 s → 0,8 s); classes de estado de scroll vão no componente, não no `html`. (2) Nada de `offsetWidth`/`scrollHeight`/`getComputedStyle` dentro de rAF, scroll ou observer: guardar em cache com `ResizeObserver` ou ler do `style` inline. (3) Animação infinita só com `transform`/`opacity`; `background-position` e `filter` animados repintam a tela toda. Pausar seções fora da tela (`.is-fora-tela { animation-play-state: paused }` via IntersectionObserver) e a hero quando sai. Sem skeleton infinito. (4) CSS separado para editar, **um `site.css` minificado gerado no build** (ver `montar.py` da KAGERIMA). (5) `content-visibility: auto` esconde o texto do `innerText` e quebra a contagem da régua: não usar sem medir. (6) Carrossel arrastável: capturar o ponteiro só depois de passar o limiar de arraste, senão os links de dentro param de abrir.
 
 ## Conteúdo sempre visível
 

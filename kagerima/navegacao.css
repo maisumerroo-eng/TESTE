@@ -1,0 +1,66 @@
+/* navegacao.css: pontos do seletor fixado, indicador de rolagem da hero, anterior/próxima da letra,
+   ordenar faixas e selo de faixa nova. */
+:root { --ponto: 34px; }
+
+/* ---------- pontos do seletor ---------- */
+.sel__pontos { position: absolute; z-index: 3; left: 50%; bottom: clamp(16px, 4vh, 36px); display: flex; gap: 6px; translate: -50% 0; }
+.sel__ponto { position: relative; display: grid; place-items: center; width: var(--ponto); height: var(--ponto); border: 1px solid var(--linha-k); background: rgb(6 6 9 / .7); color: var(--cinza-2); text-decoration: none; backdrop-filter: blur(6px); transition: border-color var(--dur-hover), color var(--dur-hover), background-color var(--dur-hover), scale .3s var(--ease-out); }
+.sel__ponto b { font: 900 16px/1 var(--font-kanji); }
+.sel__ponto::after { content: ""; position: absolute; left: 50%; bottom: -7px; width: 4px; height: 4px; background: var(--cor); translate: -50% 0; scale: 0; transition: scale .3s var(--ease-out); }
+@media (hover: hover) { .sel__ponto:hover { color: var(--cor); border-color: var(--cor); } }
+.sel__ponto:focus-visible { outline: var(--foco); outline-offset: 2px; }
+.sel__ponto[aria-current] { color: var(--preto); background: var(--cor); border-color: var(--cor); scale: 1.08; }
+.sel__ponto[aria-current]::after { scale: 1; }
+html:not(.motion) .sel__pontos { display: none; }
+@media (max-width: 999px) { .sel__pontos { left: var(--gutter); translate: 0 0; } :root { --ponto: 30px; } }
+
+/* ---------- indicador de rolagem ---------- */
+@keyframes k-rolar { 0% { scale: 1 0; transform-origin: 50% 0; } 45% { scale: 1 1; transform-origin: 50% 0; } 55% { scale: 1 1; transform-origin: 50% 100%; } 100% { scale: 1 0; transform-origin: 50% 100%; } }
+.hero__rolar { position: absolute; z-index: 2; left: 50%; bottom: 18px; display: grid; justify-items: center; gap: 8px; translate: -50% 0; color: var(--cinza); text-decoration: none; font: 600 10px/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; transition: color var(--dur-hover); }
+.hero__rolar::after { content: ""; width: 1px; height: 38px; background: linear-gradient(180deg, var(--accent), transparent); }
+.motion .hero__rolar::after { animation: k-rolar 2.2s var(--ease-in-out, ease-in-out) infinite; }
+@media (hover: hover) { .hero__rolar:hover { color: var(--branco); } }
+.hero__rolar:focus-visible { outline: var(--foco); outline-offset: 4px; }
+html.modo-leve .hero__rolar::after { animation: none; }
+@media (max-width: 899px), (max-height: 700px) { .hero__rolar { display: none; } }
+
+/* ---------- janela da letra: anterior / próxima ---------- */
+.letra-dlg__nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 18px; padding-top: 14px; border-top: 1px solid var(--linha-k); }
+.letra-dlg__seta { min-height: 44px; padding: 0 14px; background: transparent; border: 1px solid var(--linha-k); color: var(--branco); font: 600 12px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: border-color var(--dur-hover), background-color var(--dur-hover), color var(--dur-hover); }
+@media (hover: hover) { .letra-dlg__seta:hover { border-color: var(--accent); color: var(--accent); } }
+.letra-dlg__seta:focus-visible { outline: var(--foco); outline-offset: 2px; }
+.letra-dlg__seta:active { scale: var(--press); }
+.letra-dlg__pos { font: 600 12px/1 var(--font-body); letter-spacing: .12em; color: var(--cinza); font-variant-numeric: tabular-nums; }
+.letra-dlg[data-letra="gojo"] { --accent: var(--azul); }
+.letra-dlg[data-letra="goku"] { --accent: var(--laranja); }
+.letra-dlg[data-letra="ichigo"] { --accent: var(--laranja-2); }
+.letra-dlg[data-letra="luffy"] { --accent: var(--vermelho); }
+.letra-dlg[data-letra="sasuke"] { --accent: var(--vermelho-2); }
+.letra-dlg[data-letra="megumi"] { --accent: var(--vinho); }
+
+/* ---------- ordenar ---------- */
+.ordenar { display: flex; align-items: center; gap: 10px; margin: -14px 0 24px; font: 600 11px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--cinza); }
+.ordenar select { min-height: 40px; padding: 0 36px 0 12px; appearance: none; background: transparent linear-gradient(45deg, transparent 50%, var(--cinza) 50%) calc(100% - 18px) 50% / 6px 6px no-repeat; border: 1px solid var(--linha-k); border-radius: 0; color: var(--branco); font: 600 12px/1 var(--font-body); letter-spacing: .06em; cursor: pointer; transition: border-color var(--dur-hover); }
+.ordenar select option { background: var(--preto-2); }
+@media (hover: hover) { .ordenar select:hover { border-color: var(--branco); } }
+.ordenar select:focus-visible { outline: var(--foco); outline-offset: 2px; }
+
+/* ---------- selo de faixa nova ---------- */
+@keyframes k-nova { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.faixa__nova { display: inline-block; margin-left: 8px; padding: 3px 6px; background: var(--accent); color: var(--preto); font: 700 9px/1 var(--font-body); letter-spacing: .14em; vertical-align: 1px; }
+.motion .faixa__nova { animation: k-nova 1.8s ease-in-out 3; }
+.faixa[data-nova] { border-color: color-mix(in srgb, var(--accent) 50%, var(--linha-k)); }
+html[data-anime="naruto"] .faixa__nova, html[data-anime="one-piece"] .faixa__nova { color: #fff; }
+@media (forced-colors: active) { .sel__ponto[aria-current] { forced-color-adjust: none; background: Highlight; color: HighlightText; } .faixa__nova { border: 1px solid CanvasText; } }
+
+/* ---------- menu: link da seção atual (scroll-spy) ---------- */
+.site-header nav a[aria-current="true"] { color: var(--branco); }
+.site-header nav a[aria-current="true"]::before { scale: 1; }
+@media (max-width: 1099px) { .site-header nav a[aria-current="true"] { color: var(--accent); } }
+
+/* ---------- impressão das seções novas ---------- */
+@media print {
+  .hub, .estudio__palco, .sel__pontos, .hero__rolar, .ordenar, .busca, .mini, .toast, .topo-btn, .rod__pref { display: none !important; }
+  .voto__btn, .opc__c, .kit__tabela { background: #fff !important; color: #000 !important; border-color: #000 !important; }
+  .voto__barra i { scale: var(--pct) 1 !important; background: #000 !important; }
+}

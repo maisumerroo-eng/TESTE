@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rap de anime por personagem | KAGERIMA, rap geek</title>
+  <meta name="description" content="KAGERIMA, canal de rap geek: raps de anime organizados por personagem. Escolha seu anime, ouça as faixas e encomende o rap do seu personagem.">
+  <meta name="theme-color" content="#060609">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c2fb39'/%3E%3Cpath d='M8 9h16M8 14h16M10 19h12M9 24l4-3M23 24l-4-3' stroke='%23060609' stroke-width='2.4'/%3E%3C/svg%3E">
+  <!-- DEPLOY STEP: trocar canonical/og pela URL absoluta do site no ar -->
+  <link rel="canonical" href="https://kagerima.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KAGERIMA · rap de anime com a sombra de cada personagem">
+  <meta property="og:description" content="Raps de Naruto, Jujutsu Kaisen, One Piece, Bleach e Dragon Ball. Escolha seu anime e o site vira dele.">
+  <meta property="og:image" content="assets/img/capas/gojo-1-640.webp">
+  <link rel="preload" href="assets/fonts/saira-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/kanji.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MusicGroup","name":"KAGERIMA","genre":["Rap","Rap geek","Rap de anime"],"description":"Canal de rap geek com raps de anime organizados por personagem.","url":"https://kagerima.vercel.app/"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+   {"@type":"Question","name":"Posso usar o rap da KAGERIMA no meu vídeo?","acceptedAnswer":{"@type":"Answer","text":"Para uso em vídeo próprio, peça a licença pelo formulário de parcerias. Cada caso tem condições próprias de crédito e monetização."}},
+   {"@type":"Question","name":"Quanto custa encomendar um rap de personagem?","acceptedAnswer":{"@type":"Answer","text":"Depende do formato: só áudio, áudio com clipe ou collab. O orçamento sai depois da conversa inicial, com prazo e entregas definidos."}}]}
+  </script>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-yt" viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .6 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.8 31 31 0 0 0-.4-4.8ZM9.7 15V9l5.8 3-5.8 3Z"/></symbol>
+  <symbol id="i-sp" viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22Zm5 15.9a.7.7 0 0 1-.9.2c-2.6-1.6-5.8-1.9-9.6-1a.7.7 0 1 1-.3-1.3c4.2-1 7.7-.6 10.6 1.2.3.2.4.6.2.9Zm1.3-2.9a.9.9 0 0 1-1.2.3c-2.9-1.8-7.4-2.3-10.9-1.3a.9.9 0 1 1-.5-1.7c4-1.2 9-.6 12.3 1.5.4.2.5.8.3 1.2Zm.1-3c-3.5-2.1-9.3-2.3-12.6-1.2a1 1 0 1 1-.6-2c3.9-1.2 10.3-1 14.3 1.4a1 1 0 0 1-1.1 1.8Z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2.2c2.7 0 3 0 4 .1 2.7.1 4 1.4 4.1 4.1.1 1 .1 1.3.1 4s0 3-.1 4c-.1 2.7-1.4 4-4.1 4.1-1 .1-1.3.1-4 .1s-3 0-4-.1c-2.7-.1-4-1.4-4.1-4.1-.1-1-.1-1.3-.1-4s0-3 .1-4C3.9 3.7 5.3 2.4 8 2.3c1 0 1.3-.1 4-.1Z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Zm4.1 10.9c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1-.6.7-.7.9-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3 2.4 2.4 0 0 0-.8 1.8 4.3 4.3 0 0 0 .9 2.2 9.6 9.6 0 0 0 3.7 3.3c1.4.6 1.9.6 2.6.5a2.2 2.2 0 0 0 1.4-1c.2-.5.2-.9.1-1l-.4-.2Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7Z"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4"/></symbol>
+</svg>
+
+<div class="progresso" aria-hidden="true"></div>
+<header class="site-header">
+  <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu-nav" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  <a class="logo" href="#topo" aria-label="KAGERIMA, início"><span class="logo__k" aria-hidden="true">影</span><span class="logo__t">KAGERIMA</span></a>
+  <nav aria-label="Principal" id="menu-nav">
+    <a href="#sombras">Sombras</a>
+    <a href="#lancamentos">Lançamentos</a>
+    <a href="#numeros">Números</a>
+    <a href="#parcerias">Parcerias</a>
+    <a href="#letras">Letras</a>
+    <a href="#kanjis">Kanjis</a>
+    <a href="#monte">Encomendar</a>
+    <a href="#perguntas">Perguntas</a>
+  </nav>
+  <a class="btn-ouvir" href="https://www.youtube.com/results?search_query=kagerima" data-cta="header"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir agora</a>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1 · HERO: tipografia como objeto + sombra humana -->
+  <section class="hero" id="topo" data-hero aria-labelledby="h-hero">
+    <div class="hero__amb" aria-hidden="true"><span>無</span><span>超</span><span>卍</span><span>海</span><span>写</span><span>伏</span><span>処</span><span>超</span><span>解</span><span>王</span><span>眼</span><span>子</span></div>
+    <div class="hero__scan" aria-hidden="true"></div>
+    <div class="hero__palco">
+      <picture class="hero__sombra" data-reveal="blur">
+        <source type="image/avif" srcset="assets/img/sombra-640.avif 640w, assets/img/sombra-1024.avif 1024w" sizes="(min-width: 900px) 34vw, 60vw">
+        <img src="assets/img/sombra-1024.webp" srcset="assets/img/sombra-640.webp 640w, assets/img/sombra-1024.webp 1024w" sizes="(min-width: 900px) 34vw, 60vw" width="1024" height="1536" alt="Silhueta de um rapper cantando ao microfone, com contorno de luz azul" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hero__bloco" aria-hidden="true"><span class="hero__kanji" data-glitch data-k="影">影</span></div>
+    </div>
+    <div class="hero__corpo">
+      <p class="rotulo" data-reveal="fade"><span>影 + rima</span> Canal de rap geek</p>
+      <h1 id="h-hero" data-p="hero-title" data-reveal="words">Rap de anime com <em>a sombra</em> de cada personagem.</h1>
+      <p class="hero__lead" data-reveal="rise" data-delay="300"><span class="anime-nome">Naruto, Jujutsu Kaisen, One Piece, Bleach e Dragon Ball</span>: cada rap nasce da história, do poder e do lado escuro de um personagem. Escolha o seu anime e o site vira dele.</p>
+      <div class="hero__ctas" data-reveal="rise" data-delay="450">
+        <a class="btn3d" href="https://www.youtube.com/results?search_query=kagerima" data-cta="hero"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir agora</a>
+        <a class="link-seta" href="#parcerias">Encomendar um rap</a>
+      </div>
+      <div class="chips" role="group" aria-label="Escolha seu anime"><span>Seu anime:</span><button type="button" class="chip" data-anime-choose="naruto" aria-pressed="false">Naruto</button><button type="button" class="chip" data-anime-choose="jujutsu-kaisen" aria-pressed="false">Jujutsu Kaisen</button><button type="button" class="chip" data-anime-choose="one-piece" aria-pressed="false">One Piece</button><button type="button" class="chip" data-anime-choose="bleach" aria-pressed="false">Bleach</button><button type="button" class="chip" data-anime-choose="dragon-ball" aria-pressed="false">Dragon Ball</button></div>
+    </div>
+    <a class="hero__rolar" href="#obras"><span>Role para entrar na sombra</span></a>
+    <aside class="hero__prova" aria-label="O que tem no site">
+      <div class="prova"><strong data-count="6">6</strong><span>sombras de personagem</span></div>
+      <div class="prova prova--lg"><strong data-count="12">12</strong><span>raps organizados por anime</span></div>
+    </aside>
+  </section>
+
+  <!-- 2 · OBRAS -->
+  <section class="obras" aria-labelledby="h-obras">
+    <h2 id="h-obras" class="obras__tit" data-reveal="decrypt">As sombras que já ganharam rima</h2>
+    <div class="faixa-obras" data-marquee="28"><ul><li><a href="#sombra-gojo" data-anime-link="jujutsu-kaisen" style="--cor:#3aa4fa"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/gojo-1-320.avif 320w, assets/img/capas/gojo-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/gojo-1-640.webp" srcset="assets/img/capas/gojo-1-320.webp 320w, assets/img/capas/gojo-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#3aa4fa" aria-hidden="true">無処</span><h3>Satoru Gojo</h3><p>Jujutsu Kaisen · Vazio Infinito</p></a></li><li><a href="#sombra-goku" data-anime-link="dragon-ball" style="--cor:#fe8c00"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/goku-1-320.avif 320w, assets/img/capas/goku-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/goku-1-640.webp" srcset="assets/img/capas/goku-1-320.webp 320w, assets/img/capas/goku-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#fe8c00" aria-hidden="true">超超</span><h3>Goku</h3><p>Dragon Ball · Além do limite</p></a></li><li><a href="#sombra-ichigo" data-anime-link="bleach" style="--cor:#fb660f"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/ichigo-1-320.avif 320w, assets/img/capas/ichigo-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/ichigo-1-640.webp" srcset="assets/img/capas/ichigo-1-320.webp 320w, assets/img/capas/ichigo-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#fb660f" aria-hidden="true">卍解</span><h3>Ichigo Kurosaki</h3><p>Bleach · Bankai</p></a></li><li><a href="#sombra-luffy" data-anime-link="one-piece" style="--cor:#e53845"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/luffy-1-320.avif 320w, assets/img/capas/luffy-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/luffy-1-640.webp" srcset="assets/img/capas/luffy-1-320.webp 320w, assets/img/capas/luffy-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#e53845" aria-hidden="true">海王</span><h3>Monkey D. Luffy</h3><p>One Piece · Rei dos Piratas</p></a></li><li><a href="#sombra-sasuke" data-anime-link="naruto" style="--cor:#e0263a"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/sasuke-1-320.avif 320w, assets/img/capas/sasuke-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/sasuke-1-640.webp" srcset="assets/img/capas/sasuke-1-320.webp 320w, assets/img/capas/sasuke-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#e0263a" aria-hidden="true">写眼</span><h3>Sasuke Uchiha</h3><p>Naruto · Sharingan</p></a></li><li><a href="#sombra-megumi" data-anime-link="jujutsu-kaisen" style="--cor:#c8102e"><picture class="obra__capa"><source type="image/avif" srcset="assets/img/capas/megumi-1-320.avif 320w, assets/img/capas/megumi-1-640.avif 640w" sizes="120px"><img src="assets/img/capas/megumi-1-640.webp" srcset="assets/img/capas/megumi-1-320.webp 320w, assets/img/capas/megumi-1-640.webp 640w" sizes="120px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="obra__k" style="--cor:#c8102e" aria-hidden="true">伏子</span><h3>Megumi Fushiguro</h3><p>Jujutsu Kaisen · Dez Sombras</p></a></li></ul></div>
+  </section>
+
+
+  <!-- 2b · ENTRE PELA SUA OBRA -->
+  <section class="hub" id="obras" aria-labelledby="h-hub">
+    <div class="hub__head">
+      <h2 id="h-hub" data-reveal="words">Entre pela <em>sua obra</em>.</h2>
+      <p data-reveal="rise">Escolha um anime: as cores, o kanji, a textura e a ordem dos raps mudam para ele, e o site lembra da sua escolha na próxima visita.</p>
+    </div>
+    <ul class="hub__lista"><li class="hub__item" data-obra="jujutsu-kaisen"><button type="button" class="hub__btn" data-anime-choose="jujutsu-kaisen" data-hub aria-pressed="false"><span class="hub__pad" aria-hidden="true"></span><span class="hub__k" aria-hidden="true">無</span><span class="hub__txt"><b class="hub__nome">Rap de Jujutsu Kaisen</b><small>Gojo e Megumi · 4 raps</small><span class="hub__desc">Domínios, maldições e o peso de ser o mais forte.</span></span><span class="hub__acao">Deixar o site no clima</span></button></li><li class="hub__item" data-obra="dragon-ball"><button type="button" class="hub__btn" data-anime-choose="dragon-ball" data-hub aria-pressed="false"><span class="hub__pad" aria-hidden="true"></span><span class="hub__k" aria-hidden="true">超</span><span class="hub__txt"><b class="hub__nome">Rap de Dragon Ball</b><small>Goku · 2 raps</small><span class="hub__desc">Treino sem fim e transformações que passam do limite.</span></span><span class="hub__acao">Deixar o site no clima</span></button></li><li class="hub__item" data-obra="bleach"><button type="button" class="hub__btn" data-anime-choose="bleach" data-hub aria-pressed="false"><span class="hub__pad" aria-hidden="true"></span><span class="hub__k" aria-hidden="true">卍</span><span class="hub__txt"><b class="hub__nome">Rap de Bleach</b><small>Ichigo · 2 raps</small><span class="hub__desc">Espadas com nome, Bankai e a sombra interna.</span></span><span class="hub__acao">Deixar o site no clima</span></button></li><li class="hub__item" data-obra="one-piece"><button type="button" class="hub__btn" data-anime-choose="one-piece" data-hub aria-pressed="false"><span class="hub__pad" aria-hidden="true"></span><span class="hub__k" aria-hidden="true">海</span><span class="hub__txt"><b class="hub__nome">Rap de One Piece</b><small>Luffy · 2 raps</small><span class="hub__desc">Liberdade, tripulação e o sonho do Rei dos Piratas.</span></span><span class="hub__acao">Deixar o site no clima</span></button></li><li class="hub__item" data-obra="naruto"><button type="button" class="hub__btn" data-anime-choose="naruto" data-hub aria-pressed="false"><span class="hub__pad" aria-hidden="true"></span><span class="hub__k" aria-hidden="true">写</span><span class="hub__txt"><b class="hub__nome">Rap de Naruto</b><small>Sasuke · 2 raps</small><span class="hub__desc">Olhos que copiam tudo, vingança e laços cortados.</span></span><span class="hub__acao">Deixar o site no clima</span></button></li></ul>
+  </section>
+
+  <!-- 3 · SELETOR POR SCROLL (assinatura) -->
+  <section class="sel" id="sombras" data-pin style="--pin-h: 640svh" aria-labelledby="h-sel">
+    <div class="sel__palco" data-pin-stage>
+      <div class="sel__grade" aria-hidden="true">
+        <span>無</span><span>超</span><span>卍</span><span>海</span><span>写</span><span>伏</span>
+        <span>処</span><span>超</span><span>解</span><span>王</span><span>眼</span><span>子</span>
+      </div>
+      <div class="sel__txt">
+        <p class="rotulo"><span>01</span> Seis sombras</p>
+        <h2 id="h-sel" class="sel__titulo">Role e escolha a sombra que vai rimar.</h2>
+        <div class="sel__contador" aria-hidden="true"><span class="odo"><span class="odo__zero">0</span><span class="odo__mascara"><span class="odo__rolo"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i></span></span></span><span class="odo__total">/06</span></div>
+        <ol class="sel__passos"><li data-step id="sombra-gojo" style="--cor:#3aa4fa"><p class="sel__meta">Sombra 01 · Jujutsu Kaisen</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>無</span><span data-decrypt>処</span></p><h3>Satoru Gojo<span class="sel__termo">Vazio Infinito</span></h3><p>O mais forte não pede licença: cada verso fecha o domínio e deixa o adversário sem espaço.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-gojo"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li><li data-step id="sombra-goku" style="--cor:#fe8c00"><p class="sel__meta">Sombra 02 · Dragon Ball</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>超</span><span data-decrypt>超</span></p><h3>Goku<span class="sel__termo">Além do limite</span></h3><p>Um treino que nunca acaba: o beat sobe de nível junto com a transformação.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-goku"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li><li data-step id="sombra-ichigo" style="--cor:#fb660f"><p class="sel__meta">Sombra 03 · Bleach</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>卍</span><span data-decrypt>解</span></p><h3>Ichigo Kurosaki<span class="sel__termo">Bankai</span></h3><p>A espada ganha nome no refrão: quando o grave entra, a liberação acontece.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-ichigo"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li><li data-step id="sombra-luffy" style="--cor:#e53845"><p class="sel__meta">Sombra 04 · One Piece</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>海</span><span data-decrypt>王</span></p><h3>Monkey D. Luffy<span class="sel__termo">Rei dos Piratas</span></h3><p>Liberdade em forma de rima: o sonho do chapéu de palha virando refrão de navio.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-luffy"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li><li data-step id="sombra-sasuke" style="--cor:#e0263a"><p class="sel__meta">Sombra 05 · Naruto</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>写</span><span data-decrypt>眼</span></p><h3>Sasuke Uchiha<span class="sel__termo">Sharingan</span></h3><p>Olhos que copiam tudo e um caminho de vingança contado verso a verso.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-sasuke"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li><li data-step id="sombra-megumi" style="--cor:#c8102e"><p class="sel__meta">Sombra 06 · Jujutsu Kaisen</p><p class="sel__kanji" aria-hidden="true"><span data-decrypt>伏</span><span data-decrypt>子</span></p><h3>Megumi Fushiguro<span class="sel__termo">Dez Sombras</span></h3><p>Dez sombras, dez rimas: cada shikigami entra no beat como uma invocação.</p><p class="sel__acoes"><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima" data-cta="sel-megumi"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></p></li></ol>
+        <a class="pular" href="#lancamentos">Pular para os lançamentos</a>
+      </div>
+      <ul class="sel__capas" aria-hidden="true"><li data-sel-capa="0"><picture class=""><source type="image/avif" srcset="assets/img/capas/gojo-1-320.avif 320w, assets/img/capas/gojo-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/gojo-1-640.webp" srcset="assets/img/capas/gojo-1-320.webp 320w, assets/img/capas/gojo-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Satoru Gojo" loading="lazy" decoding="async"></picture></li><li data-sel-capa="1"><picture class=""><source type="image/avif" srcset="assets/img/capas/goku-1-320.avif 320w, assets/img/capas/goku-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/goku-1-640.webp" srcset="assets/img/capas/goku-1-320.webp 320w, assets/img/capas/goku-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Goku" loading="lazy" decoding="async"></picture></li><li data-sel-capa="2"><picture class=""><source type="image/avif" srcset="assets/img/capas/ichigo-1-320.avif 320w, assets/img/capas/ichigo-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/ichigo-1-640.webp" srcset="assets/img/capas/ichigo-1-320.webp 320w, assets/img/capas/ichigo-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Ichigo Kurosaki" loading="lazy" decoding="async"></picture></li><li data-sel-capa="3"><picture class=""><source type="image/avif" srcset="assets/img/capas/luffy-1-320.avif 320w, assets/img/capas/luffy-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/luffy-1-640.webp" srcset="assets/img/capas/luffy-1-320.webp 320w, assets/img/capas/luffy-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Monkey D. Luffy" loading="lazy" decoding="async"></picture></li><li data-sel-capa="4"><picture class=""><source type="image/avif" srcset="assets/img/capas/sasuke-1-320.avif 320w, assets/img/capas/sasuke-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/sasuke-1-640.webp" srcset="assets/img/capas/sasuke-1-320.webp 320w, assets/img/capas/sasuke-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Sasuke Uchiha" loading="lazy" decoding="async"></picture></li><li data-sel-capa="5"><picture class=""><source type="image/avif" srcset="assets/img/capas/megumi-1-320.avif 320w, assets/img/capas/megumi-1-640.avif 640w" sizes="(min-width: 1000px) 34vw, 70vw"><img src="assets/img/capas/megumi-1-640.webp" srcset="assets/img/capas/megumi-1-320.webp 320w, assets/img/capas/megumi-1-640.webp 640w" sizes="(min-width: 1000px) 34vw, 70vw" width="640" height="640" alt="Capa do rap de Megumi Fushiguro" loading="lazy" decoding="async"></picture></li></ul>
+      <nav class="sel__pontos" aria-label="Ir para uma sombra"><a class="sel__ponto" href="#sombra-gojo" data-ir="0" style="--cor:#3aa4fa"><span class="sr">Sombra 1: Satoru Gojo</span><b aria-hidden="true">無</b></a><a class="sel__ponto" href="#sombra-goku" data-ir="1" style="--cor:#fe8c00"><span class="sr">Sombra 2: Goku</span><b aria-hidden="true">超</b></a><a class="sel__ponto" href="#sombra-ichigo" data-ir="2" style="--cor:#fb660f"><span class="sr">Sombra 3: Ichigo Kurosaki</span><b aria-hidden="true">卍</b></a><a class="sel__ponto" href="#sombra-luffy" data-ir="3" style="--cor:#e53845"><span class="sr">Sombra 4: Monkey D. Luffy</span><b aria-hidden="true">海</b></a><a class="sel__ponto" href="#sombra-sasuke" data-ir="4" style="--cor:#e0263a"><span class="sr">Sombra 5: Sasuke Uchiha</span><b aria-hidden="true">写</b></a><a class="sel__ponto" href="#sombra-megumi" data-ir="5" style="--cor:#c8102e"><span class="sr">Sombra 6: Megumi Fushiguro</span><b aria-hidden="true">伏</b></a></nav>
+    </div>
+  </section>
+
+  <!-- 4 · LANÇAMENTOS -->
+  <section class="sec lanc" id="lancamentos" aria-labelledby="h-lanc">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>02</span> Lançamentos</p>
+      <h2 id="h-lanc" data-reveal="words">Os raps, <em>por anime</em>.</h2>
+      <p data-reveal="rise">Filtre pelo seu anime. Toque na capa para ouvir aqui mesmo, sem sair da página. Faixas de exemplo até o canal publicar a lista oficial.</p>
+    </div>
+    <article class="destaque" style="--cor:#3aa4fa" aria-labelledby="h-dest">
+      <div class="destaque__capa"><picture class=""><source type="image/avif" srcset="assets/img/capas/gojo-1-320.avif 320w, assets/img/capas/gojo-1-640.avif 640w" sizes="(min-width: 900px) 30vw, 100vw"><img src="assets/img/capas/gojo-1-640.webp" srcset="assets/img/capas/gojo-1-320.webp 320w, assets/img/capas/gojo-1-640.webp 640w" sizes="(min-width: 900px) 30vw, 100vw" width="640" height="640" alt="Capa da faixa Vazio Infinito" loading="lazy" decoding="async"></picture><span class="destaque__selo">Mais recente</span></div>
+      <div class="destaque__corpo">
+        <p class="destaque__meta">Jujutsu Kaisen · Satoru Gojo · 3:42</p>
+        <h3 id="h-dest" class="destaque__tit">Vazio Infinito</h3>
+        <blockquote class="destaque__trecho"><p>“Quando a venda cai, o mundo para de explicar.”</p><footer>Trecho de exemplo · refrão</footer></blockquote>
+        <svg class="destaque__onda" viewBox="0 0 400 48" aria-hidden="true"><path d="M0 24h12l4-10 4 20 4-16 4 12 4-8 4 4h10l4-18 4 30 4-24 4 16 4-8h12l4-14 4 24 4-18 4 10h14l4-20 4 34 4-26 4 14h12l4-12 4 20 4-14 4 6h16l4-16 4 26 4-20 4 10h14l4-10 4 16 4-8h20"/></svg>
+        <p class="destaque__acoes"><button type="button" class="btn3d destaque__play" data-destaque><svg aria-hidden="true"><use href="#i-play"/></svg>Tocar aqui</button><a class="lnk-yt" href="https://www.youtube.com/results?search_query=kagerima"><svg aria-hidden="true"><use href="#i-yt"/></svg>YouTube</a><a class="lnk-sp" href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a><button type="button" class="compartilhar" data-compartilhar data-titulo="Vazio Infinito, rap do Gojo · KAGERIMA">Compartilhar</button></p>
+      </div>
+    </article>
+    <div class="busca"><label for="busca-faixa" class="sr">Buscar rap por personagem ou faixa</label><input id="busca-faixa" type="search" placeholder="Buscar personagem ou faixa: Gojo, Bankai..." autocomplete="off" data-busca><span class="busca__n" aria-live="polite" data-busca-n></span></div>
+    <div class="filtros" role="group" aria-label="Filtrar por anime"><button type="button" class="filtro" aria-pressed="true" data-filtro="todos">Todos</button><button type="button" class="filtro" aria-pressed="false" data-filtro="naruto">Naruto</button><button type="button" class="filtro" aria-pressed="false" data-filtro="jujutsu-kaisen">Jujutsu Kaisen</button><button type="button" class="filtro" aria-pressed="false" data-filtro="one-piece">One Piece</button><button type="button" class="filtro" aria-pressed="false" data-filtro="bleach">Bleach</button><button type="button" class="filtro" aria-pressed="false" data-filtro="dragon-ball">Dragon Ball</button><button type="button" class="spoiler-toggle" aria-pressed="false" data-spoiler-toggle>Mostrar spoilers</button></div>
+    <div class="ordenar"><label for="ordem">Ordenar</label><select id="ordem" data-ordem><option value="obra">Por anime</option><option value="az">A a Z</option><option value="dur">Mais longas</option></select></div>
+    <ul class="faixas" data-p-order><li class="faixa" data-anime="jujutsu-kaisen" data-dur="3:42" data-nova style="--cor:#3aa4fa"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Vazio Infinito, rap de Satoru Gojo"><picture class=""><source type="image/avif" srcset="assets/img/capas/gojo-1-320.avif 320w, assets/img/capas/gojo-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/gojo-1-640.webp" srcset="assets/img/capas/gojo-1-320.webp 320w, assets/img/capas/gojo-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Vazio Infinito" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Jujutsu Kaisen · 3:42<span class="faixa__nova">Nova</span></p><h3>Vazio Infinito</h3><p class="faixa__pers">Satoru Gojo</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Vazio Infinito no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Vazio Infinito no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="jujutsu-kaisen" data-dur="4:05" data-nova style="--cor:#3aa4fa"><button type="button" class="faixa__play" data-player="" aria-label="Tocar O Mais Forte, rap de Satoru Gojo"><picture class=""><source type="image/avif" srcset="assets/img/capas/gojo-2-320.avif 320w, assets/img/capas/gojo-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/gojo-2-640.webp" srcset="assets/img/capas/gojo-2-320.webp 320w, assets/img/capas/gojo-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa O Mais Forte" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Jujutsu Kaisen · 4:05<span class="faixa__nova">Nova</span></p><h3>O Mais Forte</h3><p class="faixa__pers">Satoru Gojo</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="O Mais Forte no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="O Mais Forte no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="dragon-ball" data-dur="3:58" style="--cor:#fe8c00"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Instinto Superior, rap de Goku"><picture class=""><source type="image/avif" srcset="assets/img/capas/goku-1-320.avif 320w, assets/img/capas/goku-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/goku-1-640.webp" srcset="assets/img/capas/goku-1-320.webp 320w, assets/img/capas/goku-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Instinto Superior" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Dragon Ball · 3:58</p><h3>Instinto Superior</h3><p class="faixa__pers">Goku</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Instinto Superior no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Instinto Superior no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="dragon-ball" data-dur="4:21" style="--cor:#fe8c00"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Além do Limite, rap de Goku"><picture class=""><source type="image/avif" srcset="assets/img/capas/goku-2-320.avif 320w, assets/img/capas/goku-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/goku-2-640.webp" srcset="assets/img/capas/goku-2-320.webp 320w, assets/img/capas/goku-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Além do Limite" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Dragon Ball · 4:21</p><h3>Além do Limite</h3><p class="faixa__pers">Goku</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Além do Limite no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Além do Limite no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="bleach" data-dur="3:36" style="--cor:#fb660f"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Bankai, rap de Ichigo Kurosaki"><picture class=""><source type="image/avif" srcset="assets/img/capas/ichigo-1-320.avif 320w, assets/img/capas/ichigo-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/ichigo-1-640.webp" srcset="assets/img/capas/ichigo-1-320.webp 320w, assets/img/capas/ichigo-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Bankai" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Bleach · 3:36</p><h3>Bankai</h3><p class="faixa__pers">Ichigo Kurosaki</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Bankai no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Bankai no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="bleach" data-dur="4:12" style="--cor:#fb660f"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Lua Cortante, rap de Ichigo Kurosaki"><picture class=""><source type="image/avif" srcset="assets/img/capas/ichigo-2-320.avif 320w, assets/img/capas/ichigo-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/ichigo-2-640.webp" srcset="assets/img/capas/ichigo-2-320.webp 320w, assets/img/capas/ichigo-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Lua Cortante" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Bleach · 4:12</p><h3>Lua Cortante</h3><p class="faixa__pers">Ichigo Kurosaki</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Lua Cortante no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Lua Cortante no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="one-piece" data-dur="3:49" style="--cor:#e53845"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Rei dos Piratas, rap de Monkey D. Luffy"><picture class=""><source type="image/avif" srcset="assets/img/capas/luffy-1-320.avif 320w, assets/img/capas/luffy-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/luffy-1-640.webp" srcset="assets/img/capas/luffy-1-320.webp 320w, assets/img/capas/luffy-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Rei dos Piratas" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">One Piece · 3:49</p><h3>Rei dos Piratas</h3><p class="faixa__pers">Monkey D. Luffy</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Rei dos Piratas no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Rei dos Piratas no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="one-piece" data-dur="4:30" data-spoiler="arco de Wano" style="--cor:#e53845"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Gear Cinco, rap de Monkey D. Luffy"><picture class=""><source type="image/avif" srcset="assets/img/capas/luffy-2-320.avif 320w, assets/img/capas/luffy-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/luffy-2-640.webp" srcset="assets/img/capas/luffy-2-320.webp 320w, assets/img/capas/luffy-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Gear Cinco" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">One Piece · 4:30</p><h3>Gear Cinco</h3><p class="faixa__pers">Monkey D. Luffy</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Gear Cinco no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Gear Cinco no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="naruto" data-dur="3:27" style="--cor:#e0263a"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Sharingan, rap de Sasuke Uchiha"><picture class=""><source type="image/avif" srcset="assets/img/capas/sasuke-1-320.avif 320w, assets/img/capas/sasuke-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/sasuke-1-640.webp" srcset="assets/img/capas/sasuke-1-320.webp 320w, assets/img/capas/sasuke-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Sharingan" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Naruto · 3:27</p><h3>Sharingan</h3><p class="faixa__pers">Sasuke Uchiha</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Sharingan no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Sharingan no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="naruto" data-dur="4:08" data-spoiler="Shippuden" style="--cor:#e0263a"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Laços Cortados, rap de Sasuke Uchiha"><picture class=""><source type="image/avif" srcset="assets/img/capas/sasuke-2-320.avif 320w, assets/img/capas/sasuke-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/sasuke-2-640.webp" srcset="assets/img/capas/sasuke-2-320.webp 320w, assets/img/capas/sasuke-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Laços Cortados" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Naruto · 4:08</p><h3>Laços Cortados</h3><p class="faixa__pers">Sasuke Uchiha</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Laços Cortados no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Laços Cortados no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="jujutsu-kaisen" data-dur="3:55" style="--cor:#c8102e"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Dez Sombras, rap de Megumi Fushiguro"><picture class=""><source type="image/avif" srcset="assets/img/capas/megumi-1-320.avif 320w, assets/img/capas/megumi-1-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/megumi-1-640.webp" srcset="assets/img/capas/megumi-1-320.webp 320w, assets/img/capas/megumi-1-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Dez Sombras" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Jujutsu Kaisen · 3:55</p><h3>Dez Sombras</h3><p class="faixa__pers">Megumi Fushiguro</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Dez Sombras no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Dez Sombras no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li><li class="faixa" data-anime="jujutsu-kaisen" data-dur="4:16" data-spoiler="arco de Shibuya" style="--cor:#c8102e"><button type="button" class="faixa__play" data-player="" aria-label="Tocar Domínio da Sombra, rap de Megumi Fushiguro"><picture class=""><source type="image/avif" srcset="assets/img/capas/megumi-2-320.avif 320w, assets/img/capas/megumi-2-640.avif 640w" sizes="(min-width: 900px) 25vw, 50vw"><img src="assets/img/capas/megumi-2-640.webp" srcset="assets/img/capas/megumi-2-320.webp 320w, assets/img/capas/megumi-2-640.webp 640w" sizes="(min-width: 900px) 25vw, 50vw" width="640" height="640" alt="Capa da faixa Domínio da Sombra" loading="lazy" decoding="async"></picture><span class="faixa__btn" aria-hidden="true"><svg><use href="#i-play"/></svg></span></button><div class="faixa__info"><p class="faixa__meta">Jujutsu Kaisen · 4:16</p><h3>Domínio da Sombra</h3><p class="faixa__pers">Megumi Fushiguro</p><p class="faixa__links"><a href="https://www.youtube.com/results?search_query=kagerima" aria-label="Domínio da Sombra no YouTube"><svg aria-hidden="true"><use href="#i-yt"/></svg></a><a href="https://open.spotify.com/search/kagerima" aria-label="Domínio da Sombra no Spotify"><svg aria-hidden="true"><use href="#i-sp"/></svg></a></p></div></li></ul>
+    <p class="faixas__vazio" hidden data-vazio>Nenhum rap com esse nome ainda. <a href="#votacao">Vote no personagem</a> ou <a href="#monte">encomende o seu</a>.</p>
+  </section>
+
+  <!-- 5 · NÚMEROS -->
+  <section class="sec numeros" id="numeros" aria-labelledby="h-num">
+    <div class="sec-head">
+      <p class="rotulo rotulo--claro" data-reveal="wipe"><span>03</span> Números</p>
+      <h2 id="h-num" data-reveal="words">Quem ouve, <em>volta para a próxima sombra</em>.</h2>
+      <p data-reveal="rise">Painel do canal por personagem. Os valores abaixo são de exemplo e serão trocados pelos números oficiais do YouTube e do Spotify.</p>
+    </div>
+    <div class="numeros__grade">
+      <p class="num-g"><span class="num-g__pre">raps no site, organizados em</span><span class="num-g__val"><span class="num-g__digitos" data-count="6">6</span><span class="num-g__mag">sombras</span></span><span class="num-g__uni">de 5 animes diferentes</span></p>
+      <figure class="grafico" data-grafico="{&quot;titulo&quot;: &quot;Plays por sombra (exemplo, aguardando números oficiais)&quot;, &quot;rotulos&quot;: [&quot;Gojo&quot;, &quot;Goku&quot;, &quot;Kurosaki&quot;, &quot;Luffy&quot;, &quot;Uchiha&quot;, &quot;Fushiguro&quot;], &quot;series&quot;: [{&quot;nome&quot;: &quot;YouTube&quot;, &quot;cor&quot;: &quot;#c2fb39&quot;, &quot;valores&quot;: [9.4, 7.1, 5.2, 8.3, 6.6, 4.8]}, {&quot;nome&quot;: &quot;Spotify&quot;, &quot;cor&quot;: &quot;#3aa4fa&quot;, &quot;valores&quot;: [3.1, 2.4, 1.9, 2.7, 2.2, 1.6]}], &quot;unidade&quot;: &quot; mi&quot;, &quot;max&quot;: 10.5, &quot;nota&quot;: &quot;Toque, passe o mouse ou use o teclado nas barras. Valores de exemplo até o canal enviar os dados reais.&quot;}"></figure>
+    </div>
+<ul class="plataformas">
+      <li class="plat plat--yt"><a href="https://www.youtube.com/results?search_query=kagerima"><svg aria-hidden="true"><use href="#i-yt"/></svg><span class="plat__n">YouTube</span><b>clipes e lyric videos</b><small>principal canal de lançamento</small></a></li>
+      <li class="plat plat--sp"><a href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg><span class="plat__n">Spotify</span><b>faixas em alta qualidade</b><small>para ouvir no fone</small></a></li>
+      <li class="plat plat--ig"><a href="https://www.instagram.com/"><svg aria-hidden="true"><use href="#i-ig"/></svg><span class="plat__n">Instagram</span><b>prévias e bastidores</b><small>enquetes da próxima sombra</small></a></li>
+      <li class="plat plat--wa"><a href="https://wa.me/5500000000000" data-wa="5500000000000"><svg aria-hidden="true"><use href="#i-wa"/></svg><span class="plat__n">WhatsApp</span><b>encomendas e parcerias</b><small>resposta direta do canal</small></a></li>
+    </ul>
+  </section>
+
+  <!-- 6 · PARCERIAS -->
+  <section class="sec parc" id="parcerias" aria-labelledby="h-parc">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>04</span> Parcerias</p>
+      <h2 id="h-parc" data-reveal="words">Encomende o rap <em>do seu personagem</em>.</h2>
+      <p data-reveal="rise">Para canais, artistas, marcas e eventos geek. Cada formato tem escopo, prazo e entregas combinados antes de começar.</p>
+    </div>
+    <div class="placas" data-p-order>
+      <article class="placa2" data-seg="fa" style="--n:0">
+        <div class="placa2__aba"><h3>Rap encomendado</h3><span class="placa2__modos">Personagem à sua escolha</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-barras" aria-hidden="true"><i style="--h:30%"></i><i style="--h:52%"></i><i style="--h:40%"></i><i style="--h:68%"></i><i style="--h:84%"></i><i style="--h:60%"></i><i style="--h:92%"></i><i style="--h:74%"></i><i style="--h:50%"></i></div>
+            <p class="placa2__lead">O personagem que você ama, com a história respeitada do primeiro ao último verso.</p>
+            <p class="placa2__nota">Pesquisa do arco, letra, beat, gravação e mixagem. Você aprova a letra antes da gravação.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Rap de personagem (áudio)</span><span class="servicos__linha"></span><span class="servicos__modo">faixa única</span><span class="servicos__cta">Pedir orçamento<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Rap com clipe animado</span><span class="servicos__linha"></span><span class="servicos__modo">áudio + vídeo</span><span class="servicos__cta">Pedir orçamento<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <div class="placa2__img"><picture class=""><source type="image/avif" srcset="assets/img/capas/megumi-1-320.avif 320w, assets/img/capas/megumi-1-640.avif 640w" sizes="(min-width: 900px) 50vw, 100vw"><img src="assets/img/capas/megumi-1-640.webp" srcset="assets/img/capas/megumi-1-320.webp 320w, assets/img/capas/megumi-1-640.webp 640w" sizes="(min-width: 900px) 50vw, 100vw" width="640" height="640" alt="Capa de rap encomendado" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </article>
+      <article class="placa2" data-seg="canal" style="--n:1">
+        <div class="placa2__aba"><h3>Collab entre canais</h3><span class="placa2__modos">Feat · cypher</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-planta" aria-hidden="true"><i></i></div>
+            <p class="placa2__lead">Duas sombras no mesmo beat: feat, cypher ou batalha temática.</p>
+            <p class="placa2__nota">Definimos tema, divisão de versos e lançamento conjunto, com crédito e link para os dois canais.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Feat em faixa</span><span class="servicos__linha"></span><span class="servicos__modo">collab</span><span class="servicos__cta">Propor collab<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Cypher de anime</span><span class="servicos__linha"></span><span class="servicos__modo">vários artistas</span><span class="servicos__cta">Propor collab<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <div class="placa2__img"><picture class=""><source type="image/avif" srcset="assets/img/capas/goku-2-320.avif 320w, assets/img/capas/goku-2-640.avif 640w" sizes="(min-width: 900px) 50vw, 100vw"><img src="assets/img/capas/goku-2-640.webp" srcset="assets/img/capas/goku-2-320.webp 320w, assets/img/capas/goku-2-640.webp 640w" sizes="(min-width: 900px) 50vw, 100vw" width="640" height="640" alt="Capa de collab" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </article>
+      <article class="placa2" data-seg="marca" style="--n:2">
+        <div class="placa2__aba"><h3>Marcas e eventos geek</h3><span class="placa2__modos">Publi · jingle · palco</span></div>
+        <div class="placa2__corpo">
+          <div class="placa2__txt">
+            <div class="fx fx-cotas" aria-hidden="true"><svg viewBox="0 0 400 300"><path d="M20 260 H380 M20 250 V270 M380 250 V270 M60 40 V230 M50 40 H70 M50 230 H70 M120 80 H340 V220 H120 Z M120 150 H340 M230 80 V220"/></svg></div>
+            <p class="placa2__lead">Sua marca falando a língua de quem assiste anime, sem cara de propaganda.</p>
+            <p class="placa2__nota">Publi integrada ao rap, jingle geek para campanha e apresentação em evento ou convenção.</p>
+            <ul class="servicos">
+              <li><a href="#contato"><span class="servicos__nome">Publi em rap</span><span class="servicos__linha"></span><span class="servicos__modo">campanha</span><span class="servicos__cta">Falar de marca<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+              <li><a href="#contato"><span class="servicos__nome">Show em evento geek</span><span class="servicos__linha"></span><span class="servicos__modo">palco</span><span class="servicos__cta">Falar de evento<svg aria-hidden="true"><use href="#i-seta"/></svg></span></a></li>
+            </ul>
+          </div>
+          <div class="placa2__img"><picture class=""><source type="image/avif" srcset="assets/img/capas/luffy-2-320.avif 320w, assets/img/capas/luffy-2-640.avif 640w" sizes="(min-width: 900px) 50vw, 100vw"><img src="assets/img/capas/luffy-2-640.webp" srcset="assets/img/capas/luffy-2-320.webp 320w, assets/img/capas/luffy-2-640.webp 640w" sizes="(min-width: 900px) 50vw, 100vw" width="640" height="640" alt="Capa de rap para marcas" loading="lazy" decoding="async"></picture></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 7 · COMO FUNCIONA A ENCOMENDA -->
+  <section class="sec etapas" aria-labelledby="h-etapas">
+    <div class="sec-head">
+      <p class="rotulo rotulo--claro" data-reveal="wipe"><span>05</span> Como funciona</p>
+      <h2 id="h-etapas" data-reveal="words">Da ideia ao <em>lançamento</em>, em cinco passos.</h2>
+      <p data-reveal="rise">Cada passo termina com uma entrega que você aprova. Nada é gravado sem a sua letra aprovada.</p>
+    </div>
+    <ol class="etapas__lista" data-reveal-group data-stagger="110">
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#fone"/></svg><p class="etapas__n">Passo 01 <span class="selo">Grátis</span></p><h3>Conversa</h3><p>Personagem, arco, clima e uso do rap: vídeo, campanha, evento.</p><p class="etapas__ent"><b>Entrega</b> proposta com prazo e valor.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#letra"/></svg><p class="etapas__n">Passo 02</p><h3>Letra</h3><p>Pesquisa do anime e escrita com as referências que o fã reconhece.</p><p class="etapas__ent"><b>Entrega</b> letra para aprovação.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#beat"/></svg><p class="etapas__n">Passo 03</p><h3>Beat</h3><p>Instrumental no clima da obra: épico, sombrio, acelerado ou melancólico.</p><p class="etapas__ent"><b>Entrega</b> prévia do beat.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#microfone"/></svg><p class="etapas__n">Passo 04</p><h3>Gravação e mix</h3><p>Voz gravada, mixada e masterizada para YouTube, Spotify e redes.</p><p class="etapas__ent"><b>Entrega</b> faixa final em alta.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#calendario"/></svg><p class="etapas__n">Passo 05</p><h3>Lançamento</h3><p>Data combinada, capa, descrição com links e divulgação cruzada.</p><p class="etapas__ent"><b>Entrega</b> faixa no ar e relatório de plays.</p></li>
+    </ol>
+  </section>
+
+
+  <!-- 7b · KIT PARA MARCAS: comparativo de formatos -->
+  <section class="sec kit" id="kit" aria-labelledby="h-kit">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>06</span> Comparativo</p>
+      <h2 id="h-kit" data-reveal="words">Qual formato <em>combina com você</em>.</h2>
+      <p data-reveal="rise">O que entra em cada formato, lado a lado. Escopo final, prazo e valor saem na proposta, depois da conversa.</p>
+    </div>
+    <div class="kit__tabela" role="region" aria-label="Comparativo de formatos" tabindex="0">
+      <table>
+        <caption class="sr">O que cada formato de parceria inclui</caption>
+        <thead><tr><th scope="col">Inclui</th><th scope="col" data-seg="fa">Rap encomendado</th><th scope="col" data-seg="canal">Collab</th><th scope="col" data-seg="marca">Marca ou evento</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Letra aprovada antes de gravar</th><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td></tr>
+          <tr><th scope="row">Beat no clima da obra</th><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td></tr>
+          <tr><th scope="row">Divisão de versos entre artistas</th><td><span class="nao">Não</span></td><td><span class="sim">Sim</span></td><td><span class="opc-t">Opcional</span></td></tr>
+          <tr><th scope="row">Menção à marca na letra</th><td><span class="nao">Não</span></td><td><span class="nao">Não</span></td><td><span class="sim">Sim</span></td></tr>
+          <tr><th scope="row">Clipe animado</th><td><span class="opc-t">Opcional</span></td><td><span class="opc-t">Opcional</span></td><td><span class="opc-t">Opcional</span></td></tr>
+          <tr><th scope="row">Lançamento nos dois canais</th><td><span class="nao">Não</span></td><td><span class="sim">Sim</span></td><td><span class="opc-t">Opcional</span></td></tr>
+          <tr><th scope="row">Relatório de plays</th><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td><td><span class="sim">Sim</span></td></tr>
+          <tr><th scope="row">Apresentação ao vivo</th><td><span class="nao">Não</span></td><td><span class="nao">Não</span></td><td><span class="opc-t">Opcional</span></td></tr>
+        </tbody>
+        <tfoot><tr><th scope="row">Próximo passo</th><td><a href="#monte" class="kit__cta">Montar pedido</a></td><td><a href="#contato" class="kit__cta">Propor collab</a></td><td><a href="#contato" class="kit__cta">Falar de marca</a></td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- 8 · VALORES -->
+  <section class="sec valores-sec" aria-labelledby="h-val">
+    <div class="valores__titulo">
+      <h2 id="h-val" data-reveal="words">Da sombra <em>à rima.</em></h2>
+      <p class="valores__intro" data-reveal="rise">Todo personagem tem um lado que a tela não mostra inteiro. A KAGERIMA escreve a partir dele: o medo, a perda, a escolha que mudou a história.</p>
+    </div>
+    <div class="valores__rot" data-reveal="fade"><span>O que guia cada rap</span></div>
+    <ul class="valores" data-reveal-group data-stagger="90">
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#kanji"/></svg><h3>Respeito à obra</h3><p>Cada verso tem fonte no anime ou no mangá.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#letra"/></svg><h3>Rima com história</h3><p>Referência que o fã reconhece, não lista de golpes.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#beat"/></svg><h3>Beat que conta</h3><p>O instrumental muda junto com o arco do personagem.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#microfone"/></svg><h3>Voz própria</h3><p>Interpretação com a intensidade de quem viveu a cena.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#ondas"/></svg><h3>Qualidade de estúdio</h3><p>Mix e master pensados para fone e caixa de som.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#garantia"/></svg><h3>Aviso de spoiler</h3><p>Quem ainda não chegou no arco é avisado antes do play.</p></li>
+      <li data-reveal="rise"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#collab"/></svg><h3>Comunidade</h3><p>O próximo personagem é escolhido junto com quem ouve.</p></li>
+    </ul>
+  </section>
+
+  <!-- 9 · LETRAS -->
+  <section class="sec letras-sec" id="letras" aria-labelledby="h-letras">
+    <div class="sec-head">
+      <p class="rotulo rotulo--claro" data-reveal="wipe"><span>07</span> Letras</p>
+      <h2 id="h-letras" data-reveal="words">Cada verso, <em>com a referência</em>.</h2>
+      <p data-reveal="rise">Letras completas com nota de onde vem cada rima: episódio, capítulo ou cena. Para cantar junto e pegar o que passou batido.</p>
+    </div>
+    <div class="conteudo" data-marquee="20"><ul><li><a href="#letra-gojo" class="letra" data-letra="gojo"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-gojo-320.avif 320w, assets/img/capas/letra-gojo-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-gojo-640.webp" srcset="assets/img/capas/letra-gojo-320.webp 320w, assets/img/capas/letra-gojo-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">Jujutsu Kaisen</span><h3>Rap de Satoru: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li><li><a href="#letra-goku" class="letra" data-letra="goku"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-goku-320.avif 320w, assets/img/capas/letra-goku-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-goku-640.webp" srcset="assets/img/capas/letra-goku-320.webp 320w, assets/img/capas/letra-goku-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">Dragon Ball</span><h3>Rap de Goku: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li><li><a href="#letra-ichigo" class="letra" data-letra="ichigo"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-ichigo-320.avif 320w, assets/img/capas/letra-ichigo-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-ichigo-640.webp" srcset="assets/img/capas/letra-ichigo-320.webp 320w, assets/img/capas/letra-ichigo-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">Bleach</span><h3>Rap de Ichigo: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li><li><a href="#letra-luffy" class="letra" data-letra="luffy"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-luffy-320.avif 320w, assets/img/capas/letra-luffy-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-luffy-640.webp" srcset="assets/img/capas/letra-luffy-320.webp 320w, assets/img/capas/letra-luffy-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">One Piece</span><h3>Rap de Luffy: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li><li><a href="#letra-sasuke" class="letra" data-letra="sasuke"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-sasuke-320.avif 320w, assets/img/capas/letra-sasuke-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-sasuke-640.webp" srcset="assets/img/capas/letra-sasuke-320.webp 320w, assets/img/capas/letra-sasuke-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">Naruto</span><h3>Rap de Sasuke: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li><li><a href="#letra-megumi" class="letra" data-letra="megumi"><picture class=""><source type="image/avif" srcset="assets/img/capas/letra-megumi-320.avif 320w, assets/img/capas/letra-megumi-640.avif 640w" sizes="300px"><img src="assets/img/capas/letra-megumi-640.webp" srcset="assets/img/capas/letra-megumi-320.webp 320w, assets/img/capas/letra-megumi-640.webp 640w" sizes="300px" width="640" height="640" alt="" loading="lazy" decoding="async"></picture><span class="letra__corpo"><span class="letra__cat">Jujutsu Kaisen</span><h3>Rap de Megumi: letra e referências</h3><span class="letra__ler">Ver letra</span></span></a></li></ul></div>
+  </section>
+
+
+  <!-- 9b · DICIONÁRIO DOS KANJIS -->
+  <section class="sec dic" id="kanjis" aria-labelledby="h-dic">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>08</span> Dicionário</p>
+      <h2 id="h-dic" data-reveal="words">Os doze kanjis <em>da arte do canal</em>.</h2>
+      <p data-reveal="rise">Cada coluna do banner é um anime. Passe o mouse, toque ou use o teclado para ver a leitura, o significado e de onde vem cada símbolo.</p>
+    </div>
+    <ul class="dic__grade"><li class="dic__card" data-s="gojo" style="--cor:#3aa4fa" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">無</span><span class="dic__n">01 · Jujutsu Kaisen</span><h3><span class="sr">Kanji 無, </span>Vazio, nada</h3><p class="dic__leit">Leitura: <b>mu</b></p><p class="dic__orig">Primeiro kanji de 無量空処, o domínio de Gojo: o Vazio Infinito.</p></li><li class="dic__card" data-s="goku" style="--cor:#fe8c00" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">超</span><span class="dic__n">02 · Dragon Ball</span><h3><span class="sr">Kanji 超, </span>Além, super</h3><p class="dic__leit">Leitura: <b>chō</b></p><p class="dic__orig">O 超 de Super Saiyajin: passar do próprio limite.</p></li><li class="dic__card" data-s="ichigo" style="--cor:#fb660f" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">卍</span><span class="dic__n">03 · Bleach</span><h3><span class="sr">Kanji 卍, </span>Giro, símbolo budista</h3><p class="dic__leit">Leitura: <b>ban (manji)</b></p><p class="dic__orig">Metade de 卍解, Bankai. Símbolo budista de sorte, sem relação com o símbolo nazista.</p></li><li class="dic__card" data-s="luffy" style="--cor:#e53845" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">海</span><span class="dic__n">04 · One Piece</span><h3><span class="sr">Kanji 海, </span>Mar</h3><p class="dic__leit">Leitura: <b>kai / umi</b></p><p class="dic__orig">Abre 海賊王, Rei dos Piratas: o sonho do chapéu de palha.</p></li><li class="dic__card" data-s="sasuke" style="--cor:#e0263a" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">写</span><span class="dic__n">05 · Naruto</span><h3><span class="sr">Kanji 写, </span>Copiar</h3><p class="dic__leit">Leitura: <b>sha</b></p><p class="dic__orig">Abre 写輪眼, Sharingan: o olho que copia qualquer técnica.</p></li><li class="dic__card" data-s="megumi" style="--cor:#c8102e" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">伏</span><span class="dic__n">06 · Jujutsu Kaisen</span><h3><span class="sr">Kanji 伏, </span>Esconder-se, abaixar</h3><p class="dic__leit">Leitura: <b>fushi</b></p><p class="dic__orig">Abre 伏黒, Fushiguro: o sobrenome de quem invoca as Dez Sombras.</p></li><li class="dic__card" data-s="gojo" style="--cor:#3aa4fa" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">処</span><span class="dic__n">07 · Jujutsu Kaisen</span><h3><span class="sr">Kanji 処, </span>Lugar</h3><p class="dic__leit">Leitura: <b>sho</b></p><p class="dic__orig">Fecha 無量空処: o lugar onde a informação não acaba.</p></li><li class="dic__card" data-s="goku" style="--cor:#fe8c00" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">超</span><span class="dic__n">08 · Dragon Ball</span><h3><span class="sr">Kanji 超, </span>Além, super</h3><p class="dic__leit">Leitura: <b>chō</b></p><p class="dic__orig">O 超 de Dragon Ball Super, título da série que continua a saga.</p></li><li class="dic__card" data-s="ichigo" style="--cor:#fb660f" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">解</span><span class="dic__n">09 · Bleach</span><h3><span class="sr">Kanji 解, </span>Liberar, soltar</h3><p class="dic__leit">Leitura: <b>kai</b></p><p class="dic__orig">Fecha 卍解: a liberação final da zanpakutō.</p></li><li class="dic__card" data-s="luffy" style="--cor:#e53845" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">王</span><span class="dic__n">10 · One Piece</span><h3><span class="sr">Kanji 王, </span>Rei</h3><p class="dic__leit">Leitura: <b>ō</b></p><p class="dic__orig">Fecha 海賊王: o título que Luffy quer conquistar.</p></li><li class="dic__card" data-s="sasuke" style="--cor:#e0263a" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">眼</span><span class="dic__n">11 · Naruto</span><h3><span class="sr">Kanji 眼, </span>Olho</h3><p class="dic__leit">Leitura: <b>gan</b></p><p class="dic__orig">Fecha 写輪眼: o olho que carrega a história do clã Uchiha.</p></li><li class="dic__card" data-s="megumi" style="--cor:#c8102e" tabindex="0"><span class="dic__aura" aria-hidden="true"></span><span class="dic__k" aria-hidden="true">子</span><span class="dic__n">12 · Jujutsu Kaisen</span><h3><span class="sr">Kanji 子, </span>Filho</h3><p class="dic__leit">Leitura: <b>ko</b></p><p class="dic__orig">Megumi é filho de Toji Fushiguro: a coluna fecha com a linhagem.</p></li></ul>
+  </section>
+
+  <!-- 9c · ESTÚDIO -->
+  <section class="sec estudio" id="estudio" aria-labelledby="h-est">
+    <div class="sec-head">
+      <p class="rotulo rotulo--claro" data-reveal="wipe"><span>09</span> Estúdio</p>
+      <h2 id="h-est" data-reveal="words">As quatro camadas <em>de um rap de anime</em>.</h2>
+      <p data-reveal="rise">Uma faixa da KAGERIMA é montada como uma luta em quatro tempos. Escolha uma camada para ouvir o que ela faz na música.</p>
+    </div>
+    <div class="estudio__mesa">
+      <div class="estudio__tabs" role="tablist" aria-label="Camadas da faixa"><button type="button" role="tab" id="tab-beat" aria-controls="pn-beat" aria-selected="true" tabindex="0" class="estudio__tab" data-camada="beat"><span class="estudio__n">01</span>Beat</button><button type="button" role="tab" id="tab-flow" aria-controls="pn-flow" aria-selected="false" tabindex="-1" class="estudio__tab" data-camada="flow"><span class="estudio__n">02</span>Flow</button><button type="button" role="tab" id="tab-letra" aria-controls="pn-letra" aria-selected="false" tabindex="-1" class="estudio__tab" data-camada="letra"><span class="estudio__n">03</span>Letra</button><button type="button" role="tab" id="tab-mix" aria-controls="pn-mix" aria-selected="false" tabindex="-1" class="estudio__tab" data-camada="mix"><span class="estudio__n">04</span>Mix</button></div>
+      <div class="estudio__palco">
+        <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <svg class="onda" viewBox="0 0 600 120" aria-hidden="true"><path class="onda__a" d="M0 60 C40 20 60 100 100 60 S160 20 200 60 260 100 300 60 360 20 400 60 460 100 500 60 560 20 600 60"/><path class="onda__b" d="M0 60 C30 40 70 80 100 60 S170 30 200 60 230 90 300 60 370 40 400 60 430 80 500 60 570 40 600 60"/><line class="onda__cursor" x1="0" y1="8" x2="0" y2="112"/></svg>
+        <div class="estudio__painel" role="tabpanel" id="pn-beat" aria-labelledby="tab-beat" data-camada="beat"><h3>O chão da luta</h3><p>O instrumental define o arco: épico para a virada, sombrio para a vilania, acelerado para a batalha. O beat muda de clima quando o personagem muda.</p><ul><li>BPM de 80 a 150</li><li>Samples com timbre oriental</li><li>Grave que entra na revelação</li></ul></div><div class="estudio__painel" role="tabpanel" id="pn-flow" aria-labelledby="tab-flow" data-camada="flow" hidden><h3>A técnica do personagem</h3><p>O jeito de rimar imita o personagem: Gojo rima tranquilo e por cima do beat, Goku acelera a cada transformação, Sasuke corta as frases curtas e frias.</p><ul><li>Cadência por personagem</li><li>Pausas antes do golpe</li><li>Refrão fácil de cantar</li></ul></div><div class="estudio__painel" role="tabpanel" id="pn-letra" aria-labelledby="tab-letra" data-camada="letra" hidden><h3>A história respeitada</h3><p>Cada verso tem fonte: episódio, capítulo ou cena. A referência que o fã reconhece vale mais que a lista de poderes.</p><ul><li>Pesquisa do arco completo</li><li>Aviso de spoiler</li><li>Nota de referência por verso</li></ul></div><div class="estudio__painel" role="tabpanel" id="pn-mix" aria-labelledby="tab-mix" data-camada="mix" hidden><h3>O acabamento</h3><p>Voz na frente, grave controlado e brilho para o fone. A faixa é masterizada para soar bem no YouTube, no Spotify e na caixinha do celular.</p><ul><li>Master para streaming</li><li>Teste em fone e celular</li><li>Versão curta para Reels</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · PERGUNTAS -->
+  <section class="sec perguntas" id="perguntas" aria-labelledby="h-faq">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>10</span> Perguntas</p>
+      <h2 id="h-faq" data-reveal="words">O que a comunidade <em>mais pergunta</em>.</h2>
+    </div>
+    <div class="faq">
+      <details><summary><h3>Qual é o próximo personagem?</h3></summary><p>O próximo rap é escolhido com a comunidade: as enquetes ficam nos stories e na aba de comunidade do YouTube. Os mais pedidos entram na fila de produção.</p></details>
+      <details><summary><h3>Os raps têm spoiler?</h3></summary><p>Alguns têm, porque a força do personagem está no arco inteiro. Quando a letra cita acontecimentos recentes, o aviso aparece no início do vídeo e na descrição.</p></details>
+      <details><summary><h3>Posso usar o rap da KAGERIMA no meu vídeo?</h3></summary><p>Para uso em vídeo próprio, peça a licença pelo formulário de parcerias. Cada caso tem condições próprias de crédito e monetização.</p></details>
+      <details><summary><h3>Quanto custa encomendar um rap de personagem?</h3></summary><p>Depende do formato: só áudio, áudio com clipe ou collab. O orçamento sai depois da conversa inicial, com prazo e entregas definidos.</p></details>
+      <details><summary><h3>Quanto tempo leva uma encomenda?</h3></summary><p>O prazo é combinado na proposta e depende da letra, do beat e do clipe. Você acompanha cada passo e aprova a letra antes da gravação.</p></details>
+      <details><summary><h3>Vocês fazem rap de anime que não está no site?</h3></summary><p>Sim. As cinco obras do site são as que mais aparecem no canal hoje, mas qualquer anime, mangá ou jogo pode virar rap.</p></details>
+      <details><summary><h3>Onde ouvir as faixas?</h3></summary><p>No YouTube, com os clipes, e no Spotify, para ouvir no fone. Os links de cada faixa ficam na seção de lançamentos.</p></details>
+      <details><summary><h3>Como faço um feat com a KAGERIMA?</h3></summary><p>Mande sua proposta pelo formulário de parcerias com o link do seu canal e a ideia do tema. Respondemos com uma sugestão de divisão de versos e data.</p></details>
+    </div>
+  </section>
+
+
+  <!-- 10b · MONTE SUA ENCOMENDA -->
+  <section class="sec monte" id="monte" aria-labelledby="h-monte">
+    <div class="sec-head">
+      <p class="rotulo" data-reveal="wipe"><span>11</span> Monte a sua</p>
+      <h2 id="h-monte" data-reveal="words">Monte o pedido <em>em três escolhas</em>.</h2>
+      <p data-reveal="rise">Escolha formato, clima e extras. O resumo ao lado vira a mensagem do WhatsApp, pronta para enviar. O valor sai na conversa, depois de entender o projeto.</p>
+    </div>
+    <form class="monte__form" data-monte novalidate>
+      <fieldset class="monte__grupo"><legend><b>1</b> Formato</legend>
+        <label class="opc"><input type="radio" name="m-formato" value="rap de personagem" checked><span class="opc__c"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#microfone"/></svg><b>Rap de personagem</b><small>Faixa solo sobre um personagem</small></span></label>
+        <label class="opc"><input type="radio" name="m-formato" value="collab entre canais"><span class="opc__c"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#collab"/></svg><b>Collab</b><small>Feat ou cypher com o seu canal</small></span></label>
+        <label class="opc"><input type="radio" name="m-formato" value="publi ou jingle de marca"><span class="opc__c"><svg viewBox="0 0 80 72" aria-hidden="true"><use href="assets/icons/icones-kagerima.svg#palco"/></svg><b>Marca ou evento</b><small>Publi, jingle ou show geek</small></span></label>
+      </fieldset>
+      <fieldset class="monte__grupo"><legend><b>2</b> Clima do beat</legend>
+        <div class="climas">
+          <label class="clima"><input type="radio" name="m-clima" value="épico" checked><span>Épico</span></label>
+          <label class="clima"><input type="radio" name="m-clima" value="sombrio"><span>Sombrio</span></label>
+          <label class="clima"><input type="radio" name="m-clima" value="acelerado"><span>Acelerado</span></label>
+          <label class="clima"><input type="radio" name="m-clima" value="melancólico"><span>Melancólico</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="monte__grupo"><legend><b>3</b> Extras</legend>
+        <label class="extra"><input type="checkbox" name="m-extra" value="clipe animado"><span>Clipe animado</span></label>
+        <label class="extra"><input type="checkbox" name="m-extra" value="lyric video"><span>Lyric video com a letra</span></label>
+        <label class="extra"><input type="checkbox" name="m-extra" value="beat exclusivo"><span>Beat exclusivo</span></label>
+        <label class="extra"><input type="checkbox" name="m-extra" value="versão curta para Reels e Shorts"><span>Versão curta para Reels e Shorts</span></label>
+      </fieldset>
+      <aside class="resumo" aria-live="polite">
+        <p class="resumo__tit">Resumo do pedido</p>
+        <ol class="resumo__lista"><li><span>Formato</span><b data-r="formato">rap de personagem</b></li><li><span>Clima</span><b data-r="clima">épico</b></li><li><span>Extras</span><b data-r="extras">nenhum</b></li></ol>
+        <p class="resumo__nota">Entregas típicas: letra para aprovar, prévia do beat, faixa final em alta e capa.</p>
+        <a class="btn3d resumo__cta" data-monte-wa="5500000000000" href="https://wa.me/5500000000000" data-cta="monte"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar resumo</a>
+      </aside>
+    </form>
+  </section>
+
+  <!-- 10c · VOTAÇÃO -->
+  <section class="sec voto" id="votacao" aria-labelledby="h-voto">
+    <div class="sec-head">
+      <p class="rotulo rotulo--claro" data-reveal="wipe"><span>12</span> Votação</p>
+      <h2 id="h-voto" data-reveal="words">Quem ganha <em>a próxima sombra</em>?</h2>
+      <p data-reveal="rise">Vote no personagem que você quer ouvir. O resultado abaixo é uma prévia de demonstração; a votação oficial acontece na aba de comunidade do YouTube.</p>
+    </div>
+    <ul class="voto__lista" data-voto><li class="voto__item" style="--cor:#3aa4fa;--pct:31%"><button type="button" class="voto__btn" data-voto-id="sukuna" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Ryomen Sukuna</b><small>Jujutsu Kaisen</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="31">31%</span><span class="voto__acao">Votar</span></button></li><li class="voto__item" style="--cor:#e0263a;--pct:24%"><button type="button" class="voto__btn" data-voto-id="itachi" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Itachi Uchiha</b><small>Naruto</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="24">24%</span><span class="voto__acao">Votar</span></button></li><li class="voto__item" style="--cor:#e53845;--pct:18%"><button type="button" class="voto__btn" data-voto-id="zoro" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Roronoa Zoro</b><small>One Piece</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="18">18%</span><span class="voto__acao">Votar</span></button></li><li class="voto__item" style="--cor:#fe8c00;--pct:12%"><button type="button" class="voto__btn" data-voto-id="vegeta" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Vegeta</b><small>Dragon Ball</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="12">12%</span><span class="voto__acao">Votar</span></button></li><li class="voto__item" style="--cor:#fb660f;--pct:9%"><button type="button" class="voto__btn" data-voto-id="aizen" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Sosuke Aizen</b><small>Bleach</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="9">9%</span><span class="voto__acao">Votar</span></button></li><li class="voto__item" style="--cor:#c8102e;--pct:6%"><button type="button" class="voto__btn" data-voto-id="toji" aria-pressed="false"><span class="voto__nome"><b class="voto__h">Toji Fushiguro</b><small>Jujutsu Kaisen</small></span><span class="voto__barra" aria-hidden="true"><i></i></span><span class="voto__pct" data-pct="6">6%</span><span class="voto__acao">Votar</span></button></li></ul>
+    <p class="voto__nota" data-voto-msg aria-live="polite">Um voto por pessoa neste aparelho.</p>
+  </section>
+
+  <!-- 11 · CTA -->
+  <section class="cta" id="contato" aria-labelledby="h-cta">
+    <div class="cta__k" aria-hidden="true">影</div>
+    <div class="cta__corpo">
+      <p class="rotulo rotulo--claro" data-reveal="fade"><span>13</span> Próxima sombra</p>
+      <h2 id="h-cta" data-reveal="words">Que personagem merece <em>a próxima rima</em>?</h2>
+      <p data-reveal="rise">Conte o personagem, o formato e o prazo. A mensagem chega pronta no WhatsApp do canal.</p>
+      <form class="form-wa" data-wa="5500000000000" data-msg="Olá, KAGERIMA! Quero falar de {formato}. Anime/personagem: {personagem}. Prazo: {prazo}." novalidate>
+        <label for="f-formato">Formato
+          <select id="f-formato" name="formato" required>
+            <option value="rap encomendado">Rap encomendado</option>
+            <option value="collab">Collab entre canais</option>
+            <option value="publi ou evento">Marca ou evento</option>
+          </select>
+        </label>
+        <label for="f-personagem">Anime e personagem<input id="f-personagem" name="personagem" placeholder="Ex.: Jujutsu Kaisen, Sukuna" required></label>
+        <label for="f-prazo">Prazo<input id="f-prazo" name="prazo" placeholder="Ex.: até março"></label>
+        <button type="submit" class="btn3d" data-cta="form"><svg aria-hidden="true"><use href="#i-wa"/></svg>Enviar no WhatsApp</button>
+        <p class="form-wa__nota">O formulário só monta a sua mensagem no WhatsApp; nada fica guardado aqui.</p>
+      </form>
+      <ul class="redes">
+        <li><a href="https://www.youtube.com/results?search_query=kagerima"><svg aria-hidden="true"><use href="#i-yt"/></svg>YouTube</a></li>
+        <li><a href="https://open.spotify.com/search/kagerima"><svg aria-hidden="true"><use href="#i-sp"/></svg>Spotify</a></li>
+        <li><a href="https://www.instagram.com/"><svg aria-hidden="true"><use href="#i-ig"/></svg>Instagram</a></li>
+        <li><a href="https://wa.me/5500000000000" data-wa="5500000000000"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a class="topo-btn" href="#topo" aria-label="Voltar ao topo"><span aria-hidden="true">↑</span></a>
+  <div class="rod__grid">
+    <div class="rod__marca"><a class="logo" href="#topo"><span class="logo__k" aria-hidden="true">影</span><span class="logo__t">KAGERIMA</span></a><p>Rap de anime com a sombra de cada personagem.</p></div>
+    <div><p class="rod__tit">Animes</p><a href="#sombra-sasuke">Naruto</a><a href="#sombra-gojo">Jujutsu Kaisen</a><a href="#sombra-luffy">One Piece</a><a href="#sombra-ichigo">Bleach</a><a href="#sombra-goku">Dragon Ball</a></div>
+    <div><p class="rod__tit">Canal</p><a href="#lancamentos">Lançamentos</a><a href="#numeros">Números</a><a href="#letras">Letras</a><a href="#kanjis">Dicionário de kanjis</a><a href="#estudio">Estúdio</a><a href="#votacao">Votação</a><a href="#perguntas">Perguntas</a></div>
+    <div><p class="rod__tit">Parcerias</p><a href="#parcerias">Rap encomendado</a><a href="#parcerias">Collab</a><a href="#parcerias">Marcas e eventos</a><a href="#monte">Monte seu pedido</a><a href="#contato">Contato</a></div>
+    <div><p class="rod__tit">Ouvir</p><a href="https://www.youtube.com/results?search_query=kagerima">YouTube</a><a href="https://open.spotify.com/search/kagerima">Spotify</a><a href="https://www.instagram.com/">Instagram</a></div>
+  </div>
+  <div class="rod__pref"><button type="button" class="priv-btn" data-priv>O que este site guarda</button><button type="button" class="modo-leve" aria-pressed="false" data-modo-leve>Modo leve: sem glitch, sem piscar</button><span>Para quem é sensível a luz piscando ou quer economizar bateria.</span></div>
+  <div class="rod__ass"><span>Rap de anime · Naruto · Jujutsu Kaisen · One Piece · Bleach · Dragon Ball</span><span class="demo">Demonstração: faixas, números e links de exemplo até o canal enviar os oficiais. Nomes de obras citados só como referência; sem arte oficial.</span></div>
+  <p class="wm wm--glitch" aria-hidden="true"><span class="wm__vazado">KAGERIMA</span><span class="wm__cheio">KAGERIMA</span><span class="wm__feixe"></span></p>
+</footer>
+
+
+<dialog class="letra-dlg" aria-labelledby="dlg-tit">
+  <div class="letra-dlg__topo"><p class="letra-dlg__cat" data-dlg-cat></p><button type="button" class="letra-dlg__x" data-dlg-fechar aria-label="Fechar"><span aria-hidden="true">×</span></button></div>
+  <p class="letra-dlg__k" aria-hidden="true" data-dlg-k></p>
+  <h2 id="dlg-tit" data-dlg-tit></h2>
+  <div class="letra-dlg__corpo" data-dlg-corpo></div>
+  <div class="letra-dlg__nav"><button type="button" class="letra-dlg__seta" data-dlg-ir="-1">← Anterior</button><span class="letra-dlg__pos" data-dlg-pos></span><button type="button" class="letra-dlg__seta" data-dlg-ir="1">Próxima →</button></div>
+  <p class="letra-dlg__nota">Estrutura da faixa de exemplo. A letra completa, com nota de referência por verso, entra quando o canal publicar.</p>
+  <a class="btn3d" href="https://www.youtube.com/results?search_query=kagerima" data-cta="dlg"><svg aria-hidden="true"><use href="#i-yt"/></svg>Ouvir no YouTube</a>
+</dialog>
+<template id="tpl-letra-gojo" data-cat="Jujutsu Kaisen · Arco da Escola Jujutsu e temporada 1" data-k="無処" data-tit="Rap de Satoru Gojo: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>A apresentação do mais forte: a venda nos olhos, o Infinito que nada atravessa.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>O Vazio Infinito vira refrão: informação sem fim, o rival sem saída.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>O peso de ser o único: professor, escudo e alvo ao mesmo tempo.</p></section></template><template id="tpl-letra-goku" data-cat="Dragon Ball · Saga de Freeza, em Namekusei" data-k="超超" data-tit="Rap de Goku: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>O treino que não acaba e a calma antes da luta.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>A raiva que acende o Super Saiyajin: o grito que passa do limite.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>Depois da transformação, sempre existe uma forma acima da última.</p></section></template><template id="tpl-letra-ichigo" data-cat="Bleach · Arco da Soul Society" data-k="卍解" data-tit="Rap de Ichigo Kurosaki: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>Um garoto que vê espíritos e decide proteger quem ama.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>Bankai no refrão: a espada ganha nome quando o grave entra.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>A sombra interna que quer o controle, e a escolha de seguir em frente.</p></section></template><template id="tpl-letra-luffy" data-cat="One Piece · Arco de Wano" data-k="海王" data-tit="Rap de Monkey D. Luffy: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>O chapéu de palha, a promessa e a tripulação que virou família.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>O Rei dos Piratas como destino: liberdade em forma de rima.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>O Gear Cinco e o riso de quem luta livre.</p></section></template><template id="tpl-letra-sasuke" data-cat="Naruto · Arco da Terra das Ondas e Shippuden" data-k="写眼" data-tit="Rap de Sasuke Uchiha: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>O Sharingan desperta na primeira luta de verdade.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>Olhos que copiam tudo: a vingança contada verso a verso.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>Os laços cortados e o caminho de volta.</p></section></template><template id="tpl-letra-megumi" data-cat="Jujutsu Kaisen · Temporada 1 e arco de Shibuya" data-k="伏子" data-tit="Rap de Megumi Fushiguro: estrutura e referências"><section class="letra-dlg__parte"><h3>Verso 1</h3><p>As Dez Sombras: cada shikigami entra no beat como uma invocação.</p></section><section class="letra-dlg__parte"><h3>Refrão</h3><p>A sombra como arma e como esconderijo.</p></section><section class="letra-dlg__parte"><h3>Verso 2</h3><p>O filho de Toji e a escolha de quem vale salvar.</p></section></template>
+<dialog class="priv" aria-labelledby="priv-tit">
+  <h2 id="priv-tit">O que fica guardado no seu aparelho</h2>
+  <p>Nada é enviado para servidor. O site só lembra, no próprio navegador:</p>
+  <ul class="priv__lista"><li><b>Anime escolhido</b><span>para abrir o site no clima dele</span></li><li><b>Seu voto</b><span>para não votar duas vezes na prévia</span></li><li><b>Modo leve</b><span>se você desligou glitch e piscadas</span></li></ul>
+  <p class="priv__nota">Os players do YouTube só carregam quando você toca em uma faixa, pelo domínio sem cookies (youtube-nocookie).</p>
+  <p class="priv__acoes"><button type="button" class="priv__apagar" data-priv-apagar>Apagar minhas preferências</button><button type="button" class="priv__ok" data-priv-fechar>Entendi</button></p>
+</dialog>
+<div class="mini" hidden data-mini role="region" aria-label="Tocando agora">
+  <span class="mini__capa" data-mini-capa></span>
+  <span class="mini__txt"><b data-mini-tit></b><small data-mini-pers></small></span>
+  <span class="mini__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <a class="mini__ir" href="#lancamentos">Ver faixa</a>
+  <button type="button" class="mini__x" data-mini-fechar aria-label="Fechar mini player">×</button>
+</div>
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<a class="wa-float" data-after-hero data-wa="5500000000000" data-cta="flutuante" href="#contato" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a>
+
+<script type="module">
+  import './personaliza.js';
+  import './kagerima.js';
+  import './motion.js';
+  import './componentes.js';
+</script>
+</body>
+</html>

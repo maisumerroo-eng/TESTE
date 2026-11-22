@@ -1,0 +1,60 @@
+/* hub.css: "Entre pela sua obra" (cartões que viram o site para o anime) + divisores entre seções. */
+.hub { --hub-h: 340px; padding: clamp(72px, 9vw, 120px) var(--gutter); background: var(--preto); }
+.hub > * { max-width: var(--max); margin-inline: auto; }
+.hub__head { display: grid; gap: 8px 48px; margin-bottom: 32px; }
+.hub__head p { color: var(--cinza); max-width: 54ch; margin: 0; }
+@media (min-width: 900px) { .hub__head { grid-template-columns: 1fr 1fr; align-items: end; } .hub__head h2 { margin: 0; } }
+.hub__lista { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(5, 1fr); }
+.hub__item { --cor: var(--accent); --pad-o: var(--pad-padrao); }
+.hub__item[data-obra="jujutsu-kaisen"] { --cor: var(--azul); --pad-o: var(--pad-jjk); }
+.hub__item[data-obra="dragon-ball"] { --cor: var(--laranja); --pad-o: var(--pad-db); }
+.hub__item[data-obra="bleach"] { --cor: var(--laranja-2); --pad-o: var(--pad-bleach); }
+.hub__item[data-obra="one-piece"] { --cor: var(--vermelho); --pad-o: var(--pad-op); }
+.hub__item[data-obra="naruto"] { --cor: var(--vermelho-2); --pad-o: var(--pad-naruto); }
+.hub__btn { position: relative; display: grid; grid-template-rows: 1fr auto auto; width: 100%; height: var(--hub-h); padding: 18px; background: var(--preto-2); border: 1px solid var(--linha-k); color: var(--branco); font: inherit; text-align: left; cursor: pointer; overflow: hidden; isolation: isolate; transition: border-color var(--dur-hover), translate .4s var(--ease-out), box-shadow .4s; }
+.hub__pad { position: absolute; inset: 0; z-index: -1; background: var(--pad-o); background-color: color-mix(in srgb, var(--cor) 10%, var(--preto-2)); opacity: .55; -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 30%, transparent 75%); transition: opacity .5s, scale .8s var(--ease-out); }
+.hub__item[data-obra="one-piece"] .hub__pad { background-size: 40px 22px; }
+.hub__k { align-self: center; justify-self: center; font: 900 clamp(4.4rem, 7vw, 6.6rem)/1 var(--font-kanji); color: var(--cor); transition: scale .5s var(--ease-out), text-shadow .4s; }
+.hub__txt { display: grid; gap: 4px; }
+.hub__nome { font: 800 1.1rem/1.1 var(--font-display); font-stretch: 115%; text-transform: uppercase; }
+.hub__txt small { font: 600 11px/1.3 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--cor); }
+.hub__desc { font-size: 14px; line-height: 1.45; color: var(--cinza); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; }
+.hub__acao { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--linha-k); font: 700 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--cinza); transition: color var(--dur-hover); }
+.hub__acao::after { content: " →"; display: inline-block; transition: translate .3s var(--ease-out); }
+@media (hover: hover) {
+  .hub__btn:hover { border-color: var(--cor); translate: 0 -6px; box-shadow: 0 22px 50px rgb(0 0 0 / .5), 0 0 0 1px var(--cor); }
+  .hub__btn:hover .hub__pad { opacity: 1; scale: 1.08; }
+  .hub__btn:hover .hub__k { scale: 1.08; text-shadow: 3px 0 var(--rgb-a), -3px 0 var(--rgb-b); }
+  .hub__btn:hover .hub__desc { max-height: 6em; opacity: 1; }
+  .hub__btn:hover .hub__acao { color: var(--branco); }
+  .hub__btn:hover .hub__acao::after { translate: 4px 0; }
+}
+.hub__btn:focus-visible { outline: var(--foco); outline-offset: 3px; }
+.hub__btn:focus-visible .hub__desc { max-height: 6em; opacity: 1; }
+.hub__btn:active { translate: 0 -2px; }
+.hub__btn[aria-pressed="true"] { border-color: var(--cor); background: color-mix(in srgb, var(--cor) 12%, var(--preto-2)); }
+.hub__btn[aria-pressed="true"] .hub__pad { opacity: 1; }
+.hub__btn[aria-pressed="true"] .hub__acao { color: var(--cor); }
+.hub__btn[aria-pressed="true"] .hub__acao::after { content: " ✓ no clima (toque para sair)"; }
+html.motion .hub__item[data-obra="naruto"] .hub__btn[aria-pressed="true"] .hub__pad { animation: k-pad-gira 18s linear infinite; }
+html.motion .hub__item[data-obra="dragon-ball"] .hub__btn[aria-pressed="true"] .hub__pad { animation: k-pad-pulsa 1.8s ease-in-out infinite; }
+html.motion .hub__item[data-obra="one-piece"] .hub__btn[aria-pressed="true"] .hub__pad { animation: k-pad-mar 2.4s linear infinite; }
+html.motion .hub__item[data-obra="bleach"] .hub__btn[aria-pressed="true"] .hub__pad { animation: k-pad-corte 3s linear infinite; }
+html.motion .hub__item[data-obra="jujutsu-kaisen"] .hub__btn[aria-pressed="true"] .hub__pad { animation: k-pad-pulsa 4s ease-in-out infinite; }
+@media (hover: none) { .hub__desc { max-height: none; opacity: 1; } }
+@media (max-width: 1099px) { .hub__lista { grid-template-columns: repeat(3, 1fr); } .hub { --hub-h: 300px; } }
+@media (max-width: 699px) {
+  .hub__lista { grid-template-columns: 1fr; gap: 8px; }
+  .hub__btn { height: auto; grid-template-columns: 76px 1fr; grid-template-rows: auto auto; column-gap: 16px; padding: 14px 16px; }
+  .hub__k { grid-row: 1 / 3; font-size: 3.6rem; }
+  .hub__acao { grid-column: 2; margin-top: 8px; padding-top: 8px; }
+  .hub__pad { -webkit-mask-image: linear-gradient(90deg, #000, transparent 60%); mask-image: linear-gradient(90deg, #000, transparent 60%); }
+}
+html.modo-leve .hub__pad { animation: none !important; }
+@media (forced-colors: active) { .hub__btn { border: 1px solid CanvasText; } .hub__btn[aria-pressed="true"] { outline: 3px solid Highlight; } .hub__pad { display: none; } }
+
+/* ---------- divisores entre seções: um corte de kanji, não uma linha reta ---------- */
+.lanc, .parc, .valores-sec, .dic, .monte, .cta { position: relative; }
+.lanc::before, .parc::before, .monte::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 28px; background: linear-gradient(90deg, var(--accent) 0 56px, transparent 56px); -webkit-mask-image: linear-gradient(180deg, #000 0 3px, transparent 3px); mask-image: linear-gradient(180deg, #000 0 3px, transparent 3px); pointer-events: none; }
+.valores-sec::after { content: "影"; position: absolute; right: var(--gutter); top: -.55em; font: 900 64px/1 var(--font-kanji); color: var(--preto-2); -webkit-text-stroke: 1px var(--linha-k); pointer-events: none; }
+.dic::after { content: ""; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 1px; background: linear-gradient(90deg, var(--azul), var(--laranja), var(--laranja-2), var(--vermelho), var(--vermelho-2), var(--vinho)); opacity: .6; }

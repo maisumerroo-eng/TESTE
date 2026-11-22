@@ -1,0 +1,198 @@
+/* fx.css: movimento com função (glitch da marca, auras por anime, equalizador, entradas) + acessibilidade.
+   Tudo pausa com prefers-reduced-motion e fora da tela (animation-play-state via .is-fora-da-tela quando houver). */
+
+/* ---------- 1. glitch da marca ---------- */
+@keyframes k-rgb-shake { 0% { text-shadow: 1.5px 0 var(--rgb-a), -1.5px 0 var(--rgb-b); } 50% { text-shadow: -3px 1px var(--rgb-a), 3px -1px var(--rgb-b); } 100% { text-shadow: 1.5px 0 var(--rgb-a), -1.5px 0 var(--rgb-b); } }
+@keyframes k-glitch-a { 0% { clip-path: inset(10% 0 70% 0); translate: -6px 0; } 25% { clip-path: inset(55% 0 20% 0); translate: 5px 0; } 50% { clip-path: inset(30% 0 45% 0); translate: -3px 0; } 75% { clip-path: inset(80% 0 5% 0); translate: 6px 0; } 100% { clip-path: inset(0 0 100% 0); translate: 0 0; } }
+@keyframes k-glitch-b { 0% { clip-path: inset(65% 0 15% 0); translate: 6px 0; } 33% { clip-path: inset(5% 0 75% 0); translate: -6px 0; } 66% { clip-path: inset(40% 0 35% 0); translate: 4px 0; } 100% { clip-path: inset(100% 0 0 0); translate: 0 0; } }
+@keyframes k-glitch-bloco { 0%, 100% { translate: 0 0; } 20% { translate: -4px 2px; } 40% { translate: 3px -2px; } 60% { translate: -2px 0; } 80% { translate: 2px 1px; } }
+.hero__kanji::before, .hero__kanji::after { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.hero__kanji::before { color: var(--rgb-a); mix-blend-mode: multiply; }
+.hero__kanji::after { color: var(--rgb-b); mix-blend-mode: multiply; }
+.hero__kanji.is-glitch::before { opacity: .9; animation: k-glitch-a .42s steps(4) 1; }
+.hero__kanji.is-glitch::after { opacity: .9; animation: k-glitch-b .42s steps(3) 1; }
+.hero__bloco:has(.is-glitch) { animation: k-glitch-bloco .42s steps(5) 1; }
+
+/* ---------- 2. ambiente da hero ---------- */
+@keyframes k-scan { from { translate: 0 -3px; } to { translate: 0 0; } }
+@keyframes k-varredura { 0% { translate: 0 -100%; } 100% { translate: 0 100vh; } }
+@keyframes k-amb-1 { 0%, 92%, 100% { opacity: .07; } 94% { opacity: .3; } 96% { opacity: .1; } }
+@keyframes k-amb-2 { 0%, 70%, 100% { opacity: .07; } 72% { opacity: .26; } 75% { opacity: .07; } 77% { opacity: .2; } }
+@keyframes k-amb-3 { 0%, 40%, 100% { opacity: .07; } 45% { opacity: .22; } 50% { opacity: .07; } }
+@keyframes k-grao { 0% { translate: 0 0; } 25% { translate: -40px 20px; } 50% { translate: 30px -30px; } 75% { translate: -20px -10px; } 100% { translate: 0 0; } }
+@keyframes k-sombra-respira { 0%, 100% { scale: 1; } 50% { scale: 1.012; } }
+.motion .hero__scan { animation: k-scan .6s steps(3) infinite; }
+html.hero-fora .hero *, html.hero-fora .hero *::before, html.hero-fora .hero *::after, html.hero-fora body::after { animation-play-state: paused !important; }
+.hero__scan::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18vh; background: linear-gradient(180deg, transparent, rgb(194 251 57 / .05), transparent); }
+.motion .hero__scan::after { animation: k-varredura 7s linear infinite; }
+.motion .hero__amb span:nth-child(3n+1) { animation: k-amb-1 6s steps(1) infinite; }
+.motion .hero__amb span:nth-child(3n+2) { animation: k-amb-2 8.5s steps(1) infinite; }
+.motion .hero__amb span:nth-child(3n) { animation: k-amb-3 11s steps(1) infinite; }
+.motion .hero__amb span:nth-child(4n) { animation-delay: -2.4s; }
+.motion .hero__amb span:nth-child(5n) { animation-delay: -4.1s; }
+.motion body::after { animation: k-grao 1.2s steps(4) infinite; }
+.motion .hero__sombra img { animation: k-sombra-respira 6s ease-in-out infinite; }
+
+/* ---------- 3. entrada da hero (coreografia: bloco → kanji → sombra) ---------- */
+@keyframes k-bloco-entra { from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); } to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
+@keyframes k-kanji-entra { from { opacity: 0; scale: 1.25; filter: blur(8px); } to { opacity: 1; scale: 1; filter: blur(0); } }
+@keyframes k-sombra-entra { from { opacity: 0; translate: 40px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes k-header-entra { from { opacity: 0; translate: 0 -100%; } to { opacity: 1; translate: 0 0; } }
+@keyframes k-prova-entra { from { opacity: 0; translate: 0 20px; } to { opacity: 1; translate: 0 0; } }
+.motion .hero__bloco { animation: k-bloco-entra .9s var(--ease-out) .1s both; }
+.motion .hero__kanji { animation: k-kanji-entra .8s var(--ease-out) .55s both; }
+.motion .hero__palco::before { content: ""; position: absolute; left: 0; top: 18%; width: 58%; aspect-ratio: 1; border: 1px solid var(--accent); translate: 14px 14px; z-index: -1; opacity: .5; animation: k-sombra-entra 1s var(--ease-out) .8s both; }
+.motion .site-header { animation: k-header-entra .7s var(--ease-out) both; }
+.motion .hero__prova .prova { animation: k-prova-entra .7s var(--ease-out) both; }
+.motion .hero__prova .prova:nth-child(1) { animation-delay: .9s; }
+.motion .hero__prova .prova:nth-child(2) { animation-delay: 1.05s; }
+
+/* ---------- 4. logo e header ---------- */
+@keyframes k-logo-k { 0%, 96%, 100% { background: var(--lima); } 97% { background: var(--rgb-a); } 98% { background: var(--rgb-b); } }
+@keyframes k-rotulo-pisca { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+.motion .site-header .logo__k { animation: k-logo-k 9s steps(1) infinite; }
+.rotulo span::after { content: ""; display: inline-block; width: .5em; height: 2px; margin-left: 6px; background: currentColor; vertical-align: middle; }
+.motion .hero .rotulo span::after { animation: k-rotulo-pisca 1.1s steps(1) infinite; }
+
+/* ---------- 5. decrypt (o texto se forma a partir dos kanjis) ---------- */
+@keyframes k-decrypt-flash { 0% { color: var(--accent); text-shadow: 0 0 12px var(--accent); } 100% { color: inherit; text-shadow: none; } }
+@keyframes k-cursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+[data-decrypting] { animation: k-decrypt-flash .9s ease-out both; }
+.obras__tit[data-decrypting]::after { content: "_"; margin-left: 4px; color: var(--accent); animation: k-cursor .5s steps(1) infinite; }
+
+/* ---------- 6. seletor por scroll ---------- */
+@keyframes k-sel-flash { 0% { opacity: .35; } 100% { opacity: 0; } }
+@keyframes k-passo-entra { from { opacity: .2; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+@keyframes k-capa-entra { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+.sel__palco::after { content: ""; position: absolute; inset: 0; background: var(--cor-ativa); opacity: 0; pointer-events: none; mix-blend-mode: soft-light; }
+.sel[data-current] .sel__palco::after { animation: k-sel-flash .6s ease-out; }
+.motion .sel__passos > li.is-current { animation: k-passo-entra .5s var(--ease-out) both; }
+.motion .sel__capas li.is-ativa img { animation: k-capa-entra .7s var(--ease-out) both; }
+
+/* ---------- 7. auras por anime (dicionário): cada obra com o seu efeito ---------- */
+@keyframes k-aura-gojo { 0% { box-shadow: 0 0 0 0 rgb(58 164 250 / .6), inset 0 0 30px rgb(58 164 250 / .4); scale: .6; } 100% { box-shadow: 0 0 0 60px rgb(58 164 250 / 0), inset 0 0 30px rgb(58 164 250 / 0); scale: 1.3; } }
+@keyframes k-aura-goku { 0%, 100% { scale: .9; opacity: .7; } 50% { scale: 1.15; opacity: 1; } }
+@keyframes k-aura-ichigo { 0% { clip-path: polygon(0 48%, 0 48%, 0 52%, 0 52%); } 60% { clip-path: polygon(0 46%, 100% 40%, 100% 44%, 0 54%); } 100% { clip-path: polygon(100% 40%, 100% 40%, 100% 44%, 100% 44%); } }
+@keyframes k-aura-luffy { 0% { background-position: 0 0; } 100% { background-position: 140px 0; } }
+@keyframes k-aura-sasuke { to { rotate: 360deg; } }
+@keyframes k-aura-megumi { 0% { clip-path: inset(0 0 100% 0); opacity: 1; } 70% { clip-path: inset(0 0 0 0); opacity: 1; } 100% { clip-path: inset(0 0 0 0); opacity: 0; } }
+.dic__card[data-s="gojo"] .dic__aura { border: 2px solid var(--cor); }
+.dic__card[data-s="goku"] .dic__aura { background: radial-gradient(circle, rgb(254 140 0 / .55), rgb(254 140 0 / .15) 45%, transparent 70%); filter: blur(4px); }
+.dic__card[data-s="ichigo"] .dic__aura { border-radius: 0; width: 220px; background: linear-gradient(90deg, transparent, #fff 50%, var(--cor)); }
+.dic__card[data-s="luffy"] .dic__aura { border-radius: 0; width: 100%; height: 60px; top: 110px; background: repeating-linear-gradient(90deg, transparent 0 20px, rgb(229 56 69 / .5) 20px 22px), radial-gradient(ellipse at 50% 100%, rgb(229 56 69 / .35), transparent 70%); background-size: 140px 100%, 100% 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent); }
+.dic__card[data-s="sasuke"] .dic__aura { background: conic-gradient(from 0deg, transparent 0 20%, var(--cor) 22% 26%, transparent 28% 53%, var(--cor) 55% 59%, transparent 61% 86%, var(--cor) 88% 92%, transparent 94%); -webkit-mask-image: radial-gradient(circle, transparent 38%, #000 40% 62%, transparent 64%); mask-image: radial-gradient(circle, transparent 38%, #000 40% 62%, transparent 64%); }
+.dic__card[data-s="megumi"] .dic__aura { border-radius: 0 0 50% 50%; background: linear-gradient(180deg, rgb(6 6 9 / 0), rgb(200 16 46 / .55) 60%, #000); }
+.dic__card[data-s="gojo"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-gojo 1.4s ease-out infinite; }
+.dic__card[data-s="goku"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-goku .5s ease-in-out infinite; }
+.dic__card[data-s="ichigo"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-ichigo .7s var(--ease-out) both; }
+.dic__card[data-s="luffy"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-luffy 1.6s linear infinite; }
+.dic__card[data-s="sasuke"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-sasuke 2.4s linear infinite; }
+.dic__card[data-s="megumi"]:is(:hover, :focus-visible) .dic__aura { animation: k-aura-megumi 1.4s var(--ease-out) infinite; }
+
+/* ---------- 8. estúdio: equalizador com padrões diferentes por barra (soa orgânico) ---------- */
+@keyframes k-eq-1 { 0%, 100% { scale: 1 .3; } 25% { scale: 1 .9; } 50% { scale: 1 .5; } 75% { scale: 1 .75; } }
+@keyframes k-eq-2 { 0%, 100% { scale: 1 .6; } 30% { scale: 1 .25; } 60% { scale: 1 1; } }
+@keyframes k-eq-3 { 0%, 100% { scale: 1 .45; } 20% { scale: 1 .7; } 45% { scale: 1 .3; } 80% { scale: 1 .95; } }
+@keyframes k-eq-4 { 0%, 100% { scale: 1 .8; } 40% { scale: 1 .35; } 70% { scale: 1 .6; } }
+@keyframes k-eq-5 { 0%, 100% { scale: 1 .2; } 15% { scale: 1 .55; } 50% { scale: 1 .85; } 85% { scale: 1 .4; } }
+@keyframes k-onda { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -400; } }
+@keyframes k-onda-cursor { from { translate: 0 0; } to { translate: 600px 0; } }
+.eq i:nth-child(5n+1) { animation: k-eq-1 1.1s ease-in-out infinite paused; }
+.eq i:nth-child(5n+2) { animation: k-eq-2 .9s ease-in-out infinite paused; }
+.eq i:nth-child(5n+3) { animation: k-eq-3 1.3s ease-in-out infinite paused; }
+.eq i:nth-child(5n+4) { animation: k-eq-4 .8s ease-in-out infinite paused; }
+.eq i:nth-child(5n) { animation: k-eq-5 1.2s ease-in-out infinite paused; }
+.onda__a { stroke-dasharray: 300 100; animation: k-onda 4s linear infinite paused; }
+.onda__cursor { animation: k-onda-cursor 6s linear infinite paused; }
+.motion .estudio__palco:hover .eq i, .motion .estudio.is-visivel .eq i { animation-play-state: running; }
+.motion .estudio.is-visivel .onda__a, .motion .estudio.is-visivel .onda__cursor { animation-play-state: running; }
+.estudio__mesa[data-camada="flow"] .eq i { animation-duration: .6s; }
+.estudio__mesa[data-camada="mix"] .eq i { animation-duration: 1.6s; }
+
+/* ---------- 9. faixas e player ---------- */
+@keyframes k-play-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--cor) 60%, transparent); } 100% { box-shadow: 0 0 0 16px transparent; } }
+@keyframes k-vinil { to { rotate: 360deg; } }
+@keyframes k-filtro-entra { from { opacity: 0; scale: .96; } to { opacity: 1; scale: 1; } }
+@keyframes k-skeleton { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.motion .faixa:not(.is-fora) { animation: k-filtro-entra .45s var(--ease-out) both; }
+.faixa.is-tocando .faixa__btn { animation: k-play-pulse 1.2s ease-out infinite; }
+.faixa.is-tocando .faixa__play img { animation: k-vinil 8s linear infinite; border-radius: 50%; }
+.faixa__iframe { background: linear-gradient(90deg, var(--preto-3) 25%, var(--grafite) 50%, var(--preto-3) 75%) 0 0 / 200% 100%; animation: k-skeleton 1.4s linear infinite; }
+
+/* ---------- 10. números, placas e etapas ---------- */
+@keyframes k-num-brilho { from { background-position: 200% 0; } to { background-position: -100% 0; } }
+@keyframes k-borda { from { background-position: 0 0, 0 100%; } to { background-position: 200% 0, -200% 100%; } }
+@keyframes k-etapa-ic { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+.motion .num-g__val { background-size: 250% 100%; animation: k-num-brilho 5s linear 2; }
+.placa2::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent, var(--accent), transparent) 0 0 / 50% 1px no-repeat, linear-gradient(90deg, transparent, var(--accent), transparent) 0 100% / 50% 1px no-repeat; opacity: 0; transition: opacity .3s; }
+@media (hover: hover) { .placa2:hover::before { opacity: 1; animation: k-borda 2.4s linear infinite; } }
+.motion .etapas__lista li:hover svg { animation: k-etapa-ic 1.2s ease-in-out infinite; }
+
+/* ---------- 11. monte e votação ---------- */
+@keyframes k-resumo-novo { 0% { background: color-mix(in srgb, var(--accent) 40%, transparent); } 100% { background: transparent; } }
+@keyframes k-opc-pop { 0% { scale: .97; } 60% { scale: 1.02; } 100% { scale: 1; } }
+@keyframes k-voto-ok { 0% { scale: .6; opacity: 0; } 70% { scale: 1.15; opacity: 1; } 100% { scale: 1; } }
+@keyframes k-voto-barra { from { scale: 0 1; } }
+.resumo__lista b.is-novo { animation: k-resumo-novo .8s ease-out; }
+.opc input:checked + .opc__c { animation: k-opc-pop .35s var(--ease-out); }
+.voto__item.is-meu .voto__acao { animation: k-voto-ok .45s var(--ease-out); }
+.voto__lista.is-votado .voto__barra i { animation: k-voto-barra 1s var(--ease-out); }
+
+/* ---------- 12. CTA, rodapé e WhatsApp ---------- */
+@keyframes k-cta-k { 0%, 100% { translate: 0 -50%; rotate: 0deg; } 50% { translate: -2vw -52%; rotate: -2deg; } }
+@keyframes k-wm-a { 0%, 90%, 100% { opacity: 0; translate: 0 0; } 92% { opacity: 1; translate: -6px 0; } 95% { opacity: 1; translate: 4px 0; } }
+@keyframes k-wm-b { 0%, 90%, 100% { opacity: 0; translate: 0 0; } 93% { opacity: 1; translate: 6px 0; } 96% { opacity: 1; translate: -3px 0; } }
+@keyframes k-wa-pulse { 0%, 100% { box-shadow: 0 8px 24px rgb(0 0 0 / .4), 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); } 50% { box-shadow: 0 8px 24px rgb(0 0 0 / .4), 0 0 0 12px transparent; } }
+@keyframes k-faq-abre { from { opacity: 0; translate: 0 -6px; } to { opacity: 1; translate: 0 0; } }
+.motion .cta__k { animation: k-cta-k 14s ease-in-out infinite; }
+.motion .wm--glitch::before { animation: k-wm-a 6s steps(1) infinite; }
+.motion .wm--glitch::after { animation: k-wm-b 6s steps(1) infinite; }
+.motion .wa-float.is-visible { animation: k-wa-pulse 2.6s ease-in-out 3; }
+.faq details[open] p { animation: k-faq-abre .35s var(--ease-out); }
+
+/* ---------- 13. letras e obras ---------- */
+@keyframes k-letra-seta { 0%, 100% { translate: 0 0; } 50% { translate: 4px 0; } }
+@keyframes k-obra-k { 0%, 100% { opacity: .5; } 50% { opacity: 1; text-shadow: 0 0 14px var(--cor); } }
+@media (hover: hover) { .letra:hover .letra__ler::after { animation: k-letra-seta .8s ease-in-out infinite; } .faixa-obras a:hover .obra__k { animation: k-obra-k 1s ease-in-out infinite; } }
+
+/* ---------- 14. anime escolhido: um flash de troca ---------- */
+@keyframes k-troca-anime { 0% { opacity: .6; } 100% { opacity: 0; } }
+@keyframes k-chip-pop { 0% { scale: .9; } 60% { scale: 1.06; } 100% { scale: 1; } }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 4; pointer-events: none; background: var(--accent); opacity: 0; mix-blend-mode: soft-light; }
+html.is-trocando .hero::after { animation: k-troca-anime .7s ease-out; }
+.chip[aria-pressed="true"] { animation: k-chip-pop .35s var(--ease-out); }
+
+/* =================== acessibilidade =================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .hero__scan, body::after { display: none; }
+  .voto__barra i, .dic__orig { transition: none; }
+}
+@media (forced-colors: active) {
+  .hero__bloco, .btn-ouvir, .chip[aria-pressed="true"], .filtro[aria-pressed="true"], .clima input:checked + span, .rotulo span, .selo, .monte__grupo legend b { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+  .hero__kanji { color: HighlightText; }
+  .faixa, .dic__card, .opc__c, .voto__btn, .estudio__tab, .resumo, .monte__grupo { border: 1px solid CanvasText; }
+  .estudio__tab[aria-selected="true"], .opc input:checked + .opc__c, .voto__item.is-meu .voto__btn { outline: 3px solid Highlight; }
+  .hero__scan, .hero__amb, .sel__grade, body::after, .dic__aura, .cta__k { display: none; }
+  .wm__vazado, .wm__cheio { -webkit-text-stroke: 0; color: CanvasText; background: none; }
+  .voto__barra i { background: Highlight; }
+  .eq i { background: CanvasText; }
+}
+@media (prefers-contrast: more) {
+  :root { --cinza: #d0d0dc; --cinza-2: #a9a9b8; --linha-k: #55536a; }
+  .hero__amb span, .sel__grade span { opacity: .03; }
+  .dic__orig { max-height: none; opacity: 1; }
+}
+
+/* =================== impressão (letra e contato no papel) =================== */
+@media print {
+  .site-header, .hero__palco, .hero__amb, .hero__scan, .sel__capas, .sel__grade, .wa-float, .eq, .onda, .wm, .cta__k, .filtros, .chips, .voto__barra, body::after { display: none !important; }
+  body, .sec, .hero, .cta, .rodape, .dic__card, .monte__grupo, .resumo { background: #fff !important; color: #000 !important; }
+  .sel { height: auto !important; } .sel__palco { position: static !important; height: auto !important; }
+  h1 em, h2 em { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; }
+  .faq details { break-inside: avoid; } .faq details p { display: block; }
+}
+
+/* seção fora da tela: nenhuma animação contínua roda (marcado por kagerima.js) */
+.is-fora-tela, .is-fora-tela *, .is-fora-tela *::before, .is-fora-tela *::after { animation-play-state: paused !important; }

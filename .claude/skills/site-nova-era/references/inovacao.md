@@ -27,5 +27,9 @@ Toda inovação que passou nos testes vira patrimônio:
 4. Linha no `portfolio.md` com o que o site reusou e inovou.
 Assim a biblioteca cresce a cada projeto e o próximo site parte de um patamar mais alto.
 
+## Biblioteca de inovações já devolvidas
+- Meridiano: ícones isométricos por código, gráfico interativo, antes/depois, formulário → WhatsApp, estudo solar 3D (`templates/componentes/`).
+- KAGERIMA: `templates/componentes/interacoes-canal.js` (tema por interesse, decrypt, player facade + mini player, spoiler velado, votação local, monte seu pedido → WhatsApp, abas acessíveis, busca/filtro/ordenar, janela com anterior/próxima, modo leve, painel de privacidade, pontos do pin, scroll-spy, header auto-hide). Reusar um bloco conta como reuso; a inovação do próximo site precisa ser outra.
+
 ## Pensamento crítico
 Inovar não é decorar: cada inovação cumpre uma estratégia ou melhora um parâmetro da régua, e passa nos mesmos gates (performance, contraste, flick, texto). Inovação que piora a conversão ou a performance sai.

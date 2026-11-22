@@ -137,7 +137,9 @@ function initMarquee(box) {
 
   const speed = parseFloat(box.dataset.marquee || 30); // px por segundo
   let x = 0, vel = 0, raf = 0, last = 0, visible = false, hover = false, drag = null;
-  const width = () => track.offsetWidth;
+  let largura = track.offsetWidth;   // em cache: ler offsetWidth a cada quadro força layout da página inteira
+  new ResizeObserver(() => (largura = track.offsetWidth)).observe(track);
+  const width = () => largura;
   const loop = (t) => {
     const dt = Math.min(0.05, (t - last) / 1000); last = t;
     if (!drag) {
@@ -165,12 +167,12 @@ function initMarquee(box) {
   box.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
     drag = { x: e.clientX, start: x, lastX: e.clientX, lastT: e.timeStamp, v: 0, moved: false };
-    box.setPointerCapture(e.pointerId);
+    // sem setPointerCapture aqui: capturar no pointerdown manda o clique para a caixa e os links de dentro param de abrir
   });
   box.addEventListener('pointermove', (e) => {
     if (!drag) return;
     const dx = e.clientX - drag.x;
-    if (Math.abs(dx) > 4) { drag.moved = true; box.classList.add('is-dragging'); }
+    if (Math.abs(dx) > 4 && !drag.moved) { drag.moved = true; box.classList.add('is-dragging'); try { box.setPointerCapture(e.pointerId); } catch { /* ponteiro já solto */ } }
     x = drag.start - dx;
     const dt = Math.max(1, e.timeStamp - drag.lastT);
     drag.v = -(e.clientX - drag.lastX) / dt * 1000;
