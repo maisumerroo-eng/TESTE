@@ -25,25 +25,8 @@ html.modo-leve .hero__rolar::after { animation: none; }
 @media (max-width: 899px), (max-height: 700px) { .hero__rolar { display: none; } }
 
 /* ---------- janela da letra: anterior / próxima ---------- */
-.letra-dlg__nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 18px; padding-top: 14px; border-top: 1px solid var(--linha-k); }
-.letra-dlg__seta { min-height: 44px; padding: 0 14px; background: transparent; border: 1px solid var(--linha-k); color: var(--branco); font: 600 12px/1 var(--font-body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: border-color var(--dur-hover), background-color var(--dur-hover), color var(--dur-hover); }
-@media (hover: hover) { .letra-dlg__seta:hover { border-color: var(--accent); color: var(--accent); } }
-.letra-dlg__seta:focus-visible { outline: var(--foco); outline-offset: 2px; }
-.letra-dlg__seta:active { scale: var(--press); }
-.letra-dlg__pos { font: 600 12px/1 var(--font-body); letter-spacing: .12em; color: var(--cinza); font-variant-numeric: tabular-nums; }
-.letra-dlg[data-letra="gojo"] { --accent: var(--azul); }
-.letra-dlg[data-letra="goku"] { --accent: var(--laranja); }
-.letra-dlg[data-letra="ichigo"] { --accent: var(--laranja-2); }
-.letra-dlg[data-letra="luffy"] { --accent: var(--vermelho); }
-.letra-dlg[data-letra="sasuke"] { --accent: var(--vermelho-2); }
-.letra-dlg[data-letra="megumi"] { --accent: var(--vinho); }
 
 /* ---------- ordenar ---------- */
-.ordenar { display: flex; align-items: center; gap: 10px; margin: -14px 0 24px; font: 600 11px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--cinza); }
-.ordenar select { min-height: 40px; padding: 0 36px 0 12px; appearance: none; background: transparent linear-gradient(45deg, transparent 50%, var(--cinza) 50%) calc(100% - 18px) 50% / 6px 6px no-repeat; border: 1px solid var(--linha-k); border-radius: 0; color: var(--branco); font: 600 12px/1 var(--font-body); letter-spacing: .06em; cursor: pointer; transition: border-color var(--dur-hover); }
-.ordenar select option { background: var(--preto-2); }
-@media (hover: hover) { .ordenar select:hover { border-color: var(--branco); } }
-.ordenar select:focus-visible { outline: var(--foco); outline-offset: 2px; }
 
 /* ---------- selo de faixa nova ---------- */
 @keyframes k-nova { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
@@ -60,7 +43,7 @@ html[data-anime="naruto"] .faixa__nova, html[data-anime="one-piece"] .faixa__nov
 
 /* ---------- impressão das seções novas ---------- */
 @media print {
-  .hub, .estudio__palco, .sel__pontos, .hero__rolar, .ordenar, .busca, .mini, .toast, .topo-btn, .rod__pref { display: none !important; }
-  .voto__btn, .opc__c, .kit__tabela { background: #fff !important; color: #000 !important; border-color: #000 !important; }
-  .voto__barra i { scale: var(--pct) 1 !important; background: #000 !important; }
+  .sel__pontos, .hero__rolar, .mini, .toast, .topo-btn, .rod__pref { display: none !important; }
+  
+  
 }

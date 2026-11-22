@@ -58,7 +58,7 @@ html[data-anime="dragon-ball"] .faixa[data-anime="dragon-ball"]::before { conten
 .sel__passos > li.is-current .sel__kanji { text-shadow: 3px 0 var(--rgb-a), -3px 0 var(--rgb-b); }
 
 /* ---------- cores por obra nos componentes ---------- */
-.faixa[data-anime="naruto"] .faixa__meta, .letra-naruto { color: var(--vermelho-2); }
+.faixa[data-anime="naruto"] .faixa__meta { color: var(--vermelho-2); }
 .faixa[data-anime="jujutsu-kaisen"] .faixa__meta { color: var(--azul); }
 .faixa[data-anime="one-piece"] .faixa__meta { color: var(--vermelho); }
 .faixa[data-anime="bleach"] .faixa__meta { color: var(--laranja-2); }

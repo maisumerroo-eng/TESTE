@@ -36,39 +36,13 @@
 @media (max-width: 1099px) and (hover: hover) { .site-header nav a:hover { color: var(--accent); } }
 
 /* =================== BUSCA =================== */
-.busca { position: relative; display: flex; align-items: center; margin-bottom: 14px; max-width: 560px; }
-.busca::before { content: ""; position: absolute; left: 16px; width: 16px; height: 16px; border: 2px solid var(--cinza); border-radius: 50%; pointer-events: none; transition: border-color var(--dur-hover); }
-.busca::after { content: ""; position: absolute; left: 30px; top: calc(50% + 6px); width: 7px; height: 2px; background: var(--cinza); rotate: 45deg; pointer-events: none; }
-.busca input { width: 100%; min-height: 48px; padding: 0 90px 0 46px; background: rgb(255 255 255 / .03); border: 1px solid var(--linha-k); border-radius: 0; color: var(--branco); font: 500 15px/1 var(--font-body); transition: border-color var(--dur-hover), background-color var(--dur-hover); }
-.busca input::placeholder { color: var(--cinza-2); }
-@media (hover: hover) { .busca input:hover { border-color: var(--cinza-2); } }
-.busca input:focus-visible { outline: none; border-color: var(--accent); background: rgb(255 255 255 / .06); }
-.busca:focus-within::before { border-color: var(--accent); }
-.busca input::-webkit-search-cancel-button { filter: invert(1); cursor: pointer; }
-.busca__n { position: absolute; right: 14px; font: 600 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); pointer-events: none; }
+
 .faixa.is-busca-fora { display: none; }
-.faixas__vazio { padding: 28px; border: 1px dashed var(--linha-k); color: var(--cinza); text-align: center; }
-.faixas__vazio a { color: var(--accent); text-underline-offset: 4px; }
 
 /* =================== JANELA DA LETRA =================== */
-.letra-dlg { width: min(640px, calc(100vw - 32px)); max-height: min(86vh, 760px); padding: 28px clamp(20px, 4vw, 40px) 32px; background: var(--preto-2); color: var(--branco); border: 1px solid var(--accent); box-shadow: 0 40px 120px rgb(0 0 0 / .7), 0 0 0 1px rgb(0 0 0 / .4); overflow: auto; overscroll-behavior: contain; }
-.letra-dlg::backdrop { background: rgb(6 6 9 / .78); backdrop-filter: blur(6px); }
-.letra-dlg[open] { animation: k-dlg-abre .4s var(--ease-out); }
-.letra-dlg[open]::backdrop { animation: k-dlg-fundo .4s ease-out; }
+
 @keyframes k-dlg-abre { from { opacity: 0; translate: 0 24px; scale: .98; } to { opacity: 1; translate: 0 0; scale: 1; } }
 @keyframes k-dlg-fundo { from { opacity: 0; } to { opacity: 1; } }
-.letra-dlg__topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
-.letra-dlg__cat { margin: 0; font: 600 11px/1.4 var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
-.letra-dlg__x { flex: none; display: grid; place-items: center; width: 44px; height: 44px; background: transparent; border: 1px solid var(--linha-k); color: var(--branco); font-size: 24px; line-height: 1; cursor: pointer; transition: background-color var(--dur-hover), color var(--dur-hover), border-color var(--dur-hover), rotate .3s var(--ease-out); }
-@media (hover: hover) { .letra-dlg__x:hover { background: var(--branco); color: var(--preto); rotate: 90deg; } }
-.letra-dlg__k { margin: 6px 0 4px; font: 900 clamp(3rem, 8vw, 4.6rem)/1 var(--font-kanji); color: var(--accent); text-shadow: 3px 0 var(--rgb-a), -3px 0 var(--rgb-b); }
-.letra-dlg h2 { font-size: clamp(1.4rem, 3.4vw, 2rem); }
-.letra-dlg__corpo { display: grid; gap: 4px; margin: 10px 0 18px; counter-reset: parte; }
-.letra-dlg__parte { position: relative; padding: 14px 0 14px 44px; border-top: 1px solid var(--linha-k); counter-increment: parte; }
-.letra-dlg__parte::before { content: counter(parte, decimal-leading-zero); position: absolute; left: 0; top: 16px; font: 700 12px/1 var(--font-body); letter-spacing: .1em; color: var(--accent); }
-.letra-dlg__parte h3 { margin: 0 0 4px; font-size: .95rem; letter-spacing: .08em; }
-.letra-dlg__parte p { margin: 0; color: rgb(255 255 255 / .84); }
-.letra-dlg__nota { padding: 12px 14px; background: rgb(255 255 255 / .03); border-left: 2px solid var(--accent); font-size: 14px; color: var(--cinza); }
 
 /* =================== MINI PLAYER =================== */
 .mini { position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 45; display: grid; grid-template-columns: 48px 1fr auto auto 40px; align-items: center; gap: 14px; width: min(520px, calc(100vw - 104px)); padding: 8px 8px 8px 8px; translate: -50% 0; background: rgb(13 12 19 / .92); backdrop-filter: blur(14px); border: 1px solid var(--cor, var(--accent)); box-shadow: 0 18px 50px rgb(0 0 0 / .5); animation: k-mini-entra .45s var(--ease-out); }
@@ -97,10 +71,6 @@ html[data-anime="naruto"] .toast, html[data-anime="one-piece"] .toast { color: #
 .faixas > li { container: faixa / inline-size; }
 @container faixa (max-width: 190px) { .faixa__info { padding: 10px 10px 12px; } .faixa__meta { font-size: 10px; letter-spacing: .1em; } .faixa__pers { display: none; } .faixa__links a { width: 32px; height: 32px; } }
 @container faixa (min-width: 280px) { .faixa h3 { font-size: 1.2rem; } .faixa__info { padding: 18px 20px 20px; } }
-.dic__grade > li { container: kanji / inline-size; }
-@container kanji (max-width: 170px) { .dic__k { font-size: 3.4rem; } .dic__card h3 { font-size: .92rem; } }
-.monte__grupo { container: grupo / inline-size; }
-@container grupo (max-width: 420px) { .opc__c { grid-template-columns: 48px 1fr; align-items: center; column-gap: 12px; } .opc__c svg { grid-row: 1 / 3; margin: 0; } }
 
 /* =================== SEGMENTO DO VISITANTE (personaliza.js) =================== */
 html[data-seg="marca"] .hero__ctas .link-seta { color: var(--accent); border-color: var(--accent); }
@@ -108,12 +78,12 @@ html[data-seg="marca"] .placa2[data-seg="marca"] { border-color: var(--accent); 
 html[data-seg="marca"] .chips { display: none; }
 html[data-seg="canal"] .placa2[data-seg="canal"] { border-color: var(--accent); }
 html[data-seg="canal"] .hero__ctas .link-seta { color: var(--accent); }
-html[data-seg="fa"] .monte__grupo:first-of-type legend b { background: var(--branco); }
+
 html[data-seg] .placa2[data-seg]::after { position: absolute; right: 16px; top: 16px; padding: 4px 8px; font: 700 10px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
 html[data-seg="marca"] .placa2[data-seg="marca"]::after, html[data-seg="canal"] .placa2[data-seg="canal"]::after, html[data-seg="fa"] .placa2[data-seg="fa"]::after { content: "para você"; background: var(--accent); color: var(--preto); }
 
 /* =================== barra de rolagem e texto =================== */
 html { scrollbar-color: var(--grafite) var(--preto); scrollbar-width: thin; }
-.letra-dlg { scrollbar-color: var(--accent) var(--preto-2); }
+
 p, li { hyphens: auto; -webkit-hyphens: auto; }
 h1, h2, h3, .btn3d, .chip, .filtro, .rotulo { hyphens: none; -webkit-hyphens: none; }

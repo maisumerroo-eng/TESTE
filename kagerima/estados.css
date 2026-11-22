@@ -16,9 +16,9 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 
 /* ---------- foco de teclado visível em tudo (mesmo desenho) ---------- */
 .btn-ouvir:focus-visible, .chip:focus-visible, .filtro:focus-visible, .spoiler-toggle:focus-visible, .lnk-yt:focus-visible, .lnk-sp:focus-visible { outline: var(--foco); outline-offset: var(--foco-off); }
-.faixa__links a:focus-visible, .redes a:focus-visible, .menu-btn:focus-visible, .mini__x:focus-visible, .letra-dlg__x:focus-visible { outline: var(--foco); outline-offset: 2px; }
-.faixa-obras a:focus-visible, .conteudo a:focus-visible, .servicos a:focus-visible { outline: var(--foco); outline-offset: -2px; }
-.voto__btn:focus-visible, .estudio__tab:focus-visible { outline: var(--foco); }
+.faixa__links a:focus-visible, .redes a:focus-visible, .menu-btn:focus-visible, .mini__x:focus-visible { outline: var(--foco); outline-offset: 2px; }
+.servicos a:focus-visible { outline: var(--foco); outline-offset: -2px; }
+
 .faq summary:focus-visible { outline: var(--foco); outline-offset: 2px; color: var(--accent); }
 .rod__grid a:not(.logo):focus-visible { outline: var(--foco); outline-offset: 2px; color: var(--branco); }
 .logo:focus-visible { outline: var(--foco); outline-offset: 4px; }
@@ -28,17 +28,13 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 .filtro:active, .spoiler-toggle:active, .lnk-yt:active, .lnk-sp:active, .redes a:active { scale: var(--press); }
 .faixa__play:active .faixa__btn { scale: .92; }
 .faixa__links a:active { scale: .92; }
-.menu-btn:active, .mini__x:active, .letra-dlg__x:active { scale: .94; }
-.estudio__tab:active { background: rgb(255 255 255 / .06); }
-.opc:active .opc__c { scale: .99; }
-.clima:active span, .extra:active span { scale: .98; }
+.menu-btn:active, .mini__x:active { scale: .94; }
+
 .faq summary:active { color: var(--accent); }
-.busca input:active { border-color: var(--branco); }
-.dic__card:active .dic__k { scale: .96; }
 
 /* ---------- imagem carregando (fundo animado até o arquivo chegar) ---------- */
-.faixa__play picture, .letra picture, .placa2__img picture, .obra__capa, .sel__capas li { background: var(--img-carregando) 0 0 / 200% 100%; }
-.faixa__play img, .letra img { position: relative; }
+.faixa__play picture, .placa2__img picture, .sel__capas li { background: var(--img-carregando) 0 0 / 200% 100%; }
+.faixa__play img { position: relative; }
 
 /* ---------- hover dos cartões de faixa com a assinatura da obra ---------- */
 .faixa__play::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .4s; -webkit-mask-image: var(--vinheta); mask-image: var(--vinheta); }
@@ -56,17 +52,6 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 .faixa__play:focus-visible::after { opacity: 1; }
 
 /* ---------- cartões de letra por obra ---------- */
-.letra { --cor-l: var(--accent); }
-.letra[data-letra="gojo"] { --cor-l: var(--azul); }
-.letra[data-letra="goku"] { --cor-l: var(--laranja); }
-.letra[data-letra="ichigo"] { --cor-l: var(--laranja-2); }
-.letra[data-letra="luffy"] { --cor-l: var(--vermelho); }
-.letra[data-letra="sasuke"] { --cor-l: var(--vermelho-2); }
-.letra[data-letra="megumi"] { --cor-l: var(--vinho); }
-.letra .letra__cat { color: var(--cor-l); }
-.letra picture { position: relative; }
-.letra picture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, color-mix(in srgb, var(--cor-l) 40%, transparent), transparent 55%); opacity: .6; transition: opacity .4s; }
-@media (hover: hover) { .conteudo a.letra:hover { border-color: var(--cor-l); } .letra:hover picture::after { opacity: 1; } .letra:hover .letra__ler::after { background: var(--cor-l); border-color: var(--cor-l); } }
 
 /* ---------- seletor: cada etapa com o kanji na cor e o selo da obra ---------- */
 .sel__passos > li::before { content: ""; position: absolute; right: 16px; top: 16px; width: 10px; height: 10px; background: var(--cor); box-shadow: 0 0 0 4px color-mix(in srgb, var(--cor) 25%, transparent); }
@@ -84,7 +69,6 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 .valores li svg { transition: translate .4s var(--ease-out), filter .4s; }
 @media (hover: hover) { .valores li:hover svg { translate: 0 -4px; filter: drop-shadow(0 8px 14px color-mix(in srgb, var(--accent) 40%, transparent)); } .valores li:hover h3 { color: var(--accent); } }
 .valores h3 { transition: color var(--dur-hover); }
-.etapas__lista li:focus-within { background: var(--preto-2); }
 
 /* ---------- números ---------- */
 .num-g { position: relative; }
@@ -99,8 +83,6 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 .rod__ass .demo { max-width: 70ch; }
 
 /* ---------- obras: fundo com o kanji da obra no hover ---------- */
-.faixa-obras a::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--cor, var(--accent)) 14%, transparent), transparent 70%); opacity: 0; transition: opacity .4s; pointer-events: none; }
-@media (hover: hover) { .faixa-obras a:hover::before { opacity: 1; } }
 
 /* ---------- formulário do CTA: estados ---------- */
 .form-wa label { transition: color var(--dur-hover); }
@@ -109,6 +91,6 @@ html:not(.menu-aberto) .site-header.is-escondido { --hdr-y: -110%; }
 .form-wa select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--cinza) 50%), linear-gradient(135deg, var(--cinza) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
 
 /* ---------- legibilidade: rótulos pequenos na cor da obra ganham luz (vermelhos escuros não passam 4,5:1 puros) ---------- */
-.hub__btn .hub__txt small, .dic__card .dic__n, .sel__passos .sel__meta, .destaque .destaque__meta { color: color-mix(in srgb, var(--cor) 72%, #fff); }
+.sel__passos .sel__meta, .destaque .destaque__meta { color: color-mix(in srgb, var(--cor) 72%, #fff); }
 .faixa .faixa__meta { color: color-mix(in srgb, var(--cor) 72%, #fff) !important; }
-.letra .letra__cat { color: color-mix(in srgb, var(--cor-l) 72%, #fff); }
+

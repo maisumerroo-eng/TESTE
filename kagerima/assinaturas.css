@@ -75,25 +75,6 @@ html[data-anime="dragon-ball"] .cta__k::after { content: "超"; }
 html[data-anime] .cta__k { font-size: 0; }
 html[data-anime] .cta__k::after { font-size: clamp(16rem, 42vw, 40rem); }
 
-/* ---------- dicionário: os kanjis da obra escolhida ficam acesos ---------- */
-html[data-anime="jujutsu-kaisen"] .dic__card:is([data-s="gojo"], [data-s="megumi"]) .dic__k,
-html[data-anime="dragon-ball"] .dic__card[data-s="goku"] .dic__k,
-html[data-anime="bleach"] .dic__card[data-s="ichigo"] .dic__k,
-html[data-anime="one-piece"] .dic__card[data-s="luffy"] .dic__k,
-html[data-anime="naruto"] .dic__card[data-s="sasuke"] .dic__k { color: var(--cor); }
-html[data-anime="jujutsu-kaisen"] .dic__card:is([data-s="gojo"], [data-s="megumi"])::after,
-html[data-anime="dragon-ball"] .dic__card[data-s="goku"]::after,
-html[data-anime="bleach"] .dic__card[data-s="ichigo"]::after,
-html[data-anime="one-piece"] .dic__card[data-s="luffy"]::after,
-html[data-anime="naruto"] .dic__card[data-s="sasuke"]::after { scale: 1 1; }
-
-/* ---------- votação: candidatos da obra escolhida ganham selo ---------- */
-.voto__item { --obra: ""; }
-html[data-anime="jujutsu-kaisen"] .voto__item:is(:nth-child(1), :nth-child(6)) .voto__nome small::after,
-html[data-anime="naruto"] .voto__item:nth-child(2) .voto__nome small::after,
-html[data-anime="one-piece"] .voto__item:nth-child(3) .voto__nome small::after,
-html[data-anime="dragon-ball"] .voto__item:nth-child(4) .voto__nome small::after,
-html[data-anime="bleach"] .voto__item:nth-child(5) .voto__nome small::after { content: " · seu anime"; color: var(--accent); }
 
 /* ---------- rodapé: a marca d'água pega a cor e a textura ---------- */
 .wm__cheio { transition: filter .6s; }
