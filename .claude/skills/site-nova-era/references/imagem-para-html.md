@@ -1,5 +1,7 @@
 # Imagem → HTML (print, mockup ou design do cliente)
 
+> **Ativação: SOMENTE quando o usuário pedir ou enviar uma imagem para virar site.** Não é etapa padrão de nenhum fluxo; sites novos nascem da estratégia e do plano, não de uma imagem.
+
 Filtrado da skill pública "img2html" (análise por camadas, uma imagem por vez, estados de hover) e completado com o que ela não tinha: **medição** de cores e **loop de verificação** por comparação de pixels.
 
 ## Quando usar (pensamento crítico)

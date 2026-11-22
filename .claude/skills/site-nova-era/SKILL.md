@@ -1,6 +1,6 @@
 ---
 name: site-nova-era
-description: Sistema completo para sites de cliente no "novo design" com megapersonalização. Plano obrigatório antes de criar, objeto-herói por nicho, estratégias de conversão e componentes premium testados, DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), anti-vício de IA com gate de texto, variantes por visitante com WhatsApp personalizado. Figma, bancos de imagem, ElevenLabs, muapi/Higgsfield. Qualidade medida (LCP, CLS, contraste, flick, SEO, LGPD); modo econômico; reel vertical e deploy. Também aprimora sites existentes (diagnóstico, preservação de SEO, antes/depois) e converte print/mockup do cliente em HTML com verificação por pixels. HTML/CSS/JS puro. Use para site, landing page, site pra cliente, site premium/animado, vídeo no scroll, site personalizado, melhorar/refazer site existente, transformar imagem em HTML, ou site de referência.
+description: Sistema completo para sites de cliente no "novo design" com megapersonalização. Plano obrigatório antes de criar, objeto-herói por nicho, estratégias de conversão e componentes premium testados, DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), anti-vício de IA com gate de texto, variantes por visitante com WhatsApp personalizado. Figma, bancos de imagem, ElevenLabs, muapi/Higgsfield. Qualidade medida (LCP, CLS, contraste, flick, SEO, LGPD); modo econômico; reel vertical e deploy. Também aprimora sites existentes (diagnóstico, preservação de SEO, antes/depois) e, se pedido, converte imagem do cliente em HTML verificado por pixels. HTML/CSS/JS puro. Use para site, landing page, site pra cliente, site premium/animado, vídeo no scroll, site personalizado, melhorar/refazer site existente, transformar imagem em HTML, ou site de referência.
 ---
 
 # Site nova era
@@ -15,6 +15,7 @@ Régua de qualidade: os casos em `references/casos/` (sites analisados; aprender
 | Caso | Nicho | Lição principal |
 |---|---|---|
 | `casos/vexter.md` | contabilidade/BPO para transportadoras | metáfora do negócio (estrada) vira a seção fixada; uma oferta só; prova em reais |
+| `casos/bravo-diagnostico.md` | moda/e-commerce (site existente) | formato do diagnóstico de aprimoramento: régua, auditoria, manter/mudar, caminho |
 
 Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição que o projeto precisa.
 
@@ -46,7 +47,7 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
 | `references/aprimorar-existente.md` | **site que já existe**: raio-x só leitura, diagnóstico manter/mudar, caminho (evolução no lugar, refazer com 301, plataforma fechada, só imagem), lotes medidos, prova antes/depois |
-| `references/imagem-para-html.md` | print/mockup **do cliente** → HTML fiel: paleta medida, análise em camadas, uma imagem por vez, loop de comparação de pixels |
+| `references/imagem-para-html.md` | **opcional, só sob pedido**: print/mockup **do cliente** → HTML fiel: paleta medida, análise em camadas, uma imagem por vez, loop de comparação de pixels |
 | `templates/paleta-da-imagem.py` / `templates/comparar-imagem.js` | paleta real de uma imagem / semelhança render × imagem com mapa de diferenças |
 | `references/estrategia.md` | **estratégia antes do design**: medos e critérios do cliente, buscas no Google e em IA (GEO), concorrentes e diferencial, posicionamento em 1 frase, mapa do site com palavra-chave por página, texto completo, rascunho de layout no celular |
 | `references/plano.md` + `templates/plano.md` | **fase de plano obrigatória**: o site inteiro desenhado antes de qualquer arquivo ou crédito |
@@ -97,7 +98,25 @@ Siga `references/economia.md`: busque e edite trechos (nunca reescreva arquivo i
 ## Modos de entrada
 - **Site novo:** fases abaixo, desde a 0.
 - **Aprimorar site existente:** comece por `references/aprimorar-existente.md` (raio-x e diagnóstico), escolha o caminho com o usuário e então siga as fases a partir da estratégia, preservando URLs, conteúdo que posiciona e a stack do cliente.
-- **Imagem do cliente → HTML:** `references/imagem-para-html.md` (fidelidade medida), depois as fases para subir de nível.
+- **Imagem → HTML (opcional, só quando o usuário pedir ou enviar uma imagem para converter):** `references/imagem-para-html.md` (fidelidade medida), depois as fases para subir de nível. Nunca usar por iniciativa própria.
+
+## Incorporar skill, reel ou conceito externo (quando o usuário mandar um link)
+1. **Ler a fonte real**, não o marketing: página via web-fetch; se for skill, achar o `SKILL.md` original (marketplaces costumam só ter propaganda). Repositório público: `add_repo` (leitura) e `git clone --depth 1 --filter=blob:none --no-checkout <repo>` + `git ls-tree -r --name-only HEAD | grep <nome>` + `git show HEAD:<caminho>` (rápido, baixa só o que lê). Atenção: o autor listado pode não ser o real.
+2. **Filtrar com senso crítico** contra o objetivo da skill: tabela "entra / fica de fora / por quê". Duplicado do que já existe não entra; conflito com regra mais forte não entra (registrar).
+3. **Completar o que a fonte não tem** (ex.: o img2html dizia "verifique a fidelidade" sem método → virou `comparar-imagem.js`).
+4. **Implementação própria e testada** (nunca copiar código); validar num caso real do repositório quando possível.
+5. Registrar em "Fontes incorporadas" abaixo, commit e push, e resumir ao usuário o que entrou, o que ficou de fora e o que foi testado.
+
+## Fontes incorporadas (rastreabilidade)
+| Fonte | O que virou na skill |
+|---|---|
+| Reel @davidosite (site entregue à Vexter) | ponto de partida: site animado para cliente, reel vertical |
+| vexterintelligence.com.br (2 análises) | `casos/vexter.md`, régua mínima, estratégias de conversão, objeto-herói, ícones isométricos, componentes |
+| Skill site-de-10k | vídeo no scroll (12 leis, motor testado), legibilidade e contraste do pior pixel, teste de flick, coreografia eco, piso de qualidade, verificação no ar |
+| Skill site-sem-cara-de-ia | vícios de composição/texto, hero assimétrica, fidelidade a referência do cliente, larguras de teste, pendências |
+| Reel @mateus_webdesigner | `estrategia.md`: estratégia antes do design (medos, busca Google/IA, concorrentes, posicionamento, mapa com palavra-chave, texto, rascunho mobile) |
+| Skill img2html (repo dvcrn/openclaw-skills-marketplace, autor real jinqiu193) | `imagem-para-html.md` (opcional), `paleta-da-imagem.py`, `comparar-imagem.js` |
+| Pedidos diretos do usuário | megapersonalização, Figma como hub, ElevenLabs, 3D, economia, plano obrigatório, régua mínima, reusar e inovar, aprimorar existente |
 
 ## Fases
 
@@ -170,7 +189,7 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 16. Nada é criado sem `plano.md` aprovado. Toda hero tem objeto-herói planejado (ou justificativa escrita para não ter).
 18. **Régua mínima:** nenhum site é entregue abaixo do nível Vexter (`regua-minima.js` aprovado) nem acima do teto de performance.
 21. **Site existente:** diagnóstico antes de mexer; nada que posiciona é removido sem 301 ou substituto; a stack do cliente só muda se ele pedir; ganho provado com tabela antes/depois.
-22. **Imagem → HTML** só de design do próprio cliente; fidelidade verificada com `comparar-imagem.js`, nunca no olho.
+22. **Imagem → HTML** só quando o usuário pedir, e só de design do próprio cliente; fidelidade verificada com `comparar-imagem.js`, nunca no olho.
 20. **Estratégia antes do design:** nenhum visual antes de posicionamento, mapa do site com palavra-chave por página, texto completo e rascunho de layout no celular aprovados.
 19. **Reusar e inovar:** reusar componentes, estratégias e a mão (presença humana aproxima) sempre que servirem, e inovar em pelo menos 3 meios de cumprir a skill por site; inovação testada volta para a biblioteca e para o `portfolio.md`.
 17. Toda seção cumpre pelo menos uma estratégia de `estrategias-de-conversao.md`; número de prova aparece grande e colorido; gráfico prova a mudança e é interativo e acessível.
