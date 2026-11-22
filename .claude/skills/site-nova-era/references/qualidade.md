@@ -33,6 +33,8 @@
 - Open Graph 1200x630 com a marca; `theme-color` da marca.
 - JSON-LD: `Organization` + `ProfessionalService`/`LocalBusiness` (endereço, área atendida, telefone), `FAQPage` se houver FAQ.
 - URLs de serviço próprias (uma página por frente) e blog com termos de cauda longa do nicho.
+- **Uma palavra-chave principal por página** (do mapa do site em `estrategia.md`), sem canibalização; título, H1, meta e URL alinhados.
+- **GEO (aparecer em respostas de IA):** fatos citáveis (região, serviços, processo, números com fonte), FAQ em pergunta/resposta direta com `FAQPage`, `Organization`/`LocalBusiness` completos, primeiro parágrafo de cada página de serviço respondendo a pergunta objetivamente.
 - `sitemap.xml`, `robots.txt`, `canonical`.
 
 ## LGPD

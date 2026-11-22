@@ -45,6 +45,7 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/scrub/` | motor de vídeo no scroll testado (`scrub.js`, `scrub.css`, `exemplo.html`) |
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
+| `references/estrategia.md` | **estratégia antes do design**: medos e critérios do cliente, buscas no Google e em IA (GEO), concorrentes e diferencial, posicionamento em 1 frase, mapa do site com palavra-chave por página, texto completo, rascunho de layout no celular |
 | `references/plano.md` + `templates/plano.md` | **fase de plano obrigatória**: o site inteiro desenhado antes de qualquer arquivo ou crédito |
 | `references/objeto-heroi.md` | o objeto do nicho que representa a promessa (a "mão com a moeda" adaptada), prompt, fusão, ambiente da hero |
 | `references/estrategias-de-conversao.md` | catálogo das estratégias de venda extraídas da estrutura real da Vexter → como adaptar → componente |
@@ -97,6 +98,9 @@ Leia `midia-e-ferramentas.md`. Confirme com 1 chamada barata o que está ativo (
 
 ### 1. DNA do cliente (não pule)
 Preencha `dna.md` no projeto com o modelo de `megapersonalizacao.md` (Camada 1). Fontes: briefing, site atual, Instagram, Google Business, concorrentes. Lacunas viram `[A CONFIRMAR]`, nunca invenção. Pergunte ao usuário só o que for bloqueante (oferta, nicho, contato). Faça a **pesquisa da voz do comprador** (avaliações e fóruns do nicho, frases exatas de dor, desejo e objeção) e defina a **premissa da marca** (uma palavra/ideia que o site inteiro vende). Negócio real sem fotos: decidir com o usuário se as imagens de IA serão declaradas ou trocadas depois.
+
+### 1a. Estratégia antes do design (obrigatória)
+Siga `references/estrategia.md` na ordem: análise do nicho (cliente, critérios, **medos antes de contratar**) → buscas no Google **e em assistentes de IA** + concorrentes do topo → **posicionamento em 1 frase** e **mapa do site com uma palavra-chave por página** → **texto completo da home** (título de 3 s, prova no topo, um botão, sem promessa nem número inventado; gate de texto já aqui) → **rascunho de layout no celular** seção por seção. Resultado vai para a seção 0 do `plano.md`; o texto aprovado embarca ao pé da letra.
 
 ### 1b. Plano (obrigatório, antes de criar qualquer arquivo)
 Preencha `plano.md` no projeto com `templates/plano.md` seguindo `references/plano.md`: premissa e oferta com selo, **objeto-herói** (`objeto-heroi.md`), tabela referência → adaptação (estratégias de `estrategias-de-conversao.md`), mapa seção a seção (estratégia, componente, ícones, número, interação, efeito de fundo), inventário de componentes, lista de ícones, gráficos com dados e interação, metas de densidade, assets com custo. Mostre o resumo e peça ok (pergunta clicável). Mudança grande depois volta ao plano antes do código.
@@ -157,6 +161,7 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 15. Uma premissa de marca: seção que não serve a ela sai.
 16. Nada é criado sem `plano.md` aprovado. Toda hero tem objeto-herói planejado (ou justificativa escrita para não ter).
 18. **Régua mínima:** nenhum site é entregue abaixo do nível Vexter (`regua-minima.js` aprovado) nem acima do teto de performance.
+20. **Estratégia antes do design:** nenhum visual antes de posicionamento, mapa do site com palavra-chave por página, texto completo e rascunho de layout no celular aprovados.
 19. **Reusar e inovar:** reusar componentes, estratégias e a mão (presença humana aproxima) sempre que servirem, e inovar em pelo menos 3 meios de cumprir a skill por site; inovação testada volta para a biblioteca e para o `portfolio.md`.
 17. Toda seção cumpre pelo menos uma estratégia de `estrategias-de-conversao.md`; número de prova aparece grande e colorido; gráfico prova a mudança e é interativo e acessível.
 
@@ -164,6 +169,7 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 
 - [ ] `regua-minima.js` APROVADO (piso Vexter + teto de performance)
 - [ ] 3+ inovações entregues e devolvidas à skill; linha no `portfolio.md`
+- [ ] Estratégia aprovada (medos respondidos, buscas Google/IA, diferencial, posicionamento, mapa com palavra-chave, texto ao pé da letra, rascunho no celular)
 - [ ] `plano.md` aprovado e seguido (objeto-herói, mapa de seções, componentes, ícones, gráficos, metas)
 - [ ] `dna.md` preenchido, sem `[A CONFIRMAR]` no texto visível
 - [ ] 8 atos revisados; momento-assinatura funcionando e com versão estática

@@ -2,6 +2,17 @@
 
 > Preencher inteiro antes de criar arquivos do site ou gastar crédito. Aprovação do usuário: [ ] sim (data)
 
+## 0. Estratégia antes do design (`references/estrategia.md`)
+- Cliente ideal / quem decide:
+- Critérios de escolha (3 a 5):
+- Medos antes de contratar → onde o site responde cada um:
+- Buscas Google (por intenção) e perguntas em IA (ChatGPT/Gemini/Perplexity):
+- Concorrentes do topo (promessa, prova, oferta, o que não dizem) → diferencial:
+- Posicionamento (1 frase):
+- Mapa do site (página · palavra-chave · intenção · objetivo):
+- Texto completo da home aprovado (link/arquivo): [ ] gate-texto limpo
+- Rascunho de layout no celular (1ª tela de cada seção):
+
 ## 1. Premissa e oferta
 - Premissa (1 palavra/ideia):
 - Oferta única + selo:
