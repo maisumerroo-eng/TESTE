@@ -33,3 +33,8 @@ Total: 14 e-mails enviados, 20 clínicas mapeadas. Meta: 30.
 5. Sem resposta em 4–5 dias: um lembrete curto e encerrar.
 
 Fontes de contato: site oficial de cada clínica (e guia MedGuias para a de Rondonópolis). Fisiomed Cuiabá (fisiomedcuiaba.com.br) não carregou: só telefone fixo (65) 3322-7512.
+
+## Lote 3: clínicas sem site (e-mail publicado na própria página do Facebook), 22/11
+Reabilitando Fisioterapia & Pilates, Juiz de Fora (reabilitandonafisio@gmail.com) · FisioNorte, Juiz de Fora (agendafisionortejf@gmail.com) · Clínica Orthus, Uberlândia (clinicaorthus@gmail.com). Texto focado em "site próprio", com linha de descadastro.
+
+Total enviado: 17 e-mails.
