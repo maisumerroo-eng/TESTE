@@ -1,6 +1,6 @@
 ---
 name: site-nova-era
-description: Sistema completo para sites de cliente no "novo design" com megapersonalização. Plano obrigatório antes de criar, objeto-herói por nicho, estratégias de conversão e componentes premium testados, DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), motion system com vocabulário próprio, anti-vício de IA com gate de texto, variantes por visitante (UTM, origem, escolha, horário) com WhatsApp personalizado. Figma como hub (imagens e ícones por IA), bancos públicos com licença, voz ElevenLabs, muapi/Higgsfield. Qualidade medida (LCP, CLS, contraste, flick, SEO, LGPD); modo econômico de tokens e créditos; reel vertical e deploy. HTML/CSS/JS puro. Use quando pedirem site, landing page, site institucional, site pra cliente, site premium/animado/cinematográfico/"estilo agência", site com vídeo no scroll, site personalizado por público/anúncio, ou citarem um site como referência de nível.
+description: Sistema completo para sites de cliente no "novo design" com megapersonalização. Plano obrigatório antes de criar, objeto-herói por nicho, estratégias de conversão e componentes premium testados, DNA e voz real do comprador, roteiro em 8 atos, momento-assinatura da metáfora do negócio (seção fixada SVG, vídeo no scroll com as 12 leis do vídeo, ou 3D Three.js), motion system com vocabulário próprio, anti-vício de IA com gate de texto, variantes por visitante (UTM, origem, escolha, horário) com WhatsApp personalizado. Figma, bancos de imagem, ElevenLabs, muapi/Higgsfield. Qualidade medida (LCP, CLS, contraste, flick, SEO, LGPD); modo econômico de tokens e créditos; reel vertical e deploy. Também aprimora sites existentes (diagnóstico, preservação de SEO, antes/depois) e converte print/mockup do cliente em HTML com verificação por pixels. HTML/CSS/JS puro. Use para site, landing page, site pra cliente, site premium/animado, vídeo no scroll, site personalizado, melhorar/refazer site existente, transformar imagem em HTML, ou site de referência.
 ---
 
 # Site nova era
@@ -45,6 +45,9 @@ Antes de começar um site, leia os casos do mesmo nicho ou com a mesma lição q
 | `templates/scrub/` | motor de vídeo no scroll testado (`scrub.js`, `scrub.css`, `exemplo.html`) |
 | `templates/auditar-contraste.js` | contraste do pior pixel de texto sobre imagem/vídeo/gradiente |
 | `templates/teste-flick.js` | ritmo de seção fixada/scrub com flicks reais de roda (120/240/360px) |
+| `references/aprimorar-existente.md` | **site que já existe**: raio-x só leitura, diagnóstico manter/mudar, caminho (evolução no lugar, refazer com 301, plataforma fechada, só imagem), lotes medidos, prova antes/depois |
+| `references/imagem-para-html.md` | print/mockup **do cliente** → HTML fiel: paleta medida, análise em camadas, uma imagem por vez, loop de comparação de pixels |
+| `templates/paleta-da-imagem.py` / `templates/comparar-imagem.js` | paleta real de uma imagem / semelhança render × imagem com mapa de diferenças |
 | `references/estrategia.md` | **estratégia antes do design**: medos e critérios do cliente, buscas no Google e em IA (GEO), concorrentes e diferencial, posicionamento em 1 frase, mapa do site com palavra-chave por página, texto completo, rascunho de layout no celular |
 | `references/plano.md` + `templates/plano.md` | **fase de plano obrigatória**: o site inteiro desenhado antes de qualquer arquivo ou crédito |
 | `references/objeto-heroi.md` | o objeto do nicho que representa a promessa (a "mão com a moeda" adaptada), prompt, fusão, ambiente da hero |
@@ -90,6 +93,11 @@ Siga `references/economia.md`: busque e edite trechos (nunca reescreva arquivo i
 6. **Testar** qualquer mudança em `templates/base/` no Chromium (console limpo, reduced motion, 390px e 1440px).
 7. Nunca copiar texto, código, ícones ou imagens do site analisado. Escrever implementação própria.
 8. Commit e push; responder ao usuário com o resumo do raio-x e a lista do que mudou na skill.
+
+## Modos de entrada
+- **Site novo:** fases abaixo, desde a 0.
+- **Aprimorar site existente:** comece por `references/aprimorar-existente.md` (raio-x e diagnóstico), escolha o caminho com o usuário e então siga as fases a partir da estratégia, preservando URLs, conteúdo que posiciona e a stack do cliente.
+- **Imagem do cliente → HTML:** `references/imagem-para-html.md` (fidelidade medida), depois as fases para subir de nível.
 
 ## Fases
 
@@ -161,6 +169,8 @@ Quando houver anúncios, públicos ou regiões diferentes: siga `megapersonaliza
 15. Uma premissa de marca: seção que não serve a ela sai.
 16. Nada é criado sem `plano.md` aprovado. Toda hero tem objeto-herói planejado (ou justificativa escrita para não ter).
 18. **Régua mínima:** nenhum site é entregue abaixo do nível Vexter (`regua-minima.js` aprovado) nem acima do teto de performance.
+21. **Site existente:** diagnóstico antes de mexer; nada que posiciona é removido sem 301 ou substituto; a stack do cliente só muda se ele pedir; ganho provado com tabela antes/depois.
+22. **Imagem → HTML** só de design do próprio cliente; fidelidade verificada com `comparar-imagem.js`, nunca no olho.
 20. **Estratégia antes do design:** nenhum visual antes de posicionamento, mapa do site com palavra-chave por página, texto completo e rascunho de layout no celular aprovados.
 19. **Reusar e inovar:** reusar componentes, estratégias e a mão (presença humana aproxima) sempre que servirem, e inovar em pelo menos 3 meios de cumprir a skill por site; inovação testada volta para a biblioteca e para o `portfolio.md`.
 17. Toda seção cumpre pelo menos uma estratégia de `estrategias-de-conversao.md`; número de prova aparece grande e colorido; gráfico prova a mudança e é interativo e acessível.
