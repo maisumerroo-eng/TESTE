@@ -14,7 +14,9 @@ const cfg = {
   pular: LS.get("pular", true),
   chave: LS.get("chave", ""),
   voz: LS.get("voz", true),
-  ouvir: LS.get("ouvir", false),
+  ouvir: LS.get("ouvir", true),
+  ativacao: LS.get("ativacao", true),
+  nome: LS.get("nome", "John"),
 };
 
 let historico = [];
@@ -23,7 +25,10 @@ let ocupado = false;
 let pausado = false;
 let timer = null;
 let wakeLock = null;
-let perguntaPendente = "";
+let conversa = [];          // [{role, content}] do papo com o Parça
+let ultimoLocal = "";
+let janelaAte = 0;          // até quando ele ouve sem precisar da palavra de ativação
+let ultimaConversa = 0;
 
 function status(txt, tipo = "") {
   const el = $("status");
@@ -45,6 +50,7 @@ async function ligarCamera() {
     pedirWakeLock();
     agendar(1500);
     if (cfg.ouvir) ouvir();
+    setTimeout(() => falarConversa(`E aí, ${cfg.nome}! Tô vendo a tela. É só chamar "parça" e falar comigo.`), 800);
   } catch (e) {
     alert("Não deu pra abrir a câmera. Libera a permissão e abre o site em HTTPS.\n\n" + e.message);
   }
@@ -85,42 +91,44 @@ function mudouBastante() {
   return false;
 }
 
-// ---------- Ciclo ----------
+// ---------- Ciclo (leitura automática da tela) ----------
 function agendar(ms) {
   clearTimeout(timer);
   if (pausado || cfg.intervalo === 0) return;
   timer = setTimeout(() => analisar(false), ms ?? cfg.intervalo * 1000);
 }
 
+const headersIA = () => {
+  const h = { "Content-Type": "application/json" };
+  if (cfg.chave) h["x-user-key"] = cfg.chave;
+  return h;
+};
+
 async function analisar(forcado) {
-  if (ocupado) return;
-  if (!forcado && !perguntaPendente && cfg.pular && !mudouBastante()) {
-    status("Tela parada, esperando…", "ok");
+  if (ocupado) return agendar();
+  if (!forcado && cfg.pular && !mudouBastante()) {
+    status(ouvindo ? "Ouvindo… chama \"parça\"" : "Tela parada", "ok");
     return agendar();
   }
-  if (forcado) mudouBastante(); // atualiza a referência
+  if (forcado) mudouBastante();
   const imagem = capturar();
   if (!imagem) return agendar(1000);
 
   ocupado = true;
-  status(perguntaPendente ? "Pensando na pergunta…" : "Lendo a tela…", "lendo");
-  const pergunta = perguntaPendente;
-  perguntaPendente = "";
-
+  status("Lendo a tela…", "lendo");
   try {
-    const headers = { "Content-Type": "application/json" };
-    if (cfg.chave) headers["x-user-key"] = cfg.chave;
     const r = await fetch("/api/analisar", {
       method: "POST",
-      headers,
-      body: JSON.stringify({ imagem, historico, pergunta, spoilers: cfg.spoilers, foco: cfg.foco }),
+      headers: headersIA(),
+      body: JSON.stringify({ imagem, historico, spoilers: cfg.spoilers, foco: cfg.foco }),
     });
     const dados = await r.json().catch(() => ({ erro: "Resposta inválida do servidor" }));
     if (!r.ok) throw new Error(dados.erro || "Erro " + r.status);
-    mostrar(dados, pergunta);
+    mostrar(dados);
     historico.push(dados.dica, dados.curiosidade);
     historico = historico.slice(-12);
-    status("Atualizado " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }), "ok");
+    if (dados.tela_de_jogo) ultimoLocal = [dados.local, dados.situacao].filter(Boolean).join(" — ");
+    status(ouvindo ? "Ouvindo… chama \"parça\"" : "Atualizado", "ok");
   } catch (e) {
     status("Erro", "erro");
     mostrarErro(e.message);
@@ -128,6 +136,59 @@ async function analisar(forcado) {
     ocupado = false;
     agendar();
   }
+}
+
+// ---------- Conversa com o Parça ----------
+let pensando = false;
+async function conversar(texto) {
+  texto = texto.trim();
+  if (!texto || pensando) return;
+  pensando = true;
+  ultimaConversa = Date.now();
+  speechSynthesis?.cancel();
+  mostrarConversa(texto, "…", []);
+  status("Parça pensando…", "lendo");
+  const imagem = capturar();
+  try {
+    const r = await fetch("/api/conversar", {
+      method: "POST",
+      headers: headersIA(),
+      body: JSON.stringify({ mensagem: texto, historico: conversa, imagem, nome: cfg.nome, spoilers: cfg.spoilers, local: ultimoLocal }),
+    });
+    const d = await r.json().catch(() => ({ erro: "Resposta inválida do servidor" }));
+    if (!r.ok) throw new Error(d.erro || "Erro " + r.status);
+    conversa.push({ role: "user", content: texto }, { role: "assistant", content: d.fala });
+    conversa = conversa.slice(-16);
+    mostrarConversa(texto, d.fala, d.fontes || [], d.pesquisou);
+    falarConversa(d.fala);
+    status(d.pesquisou ? "Pesquisou na internet" : "Respondido", "ok");
+  } catch (e) {
+    mostrarConversa(texto, "Deu ruim: " + e.message, []);
+    status("Erro", "erro");
+  } finally {
+    pensando = false;
+    ultimaConversa = Date.now();
+  }
+}
+
+function mostrarConversa(pergunta, resposta, fontes, pesquisou) {
+  const box = $("conversa");
+  box.hidden = false;
+  const eu = card("voce", cfg.nome, pergunta);
+  const ele = card("parca", pesquisou ? "Parça · pesquisou" : "Parça", resposta);
+  if (fontes.length) {
+    const small = document.createElement("small");
+    small.className = "fontes";
+    fontes.forEach((f, i) => {
+      const a = document.createElement("a");
+      a.href = f.url; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = f.titulo || new URL(f.url).hostname;
+      small.append(i ? " · " : "Fontes: ", a);
+    });
+    ele.append(small);
+  }
+  box.replaceChildren(eu, ele);
+  $("painel").scrollTop = 0;
 }
 
 // ---------- UI ----------
@@ -155,12 +216,12 @@ function card(tipo, titulo, conteudo) {
   return el;
 }
 
-function mostrar(d, pergunta) {
+function mostrar(d) {
   $("local").textContent = d.tela_de_jogo ? (d.local || "Local desconhecido") : "Não vi o jogo na tela";
   const cards = $("cards");
   cards.replaceChildren();
   if (d.situacao) cards.append(card("situacao", "Agora", d.situacao));
-  if (d.dica) cards.append(card("dica", pergunta ? "Resposta" : "Dica", d.dica));
+  if (d.dica) cards.append(card("dica", "Dica", d.dica));
   if (d.perto?.length) cards.append(card("perto", "Por perto", d.perto.slice(0, 3)));
   if (d.curiosidade) cards.append(card("curiosidade", "Curiosidade", d.curiosidade));
   $("painel").scrollTop = 0;
@@ -171,54 +232,85 @@ function mostrarErro(msg) {
   $("cards").replaceChildren(card("erro", "Ops", msg));
 }
 
-// ---------- Voz ----------
+// ---------- Voz (fala) ----------
 let vozPt = null;
 function escolherVoz() {
-  const vozes = speechSynthesis.getVoices();
-  vozPt = vozes.find((v) => v.lang === "pt-BR") || vozes.find((v) => v.lang.startsWith("pt")) || null;
+  const vozes = speechSynthesis.getVoices().filter((v) => v.lang.replace("_", "-").startsWith("pt"));
+  // Prefere vozes naturais/online do pt-BR.
+  vozPt = vozes.find((v) => /pt-BR/.test(v.lang) && /natural|google|online|neural/i.test(v.name))
+    || vozes.find((v) => /pt-BR/.test(v.lang)) || vozes[0] || null;
 }
 if ("speechSynthesis" in window) {
   escolherVoz();
   speechSynthesis.onvoiceschanged = escolherVoz;
 }
-function falar(txt) {
-  if (!cfg.voz || !txt || !("speechSynthesis" in window)) return;
+function falarBase(txt, aoTerminar) {
+  if (!cfg.voz || !txt || !("speechSynthesis" in window)) return aoTerminar?.();
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(txt);
   u.lang = "pt-BR";
   if (vozPt) u.voice = vozPt;
   u.rate = 1.08;
-  u.onstart = () => pararOuvir(true);
-  u.onend = () => { if (cfg.ouvir) ouvir(); };
+  u.onstart = () => pararOuvir(true);           // não ouvir a própria voz
+  u.onend = u.onerror = () => { aoTerminar?.(); if (cfg.ouvir) setTimeout(ouvir, 250); };
   speechSynthesis.speak(u);
 }
+// Dica automática: não atropela conversa recente.
+function falar(txt) {
+  if (pensando || Date.now() - ultimaConversa < 25000 || speechSynthesis?.speaking) return;
+  falarBase(txt);
+}
+// Resposta da conversa: depois dela, 12 s pra responder sem dizer "parça".
+function falarConversa(txt) {
+  falarBase(txt, () => { janelaAte = Date.now() + 12000; });
+  if (!cfg.voz) janelaAte = Date.now() + 12000;
+}
 
-// ---------- Microfone (pergunta por voz) ----------
+// ---------- Microfone (reconhecimento automático) ----------
 const Reconhecedor = window.SpeechRecognition || window.webkitSpeechRecognition;
-let rec = null, ouvindo = false;
+const ATIVACAO = /\b(parça|parca|parceiro|parsa|copiloto)\b[,!.]?\s*/i;
+let rec = null, ouvindo = false, apertouMic = false;
 const btnMic = $("btnMic");
 if (!Reconhecedor) btnMic.hidden = true;
 
+function tratarFala(frase) {
+  frase = frase.trim();
+  if (frase.length < 2) return;
+  const livre = apertouMic || !cfg.ativacao || Date.now() < janelaAte;
+  apertouMic = false;
+  if (livre) return conversar(frase.replace(ATIVACAO, "") || frase);
+  const m = frase.match(ATIVACAO);
+  if (!m) return; // barulho do jogo / conversa de fundo: ignora
+  const resto = frase.slice(m.index + m[0].length).trim();
+  if (resto.length > 2) conversar(resto);
+  else falarConversa(`Fala, ${cfg.nome}!`);
+}
+
 function ouvir() {
-  if (!Reconhecedor || ouvindo) return;
+  if (!Reconhecedor || ouvindo || speechSynthesis?.speaking) return;
   rec = new Reconhecedor();
   rec.lang = "pt-BR";
   rec.interimResults = true;
-  rec.continuous = false;
+  rec.continuous = true;
   rec.onresult = (e) => {
-    const r = e.results[e.results.length - 1];
-    $("inputPergunta").value = r[0].transcript;
-    if (r.isFinal) {
-      const q = r[0].transcript.trim();
-      $("inputPergunta").value = "";
-      if (q.length > 2) { perguntaPendente = q; analisar(true); }
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const r = e.results[i];
+      const t = r[0].transcript;
+      // Mostra o que está ouvindo só quando é com ele.
+      if (apertouMic || Date.now() < janelaAte || ATIVACAO.test(t) || !cfg.ativacao) $("inputPergunta").value = t;
+      if (r.isFinal) { $("inputPergunta").value = ""; tratarFala(t); }
     }
   };
   rec.onend = () => {
     ouvindo = false; btnMic.setAttribute("aria-pressed", "false");
-    if (cfg.ouvir && !ocupado && !speechSynthesis?.speaking) setTimeout(ouvir, 400);
+    if (cfg.ouvir && !speechSynthesis?.speaking) setTimeout(ouvir, 300);
   };
-  rec.onerror = (e) => { if (e.error === "not-allowed") { cfg.ouvir = false; LS.set("ouvir", false); } };
+  rec.onerror = (e) => {
+    if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+      cfg.ouvir = false; LS.set("ouvir", false);
+      status("Microfone bloqueado", "erro");
+    }
+  };
   try { rec.start(); ouvindo = true; btnMic.setAttribute("aria-pressed", "true"); } catch {}
 }
 function pararOuvir(temporario) {
@@ -226,9 +318,12 @@ function pararOuvir(temporario) {
   try { rec?.abort(); } catch {}
   ouvindo = false; btnMic.setAttribute("aria-pressed", "false");
 }
+// Toque no mic: a próxima frase vai direto pro Parça, sem palavra de ativação.
 btnMic.addEventListener("click", () => {
-  if (ouvindo) pararOuvir(false);
-  else { speechSynthesis?.cancel(); ouvir(); }
+  speechSynthesis?.cancel();
+  apertouMic = true;
+  status("Pode falar…", "lendo");
+  if (!ouvindo) ouvir();
 });
 
 // ---------- Controles ----------
@@ -244,10 +339,9 @@ $("formPergunta").addEventListener("submit", (e) => {
   e.preventDefault();
   const q = $("inputPergunta").value.trim();
   if (!q) return;
-  perguntaPendente = q;
   $("inputPergunta").value = "";
   $("inputPergunta").blur();
-  analisar(true);
+  conversar(q);
 });
 
 const btnVoz = $("btnVoz");
@@ -265,30 +359,28 @@ $("btnPausa").addEventListener("click", () => {
   if (pausado) { clearTimeout(timer); status("Pausado", "pausado"); } else agendar(300);
 });
 
+const CAMPOS = { intervalo: "cfgIntervalo", foco: "cfgFoco", spoilers: "cfgSpoilers", pular: "cfgPular", chave: "cfgChave", ouvir: "cfgOuvir", ativacao: "cfgAtivacao", nome: "cfgNome" };
 const dlg = $("config");
 $("btnConfig").addEventListener("click", () => {
-  $("cfgIntervalo").value = String(cfg.intervalo);
-  $("cfgFoco").value = cfg.foco;
-  $("cfgSpoilers").checked = cfg.spoilers;
-  $("cfgPular").checked = cfg.pular;
-  $("cfgChave").value = cfg.chave;
-  $("cfgOuvir").checked = cfg.ouvir;
+  for (const [k, id] of Object.entries(CAMPOS)) {
+    const el = $(id);
+    if (el.type === "checkbox") el.checked = cfg[k]; else el.value = String(cfg[k]);
+  }
   dlg.showModal();
 });
 dlg.addEventListener("close", () => {
-  cfg.intervalo = Number($("cfgIntervalo").value);
-  cfg.foco = $("cfgFoco").value;
-  cfg.spoilers = $("cfgSpoilers").checked;
-  cfg.pular = $("cfgPular").checked;
-  cfg.chave = $("cfgChave").value.trim();
-  cfg.ouvir = $("cfgOuvir").checked;
-  for (const k of ["intervalo", "foco", "spoilers", "pular", "chave", "ouvir"]) LS.set(k, cfg[k]);
+  for (const [k, id] of Object.entries(CAMPOS)) {
+    const el = $(id);
+    cfg[k] = el.type === "checkbox" ? el.checked : k === "intervalo" ? Number(el.value) : el.value.trim();
+    LS.set(k, cfg[k]);
+  }
+  if (!cfg.nome) cfg.nome = "John";
   if (cfg.ouvir) ouvir(); else pararOuvir(false);
   agendar();
 });
 
 // ---------- Guia offline ----------
-const NOMES_TIPO = { regiao: "Regiões", mecanica: "Mecânicas", atividade: "Atividades", personagem: "Personagens", curiosidade: "Curiosidades", dica: "Dicas" };
+const NOMES_TIPO = { historia: "História", glitch: "Glitches", regiao: "Regiões", mecanica: "Mecânicas", atividade: "Atividades", personagem: "Personagens", curiosidade: "Curiosidades", dica: "Dicas" };
 let banco = null, filtroTipo = "";
 async function abrirGuia() {
   if (!banco) {
@@ -314,7 +406,9 @@ function listarGuia() {
   const lista = $("guiaLista");
   lista.replaceChildren(...itens.map((i) => {
     const c = card(i.tipo === "curiosidade" ? "curiosidade" : i.tipo === "regiao" ? "perto" : "dica", i.nome, i.texto);
-    if (i.confirmado === false) { const s = document.createElement("small"); s.textContent = "Não confirmado"; c.append(s); }
+    const aviso = [i.confirmado === false && "Não confirmado", i.spoiler && "Spoiler"].filter(Boolean).join(" · ");
+    if (aviso) { const s = document.createElement("small"); s.textContent = aviso; c.append(s); }
+    if (i.spoiler && !cfg.spoilers) { c.classList.add("borrado"); c.title = "Toque pra revelar"; c.onclick = () => c.classList.remove("borrado"); }
     return c;
   }));
   if (!itens.length) lista.append(card("erro", "Nada", "Nada encontrado."));

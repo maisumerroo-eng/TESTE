@@ -1,12 +1,15 @@
 {
  "versao": "2026-11-26",
  "fontes": [
-  "rockstargames.com (personagens/regiões)",
+  "rockstargames.com",
   "redbull.com",
   "leonidainteractive.com",
   "absolutegeeks.com",
   "svg.com",
-  "mmoexp.com"
+  "mmoexp.com",
+  "powerpyx.com",
+  "gtabase.com",
+  "gamerant.com"
  ],
  "itens": [
   {
@@ -1141,6 +1144,217 @@
     "mapa",
     "lancamento"
    ]
+  },
+  {
+   "tipo": "historia",
+   "nome": "Estrutura da história",
+   "texto": "Prólogo + 5 capítulos, 60 a 80 horas. Não tem replay de missão: salve manualmente no começo e no fim de cada capítulo. Alguns capítulos terminam em ponto sem retorno.",
+   "tags": [
+    "historia",
+    "capitulos",
+    "salvar"
+   ]
+  },
+  {
+   "tipo": "historia",
+   "nome": "Prólogo",
+   "texto": "Lucia conversa com o conselheiro da prisão sobre soltura antecipada.",
+   "tags": [
+    "prologo",
+    "lucia"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Capítulo 1 (Keys)",
+   "texto": "Jason nas Keys com Brian, Cal, Donnie e Kenton; Lucia sai da prisão (Coming Home). Missões: Gone Fishing, Gear Up, Unwanted Attention, Lab Fees, Pipework, Just a Scratch, Hey Arnold!, Island Dreams, Feng Shui, Coming Home, Clean Up After Donnie, Buck Me, Down to Earth, Day Release, Clear Skies, Building a Life, Swamped, Don Gone, Recalibration, Tourist Trap (ponto sem retorno), Home Sweet Home, Discharge Time. Termina com Lucia no hospital de Vice City após a oferta do Mattia. Dinheiro do cap. 1 se perde no fim: não farme.",
+   "tags": [
+    "capitulo 1",
+    "keys",
+    "missoes"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Capítulo 2 (Port Gellhorn)",
+   "texto": "O casal foge do hospital e se esconde num motel em Port Gellhorn. Missões: What's in the Bag?, Ambulance Chaser, Play Nurse, Overnight Charges, Just Moved In, Girl's Trip, Moses, New Look, How Do I Look?, Got Pills?, Daily Driver, Behind on Payments, Slam Dunk, Breakfast Run, Coffee Break, Prepare for Vice City (juntar $15.000), Afternoon Delight, Checking Out (ponto sem retorno).",
+   "tags": [
+    "capitulo 2",
+    "port gellhorn",
+    "motel"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Capítulo 3 (Vice City)",
+   "texto": "Em Vice City com Dre'Quan, Boobie, Mia e Yasmani; Raul monta a equipe pro assalto ao Sinfrontera National Bank. Ordem do golpe: Credit Check (libera Dye Pack Jammer) → Sinfrontera National Bank (reconhecimento) → Security Expert → Heist Planning → Company Property → The Missing Link → Safe Word → Hidden Charges → Bricked Up → The Cartel Heist. Clonin' Keys, Makin' GS libera o Key Cloner. Missões só do Jason: Dealer's Choice, Here Kitty Kitty, Boobie Time, Crosstown Traffic, Ride or Die. Só da Lucia: Mami Knows Best, Car Service, The Missing Link, South Leonida Real Estate.",
+   "tags": [
+    "capitulo 3",
+    "vice city",
+    "assalto",
+    "banco"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Capítulo 4 (Vice City)",
+   "texto": "Raul, Kordell, Andrea e Abe; peça central é o assalto ao aeroporto (VCIA Takedown). Missões incluem Ocean Beach, Pool Day, Lawyer Up, Party Hard, Heavy Lifting, Making Gainz, Too Much Baggage, Power Play, Child's Play, Headliners, Fully Catered, VCIA Takedown, Tie Up Loose Ends, Sunset (ponto sem retorno), Starting From Zero.",
+   "tags": [
+    "capitulo 4",
+    "aeroporto",
+    "vcia"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Capítulo 5 (final)",
+   "texto": "Trabalhos finais com Vinny, Mattia e Abe: Bird in the Hand, Taking Liberties, Doggie Bag, VC Baby, Operation Savage Glory, Honest Abe, Unfinished Business (ponto sem retorno), Protective Custody, The End of the Road.",
+   "tags": [
+    "capitulo 5",
+    "final"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Finais",
+   "texto": "Dois finais, escolhidos no fim de The End of the Road, na ponte ao sul de Key Lento. 'NO SURRENDER' (final ruim): Jason e Lucia enfrentam a polícia e morrem. 'SWIM FOR IT' (final bom): Jason faz Lucia pular da ponte e se entrega; Lucia aceita o acordo do Abe e depois visita Jason na prisão com Tommy. Depois o jogo volta antes das duas últimas missões: dá pra ver o outro final, sem recompensa extra.",
+   "tags": [
+    "finais",
+    "escolha",
+    "ending"
+   ],
+   "spoiler": true
+  },
+  {
+   "tipo": "historia",
+   "nome": "Missões perdíveis",
+   "texto": "Opcionais que podem passar: Get Shirley's Rum, Steal the Scooter, Meditate with Lucia, Ring the Bell!, Race Against Yago, Pick Up Shayna. Faça quando aparecerem.",
+   "tags": [
+    "missable",
+    "opcional"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Softlock: Raul não liga pra Lucia",
+   "texto": "Bug em ~72% da história (PS5/Xbox): a história trava esperando ligação. Quem liga primeiro é a Valentina, e depois de pagar o advogado ($75.000) o Raul liga. Solução relatada: fazer os trabalhos do Yasmani pagando dica (ex.: lojas de adiantamento), limpar notificações do celular da Lucia, separar os dois, salvar como Lucia no hotel de Vice City, desligar o console segurando o botão 10-30 s e sair do quarto só com a Lucia. O patch de 23/11 não resolveu de vez. Faça backup do save antes.",
+   "tags": [
+    "bug",
+    "softlock",
+    "raul",
+    "lucia",
+    "patch"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Glitches de dinheiro",
+   "texto": "Até agora não há glitch de dinheiro confirmado por guia grande. Desconfie de vídeo prometendo dinheiro infinito; se aparecer um, pesquise se já foi corrigido.",
+   "tags": [
+    "glitch",
+    "dinheiro"
+   ]
+  },
+  {
+   "tipo": "mecanica",
+   "nome": "Dinheiro por capítulo",
+   "texto": "Cap. 1: não farme (perde no fim). Cap. 2: venda carros sem rastreador pro Moses (~$1000+ cada, recarga ~2 min). Cap. 3: joalherias dão $10-25 mil (venda pro Yasmani); carro com rastreador padrão no Pay 'n' Spray ~$2.500-4.000; supercarros da lista do Randy ~$30-35 mil. Fim do cap. 4: cofres de bancos grandes até $205 mil cada (dica do Yasmani por $10 mil; dá 4 estrelas).",
+   "tags": [
+    "dinheiro",
+    "farm",
+    "yasmani",
+    "randy",
+    "moses"
+   ]
+  },
+  {
+   "tipo": "mecanica",
+   "nome": "Fundo familiar",
+   "texto": "'Save for the Future': o fundo familiar máximo custa $2 milhões.",
+   "tags": [
+    "dinheiro",
+    "poupanca"
+   ]
+  },
+  {
+   "tipo": "mecanica",
+   "nome": "Armas especiais",
+   "texto": "Ammu-Nation tem 24 lojas; as 'Expanded' vendem lança-granadas e lança-foguetes. O rifle Killtelligence SM-69 vem da caça do Bret e volta em qualquer armário da Ammu-Nation. Tiro na cabeça/coração deixa o animal 'pristine' e paga mais.",
+   "tags": [
+    "armas",
+    "ammu-nation",
+    "caca",
+    "rifle"
+   ]
+  },
+  {
+   "tipo": "mecanica",
+   "nome": "Mike Zero: tanque e jato",
+   "texto": "Na base Mile/Mike Zero Air Station dá pra pegar tanque e caça (4 estrelas ao entrar).",
+   "tags": [
+    "tanque",
+    "jato",
+    "base militar"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Checklist 100%",
+   "texto": "Aparece depois da história (Progress > Stats > 100% Completion). Nada é perdível. Pede: 100 tarefas opcionais, 39 Gang Operations, 22 Bank Jobs, 7 Payday Loans, 34/35 Smash 'n' Grabs, 50/91 Stick Ups, receptadores (narcóticos $100k, joias $100k, notas marcadas $250k, veículos $200k), 8 cofres grandes, 5/7 Kenton Sets, 15/18 conjuntos de cartas, 100/108 scans WAiNK, 33 achados subaquáticos, 30/34 revistas/livros, 15/18 meditações, 100/125 flamingos de cocaína, 70/79 estilos, 30/40 corridas, 42 medalhas de estande, 4 arcades, 5/7 sinuca, 2/3 minigolfe, 90/100 basquete, 42 drone trials, 300/397 stunts, 70/80 desafios, 15 caças do Bret, 200 veículos escaneados, 50/66 armas, 100 animais estudados.",
+   "tags": [
+    "100%",
+    "colecionaveis",
+    "checklist"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Troféus",
+   "texto": "55 troféus, nenhum online ou perdível, ~200 h pra platina, dificuldade 4/10. Troféu do 100%: 'A Long Road'.",
+   "tags": [
+    "trofeus",
+    "platina"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Murais",
+   "texto": "Achar os 1.010 murais dá uma garagem.",
+   "tags": [
+    "murais",
+    "colecionaveis",
+    "garagem"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Strangers & Freaks: Kirk",
+   "texto": "Questline do Kirk: 'Search for the Skunk Ape' (só à noite) e 'Help Kirk Find Mr. Mangrove' (só à noite e só com Lucia). Inclui Tree Effigies. Conta pro troféu Strangers & Freaks.",
+   "tags": [
+    "skunk ape",
+    "mr mangrove",
+    "kirk",
+    "noite"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Outros segredos citados",
+   "texto": "Evento aleatório do Satanás e chefe 'The Pretender'; easter egg de Scarface com a SMG 'Little Friend'; missão de abdução por OVNI na lista de Strangers. Detalhes ainda incompletos.",
+   "tags": [
+    "easter egg",
+    "scarface",
+    "ovni",
+    "segredo"
+   ],
+   "confirmado": false
   }
  ]
 }
