@@ -16,7 +16,14 @@
   "beebom.com",
   "leonihub.com",
   "retrobroker.com",
-  "games.gg"
+  "games.gg",
+  "kotaku.com",
+  "invenglobal.com",
+  "digit.in",
+  "omelete.com.br",
+  "ibtimes.co.uk",
+  "querobolsa.com.br",
+  "analyticsinsight.net"
  ],
  "itens": [
   {
@@ -1431,6 +1438,405 @@
     "poupanca"
    ],
    "confirmado": false
+  },
+  {
+   "tipo": "cheat",
+   "nome": "Como usar cheats",
+   "texto": "Liberam só depois de terminar a história (Progresso > Cheats), cada um com sua condição. Abra o celular (D-pad cima), segure L1 e aperte R1 (Xbox: LB + RB) e digite a sequência no D-pad. Mesma sequência no PS5 e Xbox. Usar cheat desliga troféus e o salvamento até fechar o jogo: salve antes.",
+   "tags": [
+    "cheat",
+    "codigo",
+    "como usar"
+   ]
+  },
+  {
+   "tipo": "cheat",
+   "nome": "Cheats do jogador",
+   "texto": "$250.000: ↑ → ↓ ← ↑ ← ↓ →. Bêbado: ↑ ← → ↑ ↑ ← → ↑ ← →. Subir procurado: ← ↓ → ↓ ↑ → ↑. Focus infinito: ↓ ↑ ↑ ↓ ↑ ↓ ↑ ↓ ↑ →. Sem dano de queda: ↓ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↓. Paraquedas: → ↑ ← ↑ → ↑ ← ↑ →. Colete: ↓ ↑ ← ↑ ↑ ↑ ↑ ↑ ↓ ↓. Consertar veículo: → ↓ ↓ → ↓ → → ↓. Nitro infinito: → ↓ ↓ → ↓ → → ←.",
+   "tags": [
+    "cheat",
+    "dinheiro",
+    "colete",
+    "focus"
+   ]
+  },
+  {
+   "tipo": "cheat",
+   "nome": "Cheats de combate",
+   "texto": "Munição cheia: ↓ ↑ → ↓ ← ← ↑ ↑ ↓ ←. Munição infinita: ↓ ↑ → ↓ ← ← ↑ ↓ ↓ ↓. Sem recarregar: ↓ ↑ → ↓ ← ← ↑ ↓ ↓ ↑. Explosivos: → ↑ ← ↑ → ↑ ← ↑ ←. Munição incendiária: ↓ ↑ → ↓ ← ↓ ↑ → ↓ ↓. Garrafas explosivas: ↓ ↑ ← ← → ↓ ↓ ↑ ←. Escopeta explosiva: ↓ ↑ → ↓ ← ↓ ↑ → ↓ ←. Lança-mísseis H-AT: → ↑ ← ↑ → ↑ ← ↑ ↑. Attack Force (empurra alvos): ↓ ↑ ← ← → ↓ ↓ ↑ ↓.",
+   "tags": [
+    "cheat",
+    "arma",
+    "municao"
+   ]
+  },
+  {
+   "tipo": "cheat",
+   "nome": "Cheats de veículos",
+   "texto": "Todos começam com ← ↑ → ↓ ←, depois: Ambulância → → →; Airboat ↓ ↑ →; Banshee → ↑ ←; BMX ← ↑ →; Carbon RS ← ↑ ↑; Dominator '65 → ← →; Emerus → ↑ →; Flamingo inflável ↓ ↑ ↓; Táxi → → ←; Caça Lazer ↑ ↑ ↓; Trator/Bulldozer → → ↓; Avião Mallard ↑ ↑ ↑; Tanque Rhino → ← ↑; Sanchez ← → ↑; Helicóptero Sea Sparrow ↑ ↑ →; Thrax → ↑ ↑; Zombie Bobber ← ↑ ↓.",
+   "tags": [
+    "cheat",
+    "carro",
+    "tanque",
+    "helicoptero",
+    "aviao"
+   ]
+  },
+  {
+   "tipo": "cheat",
+   "nome": "Cheats de ambiente e filtros",
+   "texto": "Avançar hora: ↓ → ↑ ↓ → ↑ ↑. Pausar hora: ↓ → ↑ ↓ → ↑ ←. Trocar clima: ↓ → ↑ ↓ → ↑ →. Filtros de tela começam com ↓ ↓ ↑ → → ↑ ← ← (Golden Hour + ↑ ↑; Neon Jungle + ↑ ←; Videotape + → ↓; Hellscape + ← ←).",
+   "tags": [
+    "cheat",
+    "clima",
+    "hora",
+    "filtro"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Dicas de controle",
+   "texto": "Segurar D-pad direita: pedir ao parceiro distração à polícia, dirigir ou vender o saque. Piloto automático: segure baixo ou peça pro parceiro dirigir. Dá pra fixar o minimapa e trocar unidades nas configurações. Toque esquerda/direita no carro liga a seta.",
+   "tags": [
+    "controles",
+    "parceiro",
+    "piloto automatico",
+    "minimapa"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Acalmar policial",
+   "texto": "Sem arma na mão, segure o gatilho esquerdo num policial: opção de acalmar, pode tirar 1 estrela.",
+   "tags": [
+    "policia",
+    "estrela",
+    "defuse"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Limite de dinheiro no bolso",
+   "texto": "Cada personagem carrega no máximo $20.000 em espécie. Deposite no caixa eletrônico.",
+   "tags": [
+    "dinheiro",
+    "limite"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Pontos de comportamento",
+   "texto": "Fazer carinho em cães e gatos (gatilho esquerdo) e jogar lixo no lixo dão Focus e pontos de comportamento. Comprar roupa pros dois ajuda o romance.",
+   "tags": [
+    "focus",
+    "animais",
+    "romance"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Scooter Bros Premium",
+   "texto": "App entrega carro, conserta e tira do pátio. Premium custa $12.500 e dá 3 usos grátis por dia. Mecânico por ligação libera após 'Just a Scratch'.",
+   "tags": [
+    "carro",
+    "app",
+    "conserto",
+    "patio"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "RydeMe gorjeta",
+   "texto": "Gorjeta de $5 (até 2x) faz o motorista correr; $100 = viagem instantânea.",
+   "tags": [
+    "viagem",
+    "rydeme"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Caixa eletrônico com guincho",
+   "texto": "Caminhão de reboque arranca caixas eletrônicos (missões do Yasmani). As notas são marcadas: venda pro receptador.",
+   "tags": [
+    "dinheiro",
+    "caixa eletronico",
+    "yasmani"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Missões secundárias - Cap. 1",
+   "texto": "Kirk: Skunk Apeology 101, Tree Effigies (Pelican Valley), Mr. Mangrove (Cottonmouth Lake). Dr. Merle: The Final Flush. Freddie: Retest Freddie's Defenses (bunker). Shirley: rum e scooter. Cal: Ring the Bell! e Catch a Bigger Fish (peixe-papagaio acima de 2 lb).",
+   "tags": [
+    "secundaria",
+    "capitulo 1",
+    "kirk",
+    "shirley"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Missões secundárias - Cap. 2",
+   "texto": "Kyle (McKittrick Farm, Kelly County), Bret Vogel (caça, só Jason, perto do Mount Kalaga), Moses (6 carros, Port Gellhorn), Alvan West (turistas desaparecidos, Port Gellhorn), Billy (Thrillbillies no Mud Club). Sem doador: UFO Abduction (Kelly County), Manhunt (Hyde Island), Defeat Satan (festa em Port Gellhorn).",
+   "tags": [
+    "secundaria",
+    "capitulo 2",
+    "bret",
+    "moses",
+    "ovni"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Missões secundárias - Cap. 3",
+   "texto": "Yago (corridas em Salton), Billy, Andy/Cellerica (só Lucia), Yasmani (caixas eletrônicos, payday loans, seguir carro-forte), Tyrone (laboratórios Kitty Litter), Dunk (esconderijos de droga em Kelly County), Dodos Rising, Randy (lista de carros), José Bermudez (bunkers), Papa Audacity (dublês em Ocean Beach).",
+   "tags": [
+    "secundaria",
+    "capitulo 3",
+    "yasmani",
+    "randy",
+    "yago"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Missões secundárias - Cap. 4",
+   "texto": "Pilot Pete (só Jason): The Last Mile e entregas aéreas em Wild Hog, Southpoint e Leonard County. Festa do Eddie Acosta.",
+   "tags": [
+    "secundaria",
+    "capitulo 4",
+    "aviao",
+    "pete"
+   ]
+  },
+  {
+   "tipo": "atividade",
+   "nome": "Troféu Strangers & Freaks",
+   "texto": "Pede completar 8 linhas de missões de estranhos pelo estado.",
+   "tags": [
+    "trofeu",
+    "secundaria"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Ovo de Páscoa na torre",
+   "texto": "Torre de rádio ao norte de Hamlet (South Vice-Dale). Subir leva ~7 min. Pegue um ovo do ninho e arremesse: dispara uma cena. Outra torre tem um influenciador lá em cima.",
+   "tags": [
+    "easter egg",
+    "torre",
+    "ovo",
+    "hamlet"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "OVNI: Alien Dreams",
+   "texto": "Estrada perto do Starlet Motel (Port Gellhorn), entre 2h e 3h. O OVNI abduz alguém. Continua numa instalação ao sul de Hamlet (código 2314 no painel, elevador até o laboratório, copo de leite pro alien). Recompensa: aumento permanente de vida, stamina e Focus + troféu 'The Truth Is Out There'.",
+   "tags": [
+    "ovni",
+    "alien",
+    "port gellhorn",
+    "trofeu",
+    "2314"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Stonehenge e meteorito",
+   "texto": "No cume do Mount Kalaga há um círculo de pedras e um meteorito coletável (vende no Lifeinvader Marketplace ou penhor).",
+   "tags": [
+    "mount kalaga",
+    "meteorito",
+    "segredo"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Monumento do olho do Chiliad",
+   "texto": "Manifest Canyon (Kelly County), oeste da SR-73, norte de Port Gellhorn. Numa tempestade à noite um raio acende uma chama. Escaneie com WAiNK.",
+   "tags": [
+    "chiliad",
+    "misterio",
+    "raio"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Final Flush (Dr. Merle)",
+   "texto": "Banheiro masculino de Corsair Key, box esquerdo: escaneie o QR do panfleto com WAiNK, responda 'TRUTH', vá ao Frank's Waffles, depois à estação de esgoto. Recompensa: stamina máxima permanente.",
+   "tags": [
+    "missao secreta",
+    "stamina",
+    "corsair key"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Portal pra Vice City 2002",
+   "texto": "Torre Badger R&D em Key Lento: visite 12 usinas LPL na ordem de 'LIFEISPASSINGMEBY'. Recompensa: camisa havaiana do Tommy e moto. Atrás do balcão do Donnie, um botão mostra anúncio do Malibu Club.",
+   "tags": [
+    "vice city 2002",
+    "tommy",
+    "segredo"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Referências a Vice City clássico",
+   "texto": "Ocean View Hotel (1º esconderijo do Tommy), mansão estilo Vercetti em Starfish Island (não entra), Big Smoke Cigar Co. no centro, Phil's Ammu-Nation.",
+   "tags": [
+    "vice city",
+    "tommy",
+    "referencia"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Chapéu do Arthur Morgan",
+   "texto": "Venda de garagem ao sul de Port Gellhorn (casa azul com cerca e sofá branco): 'Genuine Cowboy Hat' por $35.",
+   "tags": [
+    "red dead",
+    "chapeu",
+    "garagem"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Referências a Red Dead e GTA IV",
+   "texto": "Livro do Flaco Hernandez na marina do Brian; livro de cowboy de New Austin no Jacob's Tavern (Millport); notas com presidentes de RDR2; livro 'Lethal by Design' na casa do Jason (caso Gracie Ancelotti, GTA IV).",
+   "tags": [
+    "red dead",
+    "gta iv",
+    "livro"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Carro do Paul Walker",
+   "texto": "Garagem trancada em Vespucci Island, a oeste de Vice Beach: carro estilo Velozes e Furiosos. Se registrar antes de conhecer o Moses, sai de graça.",
+   "tags": [
+    "velozes e furiosos",
+    "carro",
+    "vespucci"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Pistola Turnt Nipper .38",
+   "texto": "Ponta de Bobcat Key, ao sul de Capri: atire nas 3 cordas do parapente preso na árvore e pegue a pistola no assento. Dá no Cap. 1.",
+   "tags": [
+    "arma",
+    "segredo",
+    "capri"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Caranguejo gigante (Crab Lab)",
+   "texto": "Pelican Valley Crab Lab (Grassrivers): senha CLEAVES no computador (susto ao sair). Cofre 00072, teclado do barco 0212. Referência ao filme Island Claws.",
+   "tags": [
+    "segredo",
+    "codigo",
+    "cofre",
+    "grassrivers"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Navio fantasma",
+   "texto": "Farol St. Lucia, norte da Little Hardin Island (Leonard County): à noite, dois fantasmas brigam; à meia-noite, binóculos mostram o navio fantasma. Recompensa: faca amaldiçoada.",
+   "tags": [
+    "fantasma",
+    "farol",
+    "faca",
+    "noite"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Bloco do Mario",
+   "texto": "Ponto de meditação nas ruínas ao sul de Moreau (norte do Mount Kalaga): suba na ruína e bata no bloco invisível. Boné do Mario pro Jason e do Luigi pra Lucia.",
+   "tags": [
+    "mario",
+    "bone",
+    "meditacao"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Red Hulk do Kyle",
+   "texto": "Fazenda McKittrick (Frogswater, Kelly County), Cap. 2: ajude com os morangos gigantes, volte semanas depois e veja a transformação. $5.000 se matar, um abraço se poupar.",
+   "tags": [
+    "hulk",
+    "kyle",
+    "fazenda"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Papagaio Tony",
+   "texto": "Atrás da Three Sheets Liquor (Key Lento). Perguntar sobre 'Generator' dá $1.000-2.000.",
+   "tags": [
+    "papagaio",
+    "dinheiro",
+    "key lento"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Dardo do Saw",
+   "texto": "Em South Hyde Island, referência a Jogos Mortais: recompensa de $25.000.",
+   "tags": [
+    "saw",
+    "dinheiro",
+    "segredo"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Placa das outras cidades",
+   "texto": "Numa ilhazinha perto de um piano de cauda entre árvores: placa com Carcer City, Liberty City, San Fierro, Las Venturas e Los Santos.",
+   "tags": [
+    "referencia",
+    "placa",
+    "cidades"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Mais referências",
+   "texto": "Fabian LaRouche (yoga, GTA V) numa revista na casa do Jason; Niko Bellic aparece no Cap. 5 (Taking Liberties); Jimmy De Santa na lista VIP de Headliners (Cap. 4); console JoySystem na casa do Jason com o jogo 'Tenebrae Lux'.",
+   "tags": [
+    "gta v",
+    "gta iv",
+    "niko",
+    "jimmy"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Filmar polícia",
+   "texto": "Filmar policiais durante uma prisão dá 1 estrela de procurado.",
+   "tags": [
+    "policia",
+    "celular"
+   ]
   }
  ]
 }

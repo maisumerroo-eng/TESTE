@@ -380,7 +380,7 @@ dlg.addEventListener("close", () => {
 });
 
 // ---------- Guia offline ----------
-const NOMES_TIPO = { historia: "História", glitch: "Glitches", regiao: "Regiões", mecanica: "Mecânicas", atividade: "Atividades", personagem: "Personagens", curiosidade: "Curiosidades", dica: "Dicas" };
+const NOMES_TIPO = { historia: "História", glitch: "Glitches", cheat: "Cheats", regiao: "Regiões", mecanica: "Mecânicas", atividade: "Atividades", personagem: "Personagens", curiosidade: "Curiosidades", dica: "Dicas" };
 let banco = null, filtroTipo = "";
 async function abrirGuia() {
   if (!banco) {
