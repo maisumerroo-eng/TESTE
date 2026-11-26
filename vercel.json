@@ -4,6 +4,5 @@
   "buildCommand": "",
   "installCommand": "",
   "outputDirectory": "bravo",
-  "cleanUrls": false,
-  "ignoreCommand": "git diff HEAD^ HEAD --quiet -- bravo/ vercel.json"
+  "cleanUrls": false
 }
