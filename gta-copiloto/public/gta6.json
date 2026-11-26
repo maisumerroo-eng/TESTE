@@ -9,7 +9,14 @@
   "mmoexp.com",
   "powerpyx.com",
   "gtabase.com",
-  "gamerant.com"
+  "gamerant.com",
+  "notebookcheck.net",
+  "comicbook.com",
+  "gtaboom.com",
+  "beebom.com",
+  "leonihub.com",
+  "retrobroker.com",
+  "games.gg"
  ],
  "itens": [
   {
@@ -1353,6 +1360,75 @@
     "scarface",
     "ovni",
     "segredo"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Glitch de dinheiro do galpão vermelho (Apollo Aggregates)",
+   "texto": "Onde: galpão industrial vermelho em South Vice-Dale County, a leste/nordeste de Hamlet e ao norte de Key Lento, perto de três piscinas retangulares ao lado da rodovia. Como: 1) no escritório dos fundos pegue a cocaína da mesa e do cofre; 2) encha a bolsa com o dinheiro da van do meio e a cocaína das vans de ursinho; 3) guarde as bolsas no porta-malas do SEU carro; 4) salve MANUALMENTE; 5) carregue o save (nasce na casa do Jason com o porta-malas cheio); 6) volte, o loot reapareceu, repita. Venda no Brian's Lockup (sudoeste de Key Lento, teclado 7700); o pagamento cai na caixa de correio dias depois no jogo. Rende ~$8.600-11.000 por rodada. Funcionava depois do patch 01.002.002 segundo vários sites.",
+   "tags": [
+    "glitch",
+    "dinheiro",
+    "infinito",
+    "hamlet",
+    "celeiro",
+    "galpao",
+    "ursinho"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Riscos do glitch do galpão",
+   "texto": "Morrer ou ser preso com o loot = perde tudo. Algumas bolsas ficam sem poder pegar. Autosave é de slot único: use save manual e guarde um backup. Dizem que parceiro parado perto do galpão impede o loot de reaparecer. A Rockstar pode corrigir a qualquer momento.",
+   "tags": [
+    "glitch",
+    "risco",
+    "save"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Variantes do glitch do galpão (não confirmadas)",
+   "texto": "Um site diz que trocando de personagem (a partir do Cap. 2) e usando van de 10 vagas dá $82 mil a $230 mil por carga vendendo pro Tyrone no Cap. 3, e que com duas vans e o parceiro dá ~$90-100 mil em 10 min. Ninguém mais confirmou.",
+   "tags": [
+    "glitch",
+    "dinheiro",
+    "van",
+    "tyrone"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Falsos glitches de dinheiro",
+   "texto": "A 'sequência de botões de dinheiro infinito' é o cheat oficial de $250.000: só depois da história e desliga o save. 'Cassino do carro infinito' e vídeos de '$100 mil no início' não são comprovados. Duplicar carro é coisa do GTA Online, não do VI.",
+   "tags": [
+    "glitch",
+    "cheat",
+    "golpe",
+    "fake"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Patch 01.002.002 (23/11/2026)",
+   "texto": "Corrigiu: crashes, clima travado, autosave falhando, ligações que não chegavam (incluindo as que avançam a história), procurado que não sumia, barra de levantamento terra da academia, parceiro que não entregava bolsas pros receptadores. Não corrigiu: glitch de dinheiro do galpão e um glitch de roupa da Lucia. Crash CE-108255-1 no PS5 ainda existe. ~604 MB no PS5, ~1,6 GB no Xbox.",
+   "tags": [
+    "patch",
+    "update",
+    "bug",
+    "correcao"
+   ]
+  },
+  {
+   "tipo": "glitch",
+   "nome": "Saindo do Capítulo 1",
+   "texto": "Ao sair do Capítulo 1 o dinheiro de bolso some. Até $5.000 guardados no Family Savings são mantidos.",
+   "tags": [
+    "dinheiro",
+    "capitulo 1",
+    "poupanca"
    ],
    "confirmado": false
   }
