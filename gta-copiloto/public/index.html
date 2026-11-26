@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0613">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Copiloto IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Tela inicial -->
+  <section id="inicio" class="inicio">
+    <div class="inicio-box">
+      <p class="tag">Assistente de jogo com IA</p>
+      <h1>Copiloto<span>IA</span></h1>
+      <p class="sub">Aponta a câmera pra TV. A IA lê a tela e solta dicas, curiosidades e o que fazer por perto.</p>
+      <button id="btnIniciar" class="btn-primario">Ligar câmera</button>
+      <p class="aviso">Dica: apoia o celular num suporte, com a tela inteira enquadrada.</p>
+    </div>
+  </section>
+
+  <!-- Câmera + HUD -->
+  <main id="app" class="app" hidden>
+    <video id="video" playsinline muted autoplay></video>
+    <canvas id="canvas" hidden></canvas>
+
+    <header class="topo">
+      <div id="status" class="status"><i></i><span>Pronto</span></div>
+      <div class="topo-acoes">
+        <button id="btnVoz" class="icone" aria-label="Ligar ou desligar voz" aria-pressed="true">🔊</button>
+        <button id="btnPausa" class="icone" aria-label="Pausar">⏸</button>
+        <button id="btnConfig" class="icone" aria-label="Configurações">⚙</button>
+      </div>
+    </header>
+
+    <div class="mira" aria-hidden="true"></div>
+
+    <section id="painel" class="painel" aria-live="polite">
+      <div id="local" class="local">Aguardando primeira leitura…</div>
+      <div id="cards" class="cards"></div>
+    </section>
+
+    <form id="formPergunta" class="pergunta">
+      <input id="inputPergunta" type="text" placeholder="Pergunta algo sobre essa tela…" autocomplete="off" enterkeyhint="send">
+      <button type="submit" class="btn-enviar" aria-label="Enviar pergunta">➤</button>
+      <button type="button" id="btnAgora" class="btn-agora">Ler agora</button>
+    </form>
+  </main>
+
+  <!-- Configurações -->
+  <dialog id="config" class="config">
+    <form method="dialog">
+      <h2>Configurações</h2>
+      <label>Intervalo entre leituras
+        <select id="cfgIntervalo">
+          <option value="8">8 s (gasta mais)</option>
+          <option value="15" selected>15 s</option>
+          <option value="30">30 s</option>
+          <option value="60">60 s</option>
+          <option value="0">Só manual</option>
+        </select>
+      </label>
+      <label>Foco
+        <select id="cfgFoco">
+          <option value="tudo">Tudo</option>
+          <option value="missão e combate">Missão e combate</option>
+          <option value="exploração e segredos">Exploração e segredos</option>
+          <option value="dinheiro e progresso">Dinheiro e progresso</option>
+          <option value="curiosidades e história real">Curiosidades</option>
+        </select>
+      </label>
+      <label class="linha"><input id="cfgSpoilers" type="checkbox"> Permitir spoilers da história</label>
+      <label class="linha"><input id="cfgPular" type="checkbox" checked> Pular frame se a tela não mudou</label>
+      <label>Chave da API Anthropic (opcional, fica só neste celular)
+        <input id="cfgChave" type="password" placeholder="sk-ant-…" autocomplete="off">
+      </label>
+      <menu><button value="ok" class="btn-primario">Salvar</button></menu>
+    </form>
+  </dialog>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
