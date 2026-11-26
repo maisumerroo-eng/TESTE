@@ -31,6 +31,7 @@
     <header class="topo">
       <div id="status" class="status"><i></i><span>Pronto</span></div>
       <div class="topo-acoes">
+        <button id="btnGuia" class="icone" aria-label="Abrir guia do jogo">📖</button>
         <button id="btnVoz" class="icone" aria-label="Ligar ou desligar voz" aria-pressed="true">🔊</button>
         <button id="btnPausa" class="icone" aria-label="Pausar">⏸</button>
         <button id="btnConfig" class="icone" aria-label="Configurações">⚙</button>
@@ -45,7 +46,8 @@
     </section>
 
     <form id="formPergunta" class="pergunta">
-      <input id="inputPergunta" type="text" placeholder="Pergunta algo sobre essa tela…" autocomplete="off" enterkeyhint="send">
+      <button type="button" id="btnMic" class="btn-mic" aria-label="Falar pergunta" aria-pressed="false">🎤</button>
+      <input id="inputPergunta" type="text" placeholder="Fala ou digita uma pergunta…" autocomplete="off" enterkeyhint="send">
       <button type="submit" class="btn-enviar" aria-label="Enviar pergunta">➤</button>
       <button type="button" id="btnAgora" class="btn-agora">Ler agora</button>
     </form>
@@ -75,11 +77,23 @@
       </label>
       <label class="linha"><input id="cfgSpoilers" type="checkbox"> Permitir spoilers da história</label>
       <label class="linha"><input id="cfgPular" type="checkbox" checked> Pular frame se a tela não mudou</label>
-      <label>Chave da API Anthropic (opcional, fica só neste celular)
+      <label class="linha"><input id="cfgOuvir" type="checkbox"> Modo mãos-livres (microfone sempre ouvindo)</label>
+      <label>Chave própria da Anthropic (opcional — sem ela usa o crédito grátis da Vercel)
         <input id="cfgChave" type="password" placeholder="sk-ant-…" autocomplete="off">
       </label>
       <menu><button value="ok" class="btn-primario">Salvar</button></menu>
     </form>
+  </dialog>
+
+  <!-- Guia offline (banco de conhecimento) -->
+  <dialog id="guia" class="config guia">
+    <form method="dialog" class="guia-topo">
+      <h2>Guia GTA VI</h2>
+      <button class="icone" aria-label="Fechar guia">✕</button>
+    </form>
+    <input id="guiaBusca" type="search" placeholder="Buscar: Vice City, polícia, pesca…" autocomplete="off">
+    <div id="guiaFiltros" class="filtros"></div>
+    <div id="guiaLista" class="guia-lista"></div>
   </dialog>
 
   <script src="app.js" type="module"></script>

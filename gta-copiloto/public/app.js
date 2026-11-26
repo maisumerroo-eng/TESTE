@@ -14,6 +14,7 @@ const cfg = {
   pular: LS.get("pular", true),
   chave: LS.get("chave", ""),
   voz: LS.get("voz", true),
+  ouvir: LS.get("ouvir", false),
 };
 
 let historico = [];
@@ -43,6 +44,7 @@ async function ligarCamera() {
     $("app").hidden = false;
     pedirWakeLock();
     agendar(1500);
+    if (cfg.ouvir) ouvir();
   } catch (e) {
     alert("Não deu pra abrir a câmera. Libera a permissão e abre o site em HTTPS.\n\n" + e.message);
   }
@@ -186,8 +188,48 @@ function falar(txt) {
   u.lang = "pt-BR";
   if (vozPt) u.voice = vozPt;
   u.rate = 1.08;
+  u.onstart = () => pararOuvir(true);
+  u.onend = () => { if (cfg.ouvir) ouvir(); };
   speechSynthesis.speak(u);
 }
+
+// ---------- Microfone (pergunta por voz) ----------
+const Reconhecedor = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, ouvindo = false;
+const btnMic = $("btnMic");
+if (!Reconhecedor) btnMic.hidden = true;
+
+function ouvir() {
+  if (!Reconhecedor || ouvindo) return;
+  rec = new Reconhecedor();
+  rec.lang = "pt-BR";
+  rec.interimResults = true;
+  rec.continuous = false;
+  rec.onresult = (e) => {
+    const r = e.results[e.results.length - 1];
+    $("inputPergunta").value = r[0].transcript;
+    if (r.isFinal) {
+      const q = r[0].transcript.trim();
+      $("inputPergunta").value = "";
+      if (q.length > 2) { perguntaPendente = q; analisar(true); }
+    }
+  };
+  rec.onend = () => {
+    ouvindo = false; btnMic.setAttribute("aria-pressed", "false");
+    if (cfg.ouvir && !ocupado && !speechSynthesis?.speaking) setTimeout(ouvir, 400);
+  };
+  rec.onerror = (e) => { if (e.error === "not-allowed") { cfg.ouvir = false; LS.set("ouvir", false); } };
+  try { rec.start(); ouvindo = true; btnMic.setAttribute("aria-pressed", "true"); } catch {}
+}
+function pararOuvir(temporario) {
+  if (!temporario) { cfg.ouvir = false; LS.set("ouvir", false); }
+  try { rec?.abort(); } catch {}
+  ouvindo = false; btnMic.setAttribute("aria-pressed", "false");
+}
+btnMic.addEventListener("click", () => {
+  if (ouvindo) pararOuvir(false);
+  else { speechSynthesis?.cancel(); ouvir(); }
+});
 
 // ---------- Controles ----------
 $("btnIniciar").addEventListener("click", () => {
@@ -230,6 +272,7 @@ $("btnConfig").addEventListener("click", () => {
   $("cfgSpoilers").checked = cfg.spoilers;
   $("cfgPular").checked = cfg.pular;
   $("cfgChave").value = cfg.chave;
+  $("cfgOuvir").checked = cfg.ouvir;
   dlg.showModal();
 });
 dlg.addEventListener("close", () => {
@@ -238,6 +281,43 @@ dlg.addEventListener("close", () => {
   cfg.spoilers = $("cfgSpoilers").checked;
   cfg.pular = $("cfgPular").checked;
   cfg.chave = $("cfgChave").value.trim();
-  for (const k of ["intervalo", "foco", "spoilers", "pular", "chave"]) LS.set(k, cfg[k]);
+  cfg.ouvir = $("cfgOuvir").checked;
+  for (const k of ["intervalo", "foco", "spoilers", "pular", "chave", "ouvir"]) LS.set(k, cfg[k]);
+  if (cfg.ouvir) ouvir(); else pararOuvir(false);
   agendar();
 });
+
+// ---------- Guia offline ----------
+const NOMES_TIPO = { regiao: "Regiões", mecanica: "Mecânicas", atividade: "Atividades", personagem: "Personagens", curiosidade: "Curiosidades", dica: "Dicas" };
+let banco = null, filtroTipo = "";
+async function abrirGuia() {
+  if (!banco) {
+    try { banco = (await (await fetch("gta6.json")).json()).itens; } catch { banco = []; }
+    const f = $("guiaFiltros");
+    for (const t of ["", ...new Set(banco.map((i) => i.tipo))]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = t ? NOMES_TIPO[t] || t : "Tudo";
+      b.setAttribute("aria-pressed", String(t === filtroTipo));
+      b.onclick = () => { filtroTipo = t; f.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); listarGuia(); };
+      f.append(b);
+    }
+  }
+  listarGuia();
+  $("guia").showModal();
+}
+const semAcento = (t) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+function listarGuia() {
+  const q = semAcento($("guiaBusca").value.trim());
+  const itens = banco.filter((i) => (!filtroTipo || i.tipo === filtroTipo) &&
+    (!q || semAcento(i.nome + " " + i.texto + " " + (i.tags || []).join(" ")).includes(q)));
+  const lista = $("guiaLista");
+  lista.replaceChildren(...itens.map((i) => {
+    const c = card(i.tipo === "curiosidade" ? "curiosidade" : i.tipo === "regiao" ? "perto" : "dica", i.nome, i.texto);
+    if (i.confirmado === false) { const s = document.createElement("small"); s.textContent = "Não confirmado"; c.append(s); }
+    return c;
+  }));
+  if (!itens.length) lista.append(card("erro", "Nada", "Nada encontrado."));
+}
+$("btnGuia").addEventListener("click", abrirGuia);
+$("guiaBusca").addEventListener("input", listarGuia);

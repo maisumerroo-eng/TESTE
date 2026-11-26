@@ -1,7 +1,17 @@
 // Recebe um frame da câmera (foto da TV com o jogo) e devolve dicas em JSON.
 import Anthropic from "@anthropic-ai/sdk";
+import { readFileSync } from "node:fs";
 
-const MODEL = "claude-opus-5-5";
+// Padrão: Claude Haiku 5.5 via Vercel AI Gateway (crédito grátis da Vercel, sem chave).
+// Se o usuário colar uma chave própria da Anthropic (sk-ant-...), vai direto na Anthropic.
+const MODELO_GATEWAY = process.env.MODELO || "anthropic/claude-haiku-5.5";
+const MODELO_ANTHROPIC = "claude-haiku-5-5";
+
+// Banco de conhecimento do GTA VI (vai inteiro no prompt, com cache).
+const BANCO = JSON.parse(readFileSync(new URL("../public/gta6.json", import.meta.url), "utf8"));
+const BANCO_TXT = BANCO.itens
+  .map((i) => `[${i.tipo}] ${i.nome}${i.tags?.length ? ` (${i.tags.join(", ")})` : ""}: ${i.texto}${i.confirmado === false ? " (NÃO CONFIRMADO)" : ""}`)
+  .join("\n");
 
 const SYSTEM = `Você é o "Copiloto", um parceiro de jogo que assiste a partida de GTA VI junto com o jogador.
 O jogador apontou a câmera do celular para a TV/monitor. A imagem pode estar torta, com reflexo, moiré ou desfocada.
@@ -18,7 +28,8 @@ O que entregar:
 - fala: 1 frase curta (máx 20 palavras), tom de parceiro de jogo, pra ser lida em voz alta.
 - Não repita dicas já dadas (lista em "já falei").
 - Se a imagem não for uma tela de jogo (ou for menu/carregamento), marque tela_de_jogo=false e use os campos pra uma dica curta geral.
-Responda em português do Brasil, direto, sem enrolação.`;
+- Use o BANCO DE CONHECIMENTO abaixo como fonte principal. Itens "NÃO CONFIRMADO" só com aviso.
+Responda em português do Brasil, direto, sem enrolação. Responda SOMENTE com o JSON pedido.`;
 
 const SCHEMA = {
   type: "object",
@@ -46,8 +57,12 @@ const SCHEMA = {
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ erro: "Use POST" });
 
-  const apiKey = process.env.ANTHROPIC_API_KEY || req.headers["x-user-key"];
-  if (!apiKey) return res.status(401).json({ erro: "Sem chave da API. Configure ANTHROPIC_API_KEY ou cole sua chave nas configurações." });
+  const chaveUsuario = String(req.headers["x-user-key"] || "");
+  const direto = chaveUsuario.startsWith("sk-ant-") || process.env.ANTHROPIC_API_KEY;
+  const apiKey = direto
+    ? chaveUsuario || process.env.ANTHROPIC_API_KEY
+    : process.env.AI_GATEWAY_API_KEY || req.headers["x-vercel-oidc-token"] || process.env.VERCEL_OIDC_TOKEN;
+  if (!apiKey) return res.status(401).json({ erro: "Sem acesso à IA. Publique na Vercel (AI Gateway) ou cole uma chave nas configurações." });
 
   const { imagem, historico = [], pergunta = "", spoilers = false, foco = "tudo" } = req.body || {};
   if (!imagem || typeof imagem !== "string") return res.status(400).json({ erro: "Faltou a imagem" });
@@ -61,15 +76,18 @@ export default async function handler(req, res) {
     pergunta ? `Pergunta do jogador (responda na dica e na fala): ${pergunta}` : "",
   ].filter(Boolean).join("\n");
 
-  const client = new Anthropic({ apiKey });
+  const client = direto
+    ? new Anthropic({ apiKey })
+    : new Anthropic({ apiKey, baseURL: "https://ai-gateway.vercel.sh" });
   try {
-    const response = await client.beta.messages.create({
-      model: MODEL,
+    const response = await client.messages.create({
+      model: direto ? MODELO_ANTHROPIC : MODELO_GATEWAY,
       max_tokens: 4000,
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
       output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
-      system: SYSTEM,
+      system: [
+        { type: "text", text: SYSTEM },
+        { type: "text", text: "BANCO DE CONHECIMENTO GTA VI:\n" + BANCO_TXT, cache_control: { type: "ephemeral" } },
+      ],
       messages: [
         {
           role: "user",
@@ -84,13 +102,17 @@ export default async function handler(req, res) {
     if (response.stop_reason === "refusal") return res.status(422).json({ erro: "A IA recusou esse frame. Tenta de novo." });
     if (response.stop_reason === "max_tokens") return res.status(502).json({ erro: "Resposta cortada. Tenta de novo." });
 
-    const texto = response.content.find((b) => b.type === "text")?.text;
-    const json = JSON.parse(texto);
+    const texto = response.content.filter((b) => b.type === "text").map((b) => b.text).join("");
+    const json = JSON.parse(texto.slice(texto.indexOf("{"), texto.lastIndexOf("}") + 1));
     return res.status(200).json(json);
   } catch (e) {
-    if (e instanceof Anthropic.AuthenticationError) return res.status(401).json({ erro: "Chave da API inválida." });
+    if (e instanceof Anthropic.AuthenticationError) return res.status(401).json({ erro: "Chave/acesso inválido." });
+    if (e instanceof Anthropic.PermissionDeniedError || e?.status === 402) return res.status(402).json({ erro: "Crédito grátis do mês acabou. Volta no próximo ciclo ou aumenta o intervalo." });
     if (e instanceof Anthropic.RateLimitError) return res.status(429).json({ erro: "Muitas requisições. Aumenta o intervalo." });
-    if (e instanceof Anthropic.APIError) return res.status(502).json({ erro: `Erro da IA (${e.status ?? "rede"})` });
+    if (e instanceof Anthropic.APIError) {
+      console.error(e.status, e.message);
+      return res.status(502).json({ erro: `Erro da IA (${e.status ?? "rede"})` });
+    }
     if (e instanceof SyntaxError) return res.status(502).json({ erro: "Resposta da IA veio quebrada." });
     console.error(e);
     return res.status(500).json({ erro: "Erro interno" });

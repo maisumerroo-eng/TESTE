@@ -1,0 +1,326 @@
+{
+ "versao": "2026-11-26",
+ "itens": [
+  {
+   "tipo": "regiao",
+   "nome": "Leonida",
+   "texto": "Estado fictício onde o jogo se passa, inspirado na Flórida. Mapa maior que o do GTA V, com cidade, ilhas, pântanos, praias, interior agrícola e florestas.",
+   "tags": [
+    "mapa",
+    "estado",
+    "florida"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Vice City",
+   "texto": "Maior cidade de Leonida, inspirada em Miami. Visual: arranha-céus de vidro, prédios art déco em tons pastel, palmeiras, neon à noite, praias lotadas, iates e carros esportivos. Centro da vida noturna, clubes, lojas e golpes.",
+   "tags": [
+    "cidade",
+    "miami",
+    "praia",
+    "neon",
+    "noite"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Ocean Beach (Vice City)",
+   "texto": "Área de praia de Vice City inspirada em Miami Beach/South Beach: avenida beira-mar com hotéis art déco, letreiros neon, calçadão e areia. Ótima pra passear, carros de luxo e fotos.",
+   "tags": [
+    "praia",
+    "art deco",
+    "miami beach",
+    "neon"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Leonida Keys",
+   "texto": "Arquipélago no sul inspirado nas Florida Keys. Visual: ilhas baixas ligadas por pontes longas sobre água azul-turquesa, casas de palafita, marinas, barcos. É onde vivem Jason e o pessoal do tráfico de barco.",
+   "tags": [
+    "ilhas",
+    "pontes",
+    "barco",
+    "keys",
+    "agua"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Key Lento",
+   "texto": "Ilha das Leonida Keys citada como ponto de início da história.",
+   "tags": [
+    "keys",
+    "inicio",
+    "ilha"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Grassrivers",
+   "texto": "Pântano inspirado nos Everglades. Visual: capim alto alagado, manguezais, airboats, jacarés e estradas retas sobre o charco. Cuidado com jacarés na água.",
+   "tags": [
+    "pantano",
+    "everglades",
+    "jacare",
+    "airboat"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Port Gellhorn",
+   "texto": "Cidade praiana decadente inspirada na região de Panama City/Panhandle. Visual: motéis velhos, parque de diversões, fábricas, praia de spring break gasta. Rockstar chama de 'costa esquecida'.",
+   "tags": [
+    "praia",
+    "panhandle",
+    "motel",
+    "decadente"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Ambrosia",
+   "texto": "Cidade industrial do interior inspirada em Clewiston, centro do açúcar da Flórida. Visual: refinaria de açúcar com chaminés, canaviais, campos planos, motoqueiros e trailers.",
+   "tags": [
+    "interior",
+    "acucar",
+    "refinaria",
+    "motoqueiros"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Mount Kalaga (parque nacional)",
+   "texto": "Região de natureza no norte de Leonida: florestas densas, rios, trilhas, cabanas. Lugar de caça, pesca, off-road e trilhas.",
+   "tags": [
+    "floresta",
+    "caca",
+    "pesca",
+    "offroad",
+    "norte"
+   ]
+  },
+  {
+   "tipo": "regiao",
+   "nome": "Lake Leonida",
+   "texto": "Grande lago no interior, inspirado no Lake Okeechobee. Bom pra pesca e barco.",
+   "tags": [
+    "lago",
+    "pesca",
+    "okeechobee"
+   ],
+   "confirmado": false
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Lucia Caminos",
+   "texto": "Protagonista. Acabou de sair da Penitenciária de Leonida, aprendeu a lutar com o pai. Quer uma vida melhor pra ela e a mãe.",
+   "tags": [
+    "protagonista",
+    "lucia"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Jason Duval",
+   "texto": "Protagonista. Ex-militar, faz serviços pra traficantes nas Keys. Quer uma vida tranquila, mas se envolve com Lucia em crimes.",
+   "tags": [
+    "protagonista",
+    "jason"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Cal Hampton",
+   "texto": "Amigo e parceiro de Jason nas Keys. Teórico da conspiração, vive escutando rádio da polícia e na internet.",
+   "tags": [
+    "keys",
+    "jason"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Boobie Ike",
+   "texto": "Lenda de Vice City. Dono de imóveis, clube de strip e da gravadora Only Raw Records.",
+   "tags": [
+    "vice city",
+    "musica",
+    "negocios"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Dre'Quan Priest",
+   "texto": "Sócio de Boobie, manda na parte musical da Only Raw Records e quer lançar a dupla Real Dimez.",
+   "tags": [
+    "musica",
+    "vice city"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Real Dimez",
+   "texto": "Dupla de rap (Bae-Luxe e Roxy) que estourou nas redes; contratadas da Only Raw Records.",
+   "tags": [
+    "musica",
+    "rap",
+    "redes sociais"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Raul Bautista",
+   "texto": "Assaltante de banco experiente e carismático, recruta gente pra golpes cada vez mais arriscados.",
+   "tags": [
+    "assalto",
+    "banco"
+   ]
+  },
+  {
+   "tipo": "personagem",
+   "nome": "Brian Heder",
+   "texto": "Traficante veterano das Keys que dá casa a Jason em troca de trabalho. Mora com a esposa Lori.",
+   "tags": [
+    "keys",
+    "trafico",
+    "jason"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Fugir da polícia (padrão GTA)",
+   "texto": "Quebre a linha de visão: becos, túneis, garagens, embaixo de pontes. Trocar de carro longe dos policiais e ficar parado escondido ajuda as estrelas sumirem.",
+   "tags": [
+    "policia",
+    "procurado",
+    "estrelas",
+    "fuga"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Dinheiro no começo (padrão GTA)",
+   "texto": "Missões da história dão a maior parte do dinheiro no início. Não gaste tudo em carro: guarde para armas, armadura e munição antes de missões grandes.",
+   "tags": [
+    "dinheiro",
+    "economia",
+    "inicio"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Combate (padrão GTA)",
+   "texto": "Use cobertura sempre, mire na cabeça, recarregue atrás de muros. Antes de missão pesada, encha vida e armadura.",
+   "tags": [
+    "combate",
+    "tiroteio",
+    "armadura"
+   ]
+  },
+  {
+   "tipo": "dica",
+   "nome": "Direção (padrão GTA)",
+   "texto": "Freio de mão em curvas fechadas. Motos são ótimas pra fugir em trânsito; barcos e pântanos despistam viaturas.",
+   "tags": [
+    "direcao",
+    "carro",
+    "moto",
+    "fuga"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Volta a Vice City",
+   "texto": "Vice City apareceu no primeiro GTA (1997) e em GTA Vice City (2002), passado em 1986. GTA VI traz a cidade de volta nos dias de hoje.",
+   "tags": [
+    "vice city",
+    "historia da serie"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Primeira protagonista mulher na era 3D",
+   "texto": "Lucia é a primeira protagonista mulher jogável da série desde os GTAs 2D.",
+   "tags": [
+    "lucia"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Trailer recordista",
+   "texto": "O 1º trailer (dez/2023) saiu um dia antes por causa de vazamento e bateu recorde de visualizações em 24h no YouTube para vídeo que não é clipe musical.",
+   "tags": [
+    "trailer",
+    "recorde"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Músicas dos trailers",
+   "texto": "Trailer 1 usa 'Love Is a Long Road' (Tom Petty). Trailer 2 usa 'Hot Together' (The Pointer Sisters).",
+   "tags": [
+    "musica",
+    "trailer"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Lançamento adiado",
+   "texto": "O jogo foi anunciado para 2025, depois adiado para maio de 2026 e lançado em 19 de novembro de 2026.",
+   "tags": [
+    "lancamento"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Florida Man",
+   "texto": "Os clipes de 'redes sociais' dos trailers satirizam o meme 'Florida Man', das notícias bizarras da Flórida.",
+   "tags": [
+    "humor",
+    "redes sociais",
+    "florida"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Art déco de Miami",
+   "texto": "O distrito art déco de Miami Beach tem centenas de prédios dos anos 1930 tombados — base do visual pastel e neon de Vice City.",
+   "tags": [
+    "miami",
+    "arquitetura",
+    "vice city"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Everglades de verdade",
+   "texto": "Os Everglades são o maior ecossistema subtropical selvagem dos EUA e o único lugar onde jacarés e crocodilos vivem juntos.",
+   "tags": [
+    "everglades",
+    "grassrivers",
+    "jacare"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Seven Mile Bridge",
+   "texto": "As Florida Keys são ligadas pela Overseas Highway, com a Seven Mile Bridge (~11 km) — inspiração para as pontes longas das Leonida Keys.",
+   "tags": [
+    "keys",
+    "ponte"
+   ]
+  },
+  {
+   "tipo": "curiosidade",
+   "nome": "Cidade mais doce",
+   "texto": "Clewiston, inspiração de Ambrosia, se chama 'America's Sweetest Town' por causa da indústria de açúcar.",
+   "tags": [
+    "ambrosia",
+    "acucar"
+   ]
+  }
+ ]
+}
