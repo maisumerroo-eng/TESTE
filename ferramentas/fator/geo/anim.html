@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050607;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;opacity:0}
+.dark{background:#050607}.light{background:#efefec}
+.glow{position:absolute;width:900px;height:900px;border-radius:50%;filter:blur(140px)}
+.g1{background:#1f5fe0}.g2{background:#13c79d}
+.cap{position:absolute;left:0;right:0;text-align:center;font-weight:600;letter-spacing:-.02em;line-height:1.12}
+.capd{color:#fff}.capl{color:#111}
+.grad{background:linear-gradient(90deg,#4f8cff,#19e0b0);-webkit-background-clip:text;color:transparent}
+.chat{position:absolute;left:90px;width:900px;background:#14161b;border-radius:40px;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1.5px rgba(255,255,255,.06);padding:44px 40px;overflow:hidden}
+.chat .hd{display:flex;align-items:center;gap:16px;color:#9aa3b2;font:600 28px Inter;margin-bottom:34px}
+.chat .hd i{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4f8cff,#19e0b0);display:inline-block}
+.ub{margin-left:auto;max-width:680px;background:#2a5bd7;color:#fff;font:500 36px Inter;line-height:1.3;padding:24px 30px;border-radius:30px 30px 8px 30px;width:fit-content}
+.ai{margin-top:30px;color:#e7eaf0;font:500 33px Inter;line-height:1.35}
+.dots span{display:inline-block;width:16px;height:16px;border-radius:50%;background:#7b8494;margin-right:10px}
+.item{display:flex;align-items:center;gap:22px;background:#1c1f26;border-radius:22px;padding:22px 26px;margin-top:18px;font:600 34px Inter;color:#fff}
+.item .n{width:52px;height:52px;border-radius:14px;background:#2a2e38;display:flex;align-items:center;justify-content:center;font-size:28px;color:#9aa3b2}
+.item .st{margin-left:auto;color:#f5c542;font-size:30px}
+.item.you{background:linear-gradient(#1c1f26,#1c1f26) padding-box,linear-gradient(90deg,#4f8cff,#19e0b0) border-box;border:4px solid transparent}
+.tag{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;font:700 40px Inter;padding:18px 34px;border-radius:999px}
+.big{position:absolute;left:0;right:0;text-align:center;font-weight:800;letter-spacing:-.04em}
+.row{display:flex;align-items:center;gap:26px;background:#fff;border-radius:26px;padding:34px 38px;font-size:44px;font-weight:600;color:#111;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:24px}
+.ok{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#1f5fe0,#13c79d);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;flex:none}
+.src{position:absolute;left:0;right:0;text-align:center;font:500 26px 'JetBrains Mono',monospace;color:#6b7280}
+.pillc{position:absolute;left:50%;transform:translateX(-50%);background:#fff;color:#0b0c0f;font:800 64px Inter;padding:26px 56px;border-radius:999px;letter-spacing:.02em}
+</style></head><body>
+
+<!-- S1 hook: IA indica o concorrente -->
+<div class="scene dark" id="s1">
+  <div class="glow g1" style="left:90px;top:520px;opacity:.45"></div>
+  <div class="cap capd" id="h1" style="top:230px;font-size:62px">Seu cliente não pesquisa<br>mais só no Google.</div>
+  <div class="chat" id="chat1" style="top:540px;min-height:900px">
+    <div class="hd"><i></i>Assistente de IA</div>
+    <div class="ub" id="q1"><span id="q1t"></span></div>
+    <div class="ai" id="a1">
+      <div class="dots" id="dots1"><span></span><span></span><span></span></div>
+      <div id="ans1" style="opacity:0">Aqui estão as mais recomendadas perto de você:
+        <div class="item" id="i1"><span class="n">1</span>Smash do Bairro<span class="st">★ 4,8</span></div>
+        <div class="item" id="i2"><span class="n">2</span>Burger Point<span class="st">★ 4,7</span></div>
+        <div class="item" id="i3"><span class="n">3</span>Casa do Lanche<span class="st">★ 4,6</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tag" id="t1" style="top:1500px;background:#ff3b30;color:#fff">E a sua empresa? Não apareceu.</div>
+</div>
+
+<!-- S2 dado Gartner -->
+<div class="scene dark" id="s2">
+  <div class="glow g1" style="left:-120px;top:500px;opacity:.35"></div>
+  <div class="glow g2" style="left:420px;top:760px;opacity:.22"></div>
+  <div id="gbar" style="position:absolute;left:140px;right:140px;top:420px;height:110px;border-radius:999px;background:#fff;display:flex;align-items:center;padding:0 44px;gap:22px;font:500 36px Inter;color:#9aa3b2">
+    <span style="font-size:44px">🔍</span>Pesquisar no Google</div>
+  <div class="big" id="num" style="top:640px;font-size:300px;color:#fff">-0%</div>
+  <div class="cap capd" id="numl" style="top:1010px;font-size:50px">nas buscas tradicionais<br><span style="color:#8a8f98">até 2026</span></div>
+  <div class="src" id="numsrc" style="top:1185px">previsão Gartner (fev/2024)</div>
+  <div class="cap capd" id="c2" style="top:1340px;font-size:54px">Porque as pessoas tão<br><span class="grad">perguntando pra IA.</span></div>
+</div>
+
+<!-- S3 o que a IA le -->
+<div class="scene light" id="s3">
+  <div class="cap capl" id="c3" style="top:380px;font-size:60px">A IA só recomenda quem<br>ela consegue <span style="color:#1f5fe0">ler e confiar</span>:</div>
+  <div style="position:absolute;left:120px;right:120px;top:720px">
+    <div class="row" id="r1"><span class="ok">✓</span>Site organizado</div>
+    <div class="row" id="r2"><span class="ok">✓</span>Perfil no Google completo</div>
+    <div class="row" id="r3"><span class="ok">✓</span>Avaliações</div>
+  </div>
+</div>
+
+<!-- S4 GEO -->
+<div class="scene dark" id="s4">
+  <div class="glow g1" style="left:-80px;top:560px;opacity:.5"></div>
+  <div class="glow g2" style="left:360px;top:640px;opacity:.35"></div>
+  <div class="cap capd" id="c4a" style="top:560px;font-size:56px;color:#9aa3b2">Isso tem nome:</div>
+  <div class="big grad" id="geo" style="top:660px;font-size:280px">GEO</div>
+  <div class="cap capd" id="c4b" style="top:1020px;font-size:56px">o SEO da era da<br>inteligência artificial.</div>
+</div>
+
+<!-- S5 Fator: agora a IA indica voce -->
+<div class="scene dark" id="s5">
+  <div class="glow g2" style="left:90px;top:560px;opacity:.35"></div>
+  <div class="chat" id="chat2" style="top:300px;min-height:800px">
+    <div class="hd"><i></i>Assistente de IA</div>
+    <div class="ub">qual a melhor hamburgueria perto de mim?</div>
+    <div class="ai">Aqui estão as mais recomendadas perto de você:
+      <div class="item you" id="j1"><span class="n" style="background:linear-gradient(135deg,#1f5fe0,#13c79d);color:#fff">1</span>Sua Empresa<span class="st">★ 4,9</span></div>
+      <div class="item" id="j2" style="opacity:.5"><span class="n">2</span>Smash do Bairro<span class="st">★ 4,8</span></div>
+      <div class="item" id="j3" style="opacity:.5"><span class="n">3</span>Burger Point<span class="st">★ 4,7</span></div>
+    </div>
+  </div>
+  <div class="cap capd" id="c5" style="top:1240px;font-size:52px">Na <b>Fator Marketing</b>, seu site é<br>feito pra ser <span style="color:#9aa3b2">encontrado no Google</span><br>e <span class="grad">recomendado pela IA.</span></div>
+</div>
+
+<!-- S6 CTA -->
+<div class="scene dark" id="s6">
+  <div class="glow g1" style="left:90px;top:380px;opacity:.5"></div>
+  <div class="glow g2" style="left:300px;top:620px;opacity:.25"></div>
+  <div id="logo" style="position:absolute;left:390px;top:440px;width:300px;height:300px;border-radius:70px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 40px 100px rgba(0,0,0,.5)">
+    <img src="../logo_fator_marketing.png" style="width:225px"></div>
+  <div class="cap capd" id="c6a" style="top:840px;font-size:54px">Comenta</div>
+  <div class="pillc" id="c6p" style="top:930px">IA</div>
+  <div class="cap capd" id="c6b" style="top:1130px;font-size:44px;color:#c7d3e6;font-weight:500">que a gente te mostra se<br>a sua empresa aparece.</div>
+</div>
+
+<script>
+const S=[["s1",0,6.3],["s2",6.3,14.85],["s3",14.85,23.1],["s4",23.1,28.6],["s5",28.6,35.05],["s6",35.05,40.4]];
+const END=40.4, XF=0.3, $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3);
+const prog=(t,a,d)=>cl((t-a)/d);
+function show(el,p,dy=30,sc=0){const e=eo(p);el.style.opacity=e;el.style.transform=`translateY(${(1-e)*dy}px) scale(${1-sc*(1-e)})`;}
+function showX(el,p,dy=30,sc=0){const e=eo(p);el.style.opacity=e;el.style.transform=`translateX(-50%) translateY(${(1-e)*dy}px) scale(${1-sc*(1-e)})`;}
+function hide(el,p){el.style.opacity=Math.min(parseFloat(el.style.opacity||1),1-eo(p));}
+const Q="qual a melhor hamburgueria perto de mim?";
+const T={q0:.2,q1:1.7,dots:1.8,ans:3.0,i:[3.3,3.6,3.9],tag:5.55, bar:6.35,num0:7.6,num1:9.4,numl:9.9,src:10.2,c2:11.7,
+  c3:14.95,r:[18.35,19.5,22.2], c4a:23.2,geo:24.5,c4b:26.3, chat2:28.65,j1:29.5,c5:29.7,shine:33.8, logo:35.1,c6a:35.2,c6p:35.45,c6b:36.4};
+function render(t){
+  for(const [id,a,b] of S){const el=$(id);
+    let o=(a===0)?1:cl((t-(a-XF))/XF); if(b<END) o=Math.min(o,cl((b-t)/XF+1e-4)); if(t>b||t<a-XF) o=0;
+    el.style.opacity=o; el.style.display=o>0?'block':'none';
+    el.querySelectorAll('.glow').forEach((g,i)=>{g.style.transform=`translate(${Math.sin(t*.4+i)*60}px,${Math.cos(t*.33+i)*50}px)`});}
+  // S1
+  show($('h1'),prog(t,0,.35)); show($('chat1'),prog(t,0.05,.45),60,.04);
+  $('q1t').textContent=Q.slice(0,Math.floor(cl((t-T.q0)/(T.q1-T.q0))*Q.length)); $('q1').style.opacity=t<T.q0?0:1;
+  const d=$('dots1'); d.style.display=(t>T.dots&&t<T.ans)?'block':'none';
+  [...d.children].forEach((s,i)=>s.style.opacity=.35+.65*Math.max(0,Math.sin(t*9-i*.8)));
+  $('ans1').style.opacity=t>=T.ans?1:0;
+  ['i1','i2','i3'].forEach((id,k)=>show($(id),prog(t,T.i[k],.3),24));
+  showX($('t1'),prog(t,T.tag,.25),20,.15);
+  // S2
+  show($('gbar'),prog(t,T.bar,.4),30); const fade=prog(t,T.num0,1.2); $('gbar').style.filter=`grayscale(1) brightness(${1-.55*fade})`;
+  show($('num'),prog(t,T.num0,.4),40,.1); $('num').textContent='-'+Math.round(25*eo(prog(t,T.num0+.1,T.num1-T.num0)))+'%';
+  show($('numl'),prog(t,T.numl,.35)); show($('numsrc'),prog(t,T.src,.35)); show($('c2'),prog(t,T.c2,.4));
+  // S3
+  show($('c3'),prog(t,T.c3,.4)); ['r1','r2','r3'].forEach((id,k)=>{show($(id),prog(t,T.r[k]-.15,.35),40);
+     const ok=$(id).querySelector('.ok'); const p=eo(prog(t,T.r[k],.25)); ok.style.transform=`scale(${.3+.7*p})`;});
+  // S4
+  show($('c4a'),prog(t,T.c4a,.35)); show($('geo'),prog(t,T.geo,.45),40,.3); show($('c4b'),prog(t,T.c4b,.4));
+  // S5
+  show($('chat2'),prog(t,T.chat2,.45),60,.04); show($('j1'),prog(t,T.j1,.4),30,.05);
+  const sh=eo(prog(t,T.shine,.5))*(1-eo(prog(t,T.shine+.8,.8))); $('j1').style.boxShadow=`0 0 ${60*sh}px rgba(25,224,176,${.8*sh})`;
+  show($('c5'),prog(t,T.c5,.45));
+  // S6
+  show($('logo'),prog(t,T.logo,.5),40,.12); show($('c6a'),prog(t,T.c6a,.35)); showX($('c6p'),prog(t,T.c6p,.35),30,.3); show($('c6b'),prog(t,T.c6b,.4));
+  const fo=cl((t-(END-0.5))/0.5); document.body.style.filter=fo>0?`brightness(${1-fo})`:'';
+}
+window.render=render; render(0);
+</script></body></html>
