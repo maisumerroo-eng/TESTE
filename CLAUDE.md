@@ -68,6 +68,10 @@ Aplicar por padrão em qualquer conteúdo, sem esperar ela pedir de novo.
 - Ferramentas: `ferramentas/fator/capa/cover.html` + `make_covers.js` (gera a capa) e `add_cover.sh capa.png in.mp4 out.mp4` (põe a capa nos 2 primeiros quadros e atrasa o áudio junto).
 - Aplicar só nos vídeos novos, sem mexer nos já entregues, a não ser que ela peça.
 
+# Legenda do post (SEMPRE)
+- Toda entrega de reel/post vem com a legenda pronta pra colar (texto do post do Instagram): gancho na 1ª linha, explicação curta, CTA igual ao do vídeo (mesma palavra do comentário) e 3–6 hashtags.
+- Dar também uma versão curta.
+
 # Lições do trailer de terror
 - Título não pode estourar a largura: limitar a 1000px e quebrar em duas linhas.
 - Footage noturna escura: levantar as sombras (gamma) antes do grade escuro, senão o rosto some.
