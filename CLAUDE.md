@@ -61,6 +61,13 @@ Aplicar por padrão em qualquer conteúdo, sem esperar ela pedir de novo.
 - Sempre transcrever o vídeo final (faster-whisper medium) e conferir que nenhuma palavra foi cortada antes de entregar.
 - Script: `ferramentas/compro_nao_compro.py`.
 
+# Capa do reel (SEMPRE)
+- Todo reel novo começa com uma CAPA em 2 quadros (~0,07s): quase não aparece no vídeo, mas vira a capa do reel no Instagram.
+- Capa clara e chamativa (nunca escura): título curto de gancho + elemento visual + CTA do reel (ex.: "Comenta IA") + logo. Texto dentro da área central 4:5 (y 240–1680) pra não cortar no grid.
+- Logo depois da capa o vídeo já começa com conteúdo na tela: nada de quadro escuro ou fade a partir do preto.
+- Ferramentas: `ferramentas/fator/capa/cover.html` + `make_covers.js` (gera a capa) e `add_cover.sh capa.png in.mp4 out.mp4` (põe a capa nos 2 primeiros quadros e atrasa o áudio junto).
+- Aplicar só nos vídeos novos, sem mexer nos já entregues, a não ser que ela peça.
+
 # Lições do trailer de terror
 - Título não pode estourar a largura: limitar a 1000px e quebrar em duas linhas.
 - Footage noturna escura: levantar as sombras (gamma) antes do grade escuro, senão o rosto some.

@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(120% 70% at 20% 15%,#5b8dff 0%,#1f5fe0 38%,#0f3fa8 70%,#0a2f80 100%)}
+.blob{position:absolute;width:820px;height:820px;border-radius:50%;background:#19e0b0;filter:blur(160px);opacity:.55;right:-260px;bottom:280px}
+.safe{position:absolute;left:0;right:0;top:240px;height:1440px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px}
+.kick{font:700 34px 'JetBrains Mono',monospace;letter-spacing:.08em;color:#bfe9ff;text-transform:uppercase;margin-bottom:34px}
+h1{font-weight:800;font-size:112px;line-height:1.0;letter-spacing:-.045em;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.25)}
+h1 em{font-style:normal;background:linear-gradient(90deg,#7ff5d6,#d9fff4);-webkit-background-clip:text;color:transparent}
+.vis{margin:52px 0 0}
+.cta{margin-top:56px;background:#fff;color:#0b1b44;font:800 46px Inter;padding:28px 52px;border-radius:999px;box-shadow:0 20px 60px rgba(0,0,0,.3);display:inline-flex;gap:16px;align-items:center}
+.cta b{background:#0b1b44;color:#fff;padding:6px 20px;border-radius:14px;font-family:'JetBrains Mono',monospace}
+.logo{position:absolute;left:50%;transform:translateX(-50%);bottom:150px;background:#fff;border-radius:34px;padding:18px 30px;box-shadow:0 16px 50px rgba(0,0,0,.25)}
+.logo img{height:120px;display:block}
+.bub{display:inline-block;background:#fff;color:#111;font:600 38px Inter;padding:24px 34px;border-radius:34px 34px 34px 10px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:left}
+.bub .r{color:#ff3b30}
+</style></head><body>
+<div class="blob"></div>
+<div class="safe">
+  <div class="kick" id="kick"></div>
+  <h1 id="h1"></h1>
+  <div class="vis" id="vis"></div>
+  <div class="cta" id="cta"></div>
+</div>
+<div class="logo"><img src="../logo_fator_marketing.png"></div>
+<script>
+const P=new URLSearchParams(location.search);
+document.getElementById('kick').textContent=P.get('kick')||'';
+document.getElementById('h1').innerHTML=P.get('h1')||'';
+document.getElementById('vis').innerHTML=P.get('vis')||'';
+document.getElementById('cta').innerHTML=P.get('cta')||'';
+</script></body></html>

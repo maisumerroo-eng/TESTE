@@ -122,7 +122,7 @@ function render(t){
     el.style.opacity=o; el.style.display=o>0?'block':'none';
     el.querySelectorAll('.glow').forEach((g,i)=>{g.style.transform=`translate(${Math.sin(t*.4+i)*60}px,${Math.cos(t*.33+i)*50}px)`});}
   // S1
-  show($('h1'),prog(t,0,.35)); show($('chat1'),prog(t,0.05,.45),60,.04);
+  show($('h1'),prog(t,-1,.35)); show($('chat1'),prog(t,-1,.45),60,.04);
   $('q1t').textContent=Q.slice(0,Math.floor(cl((t-T.q0)/(T.q1-T.q0))*Q.length)); $('q1').style.opacity=t<T.q0?0:1;
   const d=$('dots1'); d.style.display=(t>T.dots&&t<T.ans)?'block':'none';
   [...d.children].forEach((s,i)=>s.style.opacity=.35+.65*Math.max(0,Math.sin(t*9-i*.8)));
