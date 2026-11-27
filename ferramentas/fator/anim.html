@@ -1,0 +1,208 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050607;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;opacity:0}
+.dark{background:#050607}
+.light{background:#efefec}
+.glow{position:absolute;width:900px;height:900px;border-radius:50%;filter:blur(140px);opacity:.55}
+.g1{background:#1f5fe0}.g2{background:#13c79d}
+.cap{position:absolute;left:0;right:0;text-align:center;font-weight:600;letter-spacing:-.02em;line-height:1.12}
+.capd{color:#fff}.capl{color:#111}
+.sub{font-weight:500;font-size:34px;letter-spacing:-.01em;margin-top:18px}
+.subd{color:#8fb4ff}.subl{color:#5b6472}
+.win{position:absolute;background:#f8f8f6;border-radius:30px;box-shadow:0 40px 90px rgba(0,0,0,.35),0 0 0 1.5px rgba(0,0,0,.06);overflow:hidden}
+.bar{height:64px;display:flex;align-items:center;padding:0 26px;gap:12px;border-bottom:1.5px solid #e6e6e2;background:#f1f1ee}
+.dot{width:16px;height:16px;border-radius:50%;background:#d6d6d2}
+.url{margin-left:18px;flex:1;height:38px;border-radius:12px;background:#fff;border:1.5px solid #e3e3df;font:500 22px 'JetBrains Mono',monospace;color:#6b7280;display:flex;align-items:center;padding:0 16px;gap:10px}
+.pill{position:absolute;left:50%;transform:translateX(-50%);background:#0d0f12;color:#e9edf3;font:600 28px 'JetBrains Mono',monospace;border-radius:999px;padding:16px 30px;white-space:nowrap;display:flex;gap:14px;align-items:center}
+.pill i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.sk{background:#e4e4df;border-radius:12px}
+.btnc{background:linear-gradient(90deg,#1f5fe0,#13c79d);color:#fff;border-radius:16px;font-weight:600}
+.row{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:24px;padding:34px 40px;font-size:46px;font-weight:600;color:#111;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:26px}
+.x{width:64px;height:64px;border-radius:50%;background:#ff3b30;color:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700}
+.card{position:absolute;width:400px;height:560px;border-radius:32px;background:#f8f8f6;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.card h4{font-size:36px;font-weight:600;color:#111;text-align:center;margin-top:34px}
+.chip{position:absolute;width:300px;height:84px;border-radius:20px;background:#fff;border:1.5px solid #e3e3df;font-size:32px;font-weight:600;color:#1a1a1a;display:flex;align-items:center;gap:16px;padding-left:24px}
+.chip b{width:40px;height:40px;border-radius:10px;display:inline-block}
+.grad{background:linear-gradient(90deg,#4f8cff,#19e0b0);-webkit-background-clip:text;color:transparent}
+</style></head><body>
+
+<!-- S1 prompt na IA -->
+<div class="scene dark" id="s1">
+  <div class="glow g1" style="left:90px;top:300px"></div>
+  <div class="win" id="s1win" style="left:110px;top:430px;width:860px;height:560px">
+    <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">chat.ia</div></div>
+    <div style="padding:60px 48px">
+      <div style="font-size:30px;color:#9a9a95;font-weight:500;margin-bottom:22px">O que você quer criar?</div>
+      <div style="background:#fff;border:1.5px solid #e3e3df;border-radius:22px;min-height:190px;padding:28px 30px;font-size:36px;color:#111;font-weight:500;line-height:1.3"><span id="typed"></span><span id="caret" style="display:inline-block;width:3px;height:40px;background:#1f5fe0;vertical-align:-6px;margin-left:2px"></span></div>
+      <div id="send" style="margin-top:26px;margin-left:auto;width:170px;height:68px;border-radius:18px;background:#111;color:#fff;font-size:30px;font-weight:600;display:flex;align-items:center;justify-content:center">Gerar</div>
+    </div>
+  </div>
+  <div class="cap capd" id="c1" style="top:1260px;font-size:60px">Você pediu pra IA criar<br>o site da sua empresa…</div>
+</div>
+
+<!-- S2 ficou lindo / localhost -->
+<div class="scene light" id="s2">
+  <div class="win" id="s2win" style="left:110px;top:360px;width:860px;height:760px">
+    <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" id="s2url">localhost:3000</div></div>
+    <div style="padding:36px">
+      <div style="height:250px;border-radius:22px;background:linear-gradient(135deg,#1f5fe0,#13c79d);padding:40px">
+        <div style="width:60%;height:34px;border-radius:10px;background:rgba(255,255,255,.9)"></div>
+        <div style="width:42%;height:24px;border-radius:8px;background:rgba(255,255,255,.6);margin-top:18px"></div>
+        <div style="width:200px;height:58px;border-radius:14px;background:#fff;margin-top:34px"></div>
+      </div>
+      <div style="display:flex;gap:22px;margin-top:30px">
+        <div class="sk" style="flex:1;height:200px"></div><div class="sk" style="flex:1;height:200px"></div><div class="sk" style="flex:1;height:200px"></div>
+      </div>
+      <div class="sk" style="width:70%;height:28px;margin-top:30px"></div>
+      <div class="sk" style="width:50%;height:28px;margin-top:16px"></div>
+    </div>
+  </div>
+  <div class="pill" id="s2pill" style="top:1170px"><i style="background:#ff9f0a"></i>rodando só no seu computador</div>
+  <div class="cap capl" id="c2" style="top:1330px;font-size:64px">…e ficou lindo.</div>
+  <div class="cap capl" id="c2b" style="top:1330px;font-size:60px">Só que ele <span style="color:#ff3b30">não tá no ar.</span></div>
+</div>
+
+<!-- S3 ninguem acha -->
+<div class="scene dark" id="s3">
+  <div class="glow g1" style="left:90px;top:380px;opacity:.4"></div>
+  <div id="s3ph" style="position:absolute;left:330px;top:330px;width:420px;height:820px;border-radius:64px;background:#f8f8f6;box-shadow:0 40px 100px rgba(0,0,0,.5),0 0 0 10px #15171b">
+    <div style="margin:34px auto 0;width:130px;height:30px;border-radius:20px;background:#15171b"></div>
+    <div style="margin:40px 30px 0;height:46px;border-radius:14px;background:#fff;border:1.5px solid #e3e3df;font:500 18px 'JetBrains Mono',monospace;color:#9a9a95;display:flex;align-items:center;padding:0 14px">suaempresa.com.br</div>
+    <div style="text-align:center;margin-top:150px;font-size:110px;color:#c7c7c2">⊘</div>
+    <div style="text-align:center;font-size:30px;font-weight:600;color:#333;margin:20px 30px 0;line-height:1.25">Não foi possível<br>acessar este site</div>
+  </div>
+  <div class="cap capd" id="c3" style="top:1290px;font-size:64px">Ninguém acha.<br><span style="color:#8a8f98">Ninguém acessa.</span></div>
+</div>
+
+<!-- S4 IA nao vem com -->
+<div class="scene light" id="s4">
+  <div class="cap capl" id="c4" style="top:430px;font-size:62px">Site feito por IA<br>não vem com:</div>
+  <div style="position:absolute;left:130px;right:130px;top:760px">
+    <div class="row" id="r1">Hospedagem<span class="x">✕</span></div>
+    <div class="row" id="r2">Segurança<span class="x">✕</span></div>
+    <div class="row" id="r3">Backup<span class="x">✕</span></div>
+  </div>
+</div>
+
+<!-- S5 backup explicado -->
+<div class="scene dark" id="s5">
+  <div class="glow g2" style="left:90px;top:420px;opacity:.35"></div>
+  <div class="cap capd" id="c5t" style="top:250px;font-size:58px">Backup =<br><span class="grad">cópia de segurança</span></div>
+  <div class="card" id="cardA" style="left:90px;top:640px"><h4 id="cardAt">Seu site</h4>
+    <div id="stA" style="position:absolute;left:0;right:0;bottom:36px;text-align:center;font:600 26px 'JetBrains Mono',monospace;color:#9a9a95">online</div></div>
+  <div class="card" id="cardB" style="left:590px;top:640px"><h4>Cópia</h4>
+    <div style="text-align:center;font-size:90px;margin-top:10px;color:#4f8cff">☁</div></div>
+  <div class="chip" id="ch1"><b style="background:#4f8cff"></b>Textos</div>
+  <div class="chip" id="ch2"><b style="background:#19c3a0"></b>Fotos</div>
+  <div class="chip" id="ch3"><b style="background:#f5a524"></b>Clientes</div>
+  <div class="chip" id="cp1"><b style="background:#4f8cff"></b>Textos</div>
+  <div class="chip" id="cp2"><b style="background:#19c3a0"></b>Fotos</div>
+  <div class="chip" id="cp3"><b style="background:#f5a524"></b>Clientes</div>
+  <div class="cap capd" id="c5a" style="top:1300px;font-size:52px">Uma cópia de tudo:<br><span style="color:#8a8f98">textos, fotos e dados dos clientes.</span></div>
+  <div class="cap capd" id="c5b" style="top:1300px;font-size:52px">Se o site quebrar,<br><span class="grad">a gente restaura.</span></div>
+</div>
+
+<!-- S6 Fator faz tudo -->
+<div class="scene light" id="s6">
+  <div class="win" id="s6win" style="left:110px;top:300px;width:860px;height:620px">
+    <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url" style="color:#111"><i style="width:14px;height:14px;border-radius:50%;background:#30d158;display:inline-block"></i>suaempresa.com.br</div></div>
+    <div style="padding:36px">
+      <div style="height:220px;border-radius:22px;background:linear-gradient(135deg,#1f5fe0,#13c79d)"></div>
+      <div style="display:flex;gap:22px;margin-top:28px"><div class="sk" style="flex:1;height:170px"></div><div class="sk" style="flex:1;height:170px"></div><div class="sk" style="flex:1;height:170px"></div></div>
+    </div>
+  </div>
+  <div class="pill" id="p1" style="top:975px"><i style="background:#30d158"></i>site sob medida</div>
+  <div class="pill" id="p2" style="top:1065px"><i style="background:#30d158"></i>no ar e hospedado</div>
+  <div class="pill" id="p3" style="top:1155px"><i style="background:#30d158"></i>com backup</div>
+  <div class="cap capl" id="c6" style="top:1310px;font-size:54px">Na <b>Fator Marketing</b>,<br>a gente faz tudo isso pra você.</div>
+</div>
+
+<!-- S7 voce cuida -->
+<div class="scene dark" id="s7">
+  <div class="glow g1" style="left:-100px;top:560px;opacity:.45"></div>
+  <div class="glow g2" style="left:380px;top:700px;opacity:.3"></div>
+  <div class="cap capd" id="c7a" style="top:760px;font-size:72px">Você cuida do<br>seu negócio.</div>
+  <div class="cap" id="c7b" style="top:1000px;font-size:72px"><span class="grad">A gente cuida<br>do seu site.</span></div>
+</div>
+
+<!-- S8 logo + CTA -->
+<div class="scene dark" id="s8">
+  <div class="glow g1" style="left:90px;top:420px;opacity:.5"></div>
+  <div class="glow g2" style="left:300px;top:620px;opacity:.25"></div>
+  <div id="logo" style="position:absolute;left:340px;top:560px;width:400px;height:400px;border-radius:92px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 40px 100px rgba(0,0,0,.5)">
+    <img src="logo_fator_marketing.png" style="width:300px">
+  </div>
+  <div class="cap capd" id="c8" style="top:1080px;font-size:66px">Chama no direct.</div>
+  <div class="cap" id="c8b" style="top:1180px;font-size:38px;color:#8fb4ff;font-weight:500">ou comenta <span style="font-family:'JetBrains Mono',monospace;color:#fff;background:#15181e;padding:6px 18px;border-radius:12px">SITE</span></div>
+</div>
+
+<script>
+const S=[["s1",0,4.2],["s2",4.2,7.6],["s3",7.6,11.2],["s4",11.2,15.8],["s5",15.8,23.8],["s6",23.8,29.8],["s7",29.8,32.6],["s8",32.6,37.0]];
+const XF=0.35, $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const eo=x=>1-Math.pow(1-cl(x),3);              // ease-out
+const eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const prog=(t,a,d)=>cl((t-a)/d);
+function show(el,p,dy=30,sc=0){const e=eo(p);el.style.opacity=e;el.style.transform=`translateY(${(1-e)*dy}px) scale(${1-sc*(1-e)})`;}
+function showX(el,p,dy=30){const e=eo(p);el.style.opacity=e;el.style.transform=`translateX(-50%) translateY(${(1-e)*dy}px)`;}
+function hide(el,p){el.style.opacity=Math.min(parseFloat(el.style.opacity||1),1-eo(p));}
+const PROMPT="cria um site pra minha empresa com catálogo e WhatsApp";
+function render(t){
+  for(const [id,a,b] of S){const el=$(id);let o=0;
+    if(t>=a-XF&&t<=b){o=Math.min(cl((t-(a-XF))/XF),b===37?1:cl((b-t)/XF+0.0001));if(a===0)o=Math.min(1,cl((b-t)/XF));}
+    el.style.opacity=o; el.style.display=o>0?'block':'none';
+    el.querySelectorAll('.glow').forEach((g,i)=>{g.style.transform=`translate(${Math.sin(t*.4+i)*60}px,${Math.cos(t*.33+i)*50}px)`});}
+  // S1
+  show($('s1win'),prog(t,0.05,.6),50,.04);
+  const n=Math.floor(cl((t-0.5)/2.3)*PROMPT.length); $('typed').textContent=PROMPT.slice(0,n);
+  $('caret').style.opacity=(t<2.9||Math.floor(t*2)%2)?1:0;
+  const press=cl(1-Math.abs(t-3.25)/0.12); $('send').style.transform=`scale(${1-.08*press})`; $('send').style.background=t>3.2?'#1f5fe0':'#111';
+  show($('c1'),prog(t,0.3,.5));
+  // S2
+  const s2=t-4.2; show($('s2win'),prog(s2,0,.55),60,.06);
+  show($('c2'),prog(s2,.15,.4)); hide($('c2'),prog(s2,1.55,.25));
+  show($('c2b'),prog(s2,1.8,.4));
+  showX($('s2pill'),prog(s2,1.75,.45));
+  $('s2url').style.background=s2>1.75?'#fff3e0':'#fff'; $('s2url').style.color=s2>1.75?'#b35b00':'#6b7280';
+  // S3
+  const s3=t-7.6; show($('s3ph'),prog(s3,0,.6),60,.05);
+  $('s3ph').style.transform+=` rotate(${Math.sin(s3*1.2)*1.2}deg)`;
+  show($('c3'),prog(s3,.2,.5));
+  // S4
+  const s4=t-11.2; show($('c4'),prog(s4,0,.5));
+  [['r1',.6],['r2',1.5],['r3',2.4]].forEach(([id,a])=>{const el=$(id);show(el,prog(s4,a,.45),40);
+     const x=el.querySelector('.x');const p=eo(prog(s4,a+.2,.3));x.style.transform=`scale(${.4+.6*p})`;x.style.opacity=p;});
+  // S5 backup
+  const s5=t-15.8; show($('c5t'),prog(s5,0,.5));
+  show($('cardA'),prog(s5,.2,.5),40); show($('cardB'),prog(s5,.35,.5),40);
+  const A={x:140,y:760}, B={x:640,y:760};
+  [0,1,2].forEach(i=>{const o=$('ch'+(i+1)), c=$('cp'+(i+1)), y=A.y+i*104;
+     // copia sai do site e vai pra nuvem (o original fica)
+     const go=eio(prog(s5,1.4+i*.25,.8));
+     c.style.left=(A.x+(B.x-A.x)*go)+'px'; c.style.top=y+'px'; c.style.opacity=s5<1.4+i*.25?0:1;
+     // original: aparece, some quando o site cai, volta restaurado vindo da copia
+     const lost=eo(prog(s5,4.2+i*.12,.35)), back=eio(prog(s5,5.4+i*.2,.8));
+     let x=A.x, op=eo(prog(s5,.6+i*.15,.4))*(1-lost);
+     if(back>0){x=B.x+(A.x-B.x)*back; op=1;}
+     o.style.left=x+'px'; o.style.top=y+'px'; o.style.opacity=op;});
+  const crash=prog(s5,4.0,1.2), fix=prog(s5,5.6,1.0);
+  const sh=(crash>0&&crash<1&&fix===0)?Math.sin(s5*60)*10*(1-crash):0;
+  $('cardA').style.transform+=` translateX(${sh}px)`;
+  $('cardA').style.background=fix>0.5?'#e9fbf2':(crash>0?'#ffe9e7':'#f8f8f6');
+  $('stA').textContent=fix>0.5?'restaurado ✓':(crash>0?'site caiu':'online');
+  $('stA').style.color=fix>0.5?'#1f9d63':(crash>0?'#ff3b30':'#9a9a95');
+  show($('c5a'),prog(s5,1.0,.45)); hide($('c5a'),prog(s5,3.7,.3)); show($('c5b'),prog(s5,4.05,.45));
+  // S6
+  const s6=t-23.8; show($('s6win'),prog(s6,0,.55),60,.05);
+  showX($('p1'),prog(s6,.8,.4)); showX($('p2'),prog(s6,1.5,.4)); showX($('p3'),prog(s6,2.2,.4));
+  show($('c6'),prog(s6,.3,.5));
+  // S7
+  const s7=t-29.8; show($('c7a'),prog(s7,.05,.5)); show($('c7b'),prog(s7,1.3,.5));
+  // S8
+  const s8=t-32.6; show($('logo'),prog(s8,.05,.6),40,.12); show($('c8'),prog(s8,.6,.5)); show($('c8b'),prog(s8,1.0,.5));
+}
+window.render=render; render(0);
+</script></body></html>
