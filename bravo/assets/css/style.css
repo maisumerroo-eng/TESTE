@@ -478,8 +478,8 @@ label.chip { cursor: pointer; }
   transition: opacity 500ms var(--ease), transform 800ms var(--ease), filter 500ms var(--ease); }
 .pdp-visor img.ativa { opacity: 1; transform: none; filter: none; }
 .pdp-angulos { display: flex; gap: 8px; order: 2; }
-@media (min-width: 900px) { .pdp-angulos { flex-direction: column; order: 0; } }
-.pdp-angulo { display: grid; gap: 6px; width: 88px; text-align: center; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--pedra-escura); }
+@media (min-width: 900px) { .pdp-angulos { flex-direction: column; order: 0; } .pdp-angulo { flex: none; width: 88px; } }
+.pdp-angulo { display: grid; gap: 6px; flex: 1 1 0; min-width: 0; max-width: 88px; text-align: center; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--pedra-escura); }
 .pdp-angulo img { width: 100%; aspect-ratio: 3/4; object-fit: cover; background: var(--branco); border: 1px solid transparent; transition: border-color var(--dur); }
 .pdp-angulo[aria-pressed="true"] { color: var(--preto); }
 .pdp-angulo[aria-pressed="true"] img, .pdp-angulo:hover img { border-color: var(--preto); }

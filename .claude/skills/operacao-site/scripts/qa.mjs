@@ -61,7 +61,8 @@ for (const vp of VIEWPORTS) {
     for (const e of [...new Set(erros)].slice(0, 3)) falhas.push(`${tag}: erro JS ${e.slice(0, 160)}`);
     if (vp.w === VIEWPORTS[0].w) {
       if (EMOJI.test(r.texto)) falhas.push(`${p}: emoji no texto visível`);
-      if (r.texto.includes('—')) falhas.push(`${p}: travessão (—) no texto visível`);
+      // traço sozinho na linha = placeholder de dado vazio (ok); no meio de frase = travessão proibido
+      if (r.texto.split('\n').some((l) => l.includes('—') && l.trim() !== '—')) falhas.push(`${p}: travessão (—) no texto visível`);
       const low = r.texto.toLowerCase();
       const achou = CLICHES.filter((c) => low.includes(c));
       if (achou.length) falhas.push(`${p}: clichê: ${achou.join(', ')}`);
