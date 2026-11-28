@@ -41,15 +41,16 @@ Sessão principal. Estrutura e JS como em `site-hibrido-ia` passo 5. Leia `ref.m
 `Agent(subagent_type: "qa-site")` ou direto:
 ```
 cd <projeto> && python3 -m http.server 8123 >/dev/null 2>&1 &
-node ../.claude/skills/operacao-site/scripts/qa.mjs http://localhost:8123 index.html categoria.html produto.html
+node $S/scripts/qa.mjs http://localhost:8123 index.html categoria.html produto.html
 ```
+`$S` = pasta desta skill: `.claude/skills/operacao-site` no repo, ou `~/.claude/skills/operacao-site` global.
 Saída: `docs/qa.md` com falhas (overflow horizontal, erro de JS, imagem quebrada, emoji, travessão, clichê) e screenshots em `docs/shots/`. Sem falha = 1 linha "OK".
 
 ## F4 Correção
 Corrija **só** o listado em `qa.md`. Rode F3 de novo. Máximo 2 voltas; o que sobrar vira pendência na entrega.
 
 ## F5 Entrega
-- Imagens: `python3 .claude/skills/operacao-site/scripts/comprimir.py <projeto>/assets/img`.
+- Imagens: `python3 $S/scripts/comprimir.py <projeto>/assets/img`.
 - Deploy: `vercel.json` com `outputDirectory` = pasta do projeto (Vercel via conector) ou `deploy_project` do Lovable.
 - Commit na branch de trabalho, push.
 - Resposta caveman: links, o que cada IA fez, créditos gastos, pendências.

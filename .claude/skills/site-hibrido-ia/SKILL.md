@@ -84,7 +84,7 @@ Mesmo assim, chame `list_workspaces` de novo a cada vez, porque essa lista muda.
 - Header desktop com 8 itens: use logo à esquerda, menu no centro e ícones à direita (`auto 1fr auto`). Com logo centralizado o menu encosta nele em 1440px.
 
 ### 6. Autoteste antes de entregar
-- Atalho: `node .claude/skills/operacao-site/scripts/qa.mjs <url> <paginas>` faz tudo abaixo e grava só as falhas em `docs/qa.md`. Fluxo completo de ponta a ponta: skill `operacao-site`.
+- Atalho: `node <pasta da skill operacao-site>/scripts/qa.mjs <url> <paginas>` faz tudo abaixo e grava só as falhas em `docs/qa.md`. Fluxo completo de ponta a ponta: skill `operacao-site`.
 - `python3 -m http.server`, depois Playwright em 1440 e 390:
   - screenshot das 3 páginas;
   - `scrollWidth - innerWidth === 0`;

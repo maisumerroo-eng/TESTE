@@ -8,7 +8,7 @@ model: haiku
 Entrada: pasta do projeto e lista de páginas.
 
 1. `cd <projeto> && (python3 -m http.server 8123 >/dev/null 2>&1 &) && sleep 1`
-2. `node <raiz-do-repo>/.claude/skills/operacao-site/scripts/qa.mjs http://localhost:8123 <paginas...>`
+2. `node <S>/scripts/qa.mjs http://localhost:8123 <paginas...>` onde `<S>` é `.claude/skills/operacao-site` do repo se existir, senão `~/.claude/skills/operacao-site`.
 3. Se precisar de um olhar visual, abra no máximo 2 screenshots de `docs/shots/` (os de 390px primeiro).
 4. Mate o servidor: `pkill -f "http.server 8123"`.
 
